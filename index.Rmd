@@ -1,5 +1,5 @@
 ---
-title: "My Website"
+title: "High Dimensional Data Analysis 2021 (HDA2021)"
 output:
     html_document:
         code_download: false
@@ -8,16 +8,44 @@ output:
         code_folding: "none"
 ---
 
-Hello, Website!
-
-For more information about simple R Markdown websites, please read the documentation at https://bookdown.org/yihui/rmarkdown/rmarkdown-site.html.
-
-Please also note that simple R Markdown sites are _not_ based on **blogdown**. They are probably good for websites with only a few Rmd documents. For larger-scale and more sophisticated websites (such as blogs), you may want to use **blogdown** instead: https://github.com/rstudio/blogdown.
+```{r setup, include=FALSE, cache=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
 
 ***
 
-### Contents
+```{r}
+knitr::include_graphics("./figures/wpGraph.jpeg")
+```
 
-<!-- Placeholder of Table of Contents on the homepage, with links to the actual page and PDF version -->
+
+### Course Description
+
+Modern high throughput technologies easily generate data on thousands of variables; e.g. genomics, chemometrics, environmental monitoring, ... Conventional statistical methods are no longer suited for effectively analysing such high-dimensional data. Multivariate statistical methods may be used, but for often the dimensionality of the data set is much larger than the number of (biological) samples. Modern advances in statistical data analyses allow for the appropriate analysis of such data.  Methods for the analysis of high dimensional data rely heavily on multivariate statistical methods. Therefore a large part of the course content is devoted to multivariate methods, but with a focus on high dimensional settings and issues.  Multivariate statistical analysis covers many methods. In this course, only a few are discussed. A selection of techniques is made based on our experience that they are frequently used in industry and research institutes (e.g. principal component analysis, cluster analysis, classification methods). Central in the course are applications from different fields (analytical chemistry, ecology, biotechnology, genomics, …).
+
+### Prerequisites
+
+The prerequisites for the High Dimensional Data Analysis course are the successful completion of a basic course of statistics that covers topics on data exploration and descriptive statistics, statistical modeling, and inference: linear models, confidence intervals, t-tests, F-tests, anova, chi-squared test.
+
+The basis concepts may be revisited in my online course <https://gtpb.github.io/PSLS20/> (English) and in <https://statomics.github.io/statistiekCursusNotas/> (Dutch).
+
+A primer to R and Data visualisation  in R can be found in:
+
+- R Basics: <https://dodona.ugent.be/nl/courses/335/>
+
+- R Data Exploration: <https://dodona.ugent.be/nl/courses/345/>
+
+### Issues
+
+If you encounter any problems related to the course material (e.g. package installation problems, bugs in the code, typos, ...), please consider [posting an issue on GitHub](https://github.com/statOmics/HDA2021/issues).
+
+<!-- TODO: update link to UFora -->
+Questions related to the course contents can be asked by posting on [UFora](),
+by contacting the teachers by email or during the lectures or practical
+sessions.
+
+---
+
+### Topics
 
 - [Example](./example.html) ([PDF](./example.pdf))

@@ -1,6 +1,7 @@
-name: "my-website"
+name : "HDA2021"
+title : "High Dimensional Data Analysis 2021 (HDA2021)"
 navbar:
-  title: "My Website"
+  title: "HDA2021"
   left:
     - icon: fa-home
       href: index.html
@@ -20,7 +21,7 @@ navbar:
         href:
   right:
     - icon: fab fa-github
-      href: https://github.com/statOmics/Rmd-website
+      href: https://github.com/statOmics/HDA2021
     - text: "statOmics"
       href: http://statomics.github.io/
 output:
@@ -40,4 +41,4 @@ output:
     toc: false
     number_sections: true
 new_session: true
-exclude: ["install.R"]
+exclude: ["renv.lock"]
