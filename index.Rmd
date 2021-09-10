@@ -1,5 +1,5 @@
 ---
-title: "High Dimensional Data Analysis 2021 (HDA2021)"
+title: "High Dimensional Data Analysis 2021 (HDDA2021)"
 output:
     html_document:
         code_download: false
@@ -37,7 +37,7 @@ A primer to R and Data visualisation  in R can be found in:
 
 ### Issues
 
-If you encounter any problems related to the course material (e.g. package installation problems, bugs in the code, typos, ...), please consider [posting an issue on GitHub](https://github.com/statOmics/HDA2021/issues).
+If you encounter any problems related to the course material (e.g. package installation problems, bugs in the code, typos, ...), please consider [posting an issue on GitHub](https://github.com/statOmics/HDDA2021/issues).
 
 <!-- TODO: update link to UFora -->
 Questions related to the course contents can be asked by posting on [UFora](),
