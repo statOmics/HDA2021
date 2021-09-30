@@ -1267,8 +1267,8 @@ with $\mathbf{v}_1$ and $\mathbf{v}_2$ the first two right singular vector and $
 #### Biplot
 
 ```{r}
-Vk<-svdUk$v[,1:k]
-rownames(Vk) <- uk %>% pull(X1)
+Vk <- svdUk$v[,1:k]
+rownames(Vk) <- uk[[1]]
 colnames(Vk) <- colnames(Zk)
 scaleFactor <- mean(svdUk$d[1:k])
 
