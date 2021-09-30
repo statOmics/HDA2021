@@ -3,18 +3,27 @@ layout: default
 title: Software requirements
 ---
 
-Students are required to bring their own laptop with R version 3.6.0 or greater.
+Students are required to bring their own laptop with R version 4.1 or greater.
 
 Please make sure that your computer’s hardware is sufficiently powered (>4 GB RAM, > 2 GB free disk space), that you have a working wireless card, and that you have administrator rights.
 
-<!-- TODO: update this to renv workflow -->
+### Local installation
 
-<!-- ### Local installation {-}
+1. Install R 4.1 [R/CRAN](https://cran.r-project.org)
+2. (Optional but recommended) Install [RStudio Desktop](https://www.rstudio.com/products/rstudio/download/)
+3. Install the [*renv*](https://rstudio.github.io/renv/index.html) package by entering the following command in an R session:
 
-1. Install R 3.6.0 or greater [R/CRAN](https://cran.r-project.org)
-2. Install the latest version of Rstudio [R/Rstudio](https://www.rstudio.com/products/rstudio/download/)
-3. To install all required packages, please copy and paste this line of code in your R console.
+	```r
+	install.packages("renv")
+	```
 
-```
-source("https://github.com/statOmics/HDA2020/raw/master/install.R")
-``` -->
+5. (Optional but recommended) Create a new [*R project*](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects) for this course
+6. In an R session within the R project you just created, install the *renv* environment for this course by running
+
+	```r
+	url <- "https://raw.githubusercontent.com/statOmics/HDDA21/master/renv.lock"
+	renv::restore(lockfile = url)
+
+	## Optionally, record the status of your local renv library
+	renv::snapshot()
+	```
