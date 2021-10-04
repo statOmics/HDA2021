@@ -11,7 +11,7 @@
 
 <meta name="author" content="Milan Malfait, Ghent University" />
 
-<meta name="date" content="2021-09-10" />
+<meta name="date" content="2021-10-04" />
 
 <title>Example</title>
 
@@ -352,23 +352,32 @@ div.tocify {
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="example.html">Example</a>
+      <a href="intro.html">1. Introduction</a>
+    </li>
+    <li>
+      <a href="svd.html">2. Singular Value Decomposition</a>
+    </li>
+    <li>
+      <a href="svdGeometricInterpretation.html">2.3. Geometric Interpretation SVD</a>
+    </li>
+    <li>
+      <a href="MDS_linkGramDistanceMatrix.html">2.7. Link MDS and Gram Distance Matrix</a>
+    </li>
+    <li>
+      <a href="prediction.html">3. Prediction with High Dimensional Predictors</a>
+    </li>
+    <li>
+      <a href="sparseSvd.html">4. Sparse Singular Value Decomposition</a>
+    </li>
+    <li>
+      <a href="lda.html">5. Linear Discriminant Analysis</a>
+    </li>
+    <li>
+      <a href="lsi.html">6. Large Scale Inference</a>
     </li>
   </ul>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fa fa-laptop"></span>
-     
-    Labs
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li class="dropdown-header">Lab 1</li>
-    <li class="dropdown-header">Lab 2</li>
-  </ul>
-</li>
+<li class="dropdown-header">Labs</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
@@ -401,7 +410,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Example</h1>
 <h4 class="author">Milan Malfait, Ghent University</h4>
-<h4 class="date">September 10, 2021</h4>
+<h4 class="date">October 04, 2021</h4>
 
 </div>
 
@@ -431,7 +440,7 @@ div.tocify {
 <p><strong>Note that this should be used with caution, as caches may become invalid when code is changed, potentially leading to unsuspected results.</strong></p>
 <pre class="r"><code>## Run with caching enabled
 Sys.time()</code></pre>
-<pre><code>## [1] &quot;2021-09-03 15:00:42 UTC&quot;</code></pre>
+<pre><code>## [1] &quot;2021-10-04 10:41:04 UTC&quot;</code></pre>
 <!-- Include common Session Information Rmd fragment by including the following code chunk: -->
 <!-- See https://bookdown.org/yihui/rmarkdown/rmarkdown-site.html#rmd-partials -->
 </div>
@@ -439,7 +448,7 @@ Sys.time()</code></pre>
 <h1>Session info</h1>
 <details>
 <p><summary>Session info</summary></p>
-<pre><code>## [1] &quot;2021-09-10 09:49:08 UTC&quot;</code></pre>
+<pre><code>## [1] &quot;2021-10-04 10:41:04 UTC&quot;</code></pre>
 <pre><code>## ─ Session info ───────────────────────────────────────────────────────────────
 ##  setting  value                       
 ##  version  R version 4.1.1 (2021-08-10)
@@ -450,48 +459,59 @@ Sys.time()</code></pre>
 ##  collate  en_US.UTF-8                 
 ##  ctype    en_US.UTF-8                 
 ##  tz       UTC                         
-##  date     2021-09-10                  
+##  date     2021-10-04                  
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────
 ##  ! package     * version date       lib source                          
+##  P assertthat    0.2.1   2019-03-21 [?] CRAN (R 4.1.0)                  
+##  P bslib         0.3.0   2021-09-02 [?] CRAN (R 4.1.0)                  
 ##  P cli           3.0.1   2021-07-17 [?] CRAN (R 4.1.0)                  
+##  P codetools     0.2-18  2020-11-04 [?] CRAN (R 4.1.1)                  
 ##  P colorspace    2.0-2   2021-06-24 [?] CRAN (R 4.1.0)                  
 ##  P crayon        1.4.1   2021-02-08 [?] CRAN (R 4.1.0)                  
-##  P digest        0.6.27  2020-10-24 [?] CRAN (R 4.1.0)                  
+##  P DBI           1.1.1   2021-01-15 [?] CRAN (R 4.1.0)                  
+##  P digest        0.6.28  2021-09-23 [?] CRAN (R 4.1.0)                  
+##  P dplyr         1.0.7   2021-06-18 [?] CRAN (R 4.1.0)                  
 ##  P ellipsis      0.3.2   2021-04-29 [?] standard (@0.3.2)               
 ##  P evaluate      0.14    2019-05-28 [?] CRAN (R 4.1.0)                  
 ##  P fansi         0.5.0   2021-05-25 [?] CRAN (R 4.1.0)                  
 ##  P farver        2.1.0   2021-02-28 [?] CRAN (R 4.1.0)                  
 ##  P fastmap       1.1.0   2021-01-25 [?] CRAN (R 4.1.0)                  
+##  P generics      0.1.0   2020-10-31 [?] CRAN (R 4.1.0)                  
 ##  P ggplot2     * 3.3.5   2021-06-25 [?] CRAN (R 4.1.0)                  
 ##  P glue          1.4.2   2020-08-27 [?] CRAN (R 4.1.0)                  
 ##  P gtable        0.3.0   2019-03-25 [?] CRAN (R 4.1.0)                  
 ##  P highr         0.9     2021-04-16 [?] CRAN (R 4.1.0)                  
 ##  P htmltools     0.5.2   2021-08-25 [?] CRAN (R 4.1.0)                  
+##  P jquerylib     0.1.4   2021-04-26 [?] CRAN (R 4.1.0)                  
+##  P jsonlite      1.7.2   2020-12-09 [?] CRAN (R 4.1.0)                  
 ##  P knitr         1.33    2021-04-24 [?] CRAN (R 4.1.0)                  
 ##  P labeling      0.4.2   2020-10-20 [?] CRAN (R 4.1.0)                  
-##  P lifecycle     1.0.0   2021-02-15 [?] CRAN (R 4.1.0)                  
+##  P lifecycle     1.0.1   2021-09-24 [?] CRAN (R 4.1.0)                  
 ##  P magrittr      2.0.1   2020-11-17 [?] CRAN (R 4.1.0)                  
 ##  P munsell       0.5.0   2018-06-12 [?] CRAN (R 4.1.0)                  
-##  P pillar        1.6.2   2021-07-29 [?] CRAN (R 4.1.0)                  
-##  P pkgconfig     2.0.3   2021-09-10 [?] Github (r-lib/pkgconfig@b81ae03)
+##  P pillar        1.6.3   2021-09-26 [?] CRAN (R 4.1.0)                  
+##  P pkgconfig     2.0.3   2021-10-04 [?] Github (r-lib/pkgconfig@b81ae03)
+##  P purrr         0.3.4   2020-04-17 [?] CRAN (R 4.1.0)                  
 ##  P R6            2.5.1   2021-08-19 [?] CRAN (R 4.1.0)                  
 ##  P renv          0.14.0  2021-07-21 [?] CRAN (R 4.1.0)                  
 ##  P rlang         0.4.11  2021-04-30 [?] CRAN (R 4.1.0)                  
-##  P rmarkdown     2.10    2021-08-06 [?] CRAN (R 4.1.0)                  
+##  P rmarkdown     2.10    2021-08-06 [?] CRAN (R 4.1.1)                  
+##  P sass          0.4.0   2021-05-12 [?] CRAN (R 4.1.0)                  
 ##  P scales        1.1.1   2020-05-11 [?] CRAN (R 4.1.0)                  
 ##  P sessioninfo   1.1.1   2018-11-05 [?] CRAN (R 4.1.0)                  
 ##  P stringi       1.7.4   2021-08-25 [?] CRAN (R 4.1.0)                  
 ##  P stringr       1.4.0   2019-02-10 [?] CRAN (R 4.1.0)                  
-##  P tibble        3.1.4   2021-08-25 [?] CRAN (R 4.1.0)                  
+##  P tibble        3.1.5   2021-09-30 [?] CRAN (R 4.1.0)                  
+##  P tidyselect    1.1.1   2021-04-30 [?] standard (@1.1.1)               
 ##  P utf8          1.2.2   2021-07-24 [?] CRAN (R 4.1.0)                  
 ##  P vctrs         0.3.8   2021-04-29 [?] standard (@0.3.8)               
 ##  P withr         2.4.2   2021-04-18 [?] CRAN (R 4.1.0)                  
-##  P xfun          0.25    2021-08-06 [?] CRAN (R 4.1.0)                  
+##  P xfun          0.25    2021-08-06 [?] CRAN (R 4.1.1)                  
 ##  P yaml          2.2.1   2020-02-01 [?] CRAN (R 4.1.0)                  
 ## 
-## [1] /Users/runner/work/HDDA2021/HDDA2021/renv/library/R-4.1/x86_64-apple-darwin17.0
-## [2] /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/Rtmp0GEKiS/renv-system-library
+## [1] /Users/runner/work/HDDA21/HDDA21/renv/library/R-4.1/x86_64-apple-darwin17.0
+## [2] /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpqAvTpj/renv-system-library
 ## 
 ##  P ── Loaded and on-disk path mismatch.</code></pre>
 </details>

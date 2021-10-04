@@ -264,23 +264,32 @@ $(document).ready(function () {
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="example.html">Example</a>
+      <a href="intro.html">1. Introduction</a>
+    </li>
+    <li>
+      <a href="svd.html">2. Singular Value Decomposition</a>
+    </li>
+    <li>
+      <a href="svdGeometricInterpretation.html">2.3. Geometric Interpretation SVD</a>
+    </li>
+    <li>
+      <a href="MDS_linkGramDistanceMatrix.html">2.7. Link MDS and Gram Distance Matrix</a>
+    </li>
+    <li>
+      <a href="prediction.html">3. Prediction with High Dimensional Predictors</a>
+    </li>
+    <li>
+      <a href="sparseSvd.html">4. Sparse Singular Value Decomposition</a>
+    </li>
+    <li>
+      <a href="lda.html">5. Linear Discriminant Analysis</a>
+    </li>
+    <li>
+      <a href="lsi.html">6. Large Scale Inference</a>
     </li>
   </ul>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fa fa-laptop"></span>
-     
-    Labs
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li class="dropdown-header">Lab 1</li>
-    <li class="dropdown-header">Lab 2</li>
-  </ul>
-</li>
+<li class="dropdown-header">Labs</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
@@ -307,7 +316,7 @@ $(document).ready(function () {
 
 
 <hr />
-<p><img src="figures/wpGraph.jpeg" /><!-- --></p>
+<p><img src="figures/wpGraph.jpeg" width="986" /></p>
 <div id="course-description" class="section level3">
 <h3>Course Description</h3>
 <p>Modern high throughput technologies easily generate data on thousands of variables; e.g. genomics, chemometrics, environmental monitoring, … Conventional statistical methods are no longer suited for effectively analysing such high-dimensional data. Multivariate statistical methods may be used, but for often the dimensionality of the data set is much larger than the number of (biological) samples. Modern advances in statistical data analyses allow for the appropriate analysis of such data. Methods for the analysis of high dimensional data rely heavily on multivariate statistical methods. Therefore a large part of the course content is devoted to multivariate methods, but with a focus on high dimensional settings and issues. Multivariate statistical analysis covers many methods. In this course, only a few are discussed. A selection of techniques is made based on our experience that they are frequently used in industry and research institutes (e.g. principal component analysis, cluster analysis, classification methods). Central in the course are applications from different fields (analytical chemistry, ecology, biotechnology, genomics, …).</p>
@@ -325,15 +334,56 @@ $(document).ready(function () {
 <div id="issues" class="section level3">
 <h3>Issues</h3>
 <p>If you encounter any problems related to the course material (e.g. package installation problems, bugs in the code, typos, …), please consider <a href="https://github.com/statOmics/HDDA2021/issues">posting an issue on GitHub</a>.</p>
-<!-- TODO: update link to UFora -->
-<p>Questions related to the course contents can be asked by posting on <a href="">UFora</a>, by contacting the teachers by email or during the lectures or practical sessions.</p>
+<p>Questions related to the course contents can be asked by posting on <a href="https://ufora.ugent.be/d2l/home/444226">UFora</a>, by contacting the teachers by email or during the lectures or practical sessions.</p>
 <hr />
 </div>
 <div id="topics" class="section level3">
 <h3>Topics</h3>
+<!-- TODO: add Labs material -->
+<div id="introduction" class="section level4">
+<h4>1. Introduction</h4>
 <ul>
-<li><a href="./example.html">Example</a> (<a href="./example.pdf">PDF</a>)</li>
+<li>Slides: <a href="slides/IntroHighDim.pdf">Lecture 1: Intro</a></li>
+<li>Software: <a href="./software4stats.html">Install and Launch Statistical Software</a></li>
+<li><a href="./intro.html">Introduction</a> [<a href="./intro.pdf">PDF</a>] <!-- - [Introduction to RMarkdown](./Introduction-RMarkdown.html) --> <!-- - [Introduction to matrices in R](./Introduction-Matrices-R.html) --></li>
 </ul>
+</div>
+<div id="singular-value-decomposition" class="section level4">
+<h4>2. Singular value decomposition</h4>
+<ul>
+<li><a href="./svd.html">Lecture 2-3: Singular value decomposition</a> [<a href="./svd.pdf">PDF</a>]</li>
+<li><a href="./svdGeometricInterpretation.html">Geometric Interpretation</a></li>
+<li><a href="./MDS_linkGramDistanceMatrix.html">MDS Link Gram Distance Matrix</a> <!-- - [Lab 1: Introduction and SVD applications](./Lab1-Intro-SVD.html) --> <!-- - [Lab 2: PCA](./Lab2-PCA.html) --></li>
+</ul>
+</div>
+<div id="prediction-with-high-dimensional-predictors" class="section level4">
+<h4>3. Prediction with High Dimensional Predictors</h4>
+<ul>
+<li><a href="./prediction.html">Lecture 4-5: Prediction Theory</a> [<a href="./prediction.pdf">PDF</a>] <!-- - [Lab 3: Penalized regression and prediction](./Lab3-Penalized-Regression.html) --></li>
+</ul>
+</div>
+<div id="sparse-singular-value-decomposition" class="section level4">
+<h4>4. Sparse Singular Value Decomposition</h4>
+<ul>
+<li><a href="./sparseSvd.html">Lecture 5: Sparse SVD</a> [<a href="./sparseSvd.pdf">PDF</a>]</li>
+</ul>
+</div>
+<div id="linear-discriminant-analysis" class="section level4">
+<h4>5. Linear discriminant analysis</h4>
+<ul>
+<li><a href="./lda.html">Lecture 5: Linear Discriminant Analysis Theory</a> [<a href="./lda.pdf">PDF</a>] <!-- - [Lab 4: Sparse PCA and LDA](./Lab4-Sparse-PCA-LDA.html) --></li>
+</ul>
+</div>
+<div id="large-scale-inference" class="section level4">
+<h4>6. Large Scale inference</h4>
+<ul>
+<li><a href="./lsi.html">Lecture 6: Large Scale Inference</a> [<a href="./lsi.pdf">PDF</a>] <!-- - [Lab 5: Large Scale Inference](./Lab5-Large-Scale-Inference.html) --></li>
+</ul>
+<!-- ### Paper reading Sessions -->
+<!-- ### Homework assignments -->
+<!-- - [Homework: Canonical Correlation Analysis](./HW-CCA.html) [[PDF](./HW-CCA.pdf)] -->
+<!-- - [Group Project](./Project.html) [[PDF](./Project.pdf)] -->
+</div>
 </div>
 
 <div class="footer">

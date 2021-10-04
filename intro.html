@@ -1,0 +1,1278 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Lieven Clement" />
+
+
+<title>1. Introduction to High Dimensional Data Analysis</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<script src="site_libs/navigation-1.1/sourceembed.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+#rmd-source-code {
+  display: none;
+}
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">HDDA2021</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-chalkboard-teacher"></span>
+     
+    Lectures
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="intro.html">1. Introduction</a>
+    </li>
+    <li>
+      <a href="svd.html">2. Singular Value Decomposition</a>
+    </li>
+    <li>
+      <a href="svdGeometricInterpretation.html">2.3. Geometric Interpretation SVD</a>
+    </li>
+    <li>
+      <a href="MDS_linkGramDistanceMatrix.html">2.7. Link MDS and Gram Distance Matrix</a>
+    </li>
+    <li>
+      <a href="prediction.html">3. Prediction with High Dimensional Predictors</a>
+    </li>
+    <li>
+      <a href="sparseSvd.html">4. Sparse Singular Value Decomposition</a>
+    </li>
+    <li>
+      <a href="lda.html">5. Linear Discriminant Analysis</a>
+    </li>
+    <li>
+      <a href="lsi.html">6. Large Scale Inference</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown-header">Labs</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/statOmics/HDDA2021">
+    <span class="fab fa-github"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="http://statomics.github.io/">statOmics</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+<li role="separator" class="divider"></li>
+<li><a id="rmd-download-source" href="#">Download Rmd</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">1. Introduction to High Dimensional Data Analysis</h1>
+<h4 class="author">Lieven Clement</h4>
+<h4 class="date">statOmics, Ghent University (<a href="https://statomics.github.io" class="uri">https://statomics.github.io</a>)</h4>
+
+</div>
+
+
+<div id="introduction" class="section level1">
+<h1><span class="header-section-number">1</span> Introduction</h1>
+<ul>
+<li>We live in a big data era</li>
+<li>Massive Datasets on our location, surfing behavior, consumer data, social media, …</li>
+<li>Life Sciences: advent of high throughput technologies has enabled us to measure brain activity (brain images) as well as the expression of thousands of genes, proteins, … for each subject or even single cell.</li>
+<li>Industry: process control with many sensors that follow process in real time…</li>
+<li>Data drive journalism</li>
+<li>…</li>
+</ul>
+<p>Challenge: We have to learn from high dimensional data!</p>
+<hr />
+<div id="what-are-high-dimensional-data" class="section level2">
+<h2><span class="header-section-number">1.1</span> What are high dimensional data?</h2>
+<ul>
+<li><p>We typically observe multiple variables/features (p) for each subject/experimental unit <span class="math inline">\(i=1,\ldots,n\)</span> i.e. <span class="math display">\[ \mathbf{x}_i^T=[x_{i1},\ldots,x_{ip}]\]</span></p></li>
+<li><p>Multivariate statistics have a long history, but were designed for the <span class="math inline">\(n&gt;&gt;&gt;p\)</span> case,</p></li>
+<li><p>Nowadays many high throughput technologies generate multivariate data with many variables (large <span class="math inline">\(p\)</span>) as compared to the number of independent replicates or samples (sample size <span class="math inline">\(n\)</span>), resulting in <strong>{high-dimensional data}</strong>, which is characterised by <span class="math display">\[
+   p &gt;&gt;&gt; n.
+\]</span></p></li>
+<li><p>New statistical methods for dealing with the <span class="math inline">\(p &gt;&gt;&gt; n\)</span> case have been developed in the last 20 years. Some of them are adaptations of multivariate methods.</p></li>
+</ul>
+<hr />
+<p>Issues with high-dimensional data:</p>
+<ul>
+<li><p><em>Computational problems</em>: large matrices, numerical accuracy of computers become an issue</p></li>
+<li><p><em>Classical asymptotic theory does not hold</em> for <span class="math inline">\(p\rightarrow\infty\)</span> as <span class="math inline">\(n \rightarrow \infty\)</span></p></li>
+<li><p><em>Model (or feature) selection</em> requires specialised methods to deal with the enormous number of possible models. (e.g. in linear regression with p potential predictors: <span class="math inline">\(2^p\)</span> possible models)</p></li>
+<li><p>Models that can potentially depend on large-p predictors are vulnerable to <em>huge overfitting</em>.</p></li>
+<li><p>In searching for associations between an outcome and large p potential exploratory variables, we are at risk to make <em>many false discoveries</em></p></li>
+<li><p>The <em>Curse of Dimensionality</em> may cause a prediction model to become useless. (<span class="math inline">\(n\)</span> data points become sparse in large-<span class="math inline">\(p\)</span> dimensional space)</p></li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="important-tasks-in-high-dimensional-data-analysis" class="section level1">
+<h1><span class="header-section-number">2</span> Important tasks in high dimensional data analysis?</h1>
+<div id="example-kang-et-al.-2018s-droplet-based-scrna-seq-data-of-pbmcs-cells-from-8-lupus-patients-measured-before-and-after-6h-treatment-with-inf-beta-16-samples-in-total." class="section level2">
+<h2><span class="header-section-number">2.1</span> Example: Kang et al. (2018)’s droplet-based scRNA-seq data of PBMCs cells from 8 lupus patients measured before and after 6h-treatment with INF-<span class="math inline">\(\beta\)</span> (16 samples in total).</h2>
+<pre class="r"><code>library(tidyverse)
+
+## Packages to load and visualize the single-cell data
+library(ExperimentHub)
+library(scater)</code></pre>
+<pre class="r"><code>## Load Kang single-cell data from ExperimentHub
+eh &lt;- ExperimentHub()
+sce &lt;- eh[[&quot;EH2259&quot;]]
+
+sce</code></pre>
+<pre><code>class: SingleCellExperiment 
+dim: 35635 29065 
+metadata(0):
+assays(1): counts
+rownames(35635): MIR1302-10 FAM138A ... MT-ND6 MT-CYB
+rowData names(2): ENSEMBL SYMBOL
+colnames(29065): AAACATACAATGCC-1 AAACATACATTTCC-1 ... TTTGCATGGTTTGG-1
+  TTTGCATGTCTTAC-1
+colData names(5): ind stim cluster cell multiplets
+reducedDimNames(1): TSNE
+mainExpName: NULL
+altExpNames(0):</code></pre>
+<ul>
+<li>Data on gene expression of 35635 genes of 29065 cells.</li>
+</ul>
+</div>
+<div id="data-exploration-and-dimensionality-reduction" class="section level2">
+<h2><span class="header-section-number">2.2</span> Data exploration and dimensionality reduction</h2>
+<ul>
+<li>Visualisation is a first essential step to learn from data</li>
+</ul>
+<pre class="r"><code>counts(sce)[18990:19000,9:20]</code></pre>
+<pre><code>11 x 12 sparse Matrix of class &quot;dgCMatrix&quot;
+                                                   
+RP11-467L20.10   . .   . . .   .  .  .  . .   .   .
+MYRF             . .   . . .   .  .  .  . .   .   .
+TMEM258          . .   3 . .   .  1  1  . .   .   .
+FEN1             . .   . . .   .  .  .  . .   .   .
+FADS2            . .   . . .   .  .  .  . .   .   .
+FADS1            . .   . . .   .  .  .  . .   .   .
+FADS3            . .   . . .   .  .  .  . .   .   .
+RAB3IL1          . .   . . .   .  .  .  . .   .   .
+BEST1            1 .   . . .   .  1  .  . .   1   1
+FTH1           163 8 271 4 5 174 38 58 31 3 663 612
+AP003733.1       . .   . . .   .  .  .  . .   .   .</code></pre>
+<ul>
+<li>It is impossible to learn about the structure in the data by staring at the data matrix.</li>
+<li>We should be able to explore the data in a low dimensional projection</li>
+</ul>
+<pre class="r"><code>plotReducedDim(sce, dimred=&quot;TSNE&quot;, colour_by=&quot;cell&quot;)</code></pre>
+<p><img src="intro_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<pre class="r"><code>plotReducedDim(sce, dimred=&quot;TSNE&quot;, colour_by=&quot;stim&quot;)</code></pre>
+<p><img src="intro_files/figure-html/unnamed-chunk-3-2.png" width="672" /></p>
+<ul>
+<li>Note, that we see huge effect of treatment. If I see this I am always on my guard!</li>
+<li>We contacted the authors and learned that all control cells were sequenced in a first run and all stimulated cells were on a second sequencing run. So the large effect might be an effect of batch!</li>
+</ul>
+</div>
+<div id="prediction" class="section level2">
+<h2><span class="header-section-number">2.3</span> Prediction</h2>
+<pre class="r"><code>plotReducedDim(sce, dimred=&quot;TSNE&quot;, colour_by=&quot;cell&quot;)</code></pre>
+<p><img src="intro_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<ul>
+<li><p>In single cell analysis it is key to identify cell types in scRNA-seq data sets before in-depth investigations of their functional and pathological roles.</p></li>
+<li><p>Use models that were build based on reference data sets to predict cell types in new data sets based on their gene expression pattern</p></li>
+<li><p>Problem: we have 35635 genes at our disposal to build this prediction model!</p></li>
+<li><p>Other examples</p>
+<ul>
+<li><p>Prediction of risk on mortality is used on a daily basis in intensive care units to prioritise patient care.</p></li>
+<li><p>Facebook: predict the identity of the faces of people that are on an new image that is uploaded.</p></li>
+<li><p>Netflix: Suggest movies that you would like</p></li>
+</ul></li>
+</ul>
+</div>
+<div id="large-scale-hypothesis-testing" class="section level2">
+<h2><span class="header-section-number">2.4</span> Large scale hypothesis testing</h2>
+<pre class="r"><code>plotReducedDim(sce, dimred=&quot;TSNE&quot;, colour_by=&quot;cell&quot;, shape_by=&quot;stim&quot;)</code></pre>
+<p><img src="intro_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<ul>
+<li>Which genes are differentially expressed between control and stimulated treatment (assess in each cell type)</li>
+<li>For which genes we see that the differential expression according to treatment is changing according to the cell type (interaction)</li>
+<li>We have to model the gene expression for each gene</li>
+</ul>
+<p><span class="math display">\[
+\left \{
+\begin{array}{lcl}
+y_{ig} &amp;\sim&amp; NB(\mu_{ig}, \phi_{g})\\
+E[y_{ig}] &amp;=&amp; \mu\\
+\log(\mu_{ig}) &amp;=&amp; \eta_{ig}\\
+\eta_{ig} &amp;=&amp; \beta_{0,g} + \sum\limits_{c=1}^C \beta_{c,g} X_{ic} + \beta_{s,g} X_{is} + \sum\limits_{c=1}^C \beta_{c:s,g} X_{ic} X_{is} + \alpha_{ig}
+\end{array} \right.
+\]</span></p>
+<p>With</p>
+<ul>
+<li><p>Cell type <span class="math inline">\(c=2\ldots C\)</span> and <span class="math inline">\(X_{ic}\)</span> is a dummy variable that <span class="math inline">\(X_{ic}=1\)</span> if cell <span class="math inline">\(i\)</span> is of cell type c and <span class="math inline">\(X_{ic}=0\)</span> otherwise. Note that cell type <span class="math inline">\(c=1\)</span> is the reference cell type</p></li>
+<li><p>Indicator <span class="math inline">\(X_{is}\)</span> indicates if cell <span class="math inline">\(i\)</span> was stimulated <span class="math inline">\(X_{is}=1\)</span> or not <span class="math inline">\(X_{is}=0\)</span>. So the control treatment is the reference treatment.</p></li>
+</ul>
+<p>Suppose we want to test if the effect of the stimulus (average difference in expression between stimulated and non stimulated cells) is different in cell type c than in the reference cell type 1?</p>
+<ul>
+<li><p><span class="math inline">\(H_0: \beta_{c:s,g} = 0\)</span></p></li>
+<li><p><span class="math inline">\(H_1: \beta_{c:s,g} \neq 0\)</span></p></li>
+<li><p>We have to assess this for 35635 genes!</p></li>
+<li><p>If we assess each test at the 5% level we can expect 0.05 * 35635 = 1782 false positives.</p></li>
+</ul>
+<p><span class="math inline">\(\rightarrow\)</span> massive multiple testing problem!</p>
+<p>Note, that we cannot differentiate between batch and treatment because of the flaw in the experimental design!</p>
+<p>Other examples</p>
+<ul>
+<li>Find regions (voxels) in the brain (on brain image) that are associated with a certain condition/treatment</li>
+<li>Evaluation of trading rules</li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="linear-regression" class="section level1">
+<h1><span class="header-section-number">3</span> Linear regression</h1>
+<ul>
+<li>Linear regression is a very important statistical tool to study the association between variables and to build prediction models.</li>
+</ul>
+<div id="scalar-form" class="section level2">
+<h2><span class="header-section-number">3.1</span> Scalar form</h2>
+<ul>
+<li>Consider a vector of predictors <span class="math inline">\(\mathbf{x}=(x_1,\ldots,x_p)\)</span> and</li>
+<li>a real-valued response <span class="math inline">\(Y\)</span></li>
+<li>then the linear regression model can be written as <span class="math display">\[
+Y=f(\mathbf{x}) +\epsilon=\beta_0+\sum\limits_{j=1}^p x_j\beta_j + \epsilon
+\]</span> with i.i.d. <span class="math inline">\(\epsilon\sim N(0,\sigma^2)\)</span></li>
+<li>We will typically work on mean centered variables: <span class="math inline">\(Y-\bar{Y}\)</span> and <span class="math inline">\(X - \bar{X}\)</span>, then the intercept is dropped from the model: <span class="math display">\[
+Y=f(\mathbf{x}) +\epsilon=\sum\limits_{j=1}^p x_j\beta_j + \epsilon
+\]</span></li>
+</ul>
+</div>
+<div id="vectormatrix-form" class="section level2">
+<h2><span class="header-section-number">3.2</span> Vector/Matrix form</h2>
+<ul>
+<li><span class="math inline">\(n\)</span> observations <span class="math inline">\((\mathbf{x}_1,y_1) \ldots (\mathbf{x}_n,y_n)\)</span> with <span class="math inline">\(\mathbf{x}_1^T=[1 x_1 \ldots x_p]\)</span></li>
+<li>Regression in matrix notation <span class="math display">\[\mathbf{Y}=\mathbf{X\beta} + \mathbf{\epsilon}\]</span> with <span class="math inline">\(\mathbf{Y}=\left[\begin{array}{c}y_1\\ \vdots\\y_n\end{array}\right]\)</span>, <span class="math inline">\(\mathbf{X}=\left[\begin{array}{cccc} 1&amp;x_{11}&amp;\ldots&amp;x_{1p}\\ \vdots&amp;\vdots&amp;&amp;\vdots\\ 1&amp;x_{n1}&amp;\ldots&amp;x_{np} \end{array}\right]\)</span> or <span class="math inline">\(\mathbf{X}=\left[\begin{array}{c} \mathbf{x}_1^T\\\vdots\\\mathbf{x}_n^T\end{array}\right]\)</span>, <span class="math inline">\(\boldsymbol{\beta}=\left[\begin{array}{c}\beta_0\\ \vdots\\ \beta_p\end{array}\right]\)</span> and <span class="math inline">\(\mathbf{\epsilon}=\left[\begin{array}{c} \epsilon_1 \\ \vdots \\ \epsilon_n\end{array}\right]\)</span></li>
+</ul>
+<p>Note, that upon centering of <span class="math inline">\(\mathbf{X}\)</span> and <span class="math inline">\(\mathbf{Y}\)</span> the 1 is dropped from each <span class="math inline">\(\mathbf{x}_i\)</span> and thus the column of 1 is dropped in <span class="math inline">\(\mathbf{X}\)</span></p>
+<hr />
+</div>
+<div id="interpretation" class="section level2">
+<h2><span class="header-section-number">3.3</span> Interpretation</h2>
+<p>From the linear regression we get <span class="math display">\[
+  E[Y \mid \mathbf{x}] = \mathbf{x}^T\boldsymbol{\beta} .
+\]</span></p>
+<ul>
+<li>Hence, the <span class="math inline">\(\beta\)</span> parameters relate the regressor <span class="math inline">\(\mathbf{x}\)</span> to the mean outcome.</li>
+<li>If we know the covariate pattern <span class="math inline">\(\mathbf{x}\)</span> we can use the model to predict <span class="math inline">\(Y\)</span>.</li>
+</ul>
+<p>Upon centering we get the following for a model with a single regressor <span class="math display">\[
+  E[Y \mid x] = \beta_1 x
+\]</span> and <span class="math display">\[
+ \beta_1 = E[Y\mid x+1] - E[Y\mid x] .
+\]</span></p>
+<p>Hence, the <span class="math inline">\(\beta_1\)</span> parameter has an interpretation as the mean increase of the outcome as the regressor increases with one unit. The parameter does not say very about individual outcomes. It is the residual variance <span class="math inline">\(\sigma^2\)</span> that determines how much individual outcomes vary about the mean outcome.</p>
+<p>The <span class="math inline">\(\beta\)</span> parameters are used to measure association, but a <span class="math inline">\(\beta \neq 0\)</span> does not necessarily mean that the model will give good predictions.</p>
+<hr />
+<ul>
+<li><p>In a later chapter we will discuss the problem of large scale hypothesis testing: testing many hypotheses in a single study (ten to hundred thousands of hypotheses).</p></li>
+<li><p>A statistical test is constructed to control the type I error rate at the significance level. However, when many hypotheses are to be tested in a single study, the probability to find false associations is no longer controlled if p-values are compared to the significance level.</p></li>
+<li><p>We will later introduce the concept of false discovery rates to overcome the problem.</p></li>
+</ul>
+</div>
+<div id="least-squares-ls" class="section level2">
+<h2><span class="header-section-number">3.4</span> Least Squares (LS)</h2>
+<ul>
+<li><p>Minimize the residual sum of squares <span class="math display">\[\begin{eqnarray*}
+RSS(\boldsymbol{\beta})&amp;=&amp;\sum\limits_{i=1}^n e^2_i\\
+&amp;=&amp;\sum\limits_{i=1}^n \left(y_i-\beta_0-\sum\limits_{j=1}^p x_{ij}\beta_j\right)^2
+\end{eqnarray*}\]</span></p></li>
+<li><p>or in matrix notation <span class="math display">\[\begin{eqnarray*}
+RSS(\boldsymbol{\beta})&amp;=&amp;(\mathbf{Y}-\mathbf{X\beta})^T(\mathbf{Y}-\mathbf{X\beta})\\
+&amp;=&amp;\Vert \mathbf{Y}-\mathbf{X\beta}\Vert^2_2
+\end{eqnarray*}\]</span> with the <span class="math inline">\(L_2\)</span>-norm of a <span class="math inline">\(p\)</span>-dim. vector <span class="math inline">\(v\)</span> <span class="math inline">\(\Vert \mathbf{v} \Vert_2=\sqrt{v_1^2+\ldots+v_p^2}\)</span> <span class="math inline">\(\rightarrow\)</span> <span class="math inline">\(\hat{\boldsymbol{\beta}}=\text{argmin}_\beta \Vert \mathbf{Y}-\mathbf{X\beta}\Vert^2\)</span></p></li>
+</ul>
+<hr />
+<div id="minimize-rss" class="section level3">
+<h3><span class="header-section-number">3.4.1</span> Minimize RSS</h3>
+<p><span class="math display">\[
+\begin{array}{ccc}
+\frac{\partial RSS}{\partial \boldsymbol{\beta}}&amp;=&amp;\mathbf{0}\\\\
+\frac{(\mathbf{Y}-\mathbf{X\beta})^T(\mathbf{Y}-\mathbf{X}\boldsymbol{\beta})}{\partial \boldsymbol{\beta}}&amp;=&amp;\mathbf{0}\\\\
+-2\mathbf{X}^T(\mathbf{Y}-\mathbf{X}\boldsymbol{\beta})&amp;=&amp;\mathbf{0}\\\\
+\mathbf{X}^T\mathbf{X\beta}&amp;=&amp;\mathbf{X}^T\mathbf{Y}\\\\
+\hat{\boldsymbol{\beta}}&amp;=&amp;(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{Y}
+\end{array}
+\]</span></p>
+<p>It can be shown that the estimator is unbiased:</p>
+<p><span class="math display">\[
+E[\hat{\boldsymbol{\beta}}]=\boldsymbol{\beta}
+\]</span></p>
+<hr />
+</div>
+<div id="geometrical-interpretation" class="section level3">
+<h3><span class="header-section-number">3.4.2</span> Geometrical Interpretation</h3>
+<p>Toy Example: fit without intercept</p>
+<ul>
+<li>n=3 and p=2 <span class="math display">\[
+\mathbf{X}=\left[\begin{array}{cc}
+2&amp;0\\
+0&amp;2\\
+0&amp;0
+\end{array}\right]
+\]</span></li>
+</ul>
+<pre class="r"><code>set.seed(4)
+x1 &lt;- c(2, 0, 0)
+x2 &lt;- c(0, 2, 0)
+y &lt;- x1 * 0.5 + x2 * 0.5 + rnorm(3, 2)
+fit &lt;- lm(y ~ -1 + x1 + x2)</code></pre>
+<ul>
+<li><span class="math inline">\(\mathbf{Y}\)</span> is now given by</li>
+</ul>
+<p><span class="math display">\[
+\mathbf{Y}=\left[\begin{array}{c}
+1 + \epsilon_1 \\
+1 + \epsilon_2\\
+0 + \epsilon_3
+\end{array}\right]
+\]</span></p>
+<p>with the <span class="math inline">\(\epsilon_i\)</span>s some random noise.</p>
+<ul>
+<li>The actual values of <span class="math inline">\(\mathbf{Y}\)</span> are:</li>
+</ul>
+<pre class="r"><code>## True Y
+y</code></pre>
+<pre><code>[1] 3.216755 2.457507 2.891145</code></pre>
+<pre class="r"><code>## Fitted Y
+fit$fitted.values</code></pre>
+<pre><code>       1        2        3 
+3.216755 2.457507 0.000000 </code></pre>
+<div id="visualise-fit" class="section level4">
+<h4><span class="header-section-number">3.4.2.1</span> Visualise fit</h4>
+<pre class="r"><code># predict values on regular xy grid
+x1pred &lt;- seq(-1, 3, length.out = 10)
+x2pred &lt;- seq(-1, 3, length.out = 10)
+xy &lt;- expand.grid(x1 = x1pred,
+x2 = x2pred)
+ypred &lt;- matrix (nrow = 30, ncol = 30,
+data = predict(fit, newdata = data.frame(xy),
+interval = &quot;prediction&quot;))
+
+library(plot3D)
+
+
+# fitted points for droplines to surface
+th=20
+ph=5
+scatter3D(x1,
+  x2,
+  y,
+  pch = 16,
+  col=&quot;darkblue&quot;,
+  cex = 1,
+  theta = th,
+  ticktype = &quot;detailed&quot;,
+  xlab = &quot;x1&quot;,
+  ylab = &quot;x2&quot;,
+  zlab = &quot;y&quot;,
+  colvar=FALSE,
+  bty = &quot;g&quot;,
+  xlim=c(-1,3),
+  ylim=c(-1,3),
+  zlim=c(-2,4))
+
+for (i in 1:3)
+  lines3D(
+    x = rep(x1[i],2),
+    y = rep(x2[i],2),
+    z = c(y[i],fit$fitted[i]),
+    col=&quot;darkblue&quot;,
+    add=TRUE,
+    lty=2)
+
+z.pred3D &lt;- outer(
+  x1pred,
+  x2pred,
+  function(x1,x2)
+  {
+    fit$coef[1]*x1+fit$coef[2]*x2
+  })
+
+x.pred3D &lt;- outer(
+  x1pred,
+  x2pred,
+  function(x,y) x)
+
+y.pred3D &lt;- outer(
+  x1pred,
+  x2pred,
+  function(x,y) y)
+
+surf3D(
+  x.pred3D,
+  y.pred3D,
+  z.pred3D,
+  col=&quot;blue&quot;,
+  facets=NA,
+  add=TRUE)</code></pre>
+<p><img src="intro_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+</div>
+<div id="projection" class="section level4">
+<h4><span class="header-section-number">3.4.2.2</span> Projection</h4>
+<ul>
+<li><p>We can also interpret the fit as the projection of the <span class="math inline">\(n\times 1\)</span> vector <span class="math inline">\(\mathbf{Y}\)</span> on the column space of the matrix <span class="math inline">\(\mathbf{X}\)</span>.</p></li>
+<li><p>So each column in <span class="math inline">\(\mathbf{X}\)</span> is also an <span class="math inline">\(n\times 1\)</span> vector.</p></li>
+<li><p>For the toy example n=3 and p=2. So the column space of X is a plane in the three dimensional space.</p></li>
+</ul>
+<p><span class="math display">\[
+\hat{\mathbf{Y}} = \mathbf{X} (\mathbf{X}^T\mathbf{X})^{-1} \mathbf{X}^T \mathbf{Y}
+\]</span></p>
+<ol style="list-style-type: decimal">
+<li>Plane spanned by column space:</li>
+</ol>
+<pre class="r"><code>arrows3D(
+  0, 0, 0, x1[1], x1[2], x1[3],
+  xlim = c(0, 5), ylim = c(0, 5), zlim = c(0, 5), bty = &quot;g&quot;,
+  theta = th, col = 2, ticktype = &quot;detailed&quot;,
+  xlab = &quot;observation 1&quot;, ylab = &quot;observation 2&quot;, zlab = &quot;observation 3&quot;
+)
+text3D(x1[1],x1[2],x1[3],labels=&quot;X1&quot;,col=2,add=TRUE)
+arrows3D(0,0,0,x2[1],x2[2],x2[3],add=TRUE,col=2)
+text3D(x2[1],x2[2],x2[3],labels=&quot;X2&quot;,col=2,add=TRUE)</code></pre>
+<p><img src="intro_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<ol start="2" style="list-style-type: decimal">
+<li>Vector of Y:</li>
+</ol>
+<p>Actual values of <span class="math inline">\(\mathbf{Y}\)</span>:</p>
+<pre class="r"><code>y</code></pre>
+<pre><code>[1] 3.216755 2.457507 2.891145</code></pre>
+<p><span class="math display">\[
+\mathbf{Y}=\left[\begin{array}{c}
+3.2167549 \\
+2.4575074 \\
+2.8911446
+\end{array}\right]
+\]</span></p>
+<pre class="r"><code>arrows3D(
+  0, 0, 0, x1[1], x1[2], x1[3],
+  xlim = c(0, 5), ylim = c(0, 5), zlim = c(0, 5), bty = &quot;g&quot;,
+  theta = th, col = 2, ticktype = &quot;detailed&quot;,
+  xlab = &quot;observation 1&quot;, ylab = &quot;observation 2&quot;, zlab = &quot;observation 3&quot;
+)
+text3D(x1[1],x1[2],x1[3],labels=&quot;X1&quot;,col=2,add=TRUE)
+arrows3D(0,0,0,x2[1],x2[2],x2[3],add=TRUE,col=2)
+text3D(x2[1],x2[2],x2[3],labels=&quot;X2&quot;,col=2,add=TRUE)
+arrows3D(0,0,0,y[1],y[2],y[3],add=TRUE,col=&quot;darkblue&quot;)
+text3D(y[1],y[2],y[3],labels=&quot;Y&quot;,col=&quot;darkblue&quot;,add=TRUE)</code></pre>
+<p><img src="intro_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<ol start="3" style="list-style-type: decimal">
+<li>Projection of Y onto column space</li>
+</ol>
+<p>Actual values of fitted values <span class="math inline">\(\mathbf{\hat{Y}}\)</span>:</p>
+<pre class="r"><code>fitted.values(fit)</code></pre>
+<pre><code>       1        2        3 
+3.216755 2.457507 0.000000 </code></pre>
+<p><span class="math display">\[
+\mathbf{Y}=\left[\begin{array}{c}
+3.2167549 \\
+2.4575074 \\
+0
+\end{array}\right]
+\]</span></p>
+<pre class="r"><code>arrows3D(
+  0, 0, 0, x1[1], x1[2], x1[3],
+  xlim = c(0, 5), ylim = c(0, 5), zlim = c(0, 5), bty = &quot;g&quot;,
+  theta = th, col = 2, ticktype = &quot;detailed&quot;,
+  xlab = &quot;observation 1&quot;, ylab = &quot;observation 2&quot;, zlab = &quot;observation 3&quot;
+)
+text3D(x1[1],x1[2],x1[3],labels=&quot;X1&quot;,col=2,add=TRUE)
+arrows3D(0,0,0,x2[1],x2[2],x2[3],add=TRUE,col=2)
+text3D(x2[1],x2[2],x2[3],labels=&quot;X2&quot;,col=2,add=TRUE)
+arrows3D(0,0,0,y[1],y[2],y[3],add=TRUE,col=&quot;darkblue&quot;)
+text3D(y[1],y[2],y[3],labels=&quot;Y&quot;,col=&quot;darkblue&quot;,add=TRUE)
+arrows3D(0,0,0,fit$fitted[1],fit$fitted[2],fit$fitted[3],add=TRUE,col=&quot;darkblue&quot;)
+segments3D(y[1],y[2],y[3],fit$fitted[1],fit$fitted[2],fit$fitted[3],add=TRUE,lty=2,col=&quot;darkblue&quot;)
+text3D(fit$fitted[1],fit$fitted[2],fit$fitted[3],labels=&quot;fit&quot;,col=&quot;darkblue&quot;,add=TRUE)</code></pre>
+<p><img src="intro_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<ul>
+<li><p>Note, that it is also clear from the equation in the derivation of the LS that the residual is orthogonal on the column space: <span class="math display">\[
+ -2 \mathbf{X}^T(\mathbf{Y}-\mathbf{X}\boldsymbol{\beta}) = 0
+\]</span></p></li>
+<li><p>Imagine what happens when p &gt;&gt; n!!!</p></li>
+</ul>
+<p><span class="math inline">\(\rightarrow\)</span> curse of dimensionality!</p>
+</div>
+</div>
+</div>
+<div id="variance-estimator" class="section level2">
+<h2><span class="header-section-number">3.5</span> Variance Estimator?</h2>
+<p><span class="math display">\[
+\begin{array}{ccl}
+\hat{\boldsymbol{\Sigma}}_{\hat{\boldsymbol{\beta}}}
+&amp;=&amp;\text{var}\left[(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{Y}\right]\\\\
+&amp;=&amp;(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\text{var}\left[\mathbf{Y}\right]\mathbf{X}(\mathbf{X}^T\mathbf{X})^{-1}\\\\
+&amp;=&amp;(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T(\mathbf{I}\sigma^2)\mathbf{X}(\mathbf{X}^T\mathbf{X})^{-1}
+\\\\
+&amp;=&amp;(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{I}\quad\mathbf{X}(\mathbf{X}^T\mathbf{X})^{-1}\sigma^2\\\\
+%\hat{\boldmath{\Sigma}}_{\hat{\boldsymbol{\beta}}}&amp;=&amp;(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T \text{var}\left[\mathbf{Y}\right](\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}\\
+&amp;=&amp;(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{X}(\mathbf{X}^T\mathbf{X})^{-1}\sigma^2\\\\
+&amp;=&amp;(\mathbf{X}^T\mathbf{X})^{-1}\sigma^2
+\end{array}
+\]</span></p>
+<p>The fact that <span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span> is unbiased and has a variance of <span class="math inline">\((\mathbf{X}^T\mathbf{X})^{-1}\sigma^2\)</span> will be important when assessing association!</p>
+<hr />
+</div>
+<div id="prediction-error" class="section level2">
+<h2><span class="header-section-number">3.6</span> Prediction error</h2>
+<p>Least squares estimators are unbiased and consistent, but these properties are not very important for prediction models.</p>
+<p>A prediction model is considered good if it can predict well outcomes.</p>
+<p>The <strong>prediction error</strong> for a prediction at predictor <span class="math inline">\(\mathbf{x}\)</span> is given by</p>
+<p><span class="math display">\[
+   \hat{Y}(\mathbf{x}) - Y^*,
+\]</span></p>
+<p>where</p>
+<ul>
+<li><p><span class="math inline">\(\hat{Y}(\mathbf{x})=\mathbf{x}^T\hat{\boldsymbol{\beta}}\)</span> is the prediction at <span class="math inline">\(\mathbf{x}\)</span></p></li>
+<li><p><span class="math inline">\(Y^*\)</span> is an outcome at predictor <span class="math inline">\(\mathbf{x}\)</span></p></li>
+</ul>
+<p>Since prediction is typically used to predict an outcome before it is observed, the outcome <span class="math inline">\(Y^*\)</span> is not observed yet. Hence, the prediction error cannot be computed.</p>
+<hr />
+<p>The problem of unobservable prediction errors is partly solved by the <strong>expected conditional test error</strong> (sometimes referred to as the mean squared error, MSE) <span class="math display">\[
+  \text{Err}(\mathbf{x})=E[(\hat{Y}(\mathbf{x}) - Y^*)^2].
+\]</span></p>
+<p>With (suppressing the dependence on <span class="math inline">\(\mathbf{x}\)</span>) <span class="math display">\[
+  \mu = E[\hat{Y}] \text{ and } \mu^*=E[Y^*]
+\]</span> the error can be expressed as <span class="math display">\[\begin{eqnarray*}
+  \text{Err}
+    &amp;=&amp;E\left\{\left[(\hat{Y} -\mu)-(Y-\mu^*)-(\mu^*-\mu)\right]^2\right\} \\
+    &amp;=&amp; E[(\hat{Y} -\mu)^2]+E[(Y-\mu^*)^2]+E[(\mu^*-\mu)^2] \\
+    &amp;=&amp; \text{var}[\hat{Y}] +\text{var}[Y] +\text{bias}^2
+\end{eqnarray*}\]</span></p>
+<p>The term <span class="math inline">\(\text{var}[Y]\)</span> (irreducible error) does not depend on the model and may therefore be ignored when <span class="math inline">\(\text{Err}\)</span> is used for comparing prediction models.</p>
+<hr />
+<p>In this introductory chapter we only aim to give a rough discussion on prediction errors. Later definitions will be refined and the notation will be more accurate. Also a more detailed discussion on the bias-variance trade-off will follow. For the moment it is sufficient to vaguely know that:</p>
+<ul>
+<li><p>the expected conditional test error is introduced to circumvent the problem that the prediction error cannot be observed. In later chapters we will look at estimators of the expected error.</p></li>
+<li><p>the expected conditional test error is in some literature also known as the <em>mean squared error</em> (MSE), but we do not adopt this terminology because MSE is also commonly used to refer to SSE divided by the residual degrees of freedom in a linear regression model.</p></li>
+<li><p>The identity <span class="math inline">\(\text{Err}=\text{var}[\hat{Y}] +\text{var}[Y] +\text{bias}^2\)</span> is known as the bias-variance trade-off. It shows that a good prediction model (i.e. a model resulting in a small Err), can be obtained by a model that shows a small bias as long as this bias is compensated with a large reduction of the variance or the predictions. A more detailed discussion will follow in later chapters.</p></li>
+<li><p>For prediction models with a large number of predictors we will therefore introduce penalized regression. This will induce some bias in the estimation, but will allow us to reduce the variance considerably.</p></li>
+</ul>
+</div>
+</div>
+<div id="session-info" class="section level1 unnumbered">
+<h1>Session info</h1>
+<details>
+<p><summary>Session info</summary></p>
+<pre><code>[1] &quot;2021-10-04 10:42:29 UTC&quot;</code></pre>
+<pre><code>─ Session info ───────────────────────────────────────────────────────────────
+ setting  value                       
+ version  R version 4.1.1 (2021-08-10)
+ os       macOS Catalina 10.15.7      
+ system   x86_64, darwin17.0          
+ ui       X11                         
+ language (EN)                        
+ collate  en_US.UTF-8                 
+ ctype    en_US.UTF-8                 
+ tz       UTC                         
+ date     2021-10-04                  
+
+─ Packages ───────────────────────────────────────────────────────────────────
+ ! package                * version  date       lib
+ P AnnotationDbi            1.54.1   2021-06-08 [?]
+ P AnnotationHub          * 3.0.1    2021-06-20 [?]
+ P assertthat               0.2.1    2019-03-21 [?]
+ P backports                1.2.1    2020-12-09 [?]
+ P beachmat                 2.8.1    2021-08-12 [?]
+ P beeswarm                 0.4.0    2021-06-01 [?]
+ P Biobase                * 2.52.0   2021-05-19 [?]
+ P BiocFileCache          * 2.0.0    2021-05-19 [?]
+ P BiocGenerics           * 0.38.0   2021-05-19 [?]
+ P BiocManager              1.30.16  2021-06-15 [?]
+ P BiocNeighbors            1.10.0   2021-05-19 [?]
+ P BiocParallel             1.26.2   2021-08-22 [?]
+ P BiocSingular             1.8.1    2021-06-08 [?]
+ P BiocVersion              3.13.1   2021-03-09 [?]
+ P Biostrings               2.60.2   2021-08-05 [?]
+ P bit                      4.0.4    2020-08-04 [?]
+ P bit64                    4.0.5    2020-08-30 [?]
+ P bitops                   1.0-7    2021-04-24 [?]
+ P blob                     1.2.2    2021-07-23 [?]
+ P broom                    0.7.9    2021-07-27 [?]
+ P bslib                    0.3.0    2021-09-02 [?]
+ P cachem                   1.0.6    2021-08-19 [?]
+ P cellranger               1.1.0    2016-07-27 [?]
+ P cli                      3.0.1    2021-07-17 [?]
+ P colorspace               2.0-2    2021-06-24 [?]
+ P crayon                   1.4.1    2021-02-08 [?]
+ P curl                     4.3.2    2021-06-23 [?]
+ P DBI                      1.1.1    2021-01-15 [?]
+ P dbplyr                 * 2.1.1    2021-04-06 [?]
+ P DelayedArray             0.18.0   2021-05-19 [?]
+ P DelayedMatrixStats       1.14.3   2021-08-26 [?]
+ P digest                   0.6.28   2021-09-23 [?]
+ P dplyr                  * 1.0.7    2021-06-18 [?]
+ P ellipsis                 0.3.2    2021-04-29 [?]
+ P evaluate                 0.14     2019-05-28 [?]
+ P ExperimentHub          * 2.0.0    2021-05-19 [?]
+ P fansi                    0.5.0    2021-05-25 [?]
+ P farver                   2.1.0    2021-02-28 [?]
+ P fastmap                  1.1.0    2021-01-25 [?]
+ P filelock                 1.0.2    2018-10-05 [?]
+ P forcats                * 0.5.1    2021-01-27 [?]
+ P fs                       1.5.0    2020-07-31 [?]
+ P generics                 0.1.0    2020-10-31 [?]
+ P GenomeInfoDb           * 1.28.4   2021-09-09 [?]
+ P GenomeInfoDbData         1.2.6    2021-10-04 [?]
+ P GenomicRanges          * 1.44.0   2021-05-19 [?]
+ P ggbeeswarm               0.6.0    2017-08-07 [?]
+ P ggplot2                * 3.3.5    2021-06-25 [?]
+ P glue                     1.4.2    2020-08-27 [?]
+ P gridExtra                2.3      2017-09-09 [?]
+ P gtable                   0.3.0    2019-03-25 [?]
+ P haven                    2.4.3    2021-08-04 [?]
+ P highr                    0.9      2021-04-16 [?]
+ P hms                      1.1.1    2021-09-26 [?]
+ P htmltools                0.5.2    2021-08-25 [?]
+ P httpuv                   1.6.3    2021-09-09 [?]
+ P httr                     1.4.2    2020-07-20 [?]
+ P interactiveDisplayBase   1.30.0   2021-05-19 [?]
+ P IRanges                * 2.26.0   2021-05-19 [?]
+ P irlba                    2.3.3    2019-02-05 [?]
+ P jquerylib                0.1.4    2021-04-26 [?]
+ P jsonlite                 1.7.2    2020-12-09 [?]
+ P KEGGREST                 1.32.0   2021-05-19 [?]
+ P knitr                    1.33     2021-04-24 [?]
+ P labeling                 0.4.2    2020-10-20 [?]
+ P later                    1.3.0    2021-08-18 [?]
+ P lattice                  0.20-45  2021-09-22 [?]
+ P lifecycle                1.0.1    2021-09-24 [?]
+ P lubridate                1.7.10   2021-02-26 [?]
+ P magrittr                 2.0.1    2020-11-17 [?]
+ P Matrix                   1.3-4    2021-06-01 [?]
+ P MatrixGenerics         * 1.4.3    2021-08-26 [?]
+ P matrixStats            * 0.60.1   2021-08-23 [?]
+ P memoise                  2.0.0    2021-01-26 [?]
+ P mime                     0.12     2021-09-28 [?]
+ P misc3d                   0.9-0    2020-09-06 [?]
+ P modelr                   0.1.8    2020-05-19 [?]
+ P munsell                  0.5.0    2018-06-12 [?]
+   muscData               * 1.6.0    2021-05-20 [1]
+ P pillar                   1.6.3    2021-09-26 [?]
+ P pkgconfig                2.0.3    2021-10-04 [?]
+ P plot3D                 * 1.4      2021-05-22 [?]
+ P png                      0.1-7    2013-12-03 [?]
+ P promises                 1.2.0.1  2021-02-11 [?]
+ P purrr                  * 0.3.4    2020-04-17 [?]
+ P R6                       2.5.1    2021-08-19 [?]
+ P rappdirs                 0.3.3    2021-01-31 [?]
+ P Rcpp                     1.0.7    2021-07-07 [?]
+ P RCurl                    1.98-1.4 2021-08-17 [?]
+ P readr                  * 2.0.1    2021-08-10 [?]
+ P readxl                   1.3.1    2019-03-13 [?]
+ P renv                     0.14.0   2021-07-21 [?]
+ P reprex                   2.0.1    2021-08-05 [?]
+ P rlang                    0.4.11   2021-04-30 [?]
+ P rmarkdown                2.10     2021-08-06 [?]
+ P RSQLite                  2.2.8    2021-08-21 [?]
+ P rstudioapi               0.13     2020-11-12 [?]
+ P rsvd                     1.0.5    2021-04-16 [?]
+ P rvest                    1.0.1    2021-07-26 [?]
+ P S4Vectors              * 0.30.0   2021-05-19 [?]
+ P sass                     0.4.0    2021-05-12 [?]
+ P ScaledMatrix             1.0.0    2021-05-19 [?]
+ P scales                   1.1.1    2020-05-11 [?]
+ P scater                 * 1.20.1   2021-06-15 [?]
+ P scuttle                * 1.2.1    2021-08-05 [?]
+ P sessioninfo              1.1.1    2018-11-05 [?]
+ P shiny                    1.7.0    2021-09-22 [?]
+ P SingleCellExperiment   * 1.14.1   2021-05-21 [?]
+ P sparseMatrixStats        1.4.2    2021-08-08 [?]
+ P stringi                  1.7.4    2021-08-25 [?]
+ P stringr                * 1.4.0    2019-02-10 [?]
+ P SummarizedExperiment   * 1.22.0   2021-05-19 [?]
+ P tibble                 * 3.1.5    2021-09-30 [?]
+ P tidyr                  * 1.1.4    2021-09-27 [?]
+ P tidyselect               1.1.1    2021-04-30 [?]
+ P tidyverse              * 1.3.1    2021-04-15 [?]
+ P tzdb                     0.1.2    2021-07-20 [?]
+ P utf8                     1.2.2    2021-07-24 [?]
+ P vctrs                    0.3.8    2021-04-29 [?]
+ P vipor                    0.4.5    2017-03-22 [?]
+ P viridis                  0.6.1    2021-05-11 [?]
+ P viridisLite              0.4.0    2021-04-13 [?]
+ P withr                    2.4.2    2021-04-18 [?]
+ P xfun                     0.25     2021-08-06 [?]
+ P xml2                     1.3.2    2020-04-23 [?]
+ P xtable                   1.8-4    2019-04-21 [?]
+ P XVector                  0.32.0   2021-05-19 [?]
+ P yaml                     2.2.1    2020-02-01 [?]
+ P zlibbioc                 1.38.0   2021-05-19 [?]
+ source                          
+ Bioconductor                    
+ Bioconductor                    
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ Bioconductor                    
+ CRAN (R 4.1.0)                  
+ Bioconductor                    
+ Bioconductor                    
+ Bioconductor                    
+ CRAN (R 4.1.0)                  
+ Bioconductor                    
+ Bioconductor                    
+ Bioconductor                    
+ Bioconductor                    
+ Bioconductor                    
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ standard (@1.0-7)               
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ Bioconductor                    
+ Bioconductor                    
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ standard (@0.3.2)               
+ CRAN (R 4.1.0)                  
+ Bioconductor                    
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ Bioconductor                    
+ Bioconductor                    
+ Bioconductor                    
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ Bioconductor                    
+ Bioconductor                    
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ Bioconductor                    
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.1)                  
+ Bioconductor                    
+ CRAN (R 4.1.1)                  
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ Bioconductor                    
+ CRAN (R 4.1.0)                  
+ Github (r-lib/pkgconfig@b81ae03)
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.1)                  
+ CRAN (R 4.1.1)                  
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.1)                  
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ Bioconductor                    
+ CRAN (R 4.1.0)                  
+ Bioconductor                    
+ CRAN (R 4.1.0)                  
+ Bioconductor                    
+ Bioconductor                    
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.1)                  
+ Bioconductor                    
+ Bioconductor                    
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ Bioconductor                    
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ standard (@1.1.1)               
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ standard (@0.3.8)               
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.1)                  
+ CRAN (R 4.1.0)                  
+ CRAN (R 4.1.0)                  
+ Bioconductor                    
+ CRAN (R 4.1.0)                  
+ Bioconductor                    
+
+[1] /Users/runner/work/HDDA21/HDDA21/renv/library/R-4.1/x86_64-apple-darwin17.0
+[2] /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpqvU0Xi/renv-system-library
+
+ P ── Loaded and on-disk path mismatch.</code></pre>
+</details>
+</div>
+<div id="home" class="section level1 unnumbered">
+<h1><a href="https://statomics.github.io/HDA2020/">Home</a></h1>
+</div>
+
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiMS4gSW50cm9kdWN0aW9uIHRvIEhpZ2ggRGltZW5zaW9uYWwgRGF0YSBBbmFseXNpcyIKYXV0aG9yOiAiTGlldmVuIENsZW1lbnQiCmRhdGU6ICJzdGF0T21pY3MsIEdoZW50IFVuaXZlcnNpdHkgKGh0dHBzOi8vc3RhdG9taWNzLmdpdGh1Yi5pbykiCi0tLQoKIyBJbnRyb2R1Y3Rpb24KCmBgYHtyIHNldHVwLCBpbmNsdWRlPUZBTFNFfQprbml0cjo6b3B0c19jaHVuayRzZXQoY29tbWVudCA9IE5BLCBtZXNzYWdlID0gRkFMU0UsIHdhcm5pbmcgPSBGQUxTRSkKYGBgCgotIFdlIGxpdmUgaW4gYSBiaWcgZGF0YSBlcmEKLSBNYXNzaXZlIERhdGFzZXRzIG9uIG91ciBsb2NhdGlvbiwgc3VyZmluZyBiZWhhdmlvciwgY29uc3VtZXIgZGF0YSwgc29jaWFsIG1lZGlhLCAuLi4KLSBMaWZlIFNjaWVuY2VzOiBhZHZlbnQgb2YgaGlnaCB0aHJvdWdocHV0IHRlY2hub2xvZ2llcyBoYXMgZW5hYmxlZCB1cyB0byBtZWFzdXJlIGJyYWluIGFjdGl2aXR5IChicmFpbiBpbWFnZXMpIGFzIHdlbGwgYXMgdGhlIGV4cHJlc3Npb24gb2YgdGhvdXNhbmRzIG9mIGdlbmVzLCBwcm90ZWlucywgLi4uIGZvciBlYWNoIHN1YmplY3Qgb3IgZXZlbiBzaW5nbGUgY2VsbC4KLSBJbmR1c3RyeTogcHJvY2VzcyBjb250cm9sIHdpdGggbWFueSBzZW5zb3JzIHRoYXQgZm9sbG93IHByb2Nlc3MgaW4gcmVhbCB0aW1lLi4uCi0gRGF0YSBkcml2ZSBqb3VybmFsaXNtCi0gLi4uCgpDaGFsbGVuZ2U6IFdlIGhhdmUgdG8gbGVhcm4gZnJvbSBoaWdoIGRpbWVuc2lvbmFsIGRhdGEhCgotLS0KCiMjIFdoYXQgYXJlIGhpZ2ggZGltZW5zaW9uYWwgZGF0YT8KCi0gV2UgdHlwaWNhbGx5IG9ic2VydmUgbXVsdGlwbGUgdmFyaWFibGVzL2ZlYXR1cmVzIChwKSBmb3IgZWFjaCBzdWJqZWN0L2V4cGVyaW1lbnRhbCB1bml0ICRpPTEsXGxkb3RzLG4kIGkuZS4KXFsgXG1hdGhiZnt4fV9pXlQ9W3hfe2kxfSxcbGRvdHMseF97aXB9XVxdCgotIE11bHRpdmFyaWF0ZSBzdGF0aXN0aWNzIGhhdmUgYSBsb25nIGhpc3RvcnksIGJ1dCB3ZXJlIGRlc2lnbmVkIGZvciB0aGUgJG4+Pj5wJCBjYXNlLAoKLSBOb3dhZGF5cyBtYW55IGhpZ2ggdGhyb3VnaHB1dCB0ZWNobm9sb2dpZXMgZ2VuZXJhdGUgbXVsdGl2YXJpYXRlIGRhdGEgd2l0aCBtYW55IHZhcmlhYmxlcyAobGFyZ2UgJHAkKSBhcyBjb21wYXJlZCB0byB0aGUgbnVtYmVyIG9mIGluZGVwZW5kZW50IHJlcGxpY2F0ZXMgb3Igc2FtcGxlcyAoc2FtcGxlIHNpemUgJG4kKSwgcmVzdWx0aW5nIGluICoqe2hpZ2gtZGltZW5zaW9uYWwgZGF0YX0qKiwgd2hpY2ggaXMgY2hhcmFjdGVyaXNlZCBieQogIFxbCiAgICAgcCA+Pj4gbi4KICBcXQoKLSAgTmV3IHN0YXRpc3RpY2FsIG1ldGhvZHMgZm9yIGRlYWxpbmcgd2l0aCB0aGUgJHAgPj4+IG4kIGNhc2UgaGF2ZSBiZWVuIGRldmVsb3BlZCBpbiB0aGUgbGFzdCAyMCB5ZWFycy4gIFNvbWUgb2YgdGhlbSBhcmUgYWRhcHRhdGlvbnMgb2YgbXVsdGl2YXJpYXRlIG1ldGhvZHMuCgotLS0KCklzc3VlcyB3aXRoIGhpZ2gtZGltZW5zaW9uYWwgZGF0YToKCi0gKkNvbXB1dGF0aW9uYWwgcHJvYmxlbXMqOiBsYXJnZSBtYXRyaWNlcywgbnVtZXJpY2FsIGFjY3VyYWN5IG9mIGNvbXB1dGVycyBiZWNvbWUgYW4gaXNzdWUKLSAqQ2xhc3NpY2FsIGFzeW1wdG90aWMgdGhlb3J5IGRvZXMgbm90IGhvbGQqIGZvciAkcFxyaWdodGFycm93XGluZnR5JCBhcyAkbiBccmlnaHRhcnJvdyBcaW5mdHkkCi0gKk1vZGVsIChvciBmZWF0dXJlKSBzZWxlY3Rpb24qIHJlcXVpcmVzIHNwZWNpYWxpc2VkIG1ldGhvZHMgdG8gZGVhbCB3aXRoIHRoZSBlbm9ybW91cyBudW1iZXIgb2YgcG9zc2libGUgbW9kZWxzLiAoZS5nLiBpbiBsaW5lYXIgcmVncmVzc2lvbiB3aXRoIHAgcG90ZW50aWFsIHByZWRpY3RvcnM6ICQyXnAkIHBvc3NpYmxlIG1vZGVscykKLSBNb2RlbHMgdGhhdCBjYW4gcG90ZW50aWFsbHkgZGVwZW5kIG9uIGxhcmdlLXAgcHJlZGljdG9ycyBhcmUgdnVsbmVyYWJsZSB0byAqaHVnZSBvdmVyZml0dGluZyouCi0gSW4gc2VhcmNoaW5nIGZvciBhc3NvY2lhdGlvbnMgYmV0d2VlbiBhbiBvdXRjb21lIGFuZCBsYXJnZSBwIHBvdGVudGlhbCBleHBsb3JhdG9yeSB2YXJpYWJsZXMsIHdlIGFyZSBhdCByaXNrIHRvIG1ha2UgKm1hbnkgZmFsc2UgZGlzY292ZXJpZXMqCgotIFRoZSAqQ3Vyc2Ugb2YgRGltZW5zaW9uYWxpdHkqIG1heSBjYXVzZSBhIHByZWRpY3Rpb24gbW9kZWwgdG8gYmVjb21lIHVzZWxlc3MuICgkbiQgZGF0YSBwb2ludHMgYmVjb21lIHNwYXJzZSBpbiBsYXJnZS0kcCQgZGltZW5zaW9uYWwgc3BhY2UpCgotLS0KCiMgSW1wb3J0YW50IHRhc2tzIGluIGhpZ2ggZGltZW5zaW9uYWwgZGF0YSBhbmFseXNpcz8KCiMjIEV4YW1wbGU6ICAgS2FuZyBldCBhbC4gKDIwMTgp4oCZcyBkcm9wbGV0LWJhc2VkIHNjUk5BLXNlcSBkYXRhIG9mIFBCTUNzIGNlbGxzIGZyb20gOCBsdXB1cyBwYXRpZW50cyBtZWFzdXJlZCBiZWZvcmUgYW5kIGFmdGVyIDZoLXRyZWF0bWVudCB3aXRoIElORi0kXGJldGEkICgxNiBzYW1wbGVzIGluIHRvdGFsKS4KCmBgYHtyIGxpYnJhcmllcywgbWVzc2FnZT1GQUxTRSwgd2FybmluZz1GQUxTRX0KbGlicmFyeSh0aWR5dmVyc2UpCgojIyBQYWNrYWdlcyB0byBsb2FkIGFuZCB2aXN1YWxpemUgdGhlIHNpbmdsZS1jZWxsIGRhdGEKbGlicmFyeShFeHBlcmltZW50SHViKQpsaWJyYXJ5KHNjYXRlcikKYGBgCgpgYGB7cn0KIyMgTG9hZCBLYW5nIHNpbmdsZS1jZWxsIGRhdGEgZnJvbSBFeHBlcmltZW50SHViCmVoIDwtIEV4cGVyaW1lbnRIdWIoKQpzY2UgPC0gZWhbWyJFSDIyNTkiXV0KCnNjZQpgYGAKCi0gRGF0YSBvbiBnZW5lIGV4cHJlc3Npb24gb2YgYHIgbnJvdyhzY2UpYCBnZW5lcyBvZiBgciBuY29sKHNjZSlgIGNlbGxzLgoKCiMjIERhdGEgZXhwbG9yYXRpb24gYW5kIGRpbWVuc2lvbmFsaXR5IHJlZHVjdGlvbgoKLSBWaXN1YWxpc2F0aW9uIGlzIGEgZmlyc3QgZXNzZW50aWFsIHN0ZXAgdG8gbGVhcm4gZnJvbSBkYXRhCgoKYGBge3J9CmNvdW50cyhzY2UpWzE4OTkwOjE5MDAwLDk6MjBdCmBgYAoKLSBJdCBpcyBpbXBvc3NpYmxlIHRvIGxlYXJuIGFib3V0IHRoZSBzdHJ1Y3R1cmUgaW4gdGhlIGRhdGEgYnkgc3RhcmluZyBhdCB0aGUgZGF0YSBtYXRyaXguCi0gV2Ugc2hvdWxkIGJlIGFibGUgdG8gZXhwbG9yZSB0aGUgZGF0YSBpbiBhIGxvdyBkaW1lbnNpb25hbCBwcm9qZWN0aW9uCgpgYGB7cn0KcGxvdFJlZHVjZWREaW0oc2NlLCBkaW1yZWQ9IlRTTkUiLCBjb2xvdXJfYnk9ImNlbGwiKQpwbG90UmVkdWNlZERpbShzY2UsIGRpbXJlZD0iVFNORSIsIGNvbG91cl9ieT0ic3RpbSIpCmBgYAoKLSBOb3RlLCB0aGF0IHdlIHNlZSBodWdlIGVmZmVjdCBvZiB0cmVhdG1lbnQuIElmIEkgc2VlIHRoaXMgSSBhbSBhbHdheXMgb24gbXkgZ3VhcmQhCi0gV2UgY29udGFjdGVkIHRoZSBhdXRob3JzIGFuZCBsZWFybmVkIHRoYXQgYWxsIGNvbnRyb2wgY2VsbHMgd2VyZSBzZXF1ZW5jZWQgaW4gYSBmaXJzdCBydW4gYW5kIGFsbCBzdGltdWxhdGVkIGNlbGxzIHdlcmUgb24gYSBzZWNvbmQgc2VxdWVuY2luZyBydW4uIFNvIHRoZSBsYXJnZSBlZmZlY3QgbWlnaHQgYmUgYW4gZWZmZWN0IG9mIGJhdGNoIQoKIyMgUHJlZGljdGlvbgoKYGBge3J9CnBsb3RSZWR1Y2VkRGltKHNjZSwgZGltcmVkPSJUU05FIiwgY29sb3VyX2J5PSJjZWxsIikKYGBgCgotIEluIHNpbmdsZSBjZWxsIGFuYWx5c2lzIGl0IGlzIGtleSB0byBpZGVudGlmeSBjZWxsIHR5cGVzIGluIHNjUk5BLXNlcSBkYXRhIHNldHMgYmVmb3JlIGluLWRlcHRoIGludmVzdGlnYXRpb25zIG9mIHRoZWlyIGZ1bmN0aW9uYWwgYW5kIHBhdGhvbG9naWNhbCByb2xlcy4KCi0gVXNlIG1vZGVscyB0aGF0IHdlcmUgYnVpbGQgYmFzZWQgb24gcmVmZXJlbmNlIGRhdGEgc2V0cyB0byBwcmVkaWN0IGNlbGwgdHlwZXMgaW4gbmV3IGRhdGEgc2V0cyBiYXNlZCBvbiB0aGVpciBnZW5lIGV4cHJlc3Npb24gcGF0dGVybgoKLSBQcm9ibGVtOiB3ZSBoYXZlIGByIG5yb3coc2NlKWAgZ2VuZXMgYXQgb3VyIGRpc3Bvc2FsIHRvIGJ1aWxkIHRoaXMgcHJlZGljdGlvbiBtb2RlbCEKCi0gT3RoZXIgZXhhbXBsZXMKCiAgLSBQcmVkaWN0aW9uIG9mIHJpc2sgb24gbW9ydGFsaXR5IGlzIHVzZWQgb24gYSBkYWlseSBiYXNpcyBpbiBpbnRlbnNpdmUgY2FyZSB1bml0cyB0byBwcmlvcml0aXNlIHBhdGllbnQgY2FyZS4KCiAgLSBGYWNlYm9vazogcHJlZGljdCB0aGUgaWRlbnRpdHkgb2YgdGhlIGZhY2VzIG9mIHBlb3BsZSB0aGF0IGFyZSBvbiBhbiBuZXcgaW1hZ2UgdGhhdCBpcyB1cGxvYWRlZC4KCiAgLSBOZXRmbGl4OiBTdWdnZXN0IG1vdmllcyB0aGF0IHlvdSB3b3VsZCBsaWtlCgojIyBMYXJnZSBzY2FsZSBoeXBvdGhlc2lzIHRlc3RpbmcKCmBgYHtyfQpwbG90UmVkdWNlZERpbShzY2UsIGRpbXJlZD0iVFNORSIsIGNvbG91cl9ieT0iY2VsbCIsIHNoYXBlX2J5PSJzdGltIikKYGBgCgotIFdoaWNoIGdlbmVzIGFyZSBkaWZmZXJlbnRpYWxseSBleHByZXNzZWQgYmV0d2VlbiBjb250cm9sIGFuZCBzdGltdWxhdGVkIHRyZWF0bWVudCAgKGFzc2VzcyBpbiBlYWNoIGNlbGwgdHlwZSkKLSBGb3Igd2hpY2ggZ2VuZXMgd2Ugc2VlIHRoYXQgdGhlIGRpZmZlcmVudGlhbCBleHByZXNzaW9uIGFjY29yZGluZyB0byB0cmVhdG1lbnQgaXMgY2hhbmdpbmcgYWNjb3JkaW5nIHRvIHRoZSBjZWxsIHR5cGUgKGludGVyYWN0aW9uKQotIFdlIGhhdmUgdG8gbW9kZWwgdGhlIGdlbmUgZXhwcmVzc2lvbiBmb3IgZWFjaCBnZW5lCgokJApcbGVmdCBcewpcYmVnaW57YXJyYXl9e2xjbH0KeV97aWd9ICZcc2ltJiBOQihcbXVfe2lnfSwgXHBoaV97Z30pXFwKRVt5X3tpZ31dICY9JiBcbXVcXApcbG9nKFxtdV97aWd9KSAmPSYgXGV0YV97aWd9XFwKXGV0YV97aWd9ICY9JiBcYmV0YV97MCxnfSArIFxzdW1cbGltaXRzX3tjPTF9XkMgXGJldGFfe2MsZ30gWF97aWN9ICsgXGJldGFfe3MsZ30gWF97aXN9ICsgXHN1bVxsaW1pdHNfe2M9MX1eQyBcYmV0YV97YzpzLGd9IFhfe2ljfSBYX3tpc30gKyBcYWxwaGFfe2lnfQpcZW5ke2FycmF5fSBccmlnaHQuCiQkCgpXaXRoCgotIENlbGwgdHlwZSAkYz0yXGxkb3RzIEMkIGFuZCAkWF97aWN9JCBpcyBhIGR1bW15IHZhcmlhYmxlIHRoYXQgJFhfe2ljfT0xJCBpZiBjZWxsICRpJCBpcyBvZiBjZWxsIHR5cGUgYyBhbmQgJFhfe2ljfT0wJCBvdGhlcndpc2UuIE5vdGUgdGhhdCBjZWxsIHR5cGUgJGM9MSQgaXMgdGhlIHJlZmVyZW5jZSBjZWxsIHR5cGUKCi0gSW5kaWNhdG9yICRYX3tpc30kIGluZGljYXRlcyBpZiBjZWxsICRpJCB3YXMgc3RpbXVsYXRlZCAkWF97aXN9PTEkIG9yIG5vdCAkWF97aXN9PTAkLiBTbyB0aGUgY29udHJvbCB0cmVhdG1lbnQgaXMgdGhlIHJlZmVyZW5jZSB0cmVhdG1lbnQuCgpTdXBwb3NlIHdlIHdhbnQgdG8gdGVzdCBpZiB0aGUgZWZmZWN0IG9mIHRoZSBzdGltdWx1cyAoYXZlcmFnZSBkaWZmZXJlbmNlIGluIGV4cHJlc3Npb24gYmV0d2VlbiBzdGltdWxhdGVkIGFuZCBub24gc3RpbXVsYXRlZCBjZWxscykgaXMgZGlmZmVyZW50IGluIGNlbGwgdHlwZSBjIHRoYW4gaW4gdGhlIHJlZmVyZW5jZSBjZWxsIHR5cGUgMT8KCi0gJEhfMDogXGJldGFfe2M6cyxnfSA9IDAkCi0gJEhfMTogXGJldGFfe2M6cyxnfSBcbmVxIDAkCgoKLSBXZSBoYXZlIHRvIGFzc2VzcyB0aGlzIGZvciBgciBucm93KHNjZSlgIGdlbmVzIQotIElmIHdlIGFzc2VzcyBlYWNoIHRlc3QgYXQgdGhlIDUlIGxldmVsIHdlIGNhbiBleHBlY3QgMC4wNSAqIGByIG5yb3coc2NlKWAgPSBgciByb3VuZCgwLjA1Km5yb3coc2NlKSwwKWAgZmFsc2UgcG9zaXRpdmVzLgoKJFxyaWdodGFycm93JCBtYXNzaXZlIG11bHRpcGxlIHRlc3RpbmcgcHJvYmxlbSEKCgpOb3RlLCB0aGF0IHdlIGNhbm5vdCBkaWZmZXJlbnRpYXRlIGJldHdlZW4gYmF0Y2ggYW5kIHRyZWF0bWVudCBiZWNhdXNlIG9mIHRoZSBmbGF3IGluIHRoZSBleHBlcmltZW50YWwgZGVzaWduIQoKT3RoZXIgZXhhbXBsZXMKCi0gRmluZCByZWdpb25zICh2b3hlbHMpIGluIHRoZSBicmFpbiAob24gYnJhaW4gaW1hZ2UpIHRoYXQgYXJlIGFzc29jaWF0ZWQgd2l0aCBhIGNlcnRhaW4gY29uZGl0aW9uL3RyZWF0bWVudAotIEV2YWx1YXRpb24gb2YgdHJhZGluZyBydWxlcwoKCgotLS0KCgojIExpbmVhciByZWdyZXNzaW9uCgotIExpbmVhciByZWdyZXNzaW9uIGlzIGEgdmVyeSBpbXBvcnRhbnQgc3RhdGlzdGljYWwgdG9vbCB0byBzdHVkeSB0aGUgYXNzb2NpYXRpb24gYmV0d2VlbiB2YXJpYWJsZXMgYW5kIHRvIGJ1aWxkIHByZWRpY3Rpb24gbW9kZWxzLgoKIyMgU2NhbGFyIGZvcm0KCi0gQ29uc2lkZXIgYSB2ZWN0b3Igb2YgcHJlZGljdG9ycyAkXG1hdGhiZnt4fT0oeF8xLFxsZG90cyx4X3ApJCBhbmQKLSBhIHJlYWwtdmFsdWVkIHJlc3BvbnNlICRZJAotIHRoZW4gdGhlIGxpbmVhciByZWdyZXNzaW9uIG1vZGVsIGNhbiBiZSB3cml0dGVuIGFzClxbClk9ZihcbWF0aGJme3h9KSArXGVwc2lsb249XGJldGFfMCtcc3VtXGxpbWl0c197aj0xfV5wIHhfalxiZXRhX2ogKyBcZXBzaWxvbgpcXQp3aXRoIGkuaS5kLiAkXGVwc2lsb25cc2ltIE4oMCxcc2lnbWFeMikkCi0gV2Ugd2lsbCB0eXBpY2FsbHkgd29yayBvbiBtZWFuIGNlbnRlcmVkIHZhcmlhYmxlczogJFktXGJhcntZfSQgYW5kICRYIC0gXGJhcntYfSQsIHRoZW4gdGhlIGludGVyY2VwdCBpcyBkcm9wcGVkIGZyb20gdGhlIG1vZGVsOgpcWwpZPWYoXG1hdGhiZnt4fSkgK1xlcHNpbG9uPVxzdW1cbGltaXRzX3tqPTF9XnAgeF9qXGJldGFfaiArIFxlcHNpbG9uClxdCgoKIyMgVmVjdG9yL01hdHJpeCBmb3JtCgotICRuJCBvYnNlcnZhdGlvbnMgJChcbWF0aGJme3h9XzEseV8xKSBcbGRvdHMgKFxtYXRoYmZ7eH1fbix5X24pJCB3aXRoICRcbWF0aGJme3h9XzFeVD1bMSB4XzEgXGxkb3RzIHhfcF0kCi0gUmVncmVzc2lvbiBpbiBtYXRyaXggbm90YXRpb24KXFtcbWF0aGJme1l9PVxtYXRoYmZ7WFxiZXRhfSArIFxtYXRoYmZ7XGVwc2lsb259XF0Kd2l0aCAkXG1hdGhiZntZfT1cbGVmdFtcYmVnaW57YXJyYXl9e2N9eV8xXFwgXHZkb3RzXFx5X25cZW5ke2FycmF5fVxyaWdodF0kLAokXG1hdGhiZntYfT1cbGVmdFtcYmVnaW57YXJyYXl9e2NjY2N9IDEmeF97MTF9JlxsZG90cyZ4X3sxcH1cXApcdmRvdHMmXHZkb3RzJiZcdmRvdHNcXAoxJnhfe24xfSZcbGRvdHMmeF97bnB9ClxlbmR7YXJyYXl9XHJpZ2h0XSQgb3IgJFxtYXRoYmZ7WH09XGxlZnRbXGJlZ2lue2FycmF5fXtjfSBcbWF0aGJme3h9XzFeVFxcXHZkb3RzXFxcbWF0aGJme3h9X25eVFxlbmR7YXJyYXl9XHJpZ2h0XSQsCiRcYm9sZHN5bWJvbHtcYmV0YX09XGxlZnRbXGJlZ2lue2FycmF5fXtjfVxiZXRhXzBcXCBcdmRvdHNcXCBcYmV0YV9wXGVuZHthcnJheX1ccmlnaHRdJCBhbmQKJFxtYXRoYmZ7XGVwc2lsb259PVxsZWZ0W1xiZWdpbnthcnJheX17Y30gXGVwc2lsb25fMSBcXCBcdmRvdHMgXFwgXGVwc2lsb25fblxlbmR7YXJyYXl9XHJpZ2h0XSQKCk5vdGUsIHRoYXQgdXBvbiBjZW50ZXJpbmcgb2YgJFxtYXRoYmZ7WH0kIGFuZCAkXG1hdGhiZntZfSQgdGhlIDEgaXMgZHJvcHBlZCBmcm9tIGVhY2ggJFxtYXRoYmZ7eH1faSQgYW5kIHRodXMgdGhlIGNvbHVtbiBvZiAxIGlzIGRyb3BwZWQgaW4gJFxtYXRoYmZ7WH0kCgotLS0KCiMjIEludGVycHJldGF0aW9uCgpGcm9tIHRoZSBsaW5lYXIgcmVncmVzc2lvbiB3ZSBnZXQKXFsKICBFW1kgXG1pZCBcbWF0aGJme3h9XSA9IFxtYXRoYmZ7eH1eVFxib2xkc3ltYm9se1xiZXRhfSAuClxdCgotIEhlbmNlLCB0aGUgJFxiZXRhJCBwYXJhbWV0ZXJzIHJlbGF0ZSB0aGUgcmVncmVzc29yICRcbWF0aGJme3h9JCB0byB0aGUgbWVhbiBvdXRjb21lLgotIElmIHdlIGtub3cgdGhlIGNvdmFyaWF0ZSBwYXR0ZXJuICRcbWF0aGJme3h9JCB3ZSBjYW4gdXNlIHRoZSBtb2RlbCB0byBwcmVkaWN0ICRZJC4KClVwb24gY2VudGVyaW5nIHdlIGdldCB0aGUgZm9sbG93aW5nIGZvciBhIG1vZGVsIHdpdGggYSBzaW5nbGUgcmVncmVzc29yClxbCiAgRVtZIFxtaWQgeF0gPSBcYmV0YV8xIHgKXF0KYW5kClxbCiBcYmV0YV8xID0gRVtZXG1pZCB4KzFdIC0gRVtZXG1pZCB4XSAuClxdCgpIZW5jZSwgdGhlICRcYmV0YV8xJCBwYXJhbWV0ZXIgaGFzIGFuIGludGVycHJldGF0aW9uIGFzIHRoZSBtZWFuIGluY3JlYXNlIG9mIHRoZSBvdXRjb21lIGFzIHRoZSByZWdyZXNzb3IgaW5jcmVhc2VzIHdpdGggb25lIHVuaXQuIFRoZSBwYXJhbWV0ZXIgZG9lcyBub3Qgc2F5IHZlcnkgYWJvdXQgaW5kaXZpZHVhbCBvdXRjb21lcy4gSXQgaXMgdGhlIHJlc2lkdWFsIHZhcmlhbmNlICRcc2lnbWFeMiQgdGhhdCBkZXRlcm1pbmVzIGhvdyBtdWNoIGluZGl2aWR1YWwgb3V0Y29tZXMgdmFyeSBhYm91dCB0aGUgbWVhbiBvdXRjb21lLgoKVGhlICRcYmV0YSQgcGFyYW1ldGVycyBhcmUgdXNlZCB0byBtZWFzdXJlIGFzc29jaWF0aW9uLCBidXQgYSAkXGJldGEgXG5lcSAwJCBkb2VzIG5vdCBuZWNlc3NhcmlseSBtZWFuIHRoYXQgdGhlIG1vZGVsIHdpbGwgZ2l2ZSBnb29kIHByZWRpY3Rpb25zLgoKLS0tCgotIEluIGEgbGF0ZXIgY2hhcHRlciB3ZSB3aWxsIGRpc2N1c3MgdGhlIHByb2JsZW0gb2YgbGFyZ2Ugc2NhbGUgaHlwb3RoZXNpcyB0ZXN0aW5nOiB0ZXN0aW5nIG1hbnkgaHlwb3RoZXNlcyBpbiBhIHNpbmdsZSBzdHVkeSAodGVuIHRvIGh1bmRyZWQgdGhvdXNhbmRzIG9mIGh5cG90aGVzZXMpLgoKLSBBIHN0YXRpc3RpY2FsIHRlc3QgaXMgY29uc3RydWN0ZWQgdG8gY29udHJvbCB0aGUgdHlwZSBJIGVycm9yIHJhdGUgYXQgdGhlIHNpZ25pZmljYW5jZSBsZXZlbC4gSG93ZXZlciwgd2hlbiBtYW55IGh5cG90aGVzZXMgYXJlIHRvIGJlIHRlc3RlZCBpbiBhIHNpbmdsZSBzdHVkeSwgdGhlIHByb2JhYmlsaXR5IHRvIGZpbmQgZmFsc2UgYXNzb2NpYXRpb25zIGlzIG5vIGxvbmdlciBjb250cm9sbGVkIGlmIHAtdmFsdWVzIGFyZSBjb21wYXJlZCB0byB0aGUgc2lnbmlmaWNhbmNlIGxldmVsLgoKLSBXZSB3aWxsIGxhdGVyIGludHJvZHVjZSB0aGUgY29uY2VwdCBvZiBmYWxzZSBkaXNjb3ZlcnkgcmF0ZXMgdG8gb3ZlcmNvbWUgdGhlIHByb2JsZW0uCgojIyBMZWFzdCBTcXVhcmVzIChMUykKCi0gTWluaW1pemUgdGhlIHJlc2lkdWFsIHN1bSBvZiBzcXVhcmVzClxiZWdpbntlcW5hcnJheSp9ClJTUyhcYm9sZHN5bWJvbHtcYmV0YX0pJj0mXHN1bVxsaW1pdHNfe2k9MX1ebiBlXjJfaVxcCiY9JlxzdW1cbGltaXRzX3tpPTF9Xm4gXGxlZnQoeV9pLVxiZXRhXzAtXHN1bVxsaW1pdHNfe2o9MX1ecCB4X3tpan1cYmV0YV9qXHJpZ2h0KV4yClxlbmR7ZXFuYXJyYXkqfQoKLSBvciBpbiBtYXRyaXggbm90YXRpb24KXGJlZ2lue2VxbmFycmF5Kn0KUlNTKFxib2xkc3ltYm9se1xiZXRhfSkmPSYoXG1hdGhiZntZfS1cbWF0aGJme1hcYmV0YX0pXlQoXG1hdGhiZntZfS1cbWF0aGJme1hcYmV0YX0pXFwKJj0mXFZlcnQgXG1hdGhiZntZfS1cbWF0aGJme1hcYmV0YX1cVmVydF4yXzIKXGVuZHtlcW5hcnJheSp9CndpdGggdGhlICRMXzIkLW5vcm0gb2YgYSAkcCQtZGltLiB2ZWN0b3IgJHYkICRcVmVydCBcbWF0aGJme3Z9IFxWZXJ0XzI9XHNxcnR7dl8xXjIrXGxkb3RzK3ZfcF4yfSQKJFxyaWdodGFycm93JCAkXGhhdHtcYm9sZHN5bWJvbHtcYmV0YX19PVx0ZXh0e2FyZ21pbn1fXGJldGEgXFZlcnQgXG1hdGhiZntZfS1cbWF0aGJme1hcYmV0YX1cVmVydF4yJAoKLS0tCgojIyMgTWluaW1pemUgUlNTClxbClxiZWdpbnthcnJheX17Y2NjfQpcZnJhY3tccGFydGlhbCBSU1N9e1xwYXJ0aWFsIFxib2xkc3ltYm9se1xiZXRhfX0mPSZcbWF0aGJmezB9XFxcXApcZnJhY3soXG1hdGhiZntZfS1cbWF0aGJme1hcYmV0YX0pXlQoXG1hdGhiZntZfS1cbWF0aGJme1h9XGJvbGRzeW1ib2x7XGJldGF9KX17XHBhcnRpYWwgXGJvbGRzeW1ib2x7XGJldGF9fSY9JlxtYXRoYmZ7MH1cXFxcCi0yXG1hdGhiZntYfV5UKFxtYXRoYmZ7WX0tXG1hdGhiZntYfVxib2xkc3ltYm9se1xiZXRhfSkmPSZcbWF0aGJmezB9XFxcXApcbWF0aGJme1h9XlRcbWF0aGJme1hcYmV0YX0mPSZcbWF0aGJme1h9XlRcbWF0aGJme1l9XFxcXApcaGF0e1xib2xkc3ltYm9se1xiZXRhfX0mPSYoXG1hdGhiZntYfV5UXG1hdGhiZntYfSleey0xfVxtYXRoYmZ7WH1eVFxtYXRoYmZ7WX0KXGVuZHthcnJheX0KXF0KCkl0IGNhbiBiZSBzaG93biB0aGF0IHRoZSBlc3RpbWF0b3IgaXMgdW5iaWFzZWQ6CgokJApFW1xoYXR7XGJvbGRzeW1ib2x7XGJldGF9fV09XGJvbGRzeW1ib2x7XGJldGF9CiQkCgotLS0KCiMjIyBHZW9tZXRyaWNhbCBJbnRlcnByZXRhdGlvbgoKVG95IEV4YW1wbGU6IGZpdCB3aXRob3V0IGludGVyY2VwdAoKLSBuPTMgYW5kIHA9MgpcWwpcbWF0aGJme1h9PVxsZWZ0W1xiZWdpbnthcnJheX17Y2N9CjImMFxcCjAmMlxcCjAmMApcZW5ke2FycmF5fVxyaWdodF0KXF0KCmBgYHtyfQpzZXQuc2VlZCg0KQp4MSA8LSBjKDIsIDAsIDApCngyIDwtIGMoMCwgMiwgMCkKeSA8LSB4MSAqIDAuNSArIHgyICogMC41ICsgcm5vcm0oMywgMikKZml0IDwtIGxtKHkgfiAtMSArIHgxICsgeDIpCmBgYAoKLSAkXG1hdGhiZntZfSQgaXMgbm93IGdpdmVuIGJ5CgpcWwpcbWF0aGJme1l9PVxsZWZ0W1xiZWdpbnthcnJheX17Y30KMSArIFxlcHNpbG9uXzEgXFwKMSArIFxlcHNpbG9uXzJcXAowICsgXGVwc2lsb25fMwpcZW5ke2FycmF5fVxyaWdodF0KXF0KCndpdGggdGhlICRcZXBzaWxvbl9pJHMgc29tZSByYW5kb20gbm9pc2UuCgotIFRoZSBhY3R1YWwgdmFsdWVzIG9mICRcbWF0aGJme1l9JCBhcmU6CgpgYGB7cn0KIyMgVHJ1ZSBZCnkKIyMgRml0dGVkIFkKZml0JGZpdHRlZC52YWx1ZXMKYGBgCgojIyMjIFZpc3VhbGlzZSBmaXQKCmBgYHtyfQojIHByZWRpY3QgdmFsdWVzIG9uIHJlZ3VsYXIgeHkgZ3JpZAp4MXByZWQgPC0gc2VxKC0xLCAzLCBsZW5ndGgub3V0ID0gMTApCngycHJlZCA8LSBzZXEoLTEsIDMsIGxlbmd0aC5vdXQgPSAxMCkKeHkgPC0gZXhwYW5kLmdyaWQoeDEgPSB4MXByZWQsCngyID0geDJwcmVkKQp5cHJlZCA8LSBtYXRyaXggKG5yb3cgPSAzMCwgbmNvbCA9IDMwLApkYXRhID0gcHJlZGljdChmaXQsIG5ld2RhdGEgPSBkYXRhLmZyYW1lKHh5KSwKaW50ZXJ2YWwgPSAicHJlZGljdGlvbiIpKQoKbGlicmFyeShwbG90M0QpCgoKIyBmaXR0ZWQgcG9pbnRzIGZvciBkcm9wbGluZXMgdG8gc3VyZmFjZQp0aD0yMApwaD01CnNjYXR0ZXIzRCh4MSwKICB4MiwKICB5LAogIHBjaCA9IDE2LAogIGNvbD0iZGFya2JsdWUiLAogIGNleCA9IDEsCiAgdGhldGEgPSB0aCwKICB0aWNrdHlwZSA9ICJkZXRhaWxlZCIsCiAgeGxhYiA9ICJ4MSIsCiAgeWxhYiA9ICJ4MiIsCiAgemxhYiA9ICJ5IiwKICBjb2x2YXI9RkFMU0UsCiAgYnR5ID0gImciLAogIHhsaW09YygtMSwzKSwKICB5bGltPWMoLTEsMyksCiAgemxpbT1jKC0yLDQpKQoKZm9yIChpIGluIDE6MykKICBsaW5lczNEKAogICAgeCA9IHJlcCh4MVtpXSwyKSwKICAgIHkgPSByZXAoeDJbaV0sMiksCiAgICB6ID0gYyh5W2ldLGZpdCRmaXR0ZWRbaV0pLAogICAgY29sPSJkYXJrYmx1ZSIsCiAgICBhZGQ9VFJVRSwKICAgIGx0eT0yKQoKei5wcmVkM0QgPC0gb3V0ZXIoCiAgeDFwcmVkLAogIHgycHJlZCwKICBmdW5jdGlvbih4MSx4MikKICB7CiAgICBmaXQkY29lZlsxXSp4MStmaXQkY29lZlsyXSp4MgogIH0pCgp4LnByZWQzRCA8LSBvdXRlcigKICB4MXByZWQsCiAgeDJwcmVkLAogIGZ1bmN0aW9uKHgseSkgeCkKCnkucHJlZDNEIDwtIG91dGVyKAogIHgxcHJlZCwKICB4MnByZWQsCiAgZnVuY3Rpb24oeCx5KSB5KQoKc3VyZjNEKAogIHgucHJlZDNELAogIHkucHJlZDNELAogIHoucHJlZDNELAogIGNvbD0iYmx1ZSIsCiAgZmFjZXRzPU5BLAogIGFkZD1UUlVFKQpgYGAKCiMjIyMgUHJvamVjdGlvbgoKLSBXZSBjYW4gYWxzbyBpbnRlcnByZXQgdGhlIGZpdCBhcyB0aGUgcHJvamVjdGlvbiBvZiB0aGUgJG5cdGltZXMgMSQgdmVjdG9yICRcbWF0aGJme1l9JCBvbiB0aGUgY29sdW1uIHNwYWNlIG9mIHRoZSBtYXRyaXggJFxtYXRoYmZ7WH0kLgoKLSBTbyBlYWNoIGNvbHVtbiBpbiAkXG1hdGhiZntYfSQgaXMgYWxzbyBhbiAkblx0aW1lcyAxJCB2ZWN0b3IuCgotIEZvciB0aGUgdG95IGV4YW1wbGUgbj0zIGFuZCBwPTIuClNvIHRoZSBjb2x1bW4gc3BhY2Ugb2YgWCBpcyBhIHBsYW5lIGluIHRoZSB0aHJlZSBkaW1lbnNpb25hbCBzcGFjZS4KClxbClxoYXR7XG1hdGhiZntZfX0gPSBcbWF0aGJme1h9IChcbWF0aGJme1h9XlRcbWF0aGJme1h9KV57LTF9IFxtYXRoYmZ7WH1eVCBcbWF0aGJme1l9ClxdCgoxLiBQbGFuZSBzcGFubmVkIGJ5IGNvbHVtbiBzcGFjZToKYGBge3J9CmFycm93czNEKAogIDAsIDAsIDAsIHgxWzFdLCB4MVsyXSwgeDFbM10sCiAgeGxpbSA9IGMoMCwgNSksIHlsaW0gPSBjKDAsIDUpLCB6bGltID0gYygwLCA1KSwgYnR5ID0gImciLAogIHRoZXRhID0gdGgsIGNvbCA9IDIsIHRpY2t0eXBlID0gImRldGFpbGVkIiwKICB4bGFiID0gIm9ic2VydmF0aW9uIDEiLCB5bGFiID0gIm9ic2VydmF0aW9uIDIiLCB6bGFiID0gIm9ic2VydmF0aW9uIDMiCikKdGV4dDNEKHgxWzFdLHgxWzJdLHgxWzNdLGxhYmVscz0iWDEiLGNvbD0yLGFkZD1UUlVFKQphcnJvd3MzRCgwLDAsMCx4MlsxXSx4MlsyXSx4MlszXSxhZGQ9VFJVRSxjb2w9MikKdGV4dDNEKHgyWzFdLHgyWzJdLHgyWzNdLGxhYmVscz0iWDIiLGNvbD0yLGFkZD1UUlVFKQpgYGAKCjIuIFZlY3RvciBvZiBZOgoKQWN0dWFsIHZhbHVlcyBvZiAkXG1hdGhiZntZfSQ6CgpgYGB7cn0KeQpgYGAKClxbClxtYXRoYmZ7WX09XGxlZnRbXGJlZ2lue2FycmF5fXtjfQpgciB5WzFdYCBcXApgciB5WzJdYCBcXApgciB5WzNdYApcZW5ke2FycmF5fVxyaWdodF0KXF0KCmBgYHtyfQphcnJvd3MzRCgKICAwLCAwLCAwLCB4MVsxXSwgeDFbMl0sIHgxWzNdLAogIHhsaW0gPSBjKDAsIDUpLCB5bGltID0gYygwLCA1KSwgemxpbSA9IGMoMCwgNSksIGJ0eSA9ICJnIiwKICB0aGV0YSA9IHRoLCBjb2wgPSAyLCB0aWNrdHlwZSA9ICJkZXRhaWxlZCIsCiAgeGxhYiA9ICJvYnNlcnZhdGlvbiAxIiwgeWxhYiA9ICJvYnNlcnZhdGlvbiAyIiwgemxhYiA9ICJvYnNlcnZhdGlvbiAzIgopCnRleHQzRCh4MVsxXSx4MVsyXSx4MVszXSxsYWJlbHM9IlgxIixjb2w9MixhZGQ9VFJVRSkKYXJyb3dzM0QoMCwwLDAseDJbMV0seDJbMl0seDJbM10sYWRkPVRSVUUsY29sPTIpCnRleHQzRCh4MlsxXSx4MlsyXSx4MlszXSxsYWJlbHM9IlgyIixjb2w9MixhZGQ9VFJVRSkKYXJyb3dzM0QoMCwwLDAseVsxXSx5WzJdLHlbM10sYWRkPVRSVUUsY29sPSJkYXJrYmx1ZSIpCnRleHQzRCh5WzFdLHlbMl0seVszXSxsYWJlbHM9IlkiLGNvbD0iZGFya2JsdWUiLGFkZD1UUlVFKQpgYGAKCjMuIFByb2plY3Rpb24gb2YgWSBvbnRvIGNvbHVtbiBzcGFjZQoKQWN0dWFsIHZhbHVlcyBvZiBmaXR0ZWQgdmFsdWVzICRcbWF0aGJme1xoYXR7WX19JDoKCmBgYHtyfQpmaXR0ZWQudmFsdWVzKGZpdCkKYGBgCgpcWwpcbWF0aGJme1l9PVxsZWZ0W1xiZWdpbnthcnJheX17Y30KYHIgZml0dGVkLnZhbHVlcyhmaXQpWzFdYCBcXApgciBmaXR0ZWQudmFsdWVzKGZpdClbMl1gIFxcCmByIGZpdHRlZC52YWx1ZXMoZml0KVszXWAKXGVuZHthcnJheX1ccmlnaHRdClxdCgpgYGB7cn0KYXJyb3dzM0QoCiAgMCwgMCwgMCwgeDFbMV0sIHgxWzJdLCB4MVszXSwKICB4bGltID0gYygwLCA1KSwgeWxpbSA9IGMoMCwgNSksIHpsaW0gPSBjKDAsIDUpLCBidHkgPSAiZyIsCiAgdGhldGEgPSB0aCwgY29sID0gMiwgdGlja3R5cGUgPSAiZGV0YWlsZWQiLAogIHhsYWIgPSAib2JzZXJ2YXRpb24gMSIsIHlsYWIgPSAib2JzZXJ2YXRpb24gMiIsIHpsYWIgPSAib2JzZXJ2YXRpb24gMyIKKQp0ZXh0M0QoeDFbMV0seDFbMl0seDFbM10sbGFiZWxzPSJYMSIsY29sPTIsYWRkPVRSVUUpCmFycm93czNEKDAsMCwwLHgyWzFdLHgyWzJdLHgyWzNdLGFkZD1UUlVFLGNvbD0yKQp0ZXh0M0QoeDJbMV0seDJbMl0seDJbM10sbGFiZWxzPSJYMiIsY29sPTIsYWRkPVRSVUUpCmFycm93czNEKDAsMCwwLHlbMV0seVsyXSx5WzNdLGFkZD1UUlVFLGNvbD0iZGFya2JsdWUiKQp0ZXh0M0QoeVsxXSx5WzJdLHlbM10sbGFiZWxzPSJZIixjb2w9ImRhcmtibHVlIixhZGQ9VFJVRSkKYXJyb3dzM0QoMCwwLDAsZml0JGZpdHRlZFsxXSxmaXQkZml0dGVkWzJdLGZpdCRmaXR0ZWRbM10sYWRkPVRSVUUsY29sPSJkYXJrYmx1ZSIpCnNlZ21lbnRzM0QoeVsxXSx5WzJdLHlbM10sZml0JGZpdHRlZFsxXSxmaXQkZml0dGVkWzJdLGZpdCRmaXR0ZWRbM10sYWRkPVRSVUUsbHR5PTIsY29sPSJkYXJrYmx1ZSIpCnRleHQzRChmaXQkZml0dGVkWzFdLGZpdCRmaXR0ZWRbMl0sZml0JGZpdHRlZFszXSxsYWJlbHM9ImZpdCIsY29sPSJkYXJrYmx1ZSIsYWRkPVRSVUUpCmBgYAoKLSBOb3RlLCB0aGF0IGl0IGlzIGFsc28gY2xlYXIgZnJvbSB0aGUgZXF1YXRpb24gaW4gdGhlIGRlcml2YXRpb24gb2YgdGhlIExTIHRoYXQgdGhlIHJlc2lkdWFsIGlzIG9ydGhvZ29uYWwgb24gdGhlIGNvbHVtbiBzcGFjZToKXFsKIC0yIFxtYXRoYmZ7WH1eVChcbWF0aGJme1l9LVxtYXRoYmZ7WH1cYm9sZHN5bWJvbHtcYmV0YX0pID0gMApcXQoKLSBJbWFnaW5lIHdoYXQgaGFwcGVucyB3aGVuIHAgPj4gbiEhIQoKJFxyaWdodGFycm93JCBjdXJzZSBvZiBkaW1lbnNpb25hbGl0eSEKCiMjIFZhcmlhbmNlIEVzdGltYXRvcj8KXFsKXGJlZ2lue2FycmF5fXtjY2x9ClxoYXR7XGJvbGRzeW1ib2x7XFNpZ21hfX1fe1xoYXR7XGJvbGRzeW1ib2x7XGJldGF9fX0KJj0mXHRleHR7dmFyfVxsZWZ0WyhcbWF0aGJme1h9XlRcbWF0aGJme1h9KV57LTF9XG1hdGhiZntYfV5UXG1hdGhiZntZfVxyaWdodF1cXFxcCiY9JihcbWF0aGJme1h9XlRcbWF0aGJme1h9KV57LTF9XG1hdGhiZntYfV5UXHRleHR7dmFyfVxsZWZ0W1xtYXRoYmZ7WX1ccmlnaHRdXG1hdGhiZntYfShcbWF0aGJme1h9XlRcbWF0aGJme1h9KV57LTF9XFxcXAomPSYoXG1hdGhiZntYfV5UXG1hdGhiZntYfSleey0xfVxtYXRoYmZ7WH1eVChcbWF0aGJme0l9XHNpZ21hXjIpXG1hdGhiZntYfShcbWF0aGJme1h9XlRcbWF0aGJme1h9KV57LTF9ClxcXFwKJj0mKFxtYXRoYmZ7WH1eVFxtYXRoYmZ7WH0pXnstMX1cbWF0aGJme1h9XlRcbWF0aGJme0l9XHF1YWRcbWF0aGJme1h9KFxtYXRoYmZ7WH1eVFxtYXRoYmZ7WH0pXnstMX1cc2lnbWFeMlxcXFwKJVxoYXR7XGJvbGRtYXRoe1xTaWdtYX19X3tcaGF0e1xib2xkc3ltYm9se1xiZXRhfX19Jj0mKFxtYXRoYmZ7WH1eVFxtYXRoYmZ7WH0pXnstMX1cbWF0aGJme1h9XlQgXHRleHR7dmFyfVxsZWZ0W1xtYXRoYmZ7WX1ccmlnaHRdKFxtYXRoYmZ7WH1eVFxtYXRoYmZ7WH0pXnstMX1cbWF0aGJme1h9XFwKJj0mKFxtYXRoYmZ7WH1eVFxtYXRoYmZ7WH0pXnstMX1cbWF0aGJme1h9XlRcbWF0aGJme1h9KFxtYXRoYmZ7WH1eVFxtYXRoYmZ7WH0pXnstMX1cc2lnbWFeMlxcXFwKJj0mKFxtYXRoYmZ7WH1eVFxtYXRoYmZ7WH0pXnstMX1cc2lnbWFeMgpcZW5ke2FycmF5fQpcXQoKVGhlIGZhY3QgdGhhdCAkXGhhdHtcYm9sZHN5bWJvbHtcYmV0YX19JCBpcyB1bmJpYXNlZCBhbmQgaGFzIGEgdmFyaWFuY2Ugb2YgJChcbWF0aGJme1h9XlRcbWF0aGJme1h9KV57LTF9XHNpZ21hXjIkIHdpbGwgYmUgaW1wb3J0YW50IHdoZW4gYXNzZXNzaW5nIGFzc29jaWF0aW9uIQoKLS0tCgojIyBQcmVkaWN0aW9uIGVycm9yCgpMZWFzdCBzcXVhcmVzIGVzdGltYXRvcnMgYXJlIHVuYmlhc2VkIGFuZCBjb25zaXN0ZW50LCBidXQgdGhlc2UgcHJvcGVydGllcyBhcmUgbm90IHZlcnkgaW1wb3J0YW50IGZvciBwcmVkaWN0aW9uIG1vZGVscy4KCkEgcHJlZGljdGlvbiBtb2RlbCBpcyBjb25zaWRlcmVkIGdvb2QgaWYgaXQgY2FuIHByZWRpY3Qgd2VsbCBvdXRjb21lcy4KClRoZSAqKnByZWRpY3Rpb24gZXJyb3IqKiBmb3IgYSBwcmVkaWN0aW9uIGF0IHByZWRpY3RvciAkXG1hdGhiZnt4fSQgaXMgZ2l2ZW4gYnkKCiQkCiAgIFxoYXR7WX0oXG1hdGhiZnt4fSkgLSBZXiosCiQkCgp3aGVyZQoKLSAgJFxoYXR7WX0oXG1hdGhiZnt4fSk9XG1hdGhiZnt4fV5UXGhhdHtcYm9sZHN5bWJvbHtcYmV0YX19JCBpcyB0aGUgcHJlZGljdGlvbiBhdCAkXG1hdGhiZnt4fSQKCi0gICRZXiokIGlzIGFuIG91dGNvbWUgYXQgcHJlZGljdG9yICRcbWF0aGJme3h9JAoKIFNpbmNlIHByZWRpY3Rpb24gaXMgdHlwaWNhbGx5IHVzZWQgdG8gcHJlZGljdCBhbiBvdXRjb21lIGJlZm9yZSBpdCBpcyBvYnNlcnZlZCwgdGhlIG91dGNvbWUgJFleKiQgaXMgbm90IG9ic2VydmVkIHlldC4gSGVuY2UsIHRoZSBwcmVkaWN0aW9uIGVycm9yIGNhbm5vdCBiZSBjb21wdXRlZC4KCiAtLS0KCiBUaGUgcHJvYmxlbSBvZiB1bm9ic2VydmFibGUgcHJlZGljdGlvbiBlcnJvcnMgaXMgcGFydGx5IHNvbHZlZCBieSB0aGUgKipleHBlY3RlZCBjb25kaXRpb25hbCB0ZXN0IGVycm9yKiogKHNvbWV0aW1lcyByZWZlcnJlZCB0byBhcyB0aGUgbWVhbiBzcXVhcmVkIGVycm9yLCBNU0UpClxbCiAgXHRleHR7RXJyfShcbWF0aGJme3h9KT1FWyhcaGF0e1l9KFxtYXRoYmZ7eH0pIC0gWV4qKV4yXS4KXF0KCldpdGggKHN1cHByZXNzaW5nIHRoZSBkZXBlbmRlbmNlIG9uICRcbWF0aGJme3h9JCkKXFsKICBcbXUgPSBFW1xoYXR7WX1dIFx0ZXh0eyBhbmQgfSBcbXVeKj1FW1leKl0KXF0KdGhlIGVycm9yIGNhbiBiZSBleHByZXNzZWQgYXMKXGJlZ2lue2VxbmFycmF5Kn0KICBcdGV4dHtFcnJ9CiAgICAmPSZFXGxlZnRce1xsZWZ0WyhcaGF0e1l9IC1cbXUpLShZLVxtdV4qKS0oXG11XiotXG11KVxyaWdodF1eMlxyaWdodFx9IFxcCiAgICAmPSYgRVsoXGhhdHtZfSAtXG11KV4yXStFWyhZLVxtdV4qKV4yXStFWyhcbXVeKi1cbXUpXjJdIFxcCiAgICAmPSYgXHRleHR7dmFyfVtcaGF0e1l9XSArXHRleHR7dmFyfVtZXSArXHRleHR7Ymlhc31eMgpcZW5ke2VxbmFycmF5Kn0KCiBUaGUgdGVybSAkXHRleHR7dmFyfVtZXSQgKGlycmVkdWNpYmxlIGVycm9yKSBkb2VzIG5vdCBkZXBlbmQgb24gdGhlIG1vZGVsIGFuZCBtYXkgdGhlcmVmb3JlIGJlIGlnbm9yZWQgd2hlbiAkXHRleHR7RXJyfSQgaXMgdXNlZCBmb3IgY29tcGFyaW5nIHByZWRpY3Rpb24gbW9kZWxzLgoKIC0tLQoKCkluIHRoaXMgaW50cm9kdWN0b3J5IGNoYXB0ZXIgd2Ugb25seSBhaW0gdG8gZ2l2ZSBhIHJvdWdoIGRpc2N1c3Npb24gb24gcHJlZGljdGlvbiBlcnJvcnMuIExhdGVyIGRlZmluaXRpb25zIHdpbGwgYmUgcmVmaW5lZCBhbmQgdGhlIG5vdGF0aW9uIHdpbGwgYmUgbW9yZSBhY2N1cmF0ZS4gQWxzbyBhIG1vcmUgZGV0YWlsZWQgZGlzY3Vzc2lvbiBvbiB0aGUgYmlhcy12YXJpYW5jZSB0cmFkZS1vZmYgd2lsbCBmb2xsb3cuIEZvciB0aGUgbW9tZW50IGl0IGlzIHN1ZmZpY2llbnQgdG8gdmFndWVseSBrbm93IHRoYXQ6CgotIHRoZSBleHBlY3RlZCBjb25kaXRpb25hbCB0ZXN0IGVycm9yIGlzIGludHJvZHVjZWQgdG8gY2lyY3VtdmVudCB0aGUgcHJvYmxlbSB0aGF0IHRoZSBwcmVkaWN0aW9uIGVycm9yIGNhbm5vdCBiZSBvYnNlcnZlZC4gSW4gbGF0ZXIgY2hhcHRlcnMgd2Ugd2lsbCBsb29rIGF0IGVzdGltYXRvcnMgb2YgdGhlIGV4cGVjdGVkIGVycm9yLgoKLSB0aGUgZXhwZWN0ZWQgY29uZGl0aW9uYWwgdGVzdCBlcnJvciAgaXMgaW4gc29tZSBsaXRlcmF0dXJlIGFsc28ga25vd24gYXMgdGhlICptZWFuIHNxdWFyZWQgZXJyb3IqIChNU0UpLCBidXQgd2UgZG8gbm90IGFkb3B0IHRoaXMgdGVybWlub2xvZ3kgYmVjYXVzZSBNU0UgaXMgYWxzbyBjb21tb25seSB1c2VkIHRvIHJlZmVyIHRvIFNTRSBkaXZpZGVkIGJ5IHRoZSByZXNpZHVhbCBkZWdyZWVzIG9mIGZyZWVkb20gaW4gYSBsaW5lYXIgcmVncmVzc2lvbiBtb2RlbC4KCi0gVGhlIGlkZW50aXR5ICRcdGV4dHtFcnJ9PVx0ZXh0e3Zhcn1bXGhhdHtZfV0gK1x0ZXh0e3Zhcn1bWV0gK1x0ZXh0e2JpYXN9XjIkIGlzIGtub3duIGFzIHRoZSBiaWFzLXZhcmlhbmNlIHRyYWRlLW9mZi4gSXQgc2hvd3MgdGhhdCBhIGdvb2QgcHJlZGljdGlvbiBtb2RlbCAoaS5lLiBhIG1vZGVsIHJlc3VsdGluZyBpbiBhIHNtYWxsIEVyciksIGNhbiBiZSBvYnRhaW5lZCBieSBhIG1vZGVsIHRoYXQgc2hvd3MgYSBzbWFsbCBiaWFzIGFzIGxvbmcgYXMgdGhpcyBiaWFzIGlzIGNvbXBlbnNhdGVkIHdpdGggYSBsYXJnZSByZWR1Y3Rpb24gb2YgdGhlIHZhcmlhbmNlIG9yIHRoZSBwcmVkaWN0aW9ucy4gQSBtb3JlIGRldGFpbGVkIGRpc2N1c3Npb24gd2lsbCBmb2xsb3cgaW4gbGF0ZXIgY2hhcHRlcnMuCgotIEZvciBwcmVkaWN0aW9uIG1vZGVscyB3aXRoIGEgbGFyZ2UgbnVtYmVyIG9mIHByZWRpY3RvcnMgd2Ugd2lsbCB0aGVyZWZvcmUgaW50cm9kdWNlIHBlbmFsaXplZCByZWdyZXNzaW9uLiBUaGlzIHdpbGwgaW5kdWNlIHNvbWUgYmlhcyBpbiB0aGUgZXN0aW1hdGlvbiwgYnV0IHdpbGwgYWxsb3cgdXMgdG8gcmVkdWNlIHRoZSB2YXJpYW5jZSBjb25zaWRlcmFibHkuCgojIFNlc3Npb24gaW5mbyB7LX0KCjxkZXRhaWxzPjxzdW1tYXJ5PlNlc3Npb24gaW5mbzwvc3VtbWFyeT4KCmBgYHtyIHNlc3Npb25faW5mbywgZWNobz1GQUxTRSwgY2FjaGU9RkFMU0V9ClN5cy50aW1lKCkKc2Vzc2lvbmluZm86OnNlc3Npb25faW5mbygpCmBgYAoKPC9kZXRhaWxzPgoKIyBbSG9tZV0oaHR0cHM6Ly9zdGF0b21pY3MuZ2l0aHViLmlvL0hEQTIwMjAvKSB7LX0K</div>
+<div class="footer">
+    <hr>
+    This work is licensed under the <a href= "https://creativecommons.org/licenses/by-nc-sa/4.0">
+    CC BY-NC-SA 4.0</a> licence.
+</div>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeSourceEmbed("intro.Rmd");
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
