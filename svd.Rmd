@@ -716,7 +716,9 @@ X <- matrix(as.data.frame(mondriaan)[,3],nrow=dim(mondriaan)[1],ncol=dim(mondria
 
 ```{r, cache=TRUE}
 monSvd <- svd(X)
+```
 
+```{r}
 p1 <- data.frame(x=1:length(monSvd$d),y=monSvd$d) %>%
   ggplot(aes(x=x,y=y)) +
   geom_point() +
