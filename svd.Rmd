@@ -2197,5 +2197,3 @@ sessioninfo::session_info()
 ```
 
 </details>
-
-# [Home](https://statomics.github.io/HDA2020/) {-}
