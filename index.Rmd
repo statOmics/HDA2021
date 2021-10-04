@@ -39,13 +39,54 @@ A primer to R and Data visualisation  in R can be found in:
 
 If you encounter any problems related to the course material (e.g. package installation problems, bugs in the code, typos, ...), please consider [posting an issue on GitHub](https://github.com/statOmics/HDDA2021/issues).
 
-<!-- TODO: update link to UFora -->
-Questions related to the course contents can be asked by posting on [UFora](),
-by contacting the teachers by email or during the lectures or practical
-sessions.
+Questions related to the course contents can be asked by posting on
+[UFora](https://ufora.ugent.be/d2l/home/444226), by contacting the teachers by
+email or during the lectures or practical sessions.
 
 ---
 
 ### Topics
 
-- [Example](./example.html) ([PDF](./example.pdf))
+<!-- TODO: add Labs material -->
+
+#### 1. Introduction
+
+  - Slides: [Lecture 1: Intro](slides/IntroHighDim.pdf)
+  - Software: [Install and Launch Statistical Software](./software4stats.html)
+  - [Introduction](./intro.html) [[PDF](./intro.pdf)]
+  <!-- - [Introduction to RMarkdown](./Introduction-RMarkdown.html) -->
+  <!-- - [Introduction to matrices in R](./Introduction-Matrices-R.html) -->
+
+#### 2. Singular value decomposition
+
+  - [Lecture 2-3: Singular value decomposition](./svd.html) [[PDF](./svd.pdf)]
+  - [Geometric Interpretation](./svdGeometricInterpretation.html)
+  - [MDS Link Gram Distance Matrix](./MDS_linkGramDistanceMatrix.html)
+  <!-- - [Lab 1: Introduction and SVD applications](./Lab1-Intro-SVD.html) -->
+  <!-- - [Lab 2: PCA](./Lab2-PCA.html) -->
+
+#### 3. Prediction with High Dimensional Predictors
+
+  - [Lecture 4-5: Prediction Theory](./prediction.html) [[PDF](./prediction.pdf)]
+  <!-- - [Lab 3: Penalized regression and prediction](./Lab3-Penalized-Regression.html) -->
+
+#### 4. Sparse Singular Value Decomposition
+
+  - [Lecture 5: Sparse SVD](./sparseSvd.html) [[PDF](./sparseSvd.pdf)]
+
+#### 5. Linear discriminant analysis
+
+  - [Lecture 5: Linear Discriminant Analysis Theory](./lda.html) [[PDF](./lda.pdf)]
+  <!-- - [Lab 4: Sparse PCA and LDA](./Lab4-Sparse-PCA-LDA.html) -->
+
+#### 6. Large Scale inference
+
+  - [Lecture 6: Large Scale Inference](./lsi.html) [[PDF](./lsi.pdf)]
+  <!-- - [Lab 5: Large Scale Inference](./Lab5-Large-Scale-Inference.html) -->
+
+<!-- ### Paper reading Sessions -->
+
+<!-- ### Homework assignments -->
+
+<!-- - [Homework: Canonical Correlation Analysis](./HW-CCA.html) [[PDF](./HW-CCA.pdf)] -->
+<!-- - [Group Project](./Project.html) [[PDF](./Project.pdf)] -->

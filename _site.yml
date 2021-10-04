@@ -10,15 +10,29 @@ navbar:
     - text: "Lectures"
       icon: fa-chalkboard-teacher
       menu:
-        - text: "Example"
-          href: example.html
+      - text: "1. Introduction"
+        href: intro.html
+      - text: "2. Singular Value Decomposition"
+        href: svd.html
+      - text: "2.3. Geometric Interpretation SVD"
+        href: svdGeometricInterpretation.html
+      - text: "2.7. Link MDS and Gram Distance Matrix"
+        href: MDS_linkGramDistanceMatrix.html
+      - text: "3. Prediction with High Dimensional Predictors"
+        href: prediction.html
+      - text: "4. Sparse Singular Value Decomposition"
+        href: sparseSvd.html
+      - text: "5. Linear Discriminant Analysis"
+        href: lda.html
+      - text: "6. Large Scale Inference"
+        href: lsi.html
     - text: "Labs"
       icon: fa-laptop
-      menu:
-      - text: "Lab 1"
-        href:
-      - text: "Lab 2"
-        href:
+      # menu:
+      # - text: "Lab 1"
+      #   href:
+      # - text: "Lab 2"
+      #   href:
   right:
     - icon: fab fa-github
       href: https://github.com/statOmics/HDDA2021
@@ -38,7 +52,8 @@ output:
         after_body: footer.html
       css: style.css
   pdf_document:
-    toc: false
+    toc: true
     number_sections: true
+    latex_engine: xelatex
 new_session: true
-exclude: ["renv.lock"]
+exclude: ["renv.lock", "raw-data"]
