@@ -328,7 +328,7 @@ div.tocify {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">HDDA2021</a>
+      <a class="navbar-brand" href="index.html">HDDA21</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -376,11 +376,22 @@ div.tocify {
     </li>
   </ul>
 </li>
-<li class="dropdown-header">Labs</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-laptop"></span>
+     
+    Labs
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Coming soon!</li>
+  </ul>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/statOmics/HDDA2021">
+  <a href="https://github.com/statOmics/HDDA21">
     <span class="fab fa-github"></span>
      
   </a>
@@ -665,33 +676,31 @@ breast.slda &lt;- sda(x = X2,
   stop = -50,
   maxIte = 25,
   trace = TRUE)</code></pre>
-<pre><code>## ite:  1  ridge cost:  135.8829  |b|_1:  5.103368 
-## ite:  2  ridge cost:  135.6296  |b|_1:  4.919246 
-## ite:  3  ridge cost:  125.8176  |b|_1:  5.742863 
-## ite:  4  ridge cost:  113.1005  |b|_1:  6.133963 
-## ite:  5  ridge cost:  98.70998  |b|_1:  6.445262 
-## ite:  6  ridge cost:  93.96015  |b|_1:  5.844367 
-## ite:  7  ridge cost:  91.52128  |b|_1:  5.621762 
-## ite:  8  ridge cost:  91.36213  |b|_1:  5.418627 
-## ite:  9  ridge cost:  89.65922  |b|_1:  5.616362 
-## ite:  10  ridge cost:  88.60817  |b|_1:  5.766408 
-## ite:  11  ridge cost:  88.28415  |b|_1:  5.81263 
-## ite:  12  ridge cost:  88.13416  |b|_1:  5.836364 
-## ite:  13  ridge cost:  87.95299  |b|_1:  5.869256 
-## ite:  14  ridge cost:  87.86551  |b|_1:  5.885463 
-## ite:  15  ridge cost:  87.82285  |b|_1:  5.893451 
-## ite:  16  ridge cost:  87.80193  |b|_1:  5.897388 
-## ite:  17  ridge cost:  87.79164  |b|_1:  5.899329 
-## ite:  18  ridge cost:  87.78658  |b|_1:  5.900285 
-## ite:  19  ridge cost:  87.78409  |b|_1:  5.900757 
-## ite:  20  ridge cost:  87.78286  |b|_1:  5.900989 
-## ite:  21  ridge cost:  87.78225  |b|_1:  5.901104 
-## ite:  22  ridge cost:  87.78195  |b|_1:  5.90116 
-## ite:  23  ridge cost:  87.78181  |b|_1:  5.901188 
-## ite:  24  ridge cost:  87.78173  |b|_1:  5.901202 
-## ite:  1  ridge cost:  134.7777  |b|_1:  5.379259 
-## ite:  2  ridge cost:  134.7777  |b|_1:  5.379259 
-## final update, total ridge cost:  222.5595  |b|_1:  11.28046</code></pre>
+<pre><code>## ite:  1  ridge cost:  131.3132  |b|_1:  5.304255 
+## ite:  2  ridge cost:  123.8765  |b|_1:  5.265236 
+## ite:  3  ridge cost:  108.6711  |b|_1:  5.472083 
+## ite:  4  ridge cost:  93.01751  |b|_1:  6.240307 
+## ite:  5  ridge cost:  91.25165  |b|_1:  5.629837 
+## ite:  6  ridge cost:  89.5438  |b|_1:  5.687122 
+## ite:  7  ridge cost:  88.19853  |b|_1:  5.856679 
+## ite:  8  ridge cost:  87.64856  |b|_1:  5.936004 
+## ite:  9  ridge cost:  88.13101  |b|_1:  5.837917 
+## ite:  10  ridge cost:  87.57814  |b|_1:  5.940516 
+## ite:  11  ridge cost:  87.85164  |b|_1:  5.888167 
+## ite:  12  ridge cost:  87.84011  |b|_1:  5.890214 
+## ite:  13  ridge cost:  87.78968  |b|_1:  5.899711 
+## ite:  14  ridge cost:  87.76574  |b|_1:  5.904231 
+## ite:  15  ridge cost:  87.77381  |b|_1:  5.902702 
+## ite:  16  ridge cost:  87.77779  |b|_1:  5.901948 
+## ite:  17  ridge cost:  87.77975  |b|_1:  5.901576 
+## ite:  18  ridge cost:  87.78072  |b|_1:  5.901393 
+## ite:  19  ridge cost:  87.7812  |b|_1:  5.901303 
+## ite:  20  ridge cost:  87.78143  |b|_1:  5.901258 
+## ite:  21  ridge cost:  87.78155  |b|_1:  5.901237 
+## ite:  22  ridge cost:  87.78161  |b|_1:  5.901226 
+## ite:  1  ridge cost:  134.7777  |b|_1:  5.379261 
+## ite:  2  ridge cost:  134.7777  |b|_1:  5.379261 
+## final update, total ridge cost:  222.5593  |b|_1:  11.28049</code></pre>
 <pre class="r"><code>Vsda &lt;- matrix(0, nrow=ncol(X2), ncol=2)
 Vsda[breast.slda$varIndex,] &lt;- breast.slda$beta
 colnames(Vsda) &lt;- paste0(&quot;V&quot;,1:ncol(Vsda))
@@ -787,7 +796,7 @@ grid.arrange(
 <h1>Session info</h1>
 <details>
 <p><summary>Session info</summary></p>
-<pre><code>## [1] &quot;2021-10-04 10:49:29 UTC&quot;</code></pre>
+<pre><code>## [1] &quot;2021-10-04 13:43:00 UTC&quot;</code></pre>
 <pre><code>## ─ Session info ───────────────────────────────────────────────────────────────
 ##  setting  value                       
 ##  version  R version 4.1.1 (2021-08-10)
@@ -1065,7 +1074,7 @@ grid.arrange(
 ##  Bioconductor                    
 ## 
 ## [1] /Users/runner/work/HDDA21/HDDA21/renv/library/R-4.1/x86_64-apple-darwin17.0
-## [2] /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpFmwia2/renv-system-library
+## [2] /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpC2yMw9/renv-system-library
 ## 
 ##  P ── Loaded and on-disk path mismatch.</code></pre>
 </details>
