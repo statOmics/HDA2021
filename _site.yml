@@ -28,11 +28,9 @@ navbar:
         href: lsi.html
     - text: "Labs"
       icon: fa-laptop
-      # menu:
-      # - text: "Lab 1"
-      #   href:
-      # - text: "Lab 2"
-      #   href:
+      menu:
+      - text: "Coming soon!"
+        href:
   right:
     - icon: fab fa-github
       href: https://github.com/statOmics/HDDA21
