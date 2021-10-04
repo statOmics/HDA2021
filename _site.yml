@@ -1,7 +1,7 @@
-name : "HDDA2021"
-title : "High Dimensional Data Analysis 2021 (HDDA2021)"
+name : "HDDA21"
+title : "High Dimensional Data Analysis 2021 (HDDA21)"
 navbar:
-  title: "HDDA2021"
+  title: "HDDA21"
   left:
     - icon: fa-home
       href: index.html
@@ -35,7 +35,7 @@ navbar:
       #   href:
   right:
     - icon: fab fa-github
-      href: https://github.com/statOmics/HDDA2021
+      href: https://github.com/statOmics/HDDA21
     - text: "statOmics"
       href: http://statomics.github.io/
 output:
