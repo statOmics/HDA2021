@@ -93,7 +93,7 @@ email or during the lectures or practical sessions.
 
 #### Instructors
 
-- [Lieven Clement](./instructors.html)
-- [Milan Malfait](./instructors.html)
+- [Lieven Clement](./pages/instructors.html)
+- [Milan Malfait](./pages/instructors.html)
 
 
