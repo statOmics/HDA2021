@@ -54,4 +54,4 @@ output:
     number_sections: true
     latex_engine: xelatex
 new_session: true
-exclude: ["renv.lock", "raw-data", "instructors.Rmd"]
+exclude: ["renv.lock", "raw-data"]
