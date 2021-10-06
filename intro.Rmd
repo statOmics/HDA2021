@@ -266,7 +266,7 @@ $$
 
 ---
 
-### Geometrical Interpretation
+### Geometric Interpretation
 
 Toy Example: fit without intercept
 
