@@ -22,8 +22,9 @@ Lieven Clement is an Associate Professor of Statistical Genomics at Ghent Univer
 
 Affiliation: Department of Applied Mathematics, Computer Science and Statistics, Ghent University, Ghent, BE
 
-\
-\
+$$
+\quad
+$$
 
 ### Milan Malfait
 
