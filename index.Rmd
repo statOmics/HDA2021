@@ -90,3 +90,8 @@ email or during the lectures or practical sessions.
 
 <!-- - [Homework: Canonical Correlation Analysis](./HW-CCA.html) [[PDF](./HW-CCA.pdf)] -->
 <!-- - [Group Project](./Project.html) [[PDF](./Project.pdf)] -->
+
+#### Instructors
+
+- [Lieven Clement](./instructors.html)
+- [Milan Malfait](./instructors.html)
