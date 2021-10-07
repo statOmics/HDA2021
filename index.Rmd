@@ -51,7 +51,7 @@ email or during the lectures or practical sessions.
 
 #### 1. Introduction
 
-  - Slides: [Lecture 1: Intro](slides/IntroHighDim.pdf)
+  - Slides: [Lecture 1: Intro](./intro0.html)
   - Software: [Install and Launch Statistical Software](./software4stats.html)
   - [Introduction](./intro.html) [[PDF](./intro.pdf)]
   <!-- - [Introduction to RMarkdown](./Introduction-RMarkdown.html) -->
