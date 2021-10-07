@@ -14,7 +14,7 @@ Methodologically
 
 - Dimension reduction (e.g. images, gene expression data, movie preferences)
 - Used as a first step in many data reduction and machine learning approaches
-- Taylor a coordinate system based on the data we have
+- Taylor a coordinate system driven by the data
 - Solve system of linear equations for non-square matrices: e.g. linear regression
 - Basis for principal component analysis (PCA) and multidimensional scaling (MDS).
   - PCA is one of the most widely used methods to study high dimensional data and to understand them in terms of their  dominant patterns and correlations
@@ -774,7 +774,9 @@ X <- matrix(as.data.frame(mondriaan)[,3],nrow=dim(mondriaan)[1],ncol=dim(mondria
 
 ```{r, cache=TRUE}
 monSvd <- svd(X)
+```
 
+```{r}
 p1 <- data.frame(x=1:length(monSvd$d),y=monSvd$d) %>%
   ggplot(aes(x=x,y=y)) +
   geom_point() +
@@ -941,8 +943,8 @@ Note, that
 
 If we rewrite the expression
 \begin{eqnarray}
-\mathbf{X}^T\mathbf{X}\mathbf{V} &=&\mathbf{V}\boldsymbol{\Delta}^2 \mathbf{V}^T\mathbf{V}
-\mathbf{X}^T\mathbf{X}\mathbf{V}\\ &=&\mathbf{V}\boldsymbol{\Delta}^2
+\mathbf{X}^T\mathbf{X}\mathbf{V} &=&\mathbf{V}\boldsymbol{\Delta}^2 \mathbf{V}^T\mathbf{V}\\
+&=&\mathbf{V}\boldsymbol{\Delta}^2
 \end{eqnarray}
 
 So, if the data are centered, the SVD can be used to perform a spectral decomposition of the sample covariance matrix where the right singular vectors correspond to the eigen vectors of the covariance matrix and the eigenvalues are the squared singular values!

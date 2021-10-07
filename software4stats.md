@@ -1,7 +1,13 @@
 ---
-layout: default
-title: Software requirements
+output:
+    html_document:
+        code_download: false
+        toc: false
+        number_sections: false
+        code_folding: "none"
 ---
+
+# Software requirements
 
 Students are required to bring their own laptop with R version 4.1 or greater.
 
