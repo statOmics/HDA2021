@@ -11,7 +11,7 @@
 
 
 
-<title>Software requirements</title>
+<title>software4stats</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -28,12 +28,7 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
-<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<script src="site_libs/navigation-1.1/codefolding.js"></script>
-<script src="site_libs/navigation-1.1/sourceembed.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
@@ -61,11 +56,6 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-#rmd-source-code {
-  display: none;
-}
-</style>
 
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -227,73 +217,7 @@ $(document).ready(function () {
 </style>
 
 <!-- code folding -->
-<style type="text/css">
-.code-folding-btn { margin-bottom: 4px; }
-</style>
 
-
-
-<style type="text/css">
-
-#TOC {
-  margin: 25px 0px 20px 0px;
-}
-@media (max-width: 768px) {
-#TOC {
-  position: relative;
-  width: 100%;
-}
-}
-
-@media print {
-.toc-content {
-  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
-  float: right;
-}
-}
-
-.toc-content {
-  padding-left: 30px;
-  padding-right: 40px;
-}
-
-div.main-container {
-  max-width: 1200px;
-}
-
-div.tocify {
-  width: 20%;
-  max-width: 260px;
-  max-height: 85%;
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  div.tocify {
-    width: 25%;
-  }
-}
-
-@media (max-width: 767px) {
-  div.tocify {
-    width: 100%;
-    max-width: none;
-  }
-}
-
-.tocify ul, .tocify li {
-  line-height: 20px;
-}
-
-.tocify-subheader .tocify-item {
-  font-size: 0.90em;
-}
-
-.tocify .list-group-item {
-  border-radius: 0px;
-}
-
-
-</style>
 
 
 
@@ -303,16 +227,6 @@ div.tocify {
 
 
 <div class="container-fluid main-container">
-
-
-<!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row">
-<div class="col-xs-12 col-sm-4 col-md-3">
-<div id="TOC" class="tocify">
-</div>
-</div>
-
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -403,27 +317,18 @@ div.tocify {
 
 <div id="header">
 
-<div class="btn-group pull-right float-right">
-<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
-<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
-<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
-<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
-<li role="separator" class="divider"></li>
-<li><a id="rmd-download-source" href="#">Download Rmd</a></li>
-</ul>
-</div>
 
 
-
-<h1 class="title toc-ignore">Software requirements</h1>
 
 </div>
 
 
+<div id="software-requirements" class="section level1">
+<h1>Software requirements</h1>
 <p>Students are required to bring their own laptop with R version 4.1 or greater.</p>
 <p>Please make sure that your computer’s hardware is sufficiently powered (&gt;4 GB RAM, &gt; 2 GB free disk space), that you have a working wireless card, and that you have administrator rights.</p>
 <div id="local-installation" class="section level3">
-<h3><span class="header-section-number">0.0.1</span> Local installation</h3>
+<h3>Local installation</h3>
 <ol style="list-style-type: decimal">
 <li><p>Install R 4.1 <a href="https://cran.r-project.org">R/CRAN</a></p></li>
 <li><p>(Optional but recommended) Install <a href="https://www.rstudio.com/products/rstudio/download/">RStudio Desktop</a></p></li>
@@ -438,8 +343,8 @@ renv::restore(lockfile = url)
 renv::snapshot()</code></pre></li>
 </ol>
 </div>
+</div>
 
-<div id="rmd-source-code">LS0tCmxheW91dDogZGVmYXVsdAp0aXRsZTogU29mdHdhcmUgcmVxdWlyZW1lbnRzCi0tLQoKU3R1ZGVudHMgYXJlIHJlcXVpcmVkIHRvIGJyaW5nIHRoZWlyIG93biBsYXB0b3Agd2l0aCBSIHZlcnNpb24gNC4xIG9yIGdyZWF0ZXIuCgpQbGVhc2UgbWFrZSBzdXJlIHRoYXQgeW91ciBjb21wdXRlcuKAmXMgaGFyZHdhcmUgaXMgc3VmZmljaWVudGx5IHBvd2VyZWQgKD40IEdCIFJBTSwgPiAyIEdCIGZyZWUgZGlzayBzcGFjZSksIHRoYXQgeW91IGhhdmUgYSB3b3JraW5nIHdpcmVsZXNzIGNhcmQsIGFuZCB0aGF0IHlvdSBoYXZlIGFkbWluaXN0cmF0b3IgcmlnaHRzLgoKIyMjIExvY2FsIGluc3RhbGxhdGlvbgoKMS4gSW5zdGFsbCBSIDQuMSBbUi9DUkFOXShodHRwczovL2NyYW4uci1wcm9qZWN0Lm9yZykKMi4gKE9wdGlvbmFsIGJ1dCByZWNvbW1lbmRlZCkgSW5zdGFsbCBbUlN0dWRpbyBEZXNrdG9wXShodHRwczovL3d3dy5yc3R1ZGlvLmNvbS9wcm9kdWN0cy9yc3R1ZGlvL2Rvd25sb2FkLykKMy4gSW5zdGFsbCB0aGUgWypyZW52Kl0oaHR0cHM6Ly9yc3R1ZGlvLmdpdGh1Yi5pby9yZW52L2luZGV4Lmh0bWwpIHBhY2thZ2UgYnkgZW50ZXJpbmcgdGhlIGZvbGxvd2luZyBjb21tYW5kIGluIGFuIFIgc2Vzc2lvbjoKCglgYGByCglpbnN0YWxsLnBhY2thZ2VzKCJyZW52IikKCWBgYAoKNS4gKE9wdGlvbmFsIGJ1dCByZWNvbW1lbmRlZCkgQ3JlYXRlIGEgbmV3IFsqUiBwcm9qZWN0Kl0oaHR0cHM6Ly9zdXBwb3J0LnJzdHVkaW8uY29tL2hjL2VuLXVzL2FydGljbGVzLzIwMDUyNjIwNy1Vc2luZy1Qcm9qZWN0cykgZm9yIHRoaXMgY291cnNlCjYuIEluIGFuIFIgc2Vzc2lvbiB3aXRoaW4gdGhlIFIgcHJvamVjdCB5b3UganVzdCBjcmVhdGVkLCBpbnN0YWxsIHRoZSAqcmVudiogZW52aXJvbm1lbnQgZm9yIHRoaXMgY291cnNlIGJ5IHJ1bm5pbmcKCglgYGByCgl1cmwgPC0gImh0dHBzOi8vcmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbS9zdGF0T21pY3MvSEREQTIxL21hc3Rlci9yZW52LmxvY2siCglyZW52OjpyZXN0b3JlKGxvY2tmaWxlID0gdXJsKQoKCSMjIE9wdGlvbmFsbHksIHJlY29yZCB0aGUgc3RhdHVzIG9mIHlvdXIgbG9jYWwgcmVudiBsaWJyYXJ5CglyZW52OjpzbmFwc2hvdCgpCglgYGAK</div>
 <div class="footer">
     <hr>
     This work is licensed under the <a href= "https://creativecommons.org/licenses/by-nc-sa/4.0">
@@ -447,8 +352,6 @@ renv::snapshot()</code></pre></li>
 </div>
 
 
-</div>
-</div>
 
 </div>
 
@@ -480,42 +383,7 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
-<script>
-$(document).ready(function () {
-  window.initializeSourceEmbed("software4stats.md");
-  window.initializeCodeFolding("show" === "show");
-});
-</script>
 
-<script>
-$(document).ready(function ()  {
-
-    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
-    $('.unlisted.unnumbered').addClass('toc-ignore')
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Lieven Clement" />
+
+
+<title>1. Introduction: Linear Regression - Geometric interpretation</title>
+
+<script src="site_libs/jquery-3.5.1/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<script src="site_libs/navigation-1.1/sourceembed.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+<script src="site_libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<script src="site_libs/plotly-binding-4.9.4.1/plotly.js"></script>
+<script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="site_libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
+<link href="site_libs/plotly-htmlwidgets-css-1.57.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="site_libs/plotly-main-1.57.1/plotly-latest.min.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+#rmd-source-code {
+  display: none;
+}
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">HDDA21</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-chalkboard-teacher"></span>
+     
+    Lectures
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="intro.html">1. Introduction</a>
+    </li>
+    <li>
+      <a href="svd.html">2. Singular Value Decomposition</a>
+    </li>
+    <li>
+      <a href="svdGeometricInterpretation.html">2.3. Geometric Interpretation SVD</a>
+    </li>
+    <li>
+      <a href="MDS_linkGramDistanceMatrix.html">2.7. Link MDS and Gram Distance Matrix</a>
+    </li>
+    <li>
+      <a href="prediction.html">3. Prediction with High Dimensional Predictors</a>
+    </li>
+    <li>
+      <a href="sparseSvd.html">4. Sparse Singular Value Decomposition</a>
+    </li>
+    <li>
+      <a href="lda.html">5. Linear Discriminant Analysis</a>
+    </li>
+    <li>
+      <a href="lsi.html">6. Large Scale Inference</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-laptop"></span>
+     
+    Labs
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Coming soon!</li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/statOmics/HDDA21">
+    <span class="fab fa-github"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="http://statomics.github.io/">statOmics</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+<li role="separator" class="divider"></li>
+<li><a id="rmd-download-source" href="#">Download Rmd</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">1. Introduction: Linear Regression - Geometric interpretation</h1>
+<h4 class="author">Lieven Clement</h4>
+<h4 class="date">statOmics, Ghent University (<a href="https://statomics.github.io" class="uri">https://statomics.github.io</a>)</h4>
+
+</div>
+
+
+<div id="intro" class="section level1">
+<h1><span class="header-section-number">1</span> Intro</h1>
+<div id="data" class="section level2">
+<h2><span class="header-section-number">1.1</span> Data</h2>
+<p>Dataset with 3 observation (X,Y):</p>
+<pre class="r"><code>library(tidyverse)</code></pre>
+<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
+<pre><code>## ✔ ggplot2 3.3.5     ✔ purrr   0.3.4
+## ✔ tibble  3.1.5     ✔ dplyr   1.0.7
+## ✔ tidyr   1.1.4     ✔ stringr 1.4.0
+## ✔ readr   2.0.1     ✔ forcats 0.5.1</code></pre>
+<pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()</code></pre>
+<pre class="r"><code>data &lt;- data.frame(x=1:3,y=c(1,2,2))
+data</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["x"],"name":[1],"type":["int"],"align":["right"]},{"label":["y"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"1"},{"1":"2","2":"2"},{"1":"3","2":"2"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="model" class="section level2">
+<h2><span class="header-section-number">1.2</span> Model</h2>
+<p><span class="math display">\[
+y_i=\beta_0+\beta_1x + \epsilon_i
+\]</span></p>
+<p>If we write the model for each observation:</p>
+<p><span class="math display">\[
+\begin{array} {lcl}
+1 &amp;=&amp; \beta_0+\beta_1 1 + \epsilon_1 \\
+2 &amp;=&amp; \beta_0+\beta_1 2 + \epsilon_2 \\
+2 &amp;=&amp; \beta_0+\beta_1 2 + \epsilon_3 \\
+\end{array}
+\]</span></p>
+<p>We can also write this in matrix form</p>
+<p><span class="math display">\[
+\mathbf{Y} = \mathbf{X}\boldsymbol{\beta}+\boldsymbol{\epsilon}
+\]</span></p>
+<p>with</p>
+<p><span class="math display">\[
+\mathbf{Y}=\left[
+\begin{array}{c}
+1\\
+2\\
+2\\
+\end{array}\right],
+\quad
+\mathbf{X}= \left[
+\begin{array}{cc}
+1&amp;1\\
+1&amp;2\\
+1&amp;3\\
+\end{array}
+\right],
+\quad \boldsymbol{\beta} = \left[
+\begin{array}{c}
+\beta_0\\
+\beta_1\\
+\end{array}
+\right]
+\quad
+\text{and}
+\quad
+\boldsymbol{\epsilon}=
+\left[
+\begin{array}{c}
+\epsilon_1\\
+\epsilon_2\\
+\epsilon_3
+\end{array}
+\right]
+\]</span></p>
+<pre class="r"><code>lm1 &lt;- lm(y~x,data)
+data$yhat &lt;- lm1$fitted
+
+data %&gt;%
+  ggplot(aes(x,y)) +
+  geom_point() +
+  ylim(0,4) +
+  xlim(0,4) +
+  stat_smooth(method = &quot;lm&quot;, color = &quot;red&quot;, fullrange = TRUE) +
+  geom_point(aes(x=x, y =yhat), pch = 2, size = 3, color = &quot;red&quot;) +
+  geom_segment(data = data, aes(x = x, xend = x, y = y, yend = yhat), lty = 2 )</code></pre>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<pre><code>## Warning in max(ids, na.rm = TRUE): no non-missing arguments to max; returning
+## -Inf</code></pre>
+<p><img src="lsGeometricInterpretation_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+</div>
+</div>
+<div id="least-squares-ls" class="section level1">
+<h1><span class="header-section-number">2</span> Least Squares (LS)</h1>
+<ul>
+<li><p>Minimize the residual sum of squares <span class="math display">\[\begin{eqnarray*}
+RSS(\boldsymbol{\beta})&amp;=&amp;\sum\limits_{i=1}^n e^2_i\\
+&amp;=&amp;\sum\limits_{i=1}^n \left(y_i-\beta_0-\sum\limits_{j=1}^p x_{ij}\beta_j\right)^2
+\end{eqnarray*}\]</span></p></li>
+<li><p>or in matrix notation <span class="math display">\[\begin{eqnarray*}
+RSS(\boldsymbol{\beta})&amp;=&amp;(\mathbf{Y}-\mathbf{X\beta})^T(\mathbf{Y}-\mathbf{X\beta})\\
+&amp;=&amp;\Vert \mathbf{Y}-\mathbf{X\beta}\Vert^2_2
+\end{eqnarray*}\]</span> with the <span class="math inline">\(L_2\)</span>-norm of a <span class="math inline">\(p\)</span>-dim. vector <span class="math inline">\(v\)</span> <span class="math inline">\(\Vert \mathbf{v} \Vert_2=\sqrt{v_1^2+\ldots+v_p^2}\)</span> <span class="math inline">\(\rightarrow\)</span> <span class="math inline">\(\hat{\boldsymbol{\beta}}=\text{argmin}_\beta \Vert \mathbf{Y}-\mathbf{X\beta}\Vert^2\)</span></p></li>
+</ul>
+<div id="minimize-rss" class="section level2">
+<h2><span class="header-section-number">2.1</span> Minimize RSS</h2>
+<p><span class="math display">\[
+\begin{array}{ccc}
+\frac{\partial RSS}{\partial \boldsymbol{\beta}}&amp;=&amp;\mathbf{0}\\\\
+\frac{(\mathbf{Y}-\mathbf{X\beta})^T(\mathbf{Y}-\mathbf{X}\boldsymbol{\beta})}{\partial \boldsymbol{\beta}}&amp;=&amp;\mathbf{0}\\\\
+-2\mathbf{X}^T(\mathbf{Y}-\mathbf{X}\boldsymbol{\beta})&amp;=&amp;\mathbf{0}\\\\
+\mathbf{X}^T\mathbf{X\beta}&amp;=&amp;\mathbf{X}^T\mathbf{Y}\\\\
+\hat{\boldsymbol{\beta}}&amp;=&amp;(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{Y}
+\end{array}
+\]</span></p>
+<p><span class="math display">\[
+\hat{\boldsymbol{\beta}}=(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{Y}
+\]</span></p>
+</div>
+<div id="fitted-values" class="section level2">
+<h2><span class="header-section-number">2.2</span> Fitted values:</h2>
+<p><span class="math display">\[
+\begin{array}{lcl}
+\hat{\mathbf{Y}} &amp;=&amp; \mathbf{X}\hat{\boldsymbol{\beta}}\\
+&amp;=&amp; \mathbf{X} (\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{Y}\\
+\end{array}
+\]</span></p>
+</div>
+</div>
+<div id="geometric-interpretation-of-linear-regression" class="section level1">
+<h1><span class="header-section-number">3</span> Geometric interpretation of Linear regression</h1>
+<p>There is also another picture to interpret linear regression!</p>
+<p>Linear regression can also be seen as a projection!</p>
+<p>Fitted values:</p>
+<p><span class="math display">\[
+\begin{array}{lcl}
+\hat{\mathbf{Y}} &amp;=&amp; \mathbf{X}\hat{\boldsymbol{\beta}}\\
+&amp;=&amp; \mathbf{X} (\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{Y}\\
+&amp;=&amp; \mathbf{HY}
+\end{array}
+\]</span> with <span class="math inline">\(\mathbf{H}\)</span> the projection matrix also referred to as the hat matrix.</p>
+<pre class="r"><code>X &lt;- model.matrix(~x,data)
+X</code></pre>
+<pre><code>##   (Intercept) x
+## 1           1 1
+## 2           1 2
+## 3           1 3
+## attr(,&quot;assign&quot;)
+## [1] 0 1</code></pre>
+<pre class="r"><code>XtX &lt;- t(X)%*%X
+XtX</code></pre>
+<pre><code>##             (Intercept)  x
+## (Intercept)           3  6
+## x                     6 14</code></pre>
+<pre class="r"><code>XtXinv &lt;- solve(t(X)%*%X)
+XtXinv</code></pre>
+<pre><code>##             (Intercept)    x
+## (Intercept)    2.333333 -1.0
+## x             -1.000000  0.5</code></pre>
+<pre class="r"><code>H &lt;- X %*% XtXinv %*% t(X)
+H</code></pre>
+<pre><code>##            1         2          3
+## 1  0.8333333 0.3333333 -0.1666667
+## 2  0.3333333 0.3333333  0.3333333
+## 3 -0.1666667 0.3333333  0.8333333</code></pre>
+<pre class="r"><code>Y &lt;- data$y
+Yhat &lt;- H%*%Y
+Yhat</code></pre>
+<pre><code>##       [,1]
+## 1 1.166667
+## 2 1.666667
+## 3 2.166667</code></pre>
+<div id="what-do-these-projections-mean-geometrically" class="section level2">
+<h2><span class="header-section-number">3.1</span> What do these projections mean geometrically?</h2>
+<p>The other picture to linear regression is to consider <span class="math inline">\(X_0\)</span>, <span class="math inline">\(X_1\)</span> and <span class="math inline">\(Y\)</span> as vectors in the space of the data <span class="math inline">\(\mathbb{R}^n\)</span>, here <span class="math inline">\(\mathbb{R}^3\)</span> because we have three data points.</p>
+<pre class="r"><code>originRn &lt;- data.frame(X1=0,X2=0,X3=0)
+data$x0 &lt;- 1
+dataRn &lt;- data.frame(t(data))
+
+library(plotly)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;plotly&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:ggplot2&#39;:
+## 
+##     last_plot</code></pre>
+<pre><code>## The following object is masked from &#39;package:stats&#39;:
+## 
+##     filter</code></pre>
+<pre><code>## The following object is masked from &#39;package:graphics&#39;:
+## 
+##     layout</code></pre>
+<pre class="r"><code>p1 &lt;- plot_ly(
+    originRn,
+    x = ~ X1,
+    y = ~ X2,
+    z= ~ X3) %&gt;%
+  add_markers(type=&quot;scatter3d&quot;) %&gt;%
+  layout(
+    scene = list(
+      aspectmode=&quot;cube&quot;,
+      xaxis = list(range=c(-4,4)), yaxis = list(range=c(-4,4)), zaxis = list(range=c(-4,4))
+      )
+    )
+p1 &lt;- p1 %&gt;%
+  add_trace(
+    x = c(0,1),
+    y = c(0,0),
+    z = c(0,0),
+    mode = &quot;lines&quot;,
+    line = list(width = 5, color = &quot;grey&quot;),
+    type=&quot;scatter3d&quot;) %&gt;%
+  add_trace(
+    x = c(0,0),
+    y = c(0,1),
+    z = c(0,0),
+    mode = &quot;lines&quot;,
+    line = list(width = 5, color = &quot;grey&quot;),
+    type=&quot;scatter3d&quot;) %&gt;%
+  add_trace(
+    x = c(0,0),
+    y = c(0,0),
+    z = c(0,1),
+    mode = &quot;lines&quot;,
+    line = list(width = 5, color = &quot;grey&quot;),
+    type=&quot;scatter3d&quot;) %&gt;%
+  add_trace(
+    x = c(0,1),
+    y = c(0,1),
+    z = c(0,1),
+    mode = &quot;lines&quot;,
+    line = list(width = 5, color = &quot;black&quot;),
+    type=&quot;scatter3d&quot;) %&gt;%
+    add_trace(
+    x = c(0,1),
+    y = c(0,2),
+    z = c(0,3),
+    mode = &quot;lines&quot;,
+    line = list(width = 5, color = &quot;black&quot;),
+    type=&quot;scatter3d&quot;)</code></pre>
+<pre class="r"><code>p2 &lt;- p1 %&gt;%
+  add_trace(
+    x = c(0,Y[1]),
+    y = c(0,Y[2]),
+    z = c(0,Y[3]),
+    mode = &quot;lines&quot;,
+    line = list(width = 5, color = &quot;red&quot;),
+    type=&quot;scatter3d&quot;) %&gt;%
+  add_trace(
+    x = c(0,Yhat[1]),
+    y = c(0,Yhat[2]),
+    z = c(0,Yhat[3]),
+    mode = &quot;lines&quot;,
+    line = list(width = 5, color = &quot;red&quot;),
+    type=&quot;scatter3d&quot;) %&gt;% add_trace(
+    x = c(Y[1],Yhat[1]),
+    y = c(Y[2],Yhat[2]),
+    z = c(Y[3],Yhat[3]),
+    mode = &quot;lines&quot;,
+    line = list(width = 5, color = &quot;red&quot;, dash=&quot;dash&quot;),
+    type=&quot;scatter3d&quot;)
+p2</code></pre>
+<div id="htmlwidget-6243c03d7c62d2108c30" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6243c03d7c62d2108c30">{"x":{"visdat":{"16ce51b235368":["function () ","plotlyVisDat"]},"cur_data":"16ce51b235368","attrs":{"16ce51b235368":{"x":{},"y":{},"z":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter3d","mode":"markers","inherit":true},"16ce51b235368.1":{"x":[0,1],"y":[0,0],"z":[0,0],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"16ce51b235368.2":{"x":[0,0],"y":[0,1],"z":[0,0],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"16ce51b235368.3":{"x":[0,0],"y":[0,0],"z":[0,1],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"16ce51b235368.4":{"x":[0,1],"y":[0,1],"z":[0,1],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"black"},"type":"scatter3d","inherit":true},"16ce51b235368.5":{"x":[0,1],"y":[0,2],"z":[0,3],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"black"},"type":"scatter3d","inherit":true},"16ce51b235368.6":{"x":[0,1],"y":[0,2],"z":[0,2],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red"},"type":"scatter3d","inherit":true},"16ce51b235368.7":{"x":[0,1.16666666666667],"y":[0,1.66666666666667],"z":[0,2.16666666666667],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red"},"type":"scatter3d","inherit":true},"16ce51b235368.8":{"x":[1,1.16666666666667],"y":[2,1.66666666666667],"z":[2,2.16666666666667],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red","dash":"dash"},"type":"scatter3d","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"aspectmode":"cube","xaxis":{"range":[-4,4],"title":"X1"},"yaxis":{"range":[-4,4],"title":"X2"},"zaxis":{"range":[-4,4],"title":"X3"}},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"x":[0],"y":[0],"z":[0],"type":"scatter3d","mode":"markers","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"frame":null},{"x":[0,1],"y":[0,0],"z":[0,0],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"frame":null},{"x":[0,0],"y":[0,1],"z":[0,0],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(44,160,44,1)","line":{"color":"rgba(44,160,44,1)"}},"error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"frame":null},{"x":[0,0],"y":[0,0],"z":[0,1],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(214,39,40,1)","line":{"color":"rgba(214,39,40,1)"}},"error_y":{"color":"rgba(214,39,40,1)"},"error_x":{"color":"rgba(214,39,40,1)"},"frame":null},{"x":[0,1],"y":[0,1],"z":[0,1],"mode":"lines","line":{"color":"black","width":5},"type":"scatter3d","marker":{"color":"rgba(148,103,189,1)","line":{"color":"rgba(148,103,189,1)"}},"error_y":{"color":"rgba(148,103,189,1)"},"error_x":{"color":"rgba(148,103,189,1)"},"frame":null},{"x":[0,1],"y":[0,2],"z":[0,3],"mode":"lines","line":{"color":"black","width":5},"type":"scatter3d","marker":{"color":"rgba(140,86,75,1)","line":{"color":"rgba(140,86,75,1)"}},"error_y":{"color":"rgba(140,86,75,1)"},"error_x":{"color":"rgba(140,86,75,1)"},"frame":null},{"x":[0,1],"y":[0,2],"z":[0,2],"mode":"lines","line":{"color":"red","width":5},"type":"scatter3d","marker":{"color":"rgba(227,119,194,1)","line":{"color":"rgba(227,119,194,1)"}},"error_y":{"color":"rgba(227,119,194,1)"},"error_x":{"color":"rgba(227,119,194,1)"},"frame":null},{"x":[0,1.16666666666667],"y":[0,1.66666666666667],"z":[0,2.16666666666667],"mode":"lines","line":{"color":"red","width":5},"type":"scatter3d","marker":{"color":"rgba(127,127,127,1)","line":{"color":"rgba(127,127,127,1)"}},"error_y":{"color":"rgba(127,127,127,1)"},"error_x":{"color":"rgba(127,127,127,1)"},"frame":null},{"x":[1,1.16666666666667],"y":[2,1.66666666666667],"z":[2,2.16666666666667],"mode":"lines","line":{"color":"red","width":5,"dash":"dash"},"type":"scatter3d","marker":{"color":"rgba(188,189,34,1)","line":{"color":"rgba(188,189,34,1)"}},"error_y":{"color":"rgba(188,189,34,1)"},"error_x":{"color":"rgba(188,189,34,1)"},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div id="how-does-this-projection-work" class="section level3">
+<h3><span class="header-section-number">3.1.1</span> How does this projection work?</h3>
+<p><span class="math display">\[
+\begin{array}{lcl}
+\hat{\mathbf{Y}} &amp;=&amp; \mathbf{X} (\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{Y}\\
+&amp;=&amp; \mathbf{X}(\mathbf{X}^T\mathbf{X})^{-1/2}(\mathbf{X}^T\mathbf{X})^{-1/2}\mathbf{X}^T\mathbf{Y}\\
+&amp;=&amp; \mathbf{U}\mathbf{U}^T\mathbf{Y}
+\end{array}
+\]</span></p>
+<ul>
+<li><p><span class="math inline">\(\mathbf{U}\)</span> is a new orthonormal basis in <span class="math inline">\(\mathbb{R}^2\)</span>, a subspace of <span class="math inline">\(\mathbb{R}^3\)</span></p></li>
+<li><p>The space spanned by U and X is the column space of X, e.g. it contains all possible linear combinantions of X. <span class="math inline">\(\mathbf{U}^t\mathbf{Y}\)</span> is the projection of Y on this new orthonormal basis</p></li>
+</ul>
+<pre class="r"><code>eigenXtX &lt;- eigen(XtX)
+XtXinvSqrt &lt;- eigenXtX$vectors %*%diag(1/eigenXtX$values^.5)%*%t(eigenXtX$vectors)
+U &lt;- X %*% XtXinvSqrt
+
+p3 &lt;- p1 %&gt;%
+  add_trace(
+    x = c(0,U[1,1]),
+    y = c(0,U[2,1]),
+    z = c(0,U[3,1]),
+    mode = &quot;lines&quot;,
+    line = list(width = 5, color = &quot;blue&quot;),
+    type=&quot;scatter3d&quot;) %&gt;%
+  add_trace(
+    x = c(0,U[1,2]),
+    y = c(0,U[2,2]),
+    z = c(0,U[3,2]),
+    mode = &quot;lines&quot;,
+    line = list(width = 5, color = &quot;blue&quot;),
+    type=&quot;scatter3d&quot;)
+
+p3</code></pre>
+<div id="htmlwidget-e70e5f195accd9c3ce66" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e70e5f195accd9c3ce66">{"x":{"visdat":{"16ce51b235368":["function () ","plotlyVisDat"]},"cur_data":"16ce51b235368","attrs":{"16ce51b235368":{"x":{},"y":{},"z":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter3d","mode":"markers","inherit":true},"16ce51b235368.1":{"x":[0,1],"y":[0,0],"z":[0,0],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"16ce51b235368.2":{"x":[0,0],"y":[0,1],"z":[0,0],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"16ce51b235368.3":{"x":[0,0],"y":[0,0],"z":[0,1],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"16ce51b235368.4":{"x":[0,1],"y":[0,1],"z":[0,1],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"black"},"type":"scatter3d","inherit":true},"16ce51b235368.5":{"x":[0,1],"y":[0,2],"z":[0,3],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"black"},"type":"scatter3d","inherit":true},"16ce51b235368.6":{"x":[0,0.911606725190993],"y":[0,0.388170606702671],"z":[0,-0.13526551178565],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"blue"},"type":"scatter3d","inherit":true},"16ce51b235368.7":{"x":[0,-0.0480261587042634],"y":[0,0.427383801079795],"z":[0,0.902793760863853],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"blue"},"type":"scatter3d","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"aspectmode":"cube","xaxis":{"range":[-4,4],"title":"X1"},"yaxis":{"range":[-4,4],"title":"X2"},"zaxis":{"range":[-4,4],"title":"X3"}},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"x":[0],"y":[0],"z":[0],"type":"scatter3d","mode":"markers","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"frame":null},{"x":[0,1],"y":[0,0],"z":[0,0],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"frame":null},{"x":[0,0],"y":[0,1],"z":[0,0],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(44,160,44,1)","line":{"color":"rgba(44,160,44,1)"}},"error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"frame":null},{"x":[0,0],"y":[0,0],"z":[0,1],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(214,39,40,1)","line":{"color":"rgba(214,39,40,1)"}},"error_y":{"color":"rgba(214,39,40,1)"},"error_x":{"color":"rgba(214,39,40,1)"},"frame":null},{"x":[0,1],"y":[0,1],"z":[0,1],"mode":"lines","line":{"color":"black","width":5},"type":"scatter3d","marker":{"color":"rgba(148,103,189,1)","line":{"color":"rgba(148,103,189,1)"}},"error_y":{"color":"rgba(148,103,189,1)"},"error_x":{"color":"rgba(148,103,189,1)"},"frame":null},{"x":[0,1],"y":[0,2],"z":[0,3],"mode":"lines","line":{"color":"black","width":5},"type":"scatter3d","marker":{"color":"rgba(140,86,75,1)","line":{"color":"rgba(140,86,75,1)"}},"error_y":{"color":"rgba(140,86,75,1)"},"error_x":{"color":"rgba(140,86,75,1)"},"frame":null},{"x":[0,0.911606725190993],"y":[0,0.388170606702671],"z":[0,-0.13526551178565],"mode":"lines","line":{"color":"blue","width":5},"type":"scatter3d","marker":{"color":"rgba(227,119,194,1)","line":{"color":"rgba(227,119,194,1)"}},"error_y":{"color":"rgba(227,119,194,1)"},"error_x":{"color":"rgba(227,119,194,1)"},"frame":null},{"x":[0,-0.0480261587042634],"y":[0,0.427383801079795],"z":[0,0.902793760863853],"mode":"lines","line":{"color":"blue","width":5},"type":"scatter3d","marker":{"color":"rgba(127,127,127,1)","line":{"color":"rgba(127,127,127,1)"}},"error_y":{"color":"rgba(127,127,127,1)"},"error_x":{"color":"rgba(127,127,127,1)"},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<ul>
+<li><span class="math inline">\(\mathbf{U}^T\mathbf{Y}\)</span> is the projection of <span class="math inline">\(\mathbf{Y}\)</span> in the space spanned by <span class="math inline">\(\mathbf{U}\)</span>.</li>
+<li>Indeed <span class="math inline">\(\mathbf{U}_1^T\mathbf{Y}\)</span></li>
+</ul>
+<pre class="r"><code>p4 &lt;- p3 %&gt;%
+  add_trace(
+    x = c(0,Y[1]),
+    y = c(0,Y[2]),
+    z = c(0,Y[3]),
+    mode = &quot;lines&quot;,
+    line = list(width = 5, color = &quot;red&quot;),
+    type=&quot;scatter3d&quot;) %&gt;%
+  add_trace(
+    x = c(0,U[1,1]*(U[,1]%*%Y)),
+    y = c(0,U[2,1]*(U[,1]%*%Y)),
+    z = c(0,U[3,1]*(U[,1]%*%Y)),
+    mode = &quot;lines&quot;,
+    line = list(width = 5, color = &quot;red&quot;,dash=&quot;dash&quot;),
+    type=&quot;scatter3d&quot;) %&gt;% add_trace(
+    x = c(Y[1],U[1,1]*(U[,1]%*%Y)),
+    y = c(Y[2],U[2,1]*(U[,1]%*%Y)),
+    z = c(Y[3],U[3,1]*(U[,1]%*%Y)),
+    mode = &quot;lines&quot;,
+    line = list(width = 5, color = &quot;red&quot;, dash=&quot;dash&quot;),
+    type=&quot;scatter3d&quot;)
+p4</code></pre>
+<div id="htmlwidget-e4238f0d3c8871f6a077" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e4238f0d3c8871f6a077">{"x":{"visdat":{"16ce51b235368":["function () ","plotlyVisDat"]},"cur_data":"16ce51b235368","attrs":{"16ce51b235368":{"x":{},"y":{},"z":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter3d","mode":"markers","inherit":true},"16ce51b235368.1":{"x":[0,1],"y":[0,0],"z":[0,0],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"16ce51b235368.2":{"x":[0,0],"y":[0,1],"z":[0,0],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"16ce51b235368.3":{"x":[0,0],"y":[0,0],"z":[0,1],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"16ce51b235368.4":{"x":[0,1],"y":[0,1],"z":[0,1],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"black"},"type":"scatter3d","inherit":true},"16ce51b235368.5":{"x":[0,1],"y":[0,2],"z":[0,3],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"black"},"type":"scatter3d","inherit":true},"16ce51b235368.6":{"x":[0,0.911606725190993],"y":[0,0.388170606702671],"z":[0,-0.13526551178565],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"blue"},"type":"scatter3d","inherit":true},"16ce51b235368.7":{"x":[0,-0.0480261587042634],"y":[0,0.427383801079795],"z":[0,0.902793760863853],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"blue"},"type":"scatter3d","inherit":true},"16ce51b235368.8":{"x":[0,1],"y":[0,2],"z":[0,2],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red"},"type":"scatter3d","inherit":true},"16ce51b235368.9":{"x":[0,1.29212679213629],"y":[0,0.550199583855897],"z":[0,-0.191727624424499],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red","dash":"dash"},"type":"scatter3d","inherit":true},"16ce51b235368.10":{"x":[1,1.29212679213629],"y":[2,0.550199583855897],"z":[2,-0.191727624424499],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red","dash":"dash"},"type":"scatter3d","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"aspectmode":"cube","xaxis":{"range":[-4,4],"title":"X1"},"yaxis":{"range":[-4,4],"title":"X2"},"zaxis":{"range":[-4,4],"title":"X3"}},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"x":[0],"y":[0],"z":[0],"type":"scatter3d","mode":"markers","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"frame":null},{"x":[0,1],"y":[0,0],"z":[0,0],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"frame":null},{"x":[0,0],"y":[0,1],"z":[0,0],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(44,160,44,1)","line":{"color":"rgba(44,160,44,1)"}},"error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"frame":null},{"x":[0,0],"y":[0,0],"z":[0,1],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(214,39,40,1)","line":{"color":"rgba(214,39,40,1)"}},"error_y":{"color":"rgba(214,39,40,1)"},"error_x":{"color":"rgba(214,39,40,1)"},"frame":null},{"x":[0,1],"y":[0,1],"z":[0,1],"mode":"lines","line":{"color":"black","width":5},"type":"scatter3d","marker":{"color":"rgba(148,103,189,1)","line":{"color":"rgba(148,103,189,1)"}},"error_y":{"color":"rgba(148,103,189,1)"},"error_x":{"color":"rgba(148,103,189,1)"},"frame":null},{"x":[0,1],"y":[0,2],"z":[0,3],"mode":"lines","line":{"color":"black","width":5},"type":"scatter3d","marker":{"color":"rgba(140,86,75,1)","line":{"color":"rgba(140,86,75,1)"}},"error_y":{"color":"rgba(140,86,75,1)"},"error_x":{"color":"rgba(140,86,75,1)"},"frame":null},{"x":[0,0.911606725190993],"y":[0,0.388170606702671],"z":[0,-0.13526551178565],"mode":"lines","line":{"color":"blue","width":5},"type":"scatter3d","marker":{"color":"rgba(227,119,194,1)","line":{"color":"rgba(227,119,194,1)"}},"error_y":{"color":"rgba(227,119,194,1)"},"error_x":{"color":"rgba(227,119,194,1)"},"frame":null},{"x":[0,-0.0480261587042634],"y":[0,0.427383801079795],"z":[0,0.902793760863853],"mode":"lines","line":{"color":"blue","width":5},"type":"scatter3d","marker":{"color":"rgba(127,127,127,1)","line":{"color":"rgba(127,127,127,1)"}},"error_y":{"color":"rgba(127,127,127,1)"},"error_x":{"color":"rgba(127,127,127,1)"},"frame":null},{"x":[0,1],"y":[0,2],"z":[0,2],"mode":"lines","line":{"color":"red","width":5},"type":"scatter3d","marker":{"color":"rgba(188,189,34,1)","line":{"color":"rgba(188,189,34,1)"}},"error_y":{"color":"rgba(188,189,34,1)"},"error_x":{"color":"rgba(188,189,34,1)"},"frame":null},{"x":[0,1.29212679213629],"y":[0,0.550199583855897],"z":[0,-0.191727624424499],"mode":"lines","line":{"color":"red","width":5,"dash":"dash"},"type":"scatter3d","marker":{"color":"rgba(23,190,207,1)","line":{"color":"rgba(23,190,207,1)"}},"error_y":{"color":"rgba(23,190,207,1)"},"error_x":{"color":"rgba(23,190,207,1)"},"frame":null},{"x":[1,1.29212679213629],"y":[2,0.550199583855897],"z":[2,-0.191727624424499],"mode":"lines","line":{"color":"red","width":5,"dash":"dash"},"type":"scatter3d","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<ul>
+<li>and <span class="math inline">\(\mathbf{U}_2^T\mathbf{Y}\)</span></li>
+</ul>
+<pre class="r"><code>p5 &lt;- p4 %&gt;%
+  add_trace(
+    x = c(0,Y[1]),
+    y = c(0,Y[2]),
+    z = c(0,Y[3]),
+    mode = &quot;lines&quot;,
+    line = list(width = 5, color = &quot;red&quot;),
+    type=&quot;scatter3d&quot;) %&gt;%
+  add_trace(
+    x = c(0,U[1,2]*(U[,2]%*%Y)),
+    y = c(0,U[2,2]*(U[,2]%*%Y)),
+    z = c(0,U[3,2]*(U[,2]%*%Y)),
+    mode = &quot;lines&quot;,
+    line = list(width = 5, color = &quot;red&quot;,dash=&quot;dash&quot;),
+    type=&quot;scatter3d&quot;) %&gt;% add_trace(
+    x = c(Y[1],U[1,2]*(U[,2]%*%Y)),
+    y = c(Y[2],U[2,2]*(U[,2]%*%Y)),
+    z = c(Y[3],U[3,2]*(U[,2]%*%Y)),
+    mode = &quot;lines&quot;,
+    line = list(width = 5, color = &quot;red&quot;, dash=&quot;dash&quot;),
+    type=&quot;scatter3d&quot;)
+p5</code></pre>
+<div id="htmlwidget-22e1c2528e59cf7fd965" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-22e1c2528e59cf7fd965">{"x":{"visdat":{"16ce51b235368":["function () ","plotlyVisDat"]},"cur_data":"16ce51b235368","attrs":{"16ce51b235368":{"x":{},"y":{},"z":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter3d","mode":"markers","inherit":true},"16ce51b235368.1":{"x":[0,1],"y":[0,0],"z":[0,0],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"16ce51b235368.2":{"x":[0,0],"y":[0,1],"z":[0,0],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"16ce51b235368.3":{"x":[0,0],"y":[0,0],"z":[0,1],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"16ce51b235368.4":{"x":[0,1],"y":[0,1],"z":[0,1],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"black"},"type":"scatter3d","inherit":true},"16ce51b235368.5":{"x":[0,1],"y":[0,2],"z":[0,3],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"black"},"type":"scatter3d","inherit":true},"16ce51b235368.6":{"x":[0,0.911606725190993],"y":[0,0.388170606702671],"z":[0,-0.13526551178565],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"blue"},"type":"scatter3d","inherit":true},"16ce51b235368.7":{"x":[0,-0.0480261587042634],"y":[0,0.427383801079795],"z":[0,0.902793760863853],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"blue"},"type":"scatter3d","inherit":true},"16ce51b235368.8":{"x":[0,1],"y":[0,2],"z":[0,2],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red"},"type":"scatter3d","inherit":true},"16ce51b235368.9":{"x":[0,1.29212679213629],"y":[0,0.550199583855897],"z":[0,-0.191727624424499],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red","dash":"dash"},"type":"scatter3d","inherit":true},"16ce51b235368.10":{"x":[1,1.29212679213629],"y":[2,0.550199583855897],"z":[2,-0.191727624424499],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red","dash":"dash"},"type":"scatter3d","inherit":true},"16ce51b235368.11":{"x":[0,1],"y":[0,2],"z":[0,2],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red"},"type":"scatter3d","inherit":true},"16ce51b235368.12":{"x":[0,-0.125460125469624],"y":[0,1.11646708281077],"z":[0,2.35839429109116],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red","dash":"dash"},"type":"scatter3d","inherit":true},"16ce51b235368.13":{"x":[1,-0.125460125469624],"y":[2,1.11646708281077],"z":[2,2.35839429109116],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red","dash":"dash"},"type":"scatter3d","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"aspectmode":"cube","xaxis":{"range":[-4,4],"title":"X1"},"yaxis":{"range":[-4,4],"title":"X2"},"zaxis":{"range":[-4,4],"title":"X3"}},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"x":[0],"y":[0],"z":[0],"type":"scatter3d","mode":"markers","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"frame":null},{"x":[0,1],"y":[0,0],"z":[0,0],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"frame":null},{"x":[0,0],"y":[0,1],"z":[0,0],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(44,160,44,1)","line":{"color":"rgba(44,160,44,1)"}},"error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"frame":null},{"x":[0,0],"y":[0,0],"z":[0,1],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(214,39,40,1)","line":{"color":"rgba(214,39,40,1)"}},"error_y":{"color":"rgba(214,39,40,1)"},"error_x":{"color":"rgba(214,39,40,1)"},"frame":null},{"x":[0,1],"y":[0,1],"z":[0,1],"mode":"lines","line":{"color":"black","width":5},"type":"scatter3d","marker":{"color":"rgba(148,103,189,1)","line":{"color":"rgba(148,103,189,1)"}},"error_y":{"color":"rgba(148,103,189,1)"},"error_x":{"color":"rgba(148,103,189,1)"},"frame":null},{"x":[0,1],"y":[0,2],"z":[0,3],"mode":"lines","line":{"color":"black","width":5},"type":"scatter3d","marker":{"color":"rgba(140,86,75,1)","line":{"color":"rgba(140,86,75,1)"}},"error_y":{"color":"rgba(140,86,75,1)"},"error_x":{"color":"rgba(140,86,75,1)"},"frame":null},{"x":[0,0.911606725190993],"y":[0,0.388170606702671],"z":[0,-0.13526551178565],"mode":"lines","line":{"color":"blue","width":5},"type":"scatter3d","marker":{"color":"rgba(227,119,194,1)","line":{"color":"rgba(227,119,194,1)"}},"error_y":{"color":"rgba(227,119,194,1)"},"error_x":{"color":"rgba(227,119,194,1)"},"frame":null},{"x":[0,-0.0480261587042634],"y":[0,0.427383801079795],"z":[0,0.902793760863853],"mode":"lines","line":{"color":"blue","width":5},"type":"scatter3d","marker":{"color":"rgba(127,127,127,1)","line":{"color":"rgba(127,127,127,1)"}},"error_y":{"color":"rgba(127,127,127,1)"},"error_x":{"color":"rgba(127,127,127,1)"},"frame":null},{"x":[0,1],"y":[0,2],"z":[0,2],"mode":"lines","line":{"color":"red","width":5},"type":"scatter3d","marker":{"color":"rgba(188,189,34,1)","line":{"color":"rgba(188,189,34,1)"}},"error_y":{"color":"rgba(188,189,34,1)"},"error_x":{"color":"rgba(188,189,34,1)"},"frame":null},{"x":[0,1.29212679213629],"y":[0,0.550199583855897],"z":[0,-0.191727624424499],"mode":"lines","line":{"color":"red","width":5,"dash":"dash"},"type":"scatter3d","marker":{"color":"rgba(23,190,207,1)","line":{"color":"rgba(23,190,207,1)"}},"error_y":{"color":"rgba(23,190,207,1)"},"error_x":{"color":"rgba(23,190,207,1)"},"frame":null},{"x":[1,1.29212679213629],"y":[2,0.550199583855897],"z":[2,-0.191727624424499],"mode":"lines","line":{"color":"red","width":5,"dash":"dash"},"type":"scatter3d","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"frame":null},{"x":[0,1],"y":[0,2],"z":[0,2],"mode":"lines","line":{"color":"red","width":5},"type":"scatter3d","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"frame":null},{"x":[0,-0.125460125469624],"y":[0,1.11646708281077],"z":[0,2.35839429109116],"mode":"lines","line":{"color":"red","width":5,"dash":"dash"},"type":"scatter3d","marker":{"color":"rgba(44,160,44,1)","line":{"color":"rgba(44,160,44,1)"}},"error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"frame":null},{"x":[1,-0.125460125469624],"y":[2,1.11646708281077],"z":[2,2.35839429109116],"mode":"lines","line":{"color":"red","width":5,"dash":"dash"},"type":"scatter3d","marker":{"color":"rgba(214,39,40,1)","line":{"color":"rgba(214,39,40,1)"}},"error_y":{"color":"rgba(214,39,40,1)"},"error_x":{"color":"rgba(214,39,40,1)"},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<pre class="r"><code>p6 &lt;- p5 %&gt;%
+  add_trace(
+    x = c(0,Yhat[1]),
+    y = c(0,Yhat[2]),
+    z = c(0,Yhat[3]),
+    mode = &quot;lines&quot;,
+    line = list(width = 5, color = &quot;red&quot;),
+    type=&quot;scatter3d&quot;) %&gt;%
+  add_trace(
+    x = c(Y[1],Yhat[1]),
+    y = c(Y[2],Yhat[2]),
+    z = c(Y[3],Yhat[3]),
+    mode = &quot;lines&quot;,
+    line = list(width = 5, color = &quot;red&quot;, dash=&quot;dash&quot;),
+    type=&quot;scatter3d&quot;) %&gt;%
+  add_trace(
+    x = c(U[1,1]*(U[,1]%*%Y),Yhat[1]),
+    y = c(U[2,1]*(U[,1]%*%Y),Yhat[2]),
+    z = c(U[3,1]*(U[,1]%*%Y),Yhat[3]),
+    mode = &quot;lines&quot;,
+    line = list(width = 5, color = &quot;red&quot;, dash=&quot;dash&quot;),
+    type=&quot;scatter3d&quot;)  %&gt;%
+  add_trace(
+    x = c(U[1,2]*(U[,2]%*%Y),Yhat[1]),
+    y = c(U[2,2]*(U[,2]%*%Y),Yhat[2]),
+    z = c(U[3,2]*(U[,2]%*%Y),Yhat[3]),
+    mode = &quot;lines&quot;,
+    line = list(width = 5, color = &quot;red&quot;, dash=&quot;dash&quot;),
+    type=&quot;scatter3d&quot;)
+p6</code></pre>
+<div id="htmlwidget-96ec201e8bf30e5219d5" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-96ec201e8bf30e5219d5">{"x":{"visdat":{"16ce51b235368":["function () ","plotlyVisDat"]},"cur_data":"16ce51b235368","attrs":{"16ce51b235368":{"x":{},"y":{},"z":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter3d","mode":"markers","inherit":true},"16ce51b235368.1":{"x":[0,1],"y":[0,0],"z":[0,0],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"16ce51b235368.2":{"x":[0,0],"y":[0,1],"z":[0,0],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"16ce51b235368.3":{"x":[0,0],"y":[0,0],"z":[0,1],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"16ce51b235368.4":{"x":[0,1],"y":[0,1],"z":[0,1],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"black"},"type":"scatter3d","inherit":true},"16ce51b235368.5":{"x":[0,1],"y":[0,2],"z":[0,3],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"black"},"type":"scatter3d","inherit":true},"16ce51b235368.6":{"x":[0,0.911606725190993],"y":[0,0.388170606702671],"z":[0,-0.13526551178565],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"blue"},"type":"scatter3d","inherit":true},"16ce51b235368.7":{"x":[0,-0.0480261587042634],"y":[0,0.427383801079795],"z":[0,0.902793760863853],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"blue"},"type":"scatter3d","inherit":true},"16ce51b235368.8":{"x":[0,1],"y":[0,2],"z":[0,2],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red"},"type":"scatter3d","inherit":true},"16ce51b235368.9":{"x":[0,1.29212679213629],"y":[0,0.550199583855897],"z":[0,-0.191727624424499],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red","dash":"dash"},"type":"scatter3d","inherit":true},"16ce51b235368.10":{"x":[1,1.29212679213629],"y":[2,0.550199583855897],"z":[2,-0.191727624424499],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red","dash":"dash"},"type":"scatter3d","inherit":true},"16ce51b235368.11":{"x":[0,1],"y":[0,2],"z":[0,2],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red"},"type":"scatter3d","inherit":true},"16ce51b235368.12":{"x":[0,-0.125460125469624],"y":[0,1.11646708281077],"z":[0,2.35839429109116],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red","dash":"dash"},"type":"scatter3d","inherit":true},"16ce51b235368.13":{"x":[1,-0.125460125469624],"y":[2,1.11646708281077],"z":[2,2.35839429109116],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red","dash":"dash"},"type":"scatter3d","inherit":true},"16ce51b235368.14":{"x":[0,1.16666666666667],"y":[0,1.66666666666667],"z":[0,2.16666666666667],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red"},"type":"scatter3d","inherit":true},"16ce51b235368.15":{"x":[1,1.16666666666667],"y":[2,1.66666666666667],"z":[2,2.16666666666667],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red","dash":"dash"},"type":"scatter3d","inherit":true},"16ce51b235368.16":{"x":[1.29212679213629,1.16666666666667],"y":[0.550199583855897,1.66666666666667],"z":[-0.191727624424499,2.16666666666667],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red","dash":"dash"},"type":"scatter3d","inherit":true},"16ce51b235368.17":{"x":[-0.125460125469624,1.16666666666667],"y":[1.11646708281077,1.66666666666667],"z":[2.35839429109116,2.16666666666667],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red","dash":"dash"},"type":"scatter3d","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"aspectmode":"cube","xaxis":{"range":[-4,4],"title":"X1"},"yaxis":{"range":[-4,4],"title":"X2"},"zaxis":{"range":[-4,4],"title":"X3"}},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"x":[0],"y":[0],"z":[0],"type":"scatter3d","mode":"markers","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"frame":null},{"x":[0,1],"y":[0,0],"z":[0,0],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"frame":null},{"x":[0,0],"y":[0,1],"z":[0,0],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(44,160,44,1)","line":{"color":"rgba(44,160,44,1)"}},"error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"frame":null},{"x":[0,0],"y":[0,0],"z":[0,1],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(214,39,40,1)","line":{"color":"rgba(214,39,40,1)"}},"error_y":{"color":"rgba(214,39,40,1)"},"error_x":{"color":"rgba(214,39,40,1)"},"frame":null},{"x":[0,1],"y":[0,1],"z":[0,1],"mode":"lines","line":{"color":"black","width":5},"type":"scatter3d","marker":{"color":"rgba(148,103,189,1)","line":{"color":"rgba(148,103,189,1)"}},"error_y":{"color":"rgba(148,103,189,1)"},"error_x":{"color":"rgba(148,103,189,1)"},"frame":null},{"x":[0,1],"y":[0,2],"z":[0,3],"mode":"lines","line":{"color":"black","width":5},"type":"scatter3d","marker":{"color":"rgba(140,86,75,1)","line":{"color":"rgba(140,86,75,1)"}},"error_y":{"color":"rgba(140,86,75,1)"},"error_x":{"color":"rgba(140,86,75,1)"},"frame":null},{"x":[0,0.911606725190993],"y":[0,0.388170606702671],"z":[0,-0.13526551178565],"mode":"lines","line":{"color":"blue","width":5},"type":"scatter3d","marker":{"color":"rgba(227,119,194,1)","line":{"color":"rgba(227,119,194,1)"}},"error_y":{"color":"rgba(227,119,194,1)"},"error_x":{"color":"rgba(227,119,194,1)"},"frame":null},{"x":[0,-0.0480261587042634],"y":[0,0.427383801079795],"z":[0,0.902793760863853],"mode":"lines","line":{"color":"blue","width":5},"type":"scatter3d","marker":{"color":"rgba(127,127,127,1)","line":{"color":"rgba(127,127,127,1)"}},"error_y":{"color":"rgba(127,127,127,1)"},"error_x":{"color":"rgba(127,127,127,1)"},"frame":null},{"x":[0,1],"y":[0,2],"z":[0,2],"mode":"lines","line":{"color":"red","width":5},"type":"scatter3d","marker":{"color":"rgba(188,189,34,1)","line":{"color":"rgba(188,189,34,1)"}},"error_y":{"color":"rgba(188,189,34,1)"},"error_x":{"color":"rgba(188,189,34,1)"},"frame":null},{"x":[0,1.29212679213629],"y":[0,0.550199583855897],"z":[0,-0.191727624424499],"mode":"lines","line":{"color":"red","width":5,"dash":"dash"},"type":"scatter3d","marker":{"color":"rgba(23,190,207,1)","line":{"color":"rgba(23,190,207,1)"}},"error_y":{"color":"rgba(23,190,207,1)"},"error_x":{"color":"rgba(23,190,207,1)"},"frame":null},{"x":[1,1.29212679213629],"y":[2,0.550199583855897],"z":[2,-0.191727624424499],"mode":"lines","line":{"color":"red","width":5,"dash":"dash"},"type":"scatter3d","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"frame":null},{"x":[0,1],"y":[0,2],"z":[0,2],"mode":"lines","line":{"color":"red","width":5},"type":"scatter3d","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"frame":null},{"x":[0,-0.125460125469624],"y":[0,1.11646708281077],"z":[0,2.35839429109116],"mode":"lines","line":{"color":"red","width":5,"dash":"dash"},"type":"scatter3d","marker":{"color":"rgba(44,160,44,1)","line":{"color":"rgba(44,160,44,1)"}},"error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"frame":null},{"x":[1,-0.125460125469624],"y":[2,1.11646708281077],"z":[2,2.35839429109116],"mode":"lines","line":{"color":"red","width":5,"dash":"dash"},"type":"scatter3d","marker":{"color":"rgba(214,39,40,1)","line":{"color":"rgba(214,39,40,1)"}},"error_y":{"color":"rgba(214,39,40,1)"},"error_x":{"color":"rgba(214,39,40,1)"},"frame":null},{"x":[0,1.16666666666667],"y":[0,1.66666666666667],"z":[0,2.16666666666667],"mode":"lines","line":{"color":"red","width":5},"type":"scatter3d","marker":{"color":"rgba(148,103,189,1)","line":{"color":"rgba(148,103,189,1)"}},"error_y":{"color":"rgba(148,103,189,1)"},"error_x":{"color":"rgba(148,103,189,1)"},"frame":null},{"x":[1,1.16666666666667],"y":[2,1.66666666666667],"z":[2,2.16666666666667],"mode":"lines","line":{"color":"red","width":5,"dash":"dash"},"type":"scatter3d","marker":{"color":"rgba(140,86,75,1)","line":{"color":"rgba(140,86,75,1)"}},"error_y":{"color":"rgba(140,86,75,1)"},"error_x":{"color":"rgba(140,86,75,1)"},"frame":null},{"x":[1.29212679213629,1.16666666666667],"y":[0.550199583855897,1.66666666666667],"z":[-0.191727624424499,2.16666666666667],"mode":"lines","line":{"color":"red","width":5,"dash":"dash"},"type":"scatter3d","marker":{"color":"rgba(227,119,194,1)","line":{"color":"rgba(227,119,194,1)"}},"error_y":{"color":"rgba(227,119,194,1)"},"error_x":{"color":"rgba(227,119,194,1)"},"frame":null},{"x":[-0.125460125469624,1.16666666666667],"y":[1.11646708281077,1.66666666666667],"z":[2.35839429109116,2.16666666666667],"mode":"lines","line":{"color":"red","width":5,"dash":"dash"},"type":"scatter3d","marker":{"color":"rgba(127,127,127,1)","line":{"color":"rgba(127,127,127,1)"}},"error_y":{"color":"rgba(127,127,127,1)"},"error_x":{"color":"rgba(127,127,127,1)"},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<div id="the-error-vector" class="section level2">
+<h2><span class="header-section-number">3.2</span> The Error vector</h2>
+<p>Note, that it is also clear from the equation in the derivation of the least squares solution that the residual is orthogonal on the column space:</p>
+<p><span class="math display">\[
+ -2 \mathbf{X}^T(\mathbf{Y}-\mathbf{X}\boldsymbol{\beta}) = 0
+\]</span></p>
+</div>
+</div>
+<div id="curse-of-dimensionality" class="section level1">
+<h1><span class="header-section-number">4</span> Curse of dimensionality?</h1>
+<ul>
+<li><p>Imagine what happens when p approaches n <span class="math inline">\(p=n\)</span> or becomes much larger than p &gt;&gt; n!!!</p></li>
+<li><p>Suppose that we add a predictor <span class="math inline">\(\mathbf{X}_2 = [2,0,1]^T\)</span>?</p></li>
+</ul>
+<p><span class="math display">\[
+\mathbf{Y}=\left[
+\begin{array}{c}
+1\\
+2\\
+2\\
+\end{array}\right],
+\quad
+\mathbf{X}= \left[
+\begin{array}{ccc}
+1&amp;1&amp;2\\
+1&amp;2&amp;0\\
+1&amp;3&amp;1\\
+\end{array}
+\right],
+\quad \boldsymbol{\beta} = \left[
+\begin{array}{c}
+\beta_0\\
+\beta_1\\
+\beta_2
+\end{array}
+\right]
+\quad
+\text{and}
+\quad
+\boldsymbol{\epsilon}=
+\left[
+\begin{array}{c}
+\epsilon_1\\
+\epsilon_2\\
+\epsilon_3
+\end{array}
+\right]
+\]</span></p>
+<pre class="r"><code>data$x2 &lt;- c(2,0,1)
+fit &lt;- lm(y~x+x2,data)
+# predict values on regular xy grid
+x1pred &lt;- seq(-1, 4, length.out = 10)
+x2pred &lt;- seq(-1, 4, length.out = 10)
+xy &lt;- expand.grid(x = x1pred,
+x2 = x2pred)
+ypred &lt;- matrix (nrow = 30, ncol = 30,
+data = predict(fit, newdata = data.frame(xy)))
+
+library(plot3D)</code></pre>
+<pre><code>## Warning in fun(libname, pkgname): no display name and no $DISPLAY environment
+## variable</code></pre>
+<pre class="r"><code># fitted points for droplines to surface
+th=20
+ph=5
+scatter3D(data$x,
+  data$x2,
+  Y,
+  pch = 16,
+  col=&quot;darkblue&quot;,
+  cex = 1,
+  theta = th,
+  ticktype = &quot;detailed&quot;,
+  xlab = &quot;x1&quot;,
+  ylab = &quot;x2&quot;,
+  zlab = &quot;y&quot;,
+  colvar=FALSE,
+  bty = &quot;g&quot;,
+  xlim=c(-1,3),
+  ylim=c(-1,3),
+  zlim=c(-2,4))</code></pre>
+<p><img src="lsGeometricInterpretation_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<pre class="r"><code>z.pred3D &lt;- outer(
+  x1pred,
+  x2pred,
+  function(x1,x2)
+  {
+    fit$coef[1] + fit$coef[2]*x1+fit$coef[2]*x2
+  })
+
+x.pred3D &lt;- outer(
+  x1pred,
+  x2pred,
+  function(x,y) x)
+
+y.pred3D &lt;- outer(
+  x1pred,
+  x2pred,
+  function(x,y) y)
+
+scatter3D(data$x,
+  data$x2,
+  data$y,
+  pch = 16,
+  col=&quot;darkblue&quot;,
+  cex = 1,
+  theta = th,
+  ticktype = &quot;detailed&quot;,
+  xlab = &quot;x1&quot;,
+  ylab = &quot;x2&quot;,
+  zlab = &quot;y&quot;,
+  colvar=FALSE,
+  bty = &quot;g&quot;,
+  xlim=c(-1,4),
+  ylim=c(-1,4),
+  zlim=c(-2,4))
+
+surf3D(
+  x.pred3D,
+  y.pred3D,
+  z.pred3D,
+  col=&quot;blue&quot;,
+  facets=NA,
+  add=TRUE)</code></pre>
+<p><img src="lsGeometricInterpretation_files/figure-html/unnamed-chunk-14-2.png" width="672" /></p>
+<p>Note, that the linear regression is now a plane.</p>
+<p>However, we obtain a perfect fit and all the data points are falling in the plane! 😱</p>
+<p>This is obvious if we look at the column space of X!</p>
+<pre class="r"><code>X &lt;- cbind(X,c(2,0,1))
+XtX &lt;- t(X)%*%X
+eigenXtX &lt;- eigen(XtX)
+XtXinvSqrt &lt;- eigenXtX$vectors %*%diag(1/eigenXtX$values^.5)%*%t(eigenXtX$vectors)
+U &lt;- X %*% XtXinvSqrt
+
+p7 &lt;- p1 %&gt;%
+  add_trace(
+    x = c(0,2),
+    y = c(0,0),
+    z = c(0,1),
+    mode = &quot;lines&quot;,
+    line = list(width = 5, color = &quot;darkgreen&quot;),
+    type=&quot;scatter3d&quot;)
+p7</code></pre>
+<div id="htmlwidget-9549ae3c2ac4cba3eff8" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-9549ae3c2ac4cba3eff8">{"x":{"visdat":{"16ce51b235368":["function () ","plotlyVisDat"]},"cur_data":"16ce51b235368","attrs":{"16ce51b235368":{"x":{},"y":{},"z":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter3d","mode":"markers","inherit":true},"16ce51b235368.1":{"x":[0,1],"y":[0,0],"z":[0,0],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"16ce51b235368.2":{"x":[0,0],"y":[0,1],"z":[0,0],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"16ce51b235368.3":{"x":[0,0],"y":[0,0],"z":[0,1],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"16ce51b235368.4":{"x":[0,1],"y":[0,1],"z":[0,1],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"black"},"type":"scatter3d","inherit":true},"16ce51b235368.5":{"x":[0,1],"y":[0,2],"z":[0,3],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"black"},"type":"scatter3d","inherit":true},"16ce51b235368.6":{"x":[0,2],"y":[0,0],"z":[0,1],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"darkgreen"},"type":"scatter3d","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"aspectmode":"cube","xaxis":{"range":[-4,4],"title":"X1"},"yaxis":{"range":[-4,4],"title":"X2"},"zaxis":{"range":[-4,4],"title":"X3"}},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"x":[0],"y":[0],"z":[0],"type":"scatter3d","mode":"markers","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"frame":null},{"x":[0,1],"y":[0,0],"z":[0,0],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"frame":null},{"x":[0,0],"y":[0,1],"z":[0,0],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(44,160,44,1)","line":{"color":"rgba(44,160,44,1)"}},"error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"frame":null},{"x":[0,0],"y":[0,0],"z":[0,1],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(214,39,40,1)","line":{"color":"rgba(214,39,40,1)"}},"error_y":{"color":"rgba(214,39,40,1)"},"error_x":{"color":"rgba(214,39,40,1)"},"frame":null},{"x":[0,1],"y":[0,1],"z":[0,1],"mode":"lines","line":{"color":"black","width":5},"type":"scatter3d","marker":{"color":"rgba(148,103,189,1)","line":{"color":"rgba(148,103,189,1)"}},"error_y":{"color":"rgba(148,103,189,1)"},"error_x":{"color":"rgba(148,103,189,1)"},"frame":null},{"x":[0,1],"y":[0,2],"z":[0,3],"mode":"lines","line":{"color":"black","width":5},"type":"scatter3d","marker":{"color":"rgba(140,86,75,1)","line":{"color":"rgba(140,86,75,1)"}},"error_y":{"color":"rgba(140,86,75,1)"},"error_x":{"color":"rgba(140,86,75,1)"},"frame":null},{"x":[0,2],"y":[0,0],"z":[0,1],"mode":"lines","line":{"color":"darkgreen","width":5},"type":"scatter3d","marker":{"color":"rgba(227,119,194,1)","line":{"color":"rgba(227,119,194,1)"}},"error_y":{"color":"rgba(227,119,194,1)"},"error_x":{"color":"rgba(227,119,194,1)"},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<pre class="r"><code>p8 &lt;- p7 %&gt;%
+  add_trace(
+    x = c(0,U[1,1]),
+    y = c(0,U[2,1]),
+    z = c(0,U[3,1]),
+    mode = &quot;lines&quot;,
+    line = list(width = 5, color = &quot;blue&quot;),
+    type=&quot;scatter3d&quot;) %&gt;%
+  add_trace(
+    x = c(0,U[1,2]),
+    y = c(0,U[2,2]),
+    z = c(0,U[3,2]),
+    mode = &quot;lines&quot;,
+    line = list(width = 5, color = &quot;blue&quot;),
+    type=&quot;scatter3d&quot;) %&gt;%
+  add_trace(
+    x = c(0,U[1,3]),
+    y = c(0,U[2,3]),
+    z = c(0,U[3,3]),
+    mode = &quot;lines&quot;,
+    line = list(width = 5, color = &quot;blue&quot;),
+    type=&quot;scatter3d&quot;)
+
+p8</code></pre>
+<div id="htmlwidget-055192807b0a3db9a1b7" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-055192807b0a3db9a1b7">{"x":{"visdat":{"16ce51b235368":["function () ","plotlyVisDat"]},"cur_data":"16ce51b235368","attrs":{"16ce51b235368":{"x":{},"y":{},"z":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter3d","mode":"markers","inherit":true},"16ce51b235368.1":{"x":[0,1],"y":[0,0],"z":[0,0],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"16ce51b235368.2":{"x":[0,0],"y":[0,1],"z":[0,0],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"16ce51b235368.3":{"x":[0,0],"y":[0,0],"z":[0,1],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"16ce51b235368.4":{"x":[0,1],"y":[0,1],"z":[0,1],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"black"},"type":"scatter3d","inherit":true},"16ce51b235368.5":{"x":[0,1],"y":[0,2],"z":[0,3],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"black"},"type":"scatter3d","inherit":true},"16ce51b235368.6":{"x":[0,2],"y":[0,0],"z":[0,1],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"darkgreen"},"type":"scatter3d","inherit":true},"16ce51b235368.7":{"x":[0,0.494080479782201],"y":[0,0.816094193902485],"z":[0,-0.299791170945455],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"blue"},"type":"scatter3d","inherit":true},"16ce51b235368.8":{"x":[0,-0.0776736051498938],"y":[0,0.384874003814111],"z":[0,0.91969495608659],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"blue"},"type":"scatter3d","inherit":true},"16ce51b235368.9":{"x":[0,0.865939542093563],"y":[0,-0.431117464117091],"z":[0,0.253547710642474],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"blue"},"type":"scatter3d","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"aspectmode":"cube","xaxis":{"range":[-4,4],"title":"X1"},"yaxis":{"range":[-4,4],"title":"X2"},"zaxis":{"range":[-4,4],"title":"X3"}},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"x":[0],"y":[0],"z":[0],"type":"scatter3d","mode":"markers","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"frame":null},{"x":[0,1],"y":[0,0],"z":[0,0],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"frame":null},{"x":[0,0],"y":[0,1],"z":[0,0],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(44,160,44,1)","line":{"color":"rgba(44,160,44,1)"}},"error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"frame":null},{"x":[0,0],"y":[0,0],"z":[0,1],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(214,39,40,1)","line":{"color":"rgba(214,39,40,1)"}},"error_y":{"color":"rgba(214,39,40,1)"},"error_x":{"color":"rgba(214,39,40,1)"},"frame":null},{"x":[0,1],"y":[0,1],"z":[0,1],"mode":"lines","line":{"color":"black","width":5},"type":"scatter3d","marker":{"color":"rgba(148,103,189,1)","line":{"color":"rgba(148,103,189,1)"}},"error_y":{"color":"rgba(148,103,189,1)"},"error_x":{"color":"rgba(148,103,189,1)"},"frame":null},{"x":[0,1],"y":[0,2],"z":[0,3],"mode":"lines","line":{"color":"black","width":5},"type":"scatter3d","marker":{"color":"rgba(140,86,75,1)","line":{"color":"rgba(140,86,75,1)"}},"error_y":{"color":"rgba(140,86,75,1)"},"error_x":{"color":"rgba(140,86,75,1)"},"frame":null},{"x":[0,2],"y":[0,0],"z":[0,1],"mode":"lines","line":{"color":"darkgreen","width":5},"type":"scatter3d","marker":{"color":"rgba(227,119,194,1)","line":{"color":"rgba(227,119,194,1)"}},"error_y":{"color":"rgba(227,119,194,1)"},"error_x":{"color":"rgba(227,119,194,1)"},"frame":null},{"x":[0,0.494080479782201],"y":[0,0.816094193902485],"z":[0,-0.299791170945455],"mode":"lines","line":{"color":"blue","width":5},"type":"scatter3d","marker":{"color":"rgba(127,127,127,1)","line":{"color":"rgba(127,127,127,1)"}},"error_y":{"color":"rgba(127,127,127,1)"},"error_x":{"color":"rgba(127,127,127,1)"},"frame":null},{"x":[0,-0.0776736051498938],"y":[0,0.384874003814111],"z":[0,0.91969495608659],"mode":"lines","line":{"color":"blue","width":5},"type":"scatter3d","marker":{"color":"rgba(188,189,34,1)","line":{"color":"rgba(188,189,34,1)"}},"error_y":{"color":"rgba(188,189,34,1)"},"error_x":{"color":"rgba(188,189,34,1)"},"frame":null},{"x":[0,0.865939542093563],"y":[0,-0.431117464117091],"z":[0,0.253547710642474],"mode":"lines","line":{"color":"blue","width":5},"type":"scatter3d","marker":{"color":"rgba(23,190,207,1)","line":{"color":"rgba(23,190,207,1)"}},"error_y":{"color":"rgba(23,190,207,1)"},"error_x":{"color":"rgba(23,190,207,1)"},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<ul>
+<li><p>The column space now spans the entire <span class="math inline">\(\mathbb{R}^3\)</span>!</p></li>
+<li><p>With the intercept and the two predictors we can thus fit every dataset that only has 3 observations for the predictors and the response.</p></li>
+<li><p>So the model can no longer be used to generalise the patterns seen in the data towards the population (new observations).</p></li>
+<li><p>Problem of overfitting!!!</p></li>
+<li><p>If <span class="math inline">\(p &gt;&gt; n\)</span> then the problem gets even worse! Then there is even no longer a unique solution to the least squares problem…</p></li>
+</ul>
+</div>
+
+<div id="rmd-source-code">LS0tCnRpdGxlOiAnMS4gSW50cm9kdWN0aW9uOiBMaW5lYXIgUmVncmVzc2lvbiAtIEdlb21ldHJpYyBpbnRlcnByZXRhdGlvbicKYXV0aG9yOiAiTGlldmVuIENsZW1lbnQiCmRhdGU6ICJzdGF0T21pY3MsIEdoZW50IFVuaXZlcnNpdHkgKGh0dHBzOi8vc3RhdG9taWNzLmdpdGh1Yi5pbykiCmFsd2F5c19hbGxvd19odG1sOiB5ZXMKLS0tCgojIEludHJvCiMjIERhdGEKCkRhdGFzZXQgd2l0aCAzIG9ic2VydmF0aW9uIChYLFkpOgoKYGBge3J9CmxpYnJhcnkodGlkeXZlcnNlKQpkYXRhIDwtIGRhdGEuZnJhbWUoeD0xOjMseT1jKDEsMiwyKSkKZGF0YQpgYGAKCiMjIE1vZGVsCgokJAp5X2k9XGJldGFfMCtcYmV0YV8xeCArIFxlcHNpbG9uX2kKJCQKCklmIHdlIHdyaXRlIHRoZSBtb2RlbCBmb3IgZWFjaCBvYnNlcnZhdGlvbjoKCiQkClxiZWdpbnthcnJheX0ge2xjbH0KMSAmPSYgXGJldGFfMCtcYmV0YV8xIDEgKyBcZXBzaWxvbl8xIFxcCjIgJj0mIFxiZXRhXzArXGJldGFfMSAyICsgXGVwc2lsb25fMiBcXAoyICY9JiBcYmV0YV8wK1xiZXRhXzEgMiArIFxlcHNpbG9uXzMgXFwKXGVuZHthcnJheX0KJCQKCldlIGNhbiBhbHNvIHdyaXRlIHRoaXMgaW4gbWF0cml4IGZvcm0KCiQkClxtYXRoYmZ7WX0gPSBcbWF0aGJme1h9XGJvbGRzeW1ib2x7XGJldGF9K1xib2xkc3ltYm9se1xlcHNpbG9ufQokJAoKd2l0aAoKJCQKXG1hdGhiZntZfT1cbGVmdFsKXGJlZ2lue2FycmF5fXtjfQoxXFwKMlxcCjJcXApcZW5ke2FycmF5fVxyaWdodF0sClxxdWFkClxtYXRoYmZ7WH09IFxsZWZ0WwpcYmVnaW57YXJyYXl9e2NjfQoxJjFcXAoxJjJcXAoxJjNcXApcZW5ke2FycmF5fQpccmlnaHRdLApccXVhZCBcYm9sZHN5bWJvbHtcYmV0YX0gPSBcbGVmdFsKXGJlZ2lue2FycmF5fXtjfQpcYmV0YV8wXFwKXGJldGFfMVxcClxlbmR7YXJyYXl9ClxyaWdodF0KXHF1YWQKXHRleHR7YW5kfQpccXVhZApcYm9sZHN5bWJvbHtcZXBzaWxvbn09ClxsZWZ0WwpcYmVnaW57YXJyYXl9e2N9ClxlcHNpbG9uXzFcXApcZXBzaWxvbl8yXFwKXGVwc2lsb25fMwpcZW5ke2FycmF5fQpccmlnaHRdCiQkCgpgYGB7cn0KbG0xIDwtIGxtKHl+eCxkYXRhKQpkYXRhJHloYXQgPC0gbG0xJGZpdHRlZAoKZGF0YSAlPiUKICBnZ3Bsb3QoYWVzKHgseSkpICsKICBnZW9tX3BvaW50KCkgKwogIHlsaW0oMCw0KSArCiAgeGxpbSgwLDQpICsKICBzdGF0X3Ntb290aChtZXRob2QgPSAibG0iLCBjb2xvciA9ICJyZWQiLCBmdWxscmFuZ2UgPSBUUlVFKSArCiAgZ2VvbV9wb2ludChhZXMoeD14LCB5ID15aGF0KSwgcGNoID0gMiwgc2l6ZSA9IDMsIGNvbG9yID0gInJlZCIpICsKICBnZW9tX3NlZ21lbnQoZGF0YSA9IGRhdGEsIGFlcyh4ID0geCwgeGVuZCA9IHgsIHkgPSB5LCB5ZW5kID0geWhhdCksIGx0eSA9IDIgKQpgYGAKCiMgTGVhc3QgU3F1YXJlcyAoTFMpCgotIE1pbmltaXplIHRoZSByZXNpZHVhbCBzdW0gb2Ygc3F1YXJlcwpcYmVnaW57ZXFuYXJyYXkqfQpSU1MoXGJvbGRzeW1ib2x7XGJldGF9KSY9JlxzdW1cbGltaXRzX3tpPTF9Xm4gZV4yX2lcXAomPSZcc3VtXGxpbWl0c197aT0xfV5uIFxsZWZ0KHlfaS1cYmV0YV8wLVxzdW1cbGltaXRzX3tqPTF9XnAgeF97aWp9XGJldGFfalxyaWdodCleMgpcZW5ke2VxbmFycmF5Kn0KCi0gb3IgaW4gbWF0cml4IG5vdGF0aW9uClxiZWdpbntlcW5hcnJheSp9ClJTUyhcYm9sZHN5bWJvbHtcYmV0YX0pJj0mKFxtYXRoYmZ7WX0tXG1hdGhiZntYXGJldGF9KV5UKFxtYXRoYmZ7WX0tXG1hdGhiZntYXGJldGF9KVxcCiY9JlxWZXJ0IFxtYXRoYmZ7WX0tXG1hdGhiZntYXGJldGF9XFZlcnReMl8yClxlbmR7ZXFuYXJyYXkqfQp3aXRoIHRoZSAkTF8yJC1ub3JtIG9mIGEgJHAkLWRpbS4gdmVjdG9yICR2JCAkXFZlcnQgXG1hdGhiZnt2fSBcVmVydF8yPVxzcXJ0e3ZfMV4yK1xsZG90cyt2X3BeMn0kCiRccmlnaHRhcnJvdyQgJFxoYXR7XGJvbGRzeW1ib2x7XGJldGF9fT1cdGV4dHthcmdtaW59X1xiZXRhIFxWZXJ0IFxtYXRoYmZ7WX0tXG1hdGhiZntYXGJldGF9XFZlcnReMiQKCgojIyBNaW5pbWl6ZSBSU1MKXFsKXGJlZ2lue2FycmF5fXtjY2N9ClxmcmFje1xwYXJ0aWFsIFJTU317XHBhcnRpYWwgXGJvbGRzeW1ib2x7XGJldGF9fSY9JlxtYXRoYmZ7MH1cXFxcClxmcmFjeyhcbWF0aGJme1l9LVxtYXRoYmZ7WFxiZXRhfSleVChcbWF0aGJme1l9LVxtYXRoYmZ7WH1cYm9sZHN5bWJvbHtcYmV0YX0pfXtccGFydGlhbCBcYm9sZHN5bWJvbHtcYmV0YX19Jj0mXG1hdGhiZnswfVxcXFwKLTJcbWF0aGJme1h9XlQoXG1hdGhiZntZfS1cbWF0aGJme1h9XGJvbGRzeW1ib2x7XGJldGF9KSY9JlxtYXRoYmZ7MH1cXFxcClxtYXRoYmZ7WH1eVFxtYXRoYmZ7WFxiZXRhfSY9JlxtYXRoYmZ7WH1eVFxtYXRoYmZ7WX1cXFxcClxoYXR7XGJvbGRzeW1ib2x7XGJldGF9fSY9JihcbWF0aGJme1h9XlRcbWF0aGJme1h9KV57LTF9XG1hdGhiZntYfV5UXG1hdGhiZntZfQpcZW5ke2FycmF5fQpcXQoKJCQKXGhhdHtcYm9sZHN5bWJvbHtcYmV0YX19PShcbWF0aGJme1h9XlRcbWF0aGJme1h9KV57LTF9XG1hdGhiZntYfV5UXG1hdGhiZntZfQokJAoKIyMgRml0dGVkIHZhbHVlczoKCiQkClxiZWdpbnthcnJheX17bGNsfQpcaGF0e1xtYXRoYmZ7WX19ICY9JiBcbWF0aGJme1h9XGhhdHtcYm9sZHN5bWJvbHtcYmV0YX19XFwKJj0mIFxtYXRoYmZ7WH0gKFxtYXRoYmZ7WH1eVFxtYXRoYmZ7WH0pXnstMX1cbWF0aGJme1h9XlRcbWF0aGJme1l9XFwKXGVuZHthcnJheX0KJCQKCiMgR2VvbWV0cmljIGludGVycHJldGF0aW9uIG9mIExpbmVhciByZWdyZXNzaW9uCgpUaGVyZSBpcyBhbHNvIGFub3RoZXIgcGljdHVyZSB0byBpbnRlcnByZXQgbGluZWFyIHJlZ3Jlc3Npb24hCgpMaW5lYXIgcmVncmVzc2lvbiBjYW4gYWxzbyBiZSBzZWVuIGFzIGEgcHJvamVjdGlvbiEKCkZpdHRlZCB2YWx1ZXM6CgokJApcYmVnaW57YXJyYXl9e2xjbH0KXGhhdHtcbWF0aGJme1l9fSAmPSYgXG1hdGhiZntYfVxoYXR7XGJvbGRzeW1ib2x7XGJldGF9fVxcCiY9JiBcbWF0aGJme1h9IChcbWF0aGJme1h9XlRcbWF0aGJme1h9KV57LTF9XG1hdGhiZntYfV5UXG1hdGhiZntZfVxcCiY9JiBcbWF0aGJme0hZfQpcZW5ke2FycmF5fQokJAp3aXRoICRcbWF0aGJme0h9JCB0aGUgcHJvamVjdGlvbiBtYXRyaXggYWxzbyByZWZlcnJlZCB0byBhcyB0aGUgaGF0IG1hdHJpeC4KCgpgYGB7cn0KWCA8LSBtb2RlbC5tYXRyaXgofngsZGF0YSkKWApgYGAKCmBgYHtyfQpYdFggPC0gdChYKSUqJVgKWHRYCmBgYAoKYGBge3J9Clh0WGludiA8LSBzb2x2ZSh0KFgpJSolWCkKWHRYaW52CmBgYAoKYGBge3J9CkggPC0gWCAlKiUgWHRYaW52ICUqJSB0KFgpCkgKYGBgCgoKYGBge3J9ClkgPC0gZGF0YSR5ClloYXQgPC0gSCUqJVkKWWhhdApgYGAKCiMjIFdoYXQgZG8gdGhlc2UgcHJvamVjdGlvbnMgbWVhbiBnZW9tZXRyaWNhbGx5PwoKVGhlIG90aGVyIHBpY3R1cmUgdG8gbGluZWFyIHJlZ3Jlc3Npb24gaXMgdG8gY29uc2lkZXIgJFhfMCQsICRYXzEkIGFuZCAkWSQgYXMgdmVjdG9ycyBpbiB0aGUgc3BhY2Ugb2YgdGhlIGRhdGEgJFxtYXRoYmJ7Un1ebiQsIGhlcmUgJFxtYXRoYmJ7Un1eMyQgYmVjYXVzZSB3ZSBoYXZlIHRocmVlIGRhdGEgcG9pbnRzLgoKCmBgYHtyfQpvcmlnaW5SbiA8LSBkYXRhLmZyYW1lKFgxPTAsWDI9MCxYMz0wKQpkYXRhJHgwIDwtIDEKZGF0YVJuIDwtIGRhdGEuZnJhbWUodChkYXRhKSkKCmxpYnJhcnkocGxvdGx5KQoKcDEgPC0gcGxvdF9seSgKICAgIG9yaWdpblJuLAogICAgeCA9IH4gWDEsCiAgICB5ID0gfiBYMiwKICAgIHo9IH4gWDMpICU+JQogIGFkZF9tYXJrZXJzKHR5cGU9InNjYXR0ZXIzZCIpICU+JQogIGxheW91dCgKICAgIHNjZW5lID0gbGlzdCgKICAgICAgYXNwZWN0bW9kZT0iY3ViZSIsCiAgICAgIHhheGlzID0gbGlzdChyYW5nZT1jKC00LDQpKSwgeWF4aXMgPSBsaXN0KHJhbmdlPWMoLTQsNCkpLCB6YXhpcyA9IGxpc3QocmFuZ2U9YygtNCw0KSkKICAgICAgKQogICAgKQpwMSA8LSBwMSAlPiUKICBhZGRfdHJhY2UoCiAgICB4ID0gYygwLDEpLAogICAgeSA9IGMoMCwwKSwKICAgIHogPSBjKDAsMCksCiAgICBtb2RlID0gImxpbmVzIiwKICAgIGxpbmUgPSBsaXN0KHdpZHRoID0gNSwgY29sb3IgPSAiZ3JleSIpLAogICAgdHlwZT0ic2NhdHRlcjNkIikgJT4lCiAgYWRkX3RyYWNlKAogICAgeCA9IGMoMCwwKSwKICAgIHkgPSBjKDAsMSksCiAgICB6ID0gYygwLDApLAogICAgbW9kZSA9ICJsaW5lcyIsCiAgICBsaW5lID0gbGlzdCh3aWR0aCA9IDUsIGNvbG9yID0gImdyZXkiKSwKICAgIHR5cGU9InNjYXR0ZXIzZCIpICU+JQogIGFkZF90cmFjZSgKICAgIHggPSBjKDAsMCksCiAgICB5ID0gYygwLDApLAogICAgeiA9IGMoMCwxKSwKICAgIG1vZGUgPSAibGluZXMiLAogICAgbGluZSA9IGxpc3Qod2lkdGggPSA1LCBjb2xvciA9ICJncmV5IiksCiAgICB0eXBlPSJzY2F0dGVyM2QiKSAlPiUKICBhZGRfdHJhY2UoCiAgICB4ID0gYygwLDEpLAogICAgeSA9IGMoMCwxKSwKICAgIHogPSBjKDAsMSksCiAgICBtb2RlID0gImxpbmVzIiwKICAgIGxpbmUgPSBsaXN0KHdpZHRoID0gNSwgY29sb3IgPSAiYmxhY2siKSwKICAgIHR5cGU9InNjYXR0ZXIzZCIpICU+JQogICAgYWRkX3RyYWNlKAogICAgeCA9IGMoMCwxKSwKICAgIHkgPSBjKDAsMiksCiAgICB6ID0gYygwLDMpLAogICAgbW9kZSA9ICJsaW5lcyIsCiAgICBsaW5lID0gbGlzdCh3aWR0aCA9IDUsIGNvbG9yID0gImJsYWNrIiksCiAgICB0eXBlPSJzY2F0dGVyM2QiKQpgYGAKYGBge3J9CnAyIDwtIHAxICU+JQogIGFkZF90cmFjZSgKICAgIHggPSBjKDAsWVsxXSksCiAgICB5ID0gYygwLFlbMl0pLAogICAgeiA9IGMoMCxZWzNdKSwKICAgIG1vZGUgPSAibGluZXMiLAogICAgbGluZSA9IGxpc3Qod2lkdGggPSA1LCBjb2xvciA9ICJyZWQiKSwKICAgIHR5cGU9InNjYXR0ZXIzZCIpICU+JQogIGFkZF90cmFjZSgKICAgIHggPSBjKDAsWWhhdFsxXSksCiAgICB5ID0gYygwLFloYXRbMl0pLAogICAgeiA9IGMoMCxZaGF0WzNdKSwKICAgIG1vZGUgPSAibGluZXMiLAogICAgbGluZSA9IGxpc3Qod2lkdGggPSA1LCBjb2xvciA9ICJyZWQiKSwKICAgIHR5cGU9InNjYXR0ZXIzZCIpICU+JSBhZGRfdHJhY2UoCiAgICB4ID0gYyhZWzFdLFloYXRbMV0pLAogICAgeSA9IGMoWVsyXSxZaGF0WzJdKSwKICAgIHogPSBjKFlbM10sWWhhdFszXSksCiAgICBtb2RlID0gImxpbmVzIiwKICAgIGxpbmUgPSBsaXN0KHdpZHRoID0gNSwgY29sb3IgPSAicmVkIiwgZGFzaD0iZGFzaCIpLAogICAgdHlwZT0ic2NhdHRlcjNkIikKcDIKYGBgCgoKIyMjIEhvdyBkb2VzIHRoaXMgcHJvamVjdGlvbiB3b3JrPwoKJCQKXGJlZ2lue2FycmF5fXtsY2x9ClxoYXR7XG1hdGhiZntZfX0gJj0mIFxtYXRoYmZ7WH0gKFxtYXRoYmZ7WH1eVFxtYXRoYmZ7WH0pXnstMX1cbWF0aGJme1h9XlRcbWF0aGJme1l9XFwKJj0mIFxtYXRoYmZ7WH0oXG1hdGhiZntYfV5UXG1hdGhiZntYfSleey0xLzJ9KFxtYXRoYmZ7WH1eVFxtYXRoYmZ7WH0pXnstMS8yfVxtYXRoYmZ7WH1eVFxtYXRoYmZ7WX1cXAomPSYgXG1hdGhiZntVfVxtYXRoYmZ7VX1eVFxtYXRoYmZ7WX0KXGVuZHthcnJheX0KJCQKCgotICRcbWF0aGJme1V9JCBpcyBhIG5ldyBvcnRob25vcm1hbCBiYXNpcyBpbiAkXG1hdGhiYntSfV4yJCwgYSBzdWJzcGFjZSBvZiAkXG1hdGhiYntSfV4zJAoKLSBUaGUgc3BhY2Ugc3Bhbm5lZCBieSBVIGFuZCBYIGlzIHRoZSBjb2x1bW4gc3BhY2Ugb2YgWCwgZS5nLiBpdCBjb250YWlucyBhbGwgcG9zc2libGUgbGluZWFyIGNvbWJpbmFudGlvbnMgb2YgWC4KJFxtYXRoYmZ7VX1edFxtYXRoYmZ7WX0kIGlzIHRoZSBwcm9qZWN0aW9uIG9mIFkgb24gdGhpcyBuZXcgb3J0aG9ub3JtYWwgYmFzaXMKCmBgYHtyfQplaWdlblh0WCA8LSBlaWdlbihYdFgpClh0WGludlNxcnQgPC0gZWlnZW5YdFgkdmVjdG9ycyAlKiVkaWFnKDEvZWlnZW5YdFgkdmFsdWVzXi41KSUqJXQoZWlnZW5YdFgkdmVjdG9ycykKVSA8LSBYICUqJSBYdFhpbnZTcXJ0CgpwMyA8LSBwMSAlPiUKICBhZGRfdHJhY2UoCiAgICB4ID0gYygwLFVbMSwxXSksCiAgICB5ID0gYygwLFVbMiwxXSksCiAgICB6ID0gYygwLFVbMywxXSksCiAgICBtb2RlID0gImxpbmVzIiwKICAgIGxpbmUgPSBsaXN0KHdpZHRoID0gNSwgY29sb3IgPSAiYmx1ZSIpLAogICAgdHlwZT0ic2NhdHRlcjNkIikgJT4lCiAgYWRkX3RyYWNlKAogICAgeCA9IGMoMCxVWzEsMl0pLAogICAgeSA9IGMoMCxVWzIsMl0pLAogICAgeiA9IGMoMCxVWzMsMl0pLAogICAgbW9kZSA9ICJsaW5lcyIsCiAgICBsaW5lID0gbGlzdCh3aWR0aCA9IDUsIGNvbG9yID0gImJsdWUiKSwKICAgIHR5cGU9InNjYXR0ZXIzZCIpCgpwMwpgYGAKCgotICRcbWF0aGJme1V9XlRcbWF0aGJme1l9JCBpcyB0aGUgcHJvamVjdGlvbiBvZiAkXG1hdGhiZntZfSQgaW4gdGhlIHNwYWNlIHNwYW5uZWQgYnkgJFxtYXRoYmZ7VX0kLgotIEluZGVlZCAkXG1hdGhiZntVfV8xXlRcbWF0aGJme1l9JAoKYGBge3J9CnA0IDwtIHAzICU+JQogIGFkZF90cmFjZSgKICAgIHggPSBjKDAsWVsxXSksCiAgICB5ID0gYygwLFlbMl0pLAogICAgeiA9IGMoMCxZWzNdKSwKICAgIG1vZGUgPSAibGluZXMiLAogICAgbGluZSA9IGxpc3Qod2lkdGggPSA1LCBjb2xvciA9ICJyZWQiKSwKICAgIHR5cGU9InNjYXR0ZXIzZCIpICU+JQogIGFkZF90cmFjZSgKICAgIHggPSBjKDAsVVsxLDFdKihVWywxXSUqJVkpKSwKICAgIHkgPSBjKDAsVVsyLDFdKihVWywxXSUqJVkpKSwKICAgIHogPSBjKDAsVVszLDFdKihVWywxXSUqJVkpKSwKICAgIG1vZGUgPSAibGluZXMiLAogICAgbGluZSA9IGxpc3Qod2lkdGggPSA1LCBjb2xvciA9ICJyZWQiLGRhc2g9ImRhc2giKSwKICAgIHR5cGU9InNjYXR0ZXIzZCIpICU+JSBhZGRfdHJhY2UoCiAgICB4ID0gYyhZWzFdLFVbMSwxXSooVVssMV0lKiVZKSksCiAgICB5ID0gYyhZWzJdLFVbMiwxXSooVVssMV0lKiVZKSksCiAgICB6ID0gYyhZWzNdLFVbMywxXSooVVssMV0lKiVZKSksCiAgICBtb2RlID0gImxpbmVzIiwKICAgIGxpbmUgPSBsaXN0KHdpZHRoID0gNSwgY29sb3IgPSAicmVkIiwgZGFzaD0iZGFzaCIpLAogICAgdHlwZT0ic2NhdHRlcjNkIikKcDQKYGBgCgotIGFuZCAkXG1hdGhiZntVfV8yXlRcbWF0aGJme1l9JApgYGB7cn0KcDUgPC0gcDQgJT4lCiAgYWRkX3RyYWNlKAogICAgeCA9IGMoMCxZWzFdKSwKICAgIHkgPSBjKDAsWVsyXSksCiAgICB6ID0gYygwLFlbM10pLAogICAgbW9kZSA9ICJsaW5lcyIsCiAgICBsaW5lID0gbGlzdCh3aWR0aCA9IDUsIGNvbG9yID0gInJlZCIpLAogICAgdHlwZT0ic2NhdHRlcjNkIikgJT4lCiAgYWRkX3RyYWNlKAogICAgeCA9IGMoMCxVWzEsMl0qKFVbLDJdJSolWSkpLAogICAgeSA9IGMoMCxVWzIsMl0qKFVbLDJdJSolWSkpLAogICAgeiA9IGMoMCxVWzMsMl0qKFVbLDJdJSolWSkpLAogICAgbW9kZSA9ICJsaW5lcyIsCiAgICBsaW5lID0gbGlzdCh3aWR0aCA9IDUsIGNvbG9yID0gInJlZCIsZGFzaD0iZGFzaCIpLAogICAgdHlwZT0ic2NhdHRlcjNkIikgJT4lIGFkZF90cmFjZSgKICAgIHggPSBjKFlbMV0sVVsxLDJdKihVWywyXSUqJVkpKSwKICAgIHkgPSBjKFlbMl0sVVsyLDJdKihVWywyXSUqJVkpKSwKICAgIHogPSBjKFlbM10sVVszLDJdKihVWywyXSUqJVkpKSwKICAgIG1vZGUgPSAibGluZXMiLAogICAgbGluZSA9IGxpc3Qod2lkdGggPSA1LCBjb2xvciA9ICJyZWQiLCBkYXNoPSJkYXNoIiksCiAgICB0eXBlPSJzY2F0dGVyM2QiKQpwNQpgYGAKCmBgYHtyfQpwNiA8LSBwNSAlPiUKICBhZGRfdHJhY2UoCiAgICB4ID0gYygwLFloYXRbMV0pLAogICAgeSA9IGMoMCxZaGF0WzJdKSwKICAgIHogPSBjKDAsWWhhdFszXSksCiAgICBtb2RlID0gImxpbmVzIiwKICAgIGxpbmUgPSBsaXN0KHdpZHRoID0gNSwgY29sb3IgPSAicmVkIiksCiAgICB0eXBlPSJzY2F0dGVyM2QiKSAlPiUKICBhZGRfdHJhY2UoCiAgICB4ID0gYyhZWzFdLFloYXRbMV0pLAogICAgeSA9IGMoWVsyXSxZaGF0WzJdKSwKICAgIHogPSBjKFlbM10sWWhhdFszXSksCiAgICBtb2RlID0gImxpbmVzIiwKICAgIGxpbmUgPSBsaXN0KHdpZHRoID0gNSwgY29sb3IgPSAicmVkIiwgZGFzaD0iZGFzaCIpLAogICAgdHlwZT0ic2NhdHRlcjNkIikgJT4lCiAgYWRkX3RyYWNlKAogICAgeCA9IGMoVVsxLDFdKihVWywxXSUqJVkpLFloYXRbMV0pLAogICAgeSA9IGMoVVsyLDFdKihVWywxXSUqJVkpLFloYXRbMl0pLAogICAgeiA9IGMoVVszLDFdKihVWywxXSUqJVkpLFloYXRbM10pLAogICAgbW9kZSA9ICJsaW5lcyIsCiAgICBsaW5lID0gbGlzdCh3aWR0aCA9IDUsIGNvbG9yID0gInJlZCIsIGRhc2g9ImRhc2giKSwKICAgIHR5cGU9InNjYXR0ZXIzZCIpICAlPiUKICBhZGRfdHJhY2UoCiAgICB4ID0gYyhVWzEsMl0qKFVbLDJdJSolWSksWWhhdFsxXSksCiAgICB5ID0gYyhVWzIsMl0qKFVbLDJdJSolWSksWWhhdFsyXSksCiAgICB6ID0gYyhVWzMsMl0qKFVbLDJdJSolWSksWWhhdFszXSksCiAgICBtb2RlID0gImxpbmVzIiwKICAgIGxpbmUgPSBsaXN0KHdpZHRoID0gNSwgY29sb3IgPSAicmVkIiwgZGFzaD0iZGFzaCIpLAogICAgdHlwZT0ic2NhdHRlcjNkIikKcDYKYGBgCgojIyBUaGUgRXJyb3IgdmVjdG9yCgpOb3RlLCB0aGF0IGl0IGlzIGFsc28gY2xlYXIgZnJvbSB0aGUgZXF1YXRpb24gaW4gdGhlIGRlcml2YXRpb24gb2YgdGhlIGxlYXN0IHNxdWFyZXMgc29sdXRpb24gdGhhdCB0aGUgcmVzaWR1YWwgaXMgb3J0aG9nb25hbCBvbiB0aGUgY29sdW1uIHNwYWNlOgoKXFsKIC0yIFxtYXRoYmZ7WH1eVChcbWF0aGJme1l9LVxtYXRoYmZ7WH1cYm9sZHN5bWJvbHtcYmV0YX0pID0gMApcXQoKCiMgQ3Vyc2Ugb2YgZGltZW5zaW9uYWxpdHk/CgotIEltYWdpbmUgd2hhdCBoYXBwZW5zIHdoZW4gcCBhcHByb2FjaGVzIG4gJHA9biQgb3IgYmVjb21lcyBtdWNoIGxhcmdlciB0aGFuIHAgPj4gbiEhIQoKLSBTdXBwb3NlIHRoYXQgd2UgYWRkIGEgcHJlZGljdG9yICRcbWF0aGJme1h9XzIgPSBbMiwwLDFdXlQkPwoKJCQKXG1hdGhiZntZfT1cbGVmdFsKXGJlZ2lue2FycmF5fXtjfQoxXFwKMlxcCjJcXApcZW5ke2FycmF5fVxyaWdodF0sClxxdWFkClxtYXRoYmZ7WH09IFxsZWZ0WwpcYmVnaW57YXJyYXl9e2NjY30KMSYxJjJcXAoxJjImMFxcCjEmMyYxXFwKXGVuZHthcnJheX0KXHJpZ2h0XSwKXHF1YWQgXGJvbGRzeW1ib2x7XGJldGF9ID0gXGxlZnRbClxiZWdpbnthcnJheX17Y30KXGJldGFfMFxcClxiZXRhXzFcXApcYmV0YV8yClxlbmR7YXJyYXl9ClxyaWdodF0KXHF1YWQKXHRleHR7YW5kfQpccXVhZApcYm9sZHN5bWJvbHtcZXBzaWxvbn09ClxsZWZ0WwpcYmVnaW57YXJyYXl9e2N9ClxlcHNpbG9uXzFcXApcZXBzaWxvbl8yXFwKXGVwc2lsb25fMwpcZW5ke2FycmF5fQpccmlnaHRdCiQkCgoKYGBge3J9CmRhdGEkeDIgPC0gYygyLDAsMSkKZml0IDwtIGxtKHl+eCt4MixkYXRhKQojIHByZWRpY3QgdmFsdWVzIG9uIHJlZ3VsYXIgeHkgZ3JpZAp4MXByZWQgPC0gc2VxKC0xLCA0LCBsZW5ndGgub3V0ID0gMTApCngycHJlZCA8LSBzZXEoLTEsIDQsIGxlbmd0aC5vdXQgPSAxMCkKeHkgPC0gZXhwYW5kLmdyaWQoeCA9IHgxcHJlZCwKeDIgPSB4MnByZWQpCnlwcmVkIDwtIG1hdHJpeCAobnJvdyA9IDMwLCBuY29sID0gMzAsCmRhdGEgPSBwcmVkaWN0KGZpdCwgbmV3ZGF0YSA9IGRhdGEuZnJhbWUoeHkpKSkKCmxpYnJhcnkocGxvdDNEKQoKCiMgZml0dGVkIHBvaW50cyBmb3IgZHJvcGxpbmVzIHRvIHN1cmZhY2UKdGg9MjAKcGg9NQpzY2F0dGVyM0QoZGF0YSR4LAogIGRhdGEkeDIsCiAgWSwKICBwY2ggPSAxNiwKICBjb2w9ImRhcmtibHVlIiwKICBjZXggPSAxLAogIHRoZXRhID0gdGgsCiAgdGlja3R5cGUgPSAiZGV0YWlsZWQiLAogIHhsYWIgPSAieDEiLAogIHlsYWIgPSAieDIiLAogIHpsYWIgPSAieSIsCiAgY29sdmFyPUZBTFNFLAogIGJ0eSA9ICJnIiwKICB4bGltPWMoLTEsMyksCiAgeWxpbT1jKC0xLDMpLAogIHpsaW09YygtMiw0KSkKCgp6LnByZWQzRCA8LSBvdXRlcigKICB4MXByZWQsCiAgeDJwcmVkLAogIGZ1bmN0aW9uKHgxLHgyKQogIHsKICAgIGZpdCRjb2VmWzFdICsgZml0JGNvZWZbMl0qeDErZml0JGNvZWZbMl0qeDIKICB9KQoKeC5wcmVkM0QgPC0gb3V0ZXIoCiAgeDFwcmVkLAogIHgycHJlZCwKICBmdW5jdGlvbih4LHkpIHgpCgp5LnByZWQzRCA8LSBvdXRlcigKICB4MXByZWQsCiAgeDJwcmVkLAogIGZ1bmN0aW9uKHgseSkgeSkKCnNjYXR0ZXIzRChkYXRhJHgsCiAgZGF0YSR4MiwKICBkYXRhJHksCiAgcGNoID0gMTYsCiAgY29sPSJkYXJrYmx1ZSIsCiAgY2V4ID0gMSwKICB0aGV0YSA9IHRoLAogIHRpY2t0eXBlID0gImRldGFpbGVkIiwKICB4bGFiID0gIngxIiwKICB5bGFiID0gIngyIiwKICB6bGFiID0gInkiLAogIGNvbHZhcj1GQUxTRSwKICBidHkgPSAiZyIsCiAgeGxpbT1jKC0xLDQpLAogIHlsaW09YygtMSw0KSwKICB6bGltPWMoLTIsNCkpCgpzdXJmM0QoCiAgeC5wcmVkM0QsCiAgeS5wcmVkM0QsCiAgei5wcmVkM0QsCiAgY29sPSJibHVlIiwKICBmYWNldHM9TkEsCiAgYWRkPVRSVUUpCmBgYAoKTm90ZSwgdGhhdCB0aGUgbGluZWFyIHJlZ3Jlc3Npb24gaXMgbm93IGEgcGxhbmUuCgpIb3dldmVyLCB3ZSBvYnRhaW4gYSBwZXJmZWN0IGZpdCBhbmQgYWxsIHRoZSBkYXRhIHBvaW50cyBhcmUgZmFsbGluZyBpbiB0aGUgcGxhbmUhIGByIHNldC5zZWVkKDQpO2Vtbzo6amkoImZlYXIiKWAKClRoaXMgaXMgb2J2aW91cyBpZiB3ZSBsb29rIGF0IHRoZSBjb2x1bW4gc3BhY2Ugb2YgWCEKCmBgYHtyfQpYIDwtIGNiaW5kKFgsYygyLDAsMSkpClh0WCA8LSB0KFgpJSolWAplaWdlblh0WCA8LSBlaWdlbihYdFgpClh0WGludlNxcnQgPC0gZWlnZW5YdFgkdmVjdG9ycyAlKiVkaWFnKDEvZWlnZW5YdFgkdmFsdWVzXi41KSUqJXQoZWlnZW5YdFgkdmVjdG9ycykKVSA8LSBYICUqJSBYdFhpbnZTcXJ0CgpwNyA8LSBwMSAlPiUKICBhZGRfdHJhY2UoCiAgICB4ID0gYygwLDIpLAogICAgeSA9IGMoMCwwKSwKICAgIHogPSBjKDAsMSksCiAgICBtb2RlID0gImxpbmVzIiwKICAgIGxpbmUgPSBsaXN0KHdpZHRoID0gNSwgY29sb3IgPSAiZGFya2dyZWVuIiksCiAgICB0eXBlPSJzY2F0dGVyM2QiKQpwNwpgYGAKCmBgYHtyfQpwOCA8LSBwNyAlPiUKICBhZGRfdHJhY2UoCiAgICB4ID0gYygwLFVbMSwxXSksCiAgICB5ID0gYygwLFVbMiwxXSksCiAgICB6ID0gYygwLFVbMywxXSksCiAgICBtb2RlID0gImxpbmVzIiwKICAgIGxpbmUgPSBsaXN0KHdpZHRoID0gNSwgY29sb3IgPSAiYmx1ZSIpLAogICAgdHlwZT0ic2NhdHRlcjNkIikgJT4lCiAgYWRkX3RyYWNlKAogICAgeCA9IGMoMCxVWzEsMl0pLAogICAgeSA9IGMoMCxVWzIsMl0pLAogICAgeiA9IGMoMCxVWzMsMl0pLAogICAgbW9kZSA9ICJsaW5lcyIsCiAgICBsaW5lID0gbGlzdCh3aWR0aCA9IDUsIGNvbG9yID0gImJsdWUiKSwKICAgIHR5cGU9InNjYXR0ZXIzZCIpICU+JQogIGFkZF90cmFjZSgKICAgIHggPSBjKDAsVVsxLDNdKSwKICAgIHkgPSBjKDAsVVsyLDNdKSwKICAgIHogPSBjKDAsVVszLDNdKSwKICAgIG1vZGUgPSAibGluZXMiLAogICAgbGluZSA9IGxpc3Qod2lkdGggPSA1LCBjb2xvciA9ICJibHVlIiksCiAgICB0eXBlPSJzY2F0dGVyM2QiKQoKcDgKYGBgCgotIFRoZSBjb2x1bW4gc3BhY2Ugbm93IHNwYW5zIHRoZSBlbnRpcmUgICRcbWF0aGJie1J9XjMkIQotIFdpdGggdGhlIGludGVyY2VwdCBhbmQgdGhlIHR3byBwcmVkaWN0b3JzIHdlIGNhbiB0aHVzIGZpdCBldmVyeSBkYXRhc2V0IHRoYXQgb25seSBoYXMgMyBvYnNlcnZhdGlvbnMgZm9yIHRoZSBwcmVkaWN0b3JzIGFuZCB0aGUgcmVzcG9uc2UuCi0gU28gdGhlIG1vZGVsIGNhbiBubyBsb25nZXIgYmUgdXNlZCB0byBnZW5lcmFsaXNlIHRoZSBwYXR0ZXJucyBzZWVuIGluIHRoZSBkYXRhIHRvd2FyZHMgdGhlIHBvcHVsYXRpb24gKG5ldyBvYnNlcnZhdGlvbnMpLgotIFByb2JsZW0gb2Ygb3ZlcmZpdHRpbmchISEKCi0gSWYgJHAgPj4gbiQgdGhlbiB0aGUgcHJvYmxlbSBnZXRzIGV2ZW4gd29yc2UhIFRoZW4gdGhlcmUgaXMgZXZlbiBubyBsb25nZXIgYSB1bmlxdWUgc29sdXRpb24gdG8gdGhlIGxlYXN0IHNxdWFyZXMgcHJvYmxlbS4uLgo=</div>
+<div class="footer">
+    <hr>
+    This work is licensed under the <a href= "https://creativecommons.org/licenses/by-nc-sa/4.0">
+    CC BY-NC-SA 4.0</a> licence.
+</div>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeSourceEmbed("lsGeometricInterpretation.Rmd");
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
