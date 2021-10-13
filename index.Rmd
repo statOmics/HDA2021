@@ -55,15 +55,15 @@ email or during the lectures or practical sessions.
   - Software: [Install and Launch Statistical Software](./software4stats.html)
   - [Introduction](./intro.html) [[PDF](./intro.pdf)]
   - Linear regression [Geometric Interpretation](./lsGeometricInterpretation.html)
-  <!-- - [Introduction to RMarkdown](./Introduction-RMarkdown.html) -->
-  <!-- - [Introduction to matrices in R](./Introduction-Matrices-R.html) -->
+  - [Introduction to RMarkdown](./Introduction-RMarkdown.html)
+  - [Introduction to matrices in R](./Introduction-Matrices-R.html)
 
 #### 2. Singular value decomposition
 
   - [Lecture 2-3: Singular value decomposition](./svd.html) [[PDF](./svd.pdf)]
   - [Geometric Interpretation](./svdGeometricInterpretation.html)
   - [MDS Link Gram Distance Matrix](./MDS_linkGramDistanceMatrix.html)
-  <!-- - [Lab 1: Introduction and SVD applications](./Lab1-Intro-SVD.html) -->
+  - [Lab 1: Introduction and SVD applications](./Lab1-Intro-SVD.html)
   <!-- - [Lab 2: PCA](./Lab2-PCA.html) -->
 
 #### 3. Prediction with High Dimensional Predictors

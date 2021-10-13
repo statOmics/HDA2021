@@ -29,8 +29,8 @@ navbar:
     - text: "Labs"
       icon: fa-laptop
       menu:
-      - text: "Coming soon!"
-        href:
+      - text: "Lab 1"
+        href: Lab1-Intro-SVD.html
   right:
     - icon: fab fa-github
       href: https://github.com/statOmics/HDDA21
