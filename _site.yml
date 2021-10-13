@@ -49,9 +49,5 @@ output:
       include:
         after_body: footer.html
       css: style.css
-  pdf_document:
-    toc: true
-    number_sections: true
-    latex_engine: xelatex
 new_session: true
 exclude: ["renv.lock", "raw-data"]
