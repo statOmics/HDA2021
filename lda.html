@@ -676,28 +676,27 @@ breast.slda &lt;- sda(x = X2,
   stop = -50,
   maxIte = 25,
   trace = TRUE)</code></pre>
-<pre><code>## ite:  1  ridge cost:  98.96643  |b|_1:  5.301418 
-## ite:  2  ridge cost:  92.20657  |b|_1:  5.574295 
-## ite:  3  ridge cost:  92.01257  |b|_1:  5.329536 
-## ite:  4  ridge cost:  89.79596  |b|_1:  5.600795 
-## ite:  5  ridge cost:  88.65462  |b|_1:  5.761096 
-## ite:  6  ridge cost:  88.4144  |b|_1:  5.789503 
-## ite:  7  ridge cost:  88.16912  |b|_1:  5.830117 
-## ite:  8  ridge cost:  87.96974  |b|_1:  5.866177 
-## ite:  9  ridge cost:  87.87365  |b|_1:  5.883946 
-## ite:  10  ridge cost:  87.82683  |b|_1:  5.892704 
-## ite:  11  ridge cost:  87.80388  |b|_1:  5.89702 
-## ite:  12  ridge cost:  87.79261  |b|_1:  5.899147 
-## ite:  13  ridge cost:  87.78705  |b|_1:  5.900196 
-## ite:  14  ridge cost:  87.78432  |b|_1:  5.900713 
-## ite:  15  ridge cost:  87.78297  |b|_1:  5.900968 
-## ite:  16  ridge cost:  87.78231  |b|_1:  5.901093 
-## ite:  17  ridge cost:  87.78198  |b|_1:  5.901155 
-## ite:  18  ridge cost:  87.78182  |b|_1:  5.901186 
-## ite:  19  ridge cost:  87.78174  |b|_1:  5.901201 
-## ite:  1  ridge cost:  134.7778  |b|_1:  5.379259 
-## ite:  2  ridge cost:  134.7778  |b|_1:  5.379259 
-## final update, total ridge cost:  222.5595  |b|_1:  11.28046</code></pre>
+<pre><code>## ite:  1  ridge cost:  92.13987  |b|_1:  5.558217 
+## ite:  2  ridge cost:  89.61364  |b|_1:  5.704252 
+## ite:  3  ridge cost:  88.37327  |b|_1:  5.833096 
+## ite:  4  ridge cost:  87.70409  |b|_1:  5.92812 
+## ite:  5  ridge cost:  88.05903  |b|_1:  5.852153 
+## ite:  6  ridge cost:  87.50389  |b|_1:  5.954857 
+## ite:  7  ridge cost:  87.81367  |b|_1:  5.895391 
+## ite:  8  ridge cost:  87.85366  |b|_1:  5.887668 
+## ite:  9  ridge cost:  87.79671  |b|_1:  5.898385 
+## ite:  10  ridge cost:  87.76715  |b|_1:  5.903966 
+## ite:  11  ridge cost:  87.7727  |b|_1:  5.902912 
+## ite:  12  ridge cost:  87.77724  |b|_1:  5.902051 
+## ite:  13  ridge cost:  87.77948  |b|_1:  5.901627 
+## ite:  14  ridge cost:  87.78059  |b|_1:  5.901418 
+## ite:  15  ridge cost:  87.78113  |b|_1:  5.901315 
+## ite:  16  ridge cost:  87.7814  |b|_1:  5.901265 
+## ite:  17  ridge cost:  87.78153  |b|_1:  5.90124 
+## ite:  18  ridge cost:  87.7816  |b|_1:  5.901227 
+## ite:  1  ridge cost:  134.7777  |b|_1:  5.379261 
+## ite:  2  ridge cost:  134.7777  |b|_1:  5.379261 
+## final update, total ridge cost:  222.5593  |b|_1:  11.28049</code></pre>
 <pre class="r"><code>Vsda &lt;- matrix(0, nrow=ncol(X2), ncol=2)
 Vsda[breast.slda$varIndex,] &lt;- breast.slda$beta
 colnames(Vsda) &lt;- paste0(&quot;V&quot;,1:ncol(Vsda))
@@ -793,7 +792,7 @@ grid.arrange(
 <h1>Session info</h1>
 <details>
 <p><summary>Session info</summary></p>
-<pre><code>## [1] &quot;2021-10-13 14:38:29 UTC&quot;</code></pre>
+<pre><code>## [1] &quot;2021-10-20 13:36:43 UTC&quot;</code></pre>
 <pre><code>## ─ Session info ───────────────────────────────────────────────────────────────
 ##  setting  value                       
 ##  version  R version 4.1.1 (2021-08-10)
@@ -804,7 +803,7 @@ grid.arrange(
 ##  collate  en_US.UTF-8                 
 ##  ctype    en_US.UTF-8                 
 ##  tz       UTC                         
-##  date     2021-10-13                  
+##  date     2021-10-20                  
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────
 ##  ! package           * version    date       lib
@@ -853,7 +852,7 @@ grid.arrange(
 ##  P genefu            * 2.24.2     2021-05-23 [?]
 ##  P generics            0.1.0      2020-10-31 [?]
 ##  P GenomeInfoDb        1.28.4     2021-09-09 [?]
-##  P GenomeInfoDbData    1.2.6      2021-10-13 [?]
+##  P GenomeInfoDbData    1.2.6      2021-10-20 [?]
 ##  P ggplot2           * 3.3.5      2021-06-25 [?]
 ##  P globals             0.14.0     2020-11-22 [?]
 ##  P glue                1.4.2      2020-08-27 [?]
@@ -892,7 +891,7 @@ grid.arrange(
 ##  P pamr              * 1.56.1     2019-04-22 [?]
 ##  P parallelly          1.28.1     2021-09-09 [?]
 ##  P pillar              1.6.3      2021-09-26 [?]
-##  P pkgconfig           2.0.3      2021-10-13 [?]
+##  P pkgconfig           2.0.3      2021-10-20 [?]
 ##  P png                 0.1-7      2013-12-03 [?]
 ##  P prettyunits         1.1.1      2020-01-24 [?]
 ##  P prodlim           * 2019.11.13 2019-11-17 [?]
@@ -1071,7 +1070,7 @@ grid.arrange(
 ##  Bioconductor                    
 ## 
 ## [1] /Users/runner/work/HDDA21/HDDA21/renv/library/R-4.1/x86_64-apple-darwin17.0
-## [2] /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpqCmNFD/renv-system-library
+## [2] /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpIWQsJk/renv-system-library
 ## 
 ##  P ── Loaded and on-disk path mismatch.</code></pre>
 </details>
