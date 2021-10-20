@@ -1,0 +1,1348 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Adapted by Milan Malfait" />
+
+<meta name="date" content="2021-10-14" />
+
+<title>Analysis of High Dimensional Data - Lab 1</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<script src="site_libs/navigation-1.1/sourceembed.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+#rmd-source-code {
+  display: none;
+}
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">HDDA21</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-chalkboard-teacher"></span>
+     
+    Lectures
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="intro.html">1. Introduction</a>
+    </li>
+    <li>
+      <a href="svd.html">2. Singular Value Decomposition</a>
+    </li>
+    <li>
+      <a href="svdGeometricInterpretation.html">2.3. Geometric Interpretation SVD</a>
+    </li>
+    <li>
+      <a href="MDS_linkGramDistanceMatrix.html">2.7. Link MDS and Gram Distance Matrix</a>
+    </li>
+    <li>
+      <a href="prediction.html">3. Prediction with High Dimensional Predictors</a>
+    </li>
+    <li>
+      <a href="sparseSvd.html">4. Sparse Singular Value Decomposition</a>
+    </li>
+    <li>
+      <a href="lda.html">5. Linear Discriminant Analysis</a>
+    </li>
+    <li>
+      <a href="lsi.html">6. Large Scale Inference</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-laptop"></span>
+     
+    Labs
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Lab1-Intro-SVD.html">Lab 1</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/statOmics/HDDA21">
+    <span class="fab fa-github"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="http://statomics.github.io/">statOmics</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+<li role="separator" class="divider"></li>
+<li><a id="rmd-download-source" href="#">Download Rmd</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Analysis of High Dimensional Data - Lab 1</h1>
+<h4 class="author">Adapted by Milan Malfait</h4>
+<h4 class="date">14 Oct 2021</h4>
+
+</div>
+
+
+<hr />
+<div id="introduction" class="section level1">
+<h1><span class="header-section-number">1</span> Introduction</h1>
+<p>The purpose of the following exercises is mainly to get more familiar with SVD and its applications, in particular Multidimensional Scaling (MDS). It is recommended to perform the exercises in an <code>RMarkdown</code> document.</p>
+<p>For a brief introduction to RMarkdown, see <a href="./Introduction-RMarkdown.html">Introduction to RMarkdown</a>.</p>
+<p>For an introduction to working with matrices in R, see <a href="./Introduction-Matrices-R.html">Working with Matrices in R</a>.</p>
+<div id="libraries" class="section level2 unnumbered">
+<h2>Libraries</h2>
+<p>Packages used in this document. Installation code is commented, uncomment and paste this code in an R console to install the packages.</p>
+<pre class="r"><code># install.packages(&quot;tidyverse&quot;)
+library(tidyverse)</code></pre>
+</div>
+</div>
+<div id="multidimensional-scaling-mds-demonstration" class="section level1">
+<h1><span class="header-section-number">2</span> Multidimensional Scaling (MDS) demonstration</h1>
+<p>See <a href="https://statomics.github.io/HDDA21/svd.html#7_SVD_and_Multi-Dimensional_Scaling_(MDS)">course notes</a> for background.</p>
+<ul>
+<li>We will use <code>UScitiesD</code> data as an example</li>
+<li>Our goal is to use the distance matrix <span class="math inline">\(\mathbf D_X\)</span> without knowledge of <span class="math inline">\(\mathbf X\)</span> to represent the rows of <span class="math inline">\(\mathbf X\)</span> in a low dimensional space, say 2D or 3D.</li>
+<li>We search for <span class="math inline">\(\mathbf V_k\)</span> that orthogonally projects the rows of <span class="math inline">\(\mathbf X\)</span> (<span class="math inline">\(\mathbf x^T_i\)</span>) onto a <span class="math inline">\(k\)</span>-dimensional space spanned by the columns of <span class="math inline">\(\mathbf V_k\)</span>. In fact we are looking for <span class="math inline">\(\mathbf Z_k\)</span>, such that <span class="math inline">\(\mathbf Z_k=\mathbf X \mathbf V_k\)</span></li>
+<li>But we do not know <span class="math inline">\(\mathbf X\)</span>, so how do we get <span class="math inline">\(\mathbf Z_k\)</span>? We will use the <span class="math inline">\(\mathbf G_X\)</span> (gram matrix) trick, mentioned in the course notes</li>
+</ul>
+<div id="example-distances-between-us-cities" class="section level2">
+<h2><span class="header-section-number">2.1</span> Example: Distances between US cities</h2>
+<p>As an example, we will use the <code>UScitiesD</code> data set, which is part of base R. This data gives “straight line” distances (in km) between 10 cities in the US.</p>
+<pre class="r"><code>UScitiesD
+#&gt;               Atlanta Chicago Denver Houston LosAngeles Miami NewYork
+#&gt; Chicago           587                                                
+#&gt; Denver           1212     920                                        
+#&gt; Houston           701     940    879                                 
+#&gt; LosAngeles       1936    1745    831    1374                         
+#&gt; Miami             604    1188   1726     968       2339              
+#&gt; NewYork           748     713   1631    1420       2451  1092        
+#&gt; SanFrancisco     2139    1858    949    1645        347  2594    2571
+#&gt; Seattle          2182    1737   1021    1891        959  2734    2408
+#&gt; Washington.DC     543     597   1494    1220       2300   923     205
+#&gt;               SanFrancisco Seattle
+#&gt; Chicago                           
+#&gt; Denver                            
+#&gt; Houston                           
+#&gt; LosAngeles                        
+#&gt; Miami                             
+#&gt; NewYork                           
+#&gt; SanFrancisco                      
+#&gt; Seattle                678        
+#&gt; Washington.DC         2442    2329
+class(UScitiesD)
+#&gt; [1] &quot;dist&quot;</code></pre>
+<p>Note that the <code>UScitiesD</code> object is of class <code>"dist"</code>, which is a special type of object to represent that it is a <strong>distance matrix</strong> (we’ll denote this as <span class="math inline">\(\mathbf{D}_X\)</span>), i.e. the result from computing distances from an original matrix <span class="math inline">\(\mathbf{X}\)</span>. In this case, the original matrix <span class="math inline">\(\mathbf{X}\)</span> was likely a matrix with a row for every city and columns specifying its coordinates. Note though that we don’t know <span class="math inline">\(\mathbf{X}\)</span> exactly. Still, we can use the distance matrix and MDS to approximate a low-dimensional representation of <span class="math inline">\(\mathbf{X}\)</span>.</p>
+<div id="exploring-the-distance-matrix" class="section level3">
+<h3><span class="header-section-number">2.1.1</span> Exploring the distance matrix</h3>
+<p>We first convert the <code>UScitiesD</code> to a matrix for easier manipulation and calculation. Note that this creates a “symmetrical” matrix, with 0s on the diagonal (distance of a city to itself).</p>
+<pre class="r"><code>(dist_mx &lt;- as.matrix(UScitiesD))
+#&gt;               Atlanta Chicago Denver Houston LosAngeles Miami NewYork
+#&gt; Atlanta             0     587   1212     701       1936   604     748
+#&gt; Chicago           587       0    920     940       1745  1188     713
+#&gt; Denver           1212     920      0     879        831  1726    1631
+#&gt; Houston           701     940    879       0       1374   968    1420
+#&gt; LosAngeles       1936    1745    831    1374          0  2339    2451
+#&gt; Miami             604    1188   1726     968       2339     0    1092
+#&gt; NewYork           748     713   1631    1420       2451  1092       0
+#&gt; SanFrancisco     2139    1858    949    1645        347  2594    2571
+#&gt; Seattle          2182    1737   1021    1891        959  2734    2408
+#&gt; Washington.DC     543     597   1494    1220       2300   923     205
+#&gt;               SanFrancisco Seattle Washington.DC
+#&gt; Atlanta               2139    2182           543
+#&gt; Chicago               1858    1737           597
+#&gt; Denver                 949    1021          1494
+#&gt; Houston               1645    1891          1220
+#&gt; LosAngeles             347     959          2300
+#&gt; Miami                 2594    2734           923
+#&gt; NewYork               2571    2408           205
+#&gt; SanFrancisco             0     678          2442
+#&gt; Seattle                678       0          2329
+#&gt; Washington.DC         2442    2329             0</code></pre>
+<p>The dimensions of <code>dist_mx</code>:</p>
+<pre class="r"><code># 10 x 10 square matrix
+dim(dist_mx)
+#&gt; [1] 10 10</code></pre>
+<p>And the rank of <code>dist_mx</code></p>
+<pre class="r"><code>qr(dist_mx)$rank
+#&gt; [1] 10</code></pre>
+<blockquote>
+<p>Q: is this matrix of full rank?</p>
+</blockquote>
+<details>
+<p><summary>Answer</summary> A: Yes, it is.</p>
+<pre class="r"><code>qr(dist_mx)$rank == min(dim(dist_mx))
+#&gt; [1] TRUE</code></pre>
+</details>
+</div>
+<div id="mathbfh-and-mathbfg_x-matrices" class="section level3">
+<h3><span class="header-section-number">2.1.2</span> <span class="math inline">\(\mathbf{H}\)</span> and <span class="math inline">\(\mathbf{G}_X\)</span> matrices</h3>
+<p>Now let’s create the <span class="math inline">\(\mathbf H\)</span> matrix.</p>
+<p><span class="math display">\[ \mathbf{H} = \mathbf{I}_{n \times n} - \frac{1}{n} \mathbf{1}_n\mathbf{1}_n^T \]</span></p>
+<pre class="r"><code>n &lt;- nrow(dist_mx)
+
+# 11^T
+(one_mat &lt;- matrix(rep(1, n * n), ncol = n, nrow = n))
+#&gt;       [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
+#&gt;  [1,]    1    1    1    1    1    1    1    1    1     1
+#&gt;  [2,]    1    1    1    1    1    1    1    1    1     1
+#&gt;  [3,]    1    1    1    1    1    1    1    1    1     1
+#&gt;  [4,]    1    1    1    1    1    1    1    1    1     1
+#&gt;  [5,]    1    1    1    1    1    1    1    1    1     1
+#&gt;  [6,]    1    1    1    1    1    1    1    1    1     1
+#&gt;  [7,]    1    1    1    1    1    1    1    1    1     1
+#&gt;  [8,]    1    1    1    1    1    1    1    1    1     1
+#&gt;  [9,]    1    1    1    1    1    1    1    1    1     1
+#&gt; [10,]    1    1    1    1    1    1    1    1    1     1
+## Alternatively: one_mat &lt;- rep(1, n) %o% rep(1, n)
+
+## Calculate H, diag(n) is the nxn identity matrix
+(H &lt;- diag(n) - (1/n) * one_mat)
+#&gt;       [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
+#&gt;  [1,]  0.9 -0.1 -0.1 -0.1 -0.1 -0.1 -0.1 -0.1 -0.1  -0.1
+#&gt;  [2,] -0.1  0.9 -0.1 -0.1 -0.1 -0.1 -0.1 -0.1 -0.1  -0.1
+#&gt;  [3,] -0.1 -0.1  0.9 -0.1 -0.1 -0.1 -0.1 -0.1 -0.1  -0.1
+#&gt;  [4,] -0.1 -0.1 -0.1  0.9 -0.1 -0.1 -0.1 -0.1 -0.1  -0.1
+#&gt;  [5,] -0.1 -0.1 -0.1 -0.1  0.9 -0.1 -0.1 -0.1 -0.1  -0.1
+#&gt;  [6,] -0.1 -0.1 -0.1 -0.1 -0.1  0.9 -0.1 -0.1 -0.1  -0.1
+#&gt;  [7,] -0.1 -0.1 -0.1 -0.1 -0.1 -0.1  0.9 -0.1 -0.1  -0.1
+#&gt;  [8,] -0.1 -0.1 -0.1 -0.1 -0.1 -0.1 -0.1  0.9 -0.1  -0.1
+#&gt;  [9,] -0.1 -0.1 -0.1 -0.1 -0.1 -0.1 -0.1 -0.1  0.9  -0.1
+#&gt; [10,] -0.1 -0.1 -0.1 -0.1 -0.1 -0.1 -0.1 -0.1 -0.1   0.9</code></pre>
+<p>We can use <span class="math inline">\(\mathbf{H}\)</span> to center our distance matrix:</p>
+<pre class="r"><code>(dist_mx_centered &lt;- H %*% dist_mx)
+#&gt;       Atlanta Chicago  Denver Houston LosAngeles   Miami NewYork SanFrancisco
+#&gt;  [1,] -1065.2  -441.5   145.7  -402.8      507.8  -812.8  -575.9        616.7
+#&gt;  [2,]  -478.2 -1028.5  -146.3  -163.8      316.8  -228.8  -610.9        335.7
+#&gt;  [3,]   146.8  -108.5 -1066.3  -224.8     -597.2   309.2   307.1       -573.3
+#&gt;  [4,]  -364.2   -88.5  -187.3 -1103.8      -54.2  -448.8    96.1        122.7
+#&gt;  [5,]   870.8   716.5  -235.3   270.2    -1428.2   922.2  1127.1      -1175.3
+#&gt;  [6,]  -461.2   159.5   659.7  -135.8      910.8 -1416.8  -231.9       1071.7
+#&gt;  [7,]  -317.2  -315.5   564.7   316.2     1022.8  -324.8 -1323.9       1048.7
+#&gt;  [8,]  1073.8   829.5  -117.3   541.2    -1081.2  1177.2  1247.1      -1522.3
+#&gt;  [9,]  1116.8   708.5   -45.3   787.2     -469.2  1317.2  1084.1       -844.3
+#&gt; [10,]  -522.2  -431.5   427.7   116.2      871.8  -493.8 -1118.9        919.7
+#&gt;       Seattle Washington.DC
+#&gt;  [1,]   588.1        -662.3
+#&gt;  [2,]   143.1        -608.3
+#&gt;  [3,]  -572.9         288.7
+#&gt;  [4,]   297.1          14.7
+#&gt;  [5,]  -634.9        1094.7
+#&gt;  [6,]  1140.1        -282.3
+#&gt;  [7,]   814.1       -1000.3
+#&gt;  [8,]  -915.9        1236.7
+#&gt;  [9,] -1593.9        1123.7
+#&gt; [10,]   735.1       -1205.3
+round(colMeans(dist_mx_centered), 8)  # verify colMeans are 0
+#&gt;       Atlanta       Chicago        Denver       Houston    LosAngeles 
+#&gt;             0             0             0             0             0 
+#&gt;         Miami       NewYork  SanFrancisco       Seattle Washington.DC 
+#&gt;             0             0             0             0             0
+## Note that using `scale(X, center = TRUE, scale = FALSE)` is much more efficient
+## to center a matrix
+## Here we use the approach with H because we need it further on</code></pre>
+<p>We will use this matrix to calculate <span class="math inline">\(\mathbf{G}_X\)</span> (Gram matrix of <span class="math inline">\(\mathbf{X}\)</span>).</p>
+<p><span class="math display">\[
+\mathbf{G}_X = -\frac{1}{2}\mathbf{H}\mathbf{D}_X\mathbf{H} = \mathbf{X}\mathbf{X}^T
+\]</span></p>
+<p>Where <span class="math inline">\(\mathbf{D}_X\)</span> is the matrix of <strong><em>squared</em> distances</strong>. So we will first have to square our <code>dist_mx</code>.</p>
+<pre class="r"><code>## D_X = squared distance matrix
+D_X &lt;- dist_mx ^ 2
+
+## Gram matrix
+(G_X &lt;- -1/2 * H %*% (D_X) %*% H)
+#&gt;             [,1]      [,2]       [,3]       [,4]        [,5]       [,6]
+#&gt;  [1,]   537138.0  227674.7 -348122.18  198968.67  -808342.73   894857.1
+#&gt;  [2,]   227674.7  262780.5 -174028.93 -134309.58  -593985.98   234414.3
+#&gt;  [3,]  -348122.2 -174028.9  235561.67  -92439.48   569636.62  -563061.1
+#&gt;  [4,]   198968.7 -134309.6  -92439.48  352200.37    29298.47   516284.3
+#&gt;  [5,]  -808342.7 -593986.0  569636.62   29298.47  1594272.57 -1129628.1
+#&gt;  [6,]   894857.1  234414.3 -563061.08  516284.27 -1129628.13  1617392.2
+#&gt;  [7,]   696696.2  585085.0 -504420.43 -124220.58 -1498684.98   920343.3
+#&gt;  [8,] -1005131.5 -580731.7  681440.37 -162952.28  1750891.82 -1541761.9
+#&gt;  [9,] -1050183.2 -315384.4  658370.17 -550030.48  1399105.62 -1866872.1
+#&gt; [10,]   656444.9  488486.2 -462936.73  -32799.38 -1312563.28   918032.0
+#&gt;             [,7]       [,8]       [,9]       [,10]
+#&gt;  [1,]   696696.2 -1005131.5 -1050183.2   656444.92
+#&gt;  [2,]   585085.0  -580731.7  -315384.4   488486.17
+#&gt;  [3,]  -504420.4   681440.4   658370.2  -462936.73
+#&gt;  [4,]  -124220.6  -162952.3  -550030.5   -32799.38
+#&gt;  [5,] -1498685.0  1750891.8  1399105.6 -1312563.28
+#&gt;  [6,]   920343.3 -1541761.9 -1866872.1   918032.02
+#&gt;  [7,]  1415758.5 -1583181.2 -1129542.9  1222167.17
+#&gt;  [8,] -1583181.2  2027920.1  1845927.9 -1432421.53
+#&gt;  [9,] -1129542.9  1845927.9  2123619.7 -1115010.23
+#&gt; [10,]  1222167.2 -1432421.5 -1115010.2  1070600.87</code></pre>
+</div>
+<div id="the-svd" class="section level3">
+<h3><span class="header-section-number">2.1.3</span> The SVD</h3>
+<p>We can now compute the SVD of the Gram matrix and use it to project our original matrix <span class="math inline">\(\mathbf{X}\)</span> (which is still unknown to us!) into a lower dimensional space while preserving the Euclidean distances as well as possible. This is the essence of MDS.</p>
+<pre class="r"><code>## singular value decomposition on gram matrix
+Gx_svd &lt;- svd(G_X)
+
+## Use `str` to explore structure of the SVD object
+str(Gx_svd)
+#&gt; List of 3
+#&gt;  $ d: num [1:10] 9582144 1686820 35479 8157 5468 ...
+#&gt;  $ u: num [1:10, 1:10] -0.2322 -0.1234 0.1556 -0.0522 0.3889 ...
+#&gt;  $ v: num [1:10, 1:10] -0.2322 -0.1234 0.1556 -0.0522 0.3889 ...</code></pre>
+<p>Components of the <code>Gx_svd</code> object:</p>
+<ul>
+<li><code>Gx_svd$d</code>: diagonal elements of the <span class="math inline">\(\mathbf{\Delta}\)</span> matrix, to recreate the matrix, use the <code>diag()</code> function</li>
+<li><code>Gx_svd$u</code>: the matrix <span class="math inline">\(\mathbf{U}\)</span> of left singular vectors</li>
+<li><code>Gx_svd$v</code>: the matrix <span class="math inline">\(\mathbf{V}\)</span> of right singular vectors</li>
+</ul>
+</div>
+<div id="truncated-svd-and-projection-into-lower-dimensional-space" class="section level3">
+<h3><span class="header-section-number">2.1.4</span> Truncated SVD and projection into lower dimensional space</h3>
+<p>The truncated SVD from the Gram matrix can be used to find projections <span class="math inline">\(Z_k\)</span> of <span class="math inline">\(\mathbf{X}\)</span> in a lower dimensional space. Here we will use <span class="math inline">\(k = 2\)</span>.</p>
+<pre class="r"><code># k=2 approximation
+k &lt;- 2
+Uk &lt;- Gx_svd$u[, 1:k]
+delta_k &lt;- diag(Gx_svd$d[1:k])
+Zk &lt;- Uk %*% sqrt(delta_k)
+rownames(Zk) &lt;- colnames(D_X)
+colnames(Zk) &lt;- c(&quot;Z1&quot;, &quot;Z2&quot;)
+Zk
+#&gt;                       Z1         Z2
+#&gt; Atlanta        -718.7594  142.99427
+#&gt; Chicago        -382.0558 -340.83962
+#&gt; Denver          481.6023  -25.28504
+#&gt; Houston        -161.4663  572.76991
+#&gt; LosAngeles     1203.7380  390.10029
+#&gt; Miami         -1133.5271  581.90731
+#&gt; NewYork       -1072.2357 -519.02423
+#&gt; SanFrancisco   1420.6033  112.58920
+#&gt; Seattle        1341.7225 -579.73928
+#&gt; Washington.DC  -979.6220 -335.47281
+
+# Plotting Zk in 2-D
+
+## Using base R
+# plot(Zk, type = &quot;n&quot;, xlab = &quot;Z1&quot;, ylab = &quot;Z2&quot;, xlim = c(-1500, 1500))
+# text(Zk, rownames(Zk), cex = 1.25)
+
+## Using ggplot, by first converting Zk to a tibble
+Zk %&gt;%
+  # create tibble and change rownames to column named &quot;city&quot;
+  as_tibble(rownames = &quot;city&quot;) %&gt;%
+  ggplot(aes(Z1, Z2, label = city)) +
+    geom_point() +
+    # adding the city names as label
+    geom_text(nudge_y = 50) +
+    # setting limits of the x-axis to center the plot around 0
+    xlim(c(-1500, 1500)) +
+    ggtitle(&quot;MDS plot of the UScitiesD data&quot;) +
+    theme_minimal()</code></pre>
+<p><img src="Lab1-Intro-SVD_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>What can you say about the plot? Think about the real locations of these cities on a map of the US.</p>
+<details>
+<summary>Answer</summary> <span class="math inline">\(Z_1\)</span> can be interpreted as the <em>longitude</em>, i.e. the East-West position. <span class="math inline">\(Z_2\)</span> reflects the <em>latitude</em>, or the North-South position.
+</details>
+</div>
+</div>
+<div id="the-short-way" class="section level2">
+<h2><span class="header-section-number">2.2</span> The short way</h2>
+<p>The calculations above demonstrate how MDS works and what the underlying components are. However, in a real data analysis, one would typically not go through all the hassle of calculating all the intermediate steps. Fortunately, the MDS is already implemented in base R (in the <code>stats</code> package).</p>
+<p>So the whole derivation we did above can be reproduced with a single line of code, using the <code>cmdscale</code> function (see <code>?cmdscale</code> for details).</p>
+<pre class="r"><code>## Calculate MDS in 2 dimensions from distance matrix
+(us_mds &lt;- cmdscale(UScitiesD, k = 2))
+#&gt;                     [,1]       [,2]
+#&gt; Atlanta        -718.7594  142.99427
+#&gt; Chicago        -382.0558 -340.83962
+#&gt; Denver          481.6023  -25.28504
+#&gt; Houston        -161.4663  572.76991
+#&gt; LosAngeles     1203.7380  390.10029
+#&gt; Miami         -1133.5271  581.90731
+#&gt; NewYork       -1072.2357 -519.02423
+#&gt; SanFrancisco   1420.6033  112.58920
+#&gt; Seattle        1341.7225 -579.73928
+#&gt; Washington.DC  -979.6220 -335.47281
+colnames(us_mds) &lt;- c(&quot;Z1&quot;, &quot;Z2&quot;)
+
+## Plot MDS
+us_mds %&gt;%
+  as_tibble(rownames = &quot;city&quot;) %&gt;%
+  ggplot(aes(Z1, Z2, label = city)) +
+  geom_point() +
+  geom_text(nudge_y = 50) +
+  xlim(c(-1500, 1500)) +
+  theme_minimal()</code></pre>
+<p><img src="Lab1-Intro-SVD_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>Which gives us the same result as before (which is a good check that we didn’t make mistakes!).</p>
+</div>
+</div>
+<div id="exercises" class="section level1">
+<h1><span class="header-section-number">3</span> Exercises</h1>
+<div id="cheese-data" class="section level2">
+<h2><span class="header-section-number">3.1</span> Cheese data</h2>
+<div id="data-prep" class="section level3 unnumbered">
+<h3>Data prep</h3>
+<p>Read in the <code>cheese</code> data, which characterizes 30 cheeses on various metrics.</p>
+<pre class="r"><code>cheese &lt;- read_csv(&quot;https://github.com/statOmics/HDA2020/raw/data/cheese.csv&quot;,
+                   col_types = &quot;idddd&quot;)
+cheese</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Case"],"name":[1],"type":["int"],"align":["right"]},{"label":["taste"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Acetic"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["H2S"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Lactic"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"12.3","3":"4.543","4":"3.135","5":"0.86"},{"1":"2","2":"20.9","3":"5.159","4":"5.043","5":"1.53"},{"1":"3","2":"39.0","3":"5.366","4":"5.438","5":"1.57"},{"1":"4","2":"47.9","3":"5.759","4":"7.496","5":"1.81"},{"1":"5","2":"5.6","3":"4.663","4":"3.807","5":"0.99"},{"1":"6","2":"25.9","3":"5.697","4":"7.601","5":"1.09"},{"1":"7","2":"37.3","3":"5.892","4":"8.726","5":"1.29"},{"1":"8","2":"21.9","3":"6.078","4":"7.966","5":"1.78"},{"1":"9","2":"18.1","3":"4.898","4":"3.850","5":"1.29"},{"1":"10","2":"21.0","3":"5.242","4":"4.174","5":"1.58"},{"1":"11","2":"34.9","3":"5.740","4":"6.142","5":"1.68"},{"1":"12","2":"57.2","3":"6.446","4":"7.908","5":"1.90"},{"1":"13","2":"0.7","3":"4.477","4":"2.996","5":"1.06"},{"1":"14","2":"25.9","3":"5.236","4":"4.942","5":"1.30"},{"1":"15","2":"54.9","3":"6.151","4":"6.752","5":"1.52"},{"1":"16","2":"40.9","3":"6.365","4":"9.588","5":"1.74"},{"1":"17","2":"15.9","3":"4.787","4":"3.912","5":"1.16"},{"1":"18","2":"6.4","3":"5.412","4":"4.700","5":"1.49"},{"1":"19","2":"18.0","3":"5.247","4":"6.174","5":"1.63"},{"1":"20","2":"38.9","3":"5.438","4":"9.064","5":"1.99"},{"1":"21","2":"14.0","3":"4.564","4":"4.949","5":"1.15"},{"1":"22","2":"15.2","3":"5.298","4":"5.220","5":"1.33"},{"1":"23","2":"32.0","3":"5.455","4":"9.242","5":"1.44"},{"1":"24","2":"56.7","3":"5.855","4":"10.199","5":"2.01"},{"1":"25","2":"16.8","3":"5.366","4":"3.664","5":"1.31"},{"1":"26","2":"11.6","3":"6.043","4":"3.219","5":"1.46"},{"1":"27","2":"26.5","3":"6.458","4":"6.962","5":"1.72"},{"1":"28","2":"0.7","3":"5.328","4":"3.912","5":"1.25"},{"1":"29","2":"13.4","3":"5.802","4":"6.685","5":"1.08"},{"1":"30","2":"5.5","3":"6.176","4":"4.787","5":"1.25"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<blockquote>
+<p><strong>Q</strong>: what is the <em>dimensionality</em> of this data?</p>
+</blockquote>
+<details>
+<p><summary>Answer</summary> <strong>A</strong>: 4, since we have 4 features (the first column is just an identifier for the observation, so we don’t regard this as a feature).</p>
+<pre class="r"><code>ncol(cheese) - 1
+#&gt; [1] 4</code></pre>
+</details>
+<p>Convert the <code>cheese</code> table to a matrix for easier calculations. We will drop the first column (as it’s not a feature) and instead use it to create <code>rownames</code>.</p>
+<pre class="r"><code>cheese_mx &lt;- as.matrix(cheese[, -1])
+rownames(cheese_mx) &lt;- paste(&quot;case&quot;, cheese$Case, sep = &quot;_&quot;)
+cheese_mx
+#&gt;         taste Acetic    H2S Lactic
+#&gt; case_1   12.3  4.543  3.135   0.86
+#&gt; case_2   20.9  5.159  5.043   1.53
+#&gt; case_3   39.0  5.366  5.438   1.57
+#&gt; case_4   47.9  5.759  7.496   1.81
+#&gt; case_5    5.6  4.663  3.807   0.99
+#&gt; case_6   25.9  5.697  7.601   1.09
+#&gt; case_7   37.3  5.892  8.726   1.29
+#&gt; case_8   21.9  6.078  7.966   1.78
+#&gt; case_9   18.1  4.898  3.850   1.29
+#&gt; case_10  21.0  5.242  4.174   1.58
+#&gt; case_11  34.9  5.740  6.142   1.68
+#&gt; case_12  57.2  6.446  7.908   1.90
+#&gt; case_13   0.7  4.477  2.996   1.06
+#&gt; case_14  25.9  5.236  4.942   1.30
+#&gt; case_15  54.9  6.151  6.752   1.52
+#&gt; case_16  40.9  6.365  9.588   1.74
+#&gt; case_17  15.9  4.787  3.912   1.16
+#&gt; case_18   6.4  5.412  4.700   1.49
+#&gt; case_19  18.0  5.247  6.174   1.63
+#&gt; case_20  38.9  5.438  9.064   1.99
+#&gt; case_21  14.0  4.564  4.949   1.15
+#&gt; case_22  15.2  5.298  5.220   1.33
+#&gt; case_23  32.0  5.455  9.242   1.44
+#&gt; case_24  56.7  5.855 10.199   2.01
+#&gt; case_25  16.8  5.366  3.664   1.31
+#&gt; case_26  11.6  6.043  3.219   1.46
+#&gt; case_27  26.5  6.458  6.962   1.72
+#&gt; case_28   0.7  5.328  3.912   1.25
+#&gt; case_29  13.4  5.802  6.685   1.08
+#&gt; case_30   5.5  6.176  4.787   1.25</code></pre>
+<p>Check rank of <code>cheese_mx</code> and center the matrix.</p>
+<pre class="r"><code>qr(cheese_mx)$rank
+#&gt; [1] 4
+
+# Centering the data matrix
+n &lt;- nrow(cheese_mx)
+cheese_H &lt;- diag(n) - 1 / n * matrix(1, ncol = n, nrow = n)
+cheese_centered &lt;- cheese_H %*% as.matrix(cheese_mx)
+## Again we use H here because we use it for some exercises later on
+## In real-life applications using the `scale` function would be more appropriate</code></pre>
+</div>
+<div id="tasks" class="section level3 unnumbered">
+<h3>Tasks</h3>
+<p><em>Note</em>: no need for mathematical derivations, just verify code-wise in R.</p>
+<p>We obtained the column-centered data matrix <span class="math inline">\(\mathbf{X}\)</span> after multiplying the original matrix with</p>
+<p><span class="math display">\[
+\mathbf{H} = \mathbf{I} - \frac{1}{n} \mathbf{1}\mathbf{1}^T
+\]</span></p>
+<div id="show-that-mathbfx-here-cheese_centered-is-indeed-column-centered-and-not-row-centered" class="section level5 unnumbered">
+<h5>1. Show that <span class="math inline">\(\mathbf{X}\)</span> (here: <code>cheese_centered</code>) is indeed column-centered (and not row-centered)</h5>
+<details>
+<p><summary>Solution</summary></p>
+<pre class="r"><code># X is indeed column-centered:
+round(colMeans(cheese_centered), 14) ## practically zero
+#&gt;  taste Acetic    H2S Lactic 
+#&gt;      0      0      0      0
+
+# but it is not row-centered:
+ rowMeans(cheese_centered)
+#&gt;  [1] -4.144283333 -1.195783333  3.489716667  6.387466667 -5.588783333
+#&gt;  [6]  0.718216667  3.948216667  0.077216667 -2.319283333 -1.354783333
+#&gt; [11]  2.761716667  9.009716667 -7.045533333 -0.009283333  7.976966667
+#&gt; [16]  5.294466667 -2.914033333 -4.853283333 -1.591033333  4.494216667
+#&gt; [21] -3.188033333 -2.591783333  2.680466667  9.337216667 -2.568783333
+#&gt; [26] -3.773283333  1.056216667 -6.556283333 -2.612033333 -4.925533333</code></pre>
+</details>
+</div>
+<div id="verify-that-whenever-mathbfx-is-column-centered-the-equality-mathbfhx-x-holds" class="section level5 unnumbered">
+<h5>2. Verify that whenever <span class="math inline">\(\mathbf{X}\)</span> is column-centered, the equality <span class="math inline">\(\mathbf{HX = X}\)</span> holds</h5>
+<details>
+<p><summary>Solution</summary></p>
+<pre class="r"><code># verifying that HX = X
+all.equal(cheese_H %*% cheese_centered, cheese_centered)
+#&gt; [1] TRUE</code></pre>
+</details>
+</div>
+<div id="perform-an-svd-on-cheese_centered-and-store-the-matrices-mathbfu-mathbfv-and-mathbfdelta-as-separate-objects" class="section level5 unnumbered">
+<h5>3. Perform an SVD on <code>cheese_centered</code>, and store the matrices <span class="math inline">\(\mathbf{U}\)</span>, <span class="math inline">\(\mathbf{V}\)</span> and <span class="math inline">\(\mathbf{\Delta}\)</span> as separate objects</h5>
+<details>
+<p><summary>Solution</summary></p>
+<pre class="r"><code>cheese_svd &lt;- svd(cheese_centered)
+str(cheese_svd)
+#&gt; List of 3
+#&gt;  $ d: num [1:4] 87.99 7.53 2.39 1.06
+#&gt;  $ u: num [1:30, 1:4] -0.1418 -0.0422 0.163 0.266 -0.2167 ...
+#&gt;  $ v: num [1:4, 1:4] 0.9948 0.0193 0.0991 0.0131 0.1013 ...
+U &lt;- cheese_svd$u
+V &lt;- cheese_svd$v
+D &lt;- diag(cheese_svd$d)</code></pre>
+</details>
+</div>
+<div id="show-that-mathbfu_1-is-a-normalized-vector-show-the-same-for-mathbfu_2.-show-that-mathbfu_1-and-mathbfu_2-are-orthogonal-vectors.-then-show-the-orthonormality-of-all-vectors-mathbfu_j-in-a-single-calculation-using-the-matrix-mathbfu.-similarly-show-the-orthonormality-of-all-vectors-mathbfv_j-in-a-single-calculation-using-the-matrix-mathbfv." class="section level5 unnumbered">
+<h5>4. Show that <span class="math inline">\(\mathbf{u_1}\)</span> is a normalized vector; show the same for <span class="math inline">\(\mathbf{u_2}\)</span>. Show that <span class="math inline">\(\mathbf{u_1}\)</span> and <span class="math inline">\(\mathbf{u_2}\)</span> are orthogonal vectors. Then show the orthonormality of all vectors <span class="math inline">\(\mathbf{u_j}\)</span> in a single calculation (using the matrix <span class="math inline">\(\mathbf{U}\)</span>). Similarly, show the orthonormality of all vectors <span class="math inline">\(\mathbf{v_j}\)</span> in a single calculation (using the matrix <span class="math inline">\(\mathbf{V}\)</span>).</h5>
+<details>
+<p><summary>Solution</summary></p>
+<pre class="r"><code># Verifying orthonormality
+# ------------------------
+# The vectors u1 and u2 are orthonormal
+t(U[, 1]) %*% U[, 1]
+#&gt;      [,1]
+#&gt; [1,]    1
+t(U[, 2]) %*% U[, 2]
+#&gt;      [,1]
+#&gt; [1,]    1
+t(U[, 1]) %*% U[, 2]
+#&gt;              [,1]
+#&gt; [1,] 2.775558e-17
+
+# Verifying that U forms an orthonormal basis in one step:
+t(U) %*% U # computational imperfections
+#&gt;               [,1]          [,2]          [,3]         [,4]
+#&gt; [1,]  1.000000e+00  2.775558e-17 -1.942890e-16 3.469447e-17
+#&gt; [2,]  2.775558e-17  1.000000e+00 -2.081668e-17 6.938894e-18
+#&gt; [3,] -1.942890e-16 -2.081668e-17  1.000000e+00 8.326673e-17
+#&gt; [4,]  3.469447e-17  6.938894e-18  8.326673e-17 1.000000e+00
+round(t(U) %*% U, digits = 15)
+#&gt;      [,1] [,2] [,3] [,4]
+#&gt; [1,]    1    0    0    0
+#&gt; [2,]    0    1    0    0
+#&gt; [3,]    0    0    1    0
+#&gt; [4,]    0    0    0    1
+
+
+# Verifying that V forms an orthonormal basis:
+t(V) %*% V # computational imperfections
+#&gt;              [,1]          [,2]          [,3]          [,4]
+#&gt; [1,] 1.000000e+00  2.168404e-19  9.107298e-18  1.734723e-18
+#&gt; [2,] 2.168404e-19  1.000000e+00  1.162265e-16 -4.163336e-17
+#&gt; [3,] 9.107298e-18  1.162265e-16  1.000000e+00 -1.387779e-16
+#&gt; [4,] 1.734723e-18 -4.163336e-17 -1.387779e-16  1.000000e+00
+round(t(V) %*% V, digits = 15)
+#&gt;      [,1] [,2] [,3] [,4]
+#&gt; [1,]    1    0    0    0
+#&gt; [2,]    0    1    0    0
+#&gt; [3,]    0    0    1    0
+#&gt; [4,]    0    0    0    1</code></pre>
+</details>
+</div>
+<div id="check-that-the-svd-was-performed-correctly-i.e.-calculate-the-matrix-mathbfx-from-the-elements-of-the-svd." class="section level5 unnumbered">
+<h5>5. Check that the SVD was performed correctly, i.e. calculate the matrix <span class="math inline">\(\mathbf{X}\)</span> from the elements of the SVD.</h5>
+<details>
+<p><summary>Solution</summary></p>
+<p>There are 2 ways to do this</p>
+<ul>
+<li>Using the sum definition of the SVD <span class="math inline">\(\mathbf{X} = \sum_{j=1}^r \delta_j \mathbf{u}_j\mathbf{v}_j^T\)</span></li>
+</ul>
+<pre class="r"><code># Calculating X via the sum definition of the SVD:
+# ------------------------------------------------
+
+## Initialize empty matrix
+X_sum &lt;- matrix(0, nrow = nrow(U), ncol = ncol(V))
+
+## Compute sum by looping over columns
+for (j in 1:ncol(U)) {
+  X_sum &lt;- X_sum + (diag(D)[j] * U[, j] %*% t(V[, j]))
+}</code></pre>
+<ul>
+<li>using the matrix notation of the SVD</li>
+</ul>
+<p><span class="math inline">\(\mathbf{X}=\mathbf{U}_{n\times n}\boldsymbol{\Delta}_{n\times p}\mathbf{V}^T_{p \times p}\)</span></p>
+<pre class="r"><code># Calculating X via the SVD matrix multiplication:
+# ------------------------------------------------
+X_mult &lt;- U %*% D %*% t(V)</code></pre>
+<ul>
+<li>Verify that the obtained results are identical to the matrix <span class="math inline">\(\mathbf{X}\)</span>.</li>
+</ul>
+<pre class="r"><code>## Remove dimnames with unname for comparison
+all.equal(X_sum, unname(cheese_centered))
+#&gt; [1] TRUE
+all.equal(X_mult, unname(cheese_centered))
+#&gt; [1] TRUE</code></pre>
+</details>
+</div>
+<div id="approximate-the-matrix-mathbftildemathbfx-for-k-2-using-the-truncated-svd." class="section level5 unnumbered">
+<h5>6. Approximate the matrix <span class="math inline">\(\mathbf{\tilde{\mathbf{X}}}\)</span>, for <span class="math inline">\(k = 2\)</span> using the truncated SVD.</h5>
+<details>
+<p><summary>Solution</summary></p>
+<p>Using the matrix notation of the SVD <span class="math inline">\(\tilde{\mathbf{X}}=\mathbf{U}_{n\times k}\boldsymbol{\Delta}_{k\times k}\mathbf{V}_{p \times k}^T\)</span></p>
+<pre class="r"><code>k &lt;- 2
+X_tilde &lt;- U[, 1:k] %*% D[1:k,1:k] %*% t(V[,1:k])
+X_tilde
+#&gt;             [,1]         [,2]       [,3]        [,4]
+#&gt;  [1,] -12.239133 -0.473616046 -2.8890844 -0.22869032
+#&gt;  [2,]  -3.632893 -0.149296787 -0.9192007 -0.07036869
+#&gt;  [3,]  14.466098  0.003193815 -0.5222165  0.11143994
+#&gt;  [4,]  23.367068  0.343030388  1.5463259  0.27644233
+#&gt;  [5,] -18.937322 -0.412170627 -2.2022031 -0.26233046
+#&gt;  [6,]   1.362512  0.238584208  1.6362609  0.07850579
+#&gt;  [7,]  12.762842  0.458129158  2.7598179  0.22827153
+#&gt;  [8,]  -2.629186  0.279768668  2.0779016  0.05976183
+#&gt;  [9,]  -6.434808 -0.335320743 -2.1294786 -0.14487077
+#&gt; [10,]  -3.531065 -0.267124541 -1.7564651 -0.10322047
+#&gt; [11,]  10.368716  0.087369057  0.2274905  0.10415872
+#&gt; [12,]  32.669955  0.462076014  2.0380140  0.38149853
+#&gt; [13,] -23.836211 -0.552972271 -3.0136366 -0.33994737
+#&gt; [14,]   1.364965 -0.137217299 -1.0219832 -0.02873484
+#&gt; [15,]  30.366491  0.282301907  0.8531709  0.31258868
+#&gt; [16,]  16.368042  0.607820015  3.6828489  0.29854111
+#&gt; [17,]  -8.636391 -0.341018561 -2.0868672 -0.16331822
+#&gt; [18,] -18.129963 -0.266973043 -1.2055849 -0.21472027
+#&gt; [19,]  -6.532447 -0.005490492  0.2071824 -0.05147830
+#&gt; [20,]  14.366327  0.508218560  3.0537258  0.25481924
+#&gt; [21,] -10.538563 -0.211763797 -1.1009736 -0.14096055
+#&gt; [22,]  -9.333559 -0.152667016 -0.7283467 -0.11488660
+#&gt; [23,]   7.461972  0.494423480  3.2161739  0.19812912
+#&gt; [24,]  32.165441  0.765561370  4.2036533  0.46426305
+#&gt; [25,]  -7.731858 -0.358497140 -2.2445637 -0.16139578
+#&gt; [26,] -12.925926 -0.432844491 -2.5748303 -0.22230096
+#&gt; [27,]   1.972823  0.171717046  1.1403054  0.06408399
+#&gt; [28,] -23.831087 -0.408474088 -1.9917525 -0.29866628
+#&gt; [29,] -11.134642  0.049222629  0.7675071 -0.07102548
+#&gt; [30,] -19.028198 -0.245969372 -1.0231915 -0.21558848</code></pre>
+<ul>
+<li>Compare the obtained results with the matrix <span class="math inline">\(\mathbf{X}\)</span> (<code>cheese_centered</code>). Just at a first glance, does it seem that <span class="math inline">\(\mathbf{\tilde{X}}\)</span> is a good approximation of <span class="math inline">\(\mathbf{X}\)</span>?</li>
+</ul>
+</div>
+<div id="svd-and-linear-regression-perform-a-linear-regression-using-svd-to-estimate-the-effects-of-the-acetic-h2s-and-lactic-variables-on-the-taste." class="section level5 unnumbered">
+<h5>7. SVD and linear regression: perform a linear regression using SVD to estimate the effects of the <code>Acetic</code>, <code>H2S</code> and <code>Lactic</code> variables on the <code>taste</code>.</h5>
+<p>Note: we cannot use the SVD from before as this was calculated from the complete <code>cheese</code> table, also including the <code>taste</code> column, which is the response variable of interest here. Instead, we need to create a new design matrix <span class="math inline">\(\mathbf{X}\)</span> containing the predictors and a separate vector <span class="math inline">\(\mathbf{y}\)</span> containing the response.</p>
+<pre class="r"><code>cheese_y &lt;- cheese$taste
+cheese_design &lt;- cbind(Intercept = 1, cheese[c(&quot;Acetic&quot;, &quot;H2S&quot;, &quot;Lactic&quot;)])</code></pre>
+<p>Also perform the regression with <code>lm</code> and compare the results.</p>
+<details>
+<p><summary>Solution</summary></p>
+<pre class="r"><code>## Fit with lm
+lm_fit &lt;- lm(taste ~ Acetic + H2S + Lactic, data = cheese)
+
+## Fit with SVD
+design_svd &lt;- svd(cheese_design)
+svd_coef &lt;- design_svd$v %*% diag(1/design_svd$d) %*% t(design_svd$u) %*% cheese_y
+
+## Compare
+cbind(
+  &quot;lm&quot; = coef(lm_fit),
+  &quot;svd&quot; = drop(svd_coef)
+)
+#&gt;                      lm         svd
+#&gt; (Intercept) -28.8767696 -28.8767696
+#&gt; Acetic        0.3277413   0.3277413
+#&gt; H2S           3.9118411   3.9118411
+#&gt; Lactic       19.6705434  19.6705434</code></pre>
+</details>
+</div>
+</div>
+</div>
+<div id="exercise-employment-by-industry-in-european-countries" class="section level2">
+<h2><span class="header-section-number">3.2</span> Exercise: employment by industry in European countries</h2>
+<p>In this exercise we will focus on the interpretation of the <em>biplot</em>.</p>
+<div id="data-prep-1" class="section level3 unnumbered">
+<h3>Data prep</h3>
+<p>The <code>industries.txt</code> file contains data on the distribution of employment between 9 industrial sectors, in 26 European countries. The dataset stems from the Cold-War era; the data are expressed as percentages. Read in the data and explore its contents.</p>
+<p>You can read in the file with the following URL:</p>
+<pre class="r"><code>industries_url &lt;- &quot;https://github.com/statOmics/HDA2020/raw/data/industries.txt&quot;</code></pre>
+<details>
+<p><summary>Solution</summary></p>
+<pre class="r"><code>industries &lt;- read_delim(industries_url, delim = &quot; &quot;,
+                         col_types = cols())
+# Explore contents
+industries</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["country"],"name":[1],"type":["chr"],"align":["left"]},{"label":["agriculture"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["mining"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["manufacturing"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["power.supply"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["construction"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["services"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["finance"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["social.sector"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["transport"],"name":[10],"type":["dbl"],"align":["right"]}],"data":[{"1":"Belgium","2":"3.3","3":"0.9","4":"27.6","5":"0.9","6":"8.2","7":"19.1","8":"6.2","9":"26.6","10":"7.2"},{"1":"Denmark","2":"9.2","3":"0.1","4":"21.8","5":"0.6","6":"8.3","7":"14.6","8":"6.5","9":"32.2","10":"7.1"},{"1":"France","2":"10.8","3":"0.8","4":"27.5","5":"0.9","6":"8.9","7":"16.8","8":"6.0","9":"22.6","10":"5.7"},{"1":"W. Germany","2":"6.7","3":"1.3","4":"35.8","5":"0.9","6":"7.3","7":"14.4","8":"5.0","9":"22.3","10":"6.1"},{"1":"Ireland","2":"23.2","3":"1.0","4":"20.7","5":"1.3","6":"7.5","7":"16.8","8":"2.8","9":"20.8","10":"6.1"},{"1":"Italy","2":"15.9","3":"0.6","4":"27.6","5":"0.5","6":"10.0","7":"18.1","8":"1.6","9":"20.1","10":"5.7"},{"1":"Luxembourg","2":"7.7","3":"3.1","4":"30.8","5":"0.8","6":"9.2","7":"18.5","8":"4.6","9":"19.2","10":"6.2"},{"1":"Netherlands","2":"6.3","3":"0.1","4":"22.5","5":"1.0","6":"9.9","7":"18.0","8":"6.8","9":"28.5","10":"6.8"},{"1":"UK","2":"2.7","3":"1.4","4":"30.2","5":"1.4","6":"6.9","7":"16.9","8":"5.7","9":"28.3","10":"6.4"},{"1":"Austria","2":"12.7","3":"1.1","4":"30.2","5":"1.4","6":"9.0","7":"16.8","8":"4.9","9":"16.8","10":"7.0"},{"1":"Finland","2":"13.0","3":"0.4","4":"25.9","5":"1.3","6":"7.4","7":"14.7","8":"5.5","9":"24.3","10":"7.6"},{"1":"Greece","2":"41.4","3":"0.6","4":"17.6","5":"0.6","6":"8.1","7":"11.5","8":"2.4","9":"11.0","10":"6.7"},{"1":"Norway","2":"9.0","3":"0.5","4":"22.4","5":"0.8","6":"8.6","7":"16.9","8":"4.7","9":"27.6","10":"9.4"},{"1":"Portugal","2":"27.8","3":"0.3","4":"24.5","5":"0.6","6":"8.4","7":"13.3","8":"2.7","9":"16.7","10":"5.7"},{"1":"Spain","2":"22.9","3":"0.8","4":"28.5","5":"0.7","6":"11.5","7":"9.7","8":"8.5","9":"11.8","10":"5.5"},{"1":"Sweden","2":"6.1","3":"0.4","4":"25.9","5":"0.8","6":"7.2","7":"14.4","8":"6.0","9":"32.4","10":"6.8"},{"1":"Switzerland","2":"7.7","3":"0.2","4":"37.8","5":"0.8","6":"9.5","7":"17.5","8":"5.3","9":"15.4","10":"5.7"},{"1":"Turkey","2":"66.8","3":"0.7","4":"7.9","5":"0.1","6":"2.8","7":"5.2","8":"1.1","9":"11.9","10":"3.2"},{"1":"Bulgaria","2":"23.6","3":"1.9","4":"32.3","5":"0.6","6":"7.9","7":"8.0","8":"0.7","9":"18.2","10":"6.7"},{"1":"Czechoslovakia","2":"16.5","3":"2.9","4":"35.5","5":"1.2","6":"8.7","7":"9.2","8":"0.9","9":"17.9","10":"7.0"},{"1":"E. Germany","2":"4.2","3":"2.9","4":"41.2","5":"1.3","6":"7.6","7":"11.2","8":"1.2","9":"22.1","10":"8.4"},{"1":"Hungary","2":"21.7","3":"3.1","4":"29.6","5":"1.9","6":"8.2","7":"9.4","8":"0.9","9":"17.2","10":"8.0"},{"1":"Poland","2":"31.1","3":"2.5","4":"25.7","5":"0.9","6":"8.4","7":"7.5","8":"0.9","9":"16.1","10":"6.9"},{"1":"Romania","2":"34.7","3":"2.1","4":"30.1","5":"0.6","6":"8.7","7":"5.9","8":"1.3","9":"11.7","10":"5.0"},{"1":"USSR","2":"23.7","3":"1.4","4":"25.8","5":"0.6","6":"9.2","7":"6.1","8":"0.5","9":"23.6","10":"9.3"},{"1":"Yugoslavia","2":"48.7","3":"1.5","4":"16.8","5":"1.1","6":"4.9","7":"6.4","8":"11.3","9":"5.3","10":"4.0"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<pre class="r"><code>dim(industries)
+#&gt; [1] 26 10
+summary(industries)
+#&gt;    country           agriculture        mining      manufacturing  
+#&gt;  Length:26          Min.   : 2.70   Min.   :0.100   Min.   : 7.90  
+#&gt;  Class :character   1st Qu.: 7.70   1st Qu.:0.525   1st Qu.:23.00  
+#&gt;  Mode  :character   Median :14.45   Median :0.950   Median :27.55  
+#&gt;                     Mean   :19.13   Mean   :1.254   Mean   :27.01  
+#&gt;                     3rd Qu.:23.68   3rd Qu.:1.800   3rd Qu.:30.20  
+#&gt;                     Max.   :66.80   Max.   :3.100   Max.   :41.20  
+#&gt;   power.supply     construction       services        finance      
+#&gt;  Min.   :0.1000   Min.   : 2.800   Min.   : 5.20   Min.   : 0.500  
+#&gt;  1st Qu.:0.6000   1st Qu.: 7.525   1st Qu.: 9.25   1st Qu.: 1.225  
+#&gt;  Median :0.8500   Median : 8.350   Median :14.40   Median : 4.650  
+#&gt;  Mean   :0.9077   Mean   : 8.165   Mean   :12.96   Mean   : 4.000  
+#&gt;  3rd Qu.:1.1750   3rd Qu.: 8.975   3rd Qu.:16.88   3rd Qu.: 5.925  
+#&gt;  Max.   :1.9000   Max.   :11.500   Max.   :19.10   Max.   :11.300  
+#&gt;  social.sector     transport    
+#&gt;  Min.   : 5.30   Min.   :3.200  
+#&gt;  1st Qu.:16.25   1st Qu.:5.700  
+#&gt;  Median :19.65   Median :6.700  
+#&gt;  Mean   :20.02   Mean   :6.546  
+#&gt;  3rd Qu.:24.12   3rd Qu.:7.075  
+#&gt;  Max.   :32.40   Max.   :9.400</code></pre>
+<p>Create data matrix <span class="math inline">\(\mathbf{X}\)</span>.</p>
+<pre class="r"><code># Create matrix without first column (&quot;country&quot;, which will be used for rownames)
+indus_X &lt;- as.matrix(industries[, -1])
+rownames(indus_X) &lt;- industries$country
+
+# Check the dimensionality
+dim(indus_X)
+#&gt; [1] 26  9
+
+# and the rank
+qr(indus_X)$rank
+#&gt; [1] 9
+
+# n will be used subsequently
+n &lt;- nrow(indus_X)</code></pre>
+</details>
+</div>
+<div id="tasks-1" class="section level3 unnumbered">
+<h3>Tasks</h3>
+<div id="perform-a-truncated-svd-for-k2-and-construct-the-biplot-accordingly." class="section level5 unnumbered">
+<h5>1. Perform a truncated SVD for <span class="math inline">\(k=2\)</span>, and construct the biplot accordingly.</h5>
+<details>
+<p><summary>Solution</summary></p>
+<pre class="r"><code># Centering the data matrix first
+# H &lt;- diag(n) - 1 / n * matrix(1, ncol = n, nrow = n)
+# indus_centered &lt;- H %*% as.matrix(indus_X)
+indus_centered &lt;- scale(indus_X, scale = FALSE)</code></pre>
+<pre class="r"><code># Perform SVD
+indus_svd &lt;- svd(indus_centered)
+str(indus_svd)
+#&gt; List of 3
+#&gt;  $ d: num [1:9] 87.1 33.05 19.5 11.87 7.82 ...
+#&gt;  $ u: num [1:26, 1:9] -0.2011 -0.132 -0.1048 -0.1653 0.0512 ...
+#&gt;  $ v: num [1:9, 1:9] 0.89176 0.00192 -0.27127 -0.00839 -0.04959 ...
+
+# Extract singular vectors for k = 2 and calculate k=2 projection Zk
+k &lt;- 2
+Uk &lt;- indus_svd$u[ , 1:k]
+Dk &lt;- diag(indus_svd$d[1:k])
+
+Vk &lt;- indus_svd$v[, 1:k]
+rownames(Vk) &lt;- colnames(indus_X)
+colnames(Vk) &lt;- c(&quot;V1&quot;, &quot;V2&quot;)
+
+Zk &lt;- Uk %*% Dk
+rownames(Zk) &lt;- industries$country
+colnames(Zk) &lt;- c(&quot;Z1&quot;, &quot;Z2&quot;)
+Zk
+#&gt;                        Z1           Z2
+#&gt; Belgium        -17.516687  -4.92622849
+#&gt; Denmark        -11.496688 -11.66176637
+#&gt; France          -9.128686  -2.16828207
+#&gt; W. Germany     -14.393424   5.04749385
+#&gt; Ireland          4.458174  -6.13156498
+#&gt; Italy           -4.026684  -0.38889529
+#&gt; Luxembourg     -12.089752   2.33236877
+#&gt; Netherlands    -13.900455  -9.72359023
+#&gt; UK             -18.728675  -3.33178946
+#&gt; Austria         -6.471418   3.35662962
+#&gt; Finland         -6.837047  -3.97634061
+#&gt; Greece          25.427083  -1.80467718
+#&gt; Norway         -10.972019  -8.85877780
+#&gt; Portugal         9.403865  -0.08570061
+#&gt; Spain            5.774973   6.15867547
+#&gt; Sweden         -15.311975  -8.52674423
+#&gt; Switzerland    -12.683839   9.77920054
+#&gt; Turkey          52.115644  -8.64165980
+#&gt; Bulgaria         4.156791   6.70685051
+#&gt; Czechoslovakia  -3.246127   9.23467980
+#&gt; E. Germany     -17.415527  10.73233092
+#&gt; Hungary          3.135737   4.98695108
+#&gt; Poland          13.315709   2.94482700
+#&gt; Romania         17.011336   9.12523022
+#&gt; USSR             4.587043  -0.87197041
+#&gt; Yugoslavia      34.832648   0.69274975</code></pre>
+<p>Biplot with <em>ggplot2</em>:</p>
+<pre class="r"><code>## Scale factor to draw Vk arrows (can be set arbitrarily)
+scale_factor &lt;- 20
+
+## Create tibble with rownames in &quot;country&quot; column
+as_tibble(Zk, rownames = &quot;country&quot;) %&gt;%
+  ggplot(aes(Z1, Z2)) +
+  geom_point() +
+  geom_text(aes(label = country), size = 3, nudge_y = 0.5) +
+  ## Plot Singular vectors Vk
+  geom_segment(
+    data = as_tibble(Vk, rownames = &quot;sector&quot;),
+    aes(x = 0, y = 0, xend = V1 * scale_factor, yend = V2 * scale_factor),
+    arrow = arrow(length = unit(0.4, &quot;cm&quot;)),
+    color = &quot;firebrick&quot;
+  ) +
+  geom_text(
+    data = as_tibble(Vk, rownames = &quot;sector&quot;),
+    aes(V1 * scale_factor, V2 * scale_factor, label = sector),
+    nudge_x = 0.5, nudge_y = ifelse(Vk[, 2] &gt;= 0, 0.5, -0.5),
+    color = &quot;firebrick&quot;, size = 3
+  ) +
+  theme_minimal()</code></pre>
+<p><img src="Lab1-Intro-SVD_files/figure-html/unnamed-chunk-25-1.png" width="768" /></p>
+<p>Using base R:</p>
+<pre class="r"><code># # Constructing the biplot for Z1 and Z2
+#  # -------------------------------------
+plot(Zk[,1:2], type=&quot;n&quot;, xlim=c(-30,60), ylim=c(-15,15),
+      xlab=&quot;Z1&quot;, ylab=&quot;Z2&quot;)
+text(Zk[,1:2], rownames(Zk), cex=0.9)
+# alpha &lt;- 1
+alpha &lt;- 20  # rescaling to get better visualisation
+for(i in 1:9) {
+  arrows(0,0, alpha*Vk[i,1], alpha*Vk[i,2], length=0.2, col=2)
+  text(alpha*Vk[i,1], alpha*Vk[i,2], rownames(Vk)[i], col=2)
+}</code></pre>
+<img src="Lab1-Intro-SVD_files/figure-html/unnamed-chunk-26-1.png" width="768" />
+</details>
+</div>
+<div id="to-see-if-we-can-learn-more-when-retaining-more-dimensions-repeat-the-truncated-svd-for-k3.-construct-two-dimensional-biplots-for" class="section level5 unnumbered">
+<h5>2. To see if we can learn more when retaining more dimensions, repeat the truncated SVD for <span class="math inline">\(k=3\)</span>. Construct two-dimensional biplots for:</h5>
+<ul>
+<li>Z1 and Z3</li>
+<li>Z2 and Z3</li>
+</ul>
+<details>
+<p><summary>Solution</summary></p>
+<p>No need to re-do SVD, just extract singular vectors for <span class="math inline">\(k=3\)</span> from previous SVD.</p>
+<pre class="r"><code># Extract singular vectors for k = 3 and calculate projection Zk
+k &lt;- 3
+Uk &lt;- indus_svd$u[ , 1:k]
+Dk &lt;- diag(indus_svd$d[1:k])
+
+Vk &lt;- indus_svd$v[, 1:k]
+rownames(Vk) &lt;- colnames(indus_X)
+colnames(Vk) &lt;- c(&quot;V1&quot;, &quot;V2&quot;, &quot;V3&quot;)
+
+Zk &lt;- Uk %*% Dk
+rownames(Zk) &lt;- industries$country
+colnames(Zk) &lt;- c(&quot;Z1&quot;, &quot;Z2&quot;, &quot;Z3&quot;)
+Zk
+#&gt;                        Z1           Z2          Z3
+#&gt; Belgium        -17.516687  -4.92622849 -2.35528094
+#&gt; Denmark        -11.496688 -11.66176637  3.00202830
+#&gt; France          -9.128686  -2.16828207 -2.75030568
+#&gt; W. Germany     -14.393424   5.04749385  0.20568951
+#&gt; Ireland          4.458174  -6.13156498 -1.92400082
+#&gt; Italy           -4.026684  -0.38889529 -2.40586194
+#&gt; Luxembourg     -12.089752   2.33236877 -4.62806669
+#&gt; Netherlands    -13.900455  -9.72359023 -1.70981367
+#&gt; UK             -18.728675  -3.33178946  0.58938403
+#&gt; Austria         -6.471418   3.35662962 -4.75660272
+#&gt; Finland         -6.837047  -3.97634061  0.06757235
+#&gt; Greece          25.427083  -1.80467718 -2.91613130
+#&gt; Norway         -10.972019  -8.85877780  0.22621023
+#&gt; Portugal         9.403865  -0.08570061 -1.23656256
+#&gt; Spain            5.774973   6.15867547 -4.87904446
+#&gt; Sweden         -15.311975  -8.52674423  3.92210148
+#&gt; Switzerland    -12.683839   9.77920054 -5.68921238
+#&gt; Turkey          52.115644  -8.64165980  2.96515501
+#&gt; Bulgaria         4.156791   6.70685051  4.93995679
+#&gt; Czechoslovakia  -3.246127   9.23467980  3.78225558
+#&gt; E. Germany     -17.415527  10.73233092  4.89564722
+#&gt; Hungary          3.135737   4.98695108  2.98354179
+#&gt; Poland          13.315709   2.94482700  3.58894681
+#&gt; Romania         17.011336   9.12523022  2.58152423
+#&gt; USSR             4.587043  -0.87197041  8.44875566
+#&gt; Yugoslavia      34.832648   0.69274975 -6.94788580</code></pre>
+<p>Create biplot as before.</p>
+<ul>
+<li>Z1 <em>vs.</em> Z3</li>
+</ul>
+<pre class="r"><code>## Scale factor to draw Vk arrows (can be set arbitrarily)
+scale_factor &lt;- 20
+
+## Create tibble with rownames in &quot;country&quot; column
+as_tibble(Zk, rownames = &quot;country&quot;) %&gt;%
+  ggplot(aes(Z1, Z3)) +
+  geom_point() +
+  geom_text(aes(label = country), size = 3, nudge_y = 0.5) +
+  ## Plot Singular vectors Vk
+  geom_segment(
+    data = as_tibble(Vk, rownames = &quot;sector&quot;),
+    aes(x = 0, y = 0, xend = V1 * scale_factor, yend = V3 * scale_factor),
+    arrow = arrow(length = unit(0.4, &quot;cm&quot;)),
+    color = &quot;firebrick&quot;
+  ) +
+  geom_text(
+    data = as_tibble(Vk, rownames = &quot;sector&quot;),
+    aes(V1 * scale_factor, V3 * scale_factor, label = sector),
+    nudge_x = 0.5, nudge_y = ifelse(Vk[, 3] &gt;= 0, 0.5, -0.5),
+    color = &quot;firebrick&quot;, size = 3
+  ) +
+  theme_minimal()</code></pre>
+<p><img src="Lab1-Intro-SVD_files/figure-html/unnamed-chunk-28-1.png" width="768" /></p>
+<ul>
+<li>Z2 <em>vs.</em> Z3</li>
+</ul>
+<pre class="r"><code># Scale factor to draw Vk arrows (can be set arbitrarily)
+scale_factor &lt;- 20
+
+## Create tibble with rownames in &quot;country&quot; column
+as_tibble(Zk, rownames = &quot;country&quot;) %&gt;%
+  ggplot(aes(Z2, Z3)) +
+  geom_point() +
+  geom_text(aes(label = country), size = 3, nudge_y = 0.5) +
+  ## Plot Singular vectors Vk
+  geom_segment(
+    data = as_tibble(Vk, rownames = &quot;sector&quot;),
+    aes(x = 0, y = 0, xend = V2 * scale_factor, yend = V3 * scale_factor),
+    arrow = arrow(length = unit(0.4, &quot;cm&quot;)),
+    color = &quot;firebrick&quot;
+  ) +
+  geom_text(
+    data = as_tibble(Vk, rownames = &quot;sector&quot;),
+    aes(V2 * scale_factor, V3 * scale_factor, label = sector),
+    nudge_x = 0.5, nudge_y = ifelse(Vk[, 3] &gt;= 0, 0.5, -0.5),
+    color = &quot;firebrick&quot;, size = 3
+  ) +
+  theme_minimal()</code></pre>
+<p><img src="Lab1-Intro-SVD_files/figure-html/unnamed-chunk-29-1.png" width="768" /></p>
+</div>
+<div id="can-you-give-a-meaningful-interpretation-to-each-dimension" class="section level5 unnumbered">
+<h5>3. Can you give a meaningful interpretation to each dimension?</h5>
+</div>
+</div>
+</div>
+</div>
+
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiQW5hbHlzaXMgb2YgSGlnaCBEaW1lbnNpb25hbCBEYXRhIC0gTGFiIDEiCmF1dGhvcjogIkFkYXB0ZWQgYnkgTWlsYW4gTWFsZmFpdCIKZGF0ZTogIjE0IE9jdCAyMDIxIgotLS0KCmBgYHtyIHNldHVwLCBpbmNsdWRlPUZBTFNFLCBjYWNoZT1GQUxTRX0Ka25pdHI6Om9wdHNfY2h1bmskc2V0KAogIGNvbGxhcHNlID0gVFJVRSwKICBjb21tZW50ID0gIiM+IgopCmBgYAoKKioqCgojIEludHJvZHVjdGlvbgoKVGhlIHB1cnBvc2Ugb2YgdGhlIGZvbGxvd2luZyBleGVyY2lzZXMgaXMgbWFpbmx5IHRvIGdldCBtb3JlIGZhbWlsaWFyIHdpdGggU1ZEIGFuZCBpdHMgYXBwbGljYXRpb25zLCBpbiBwYXJ0aWN1bGFyIE11bHRpZGltZW5zaW9uYWwgU2NhbGluZyAoTURTKS4KSXQgaXMgcmVjb21tZW5kZWQgdG8gcGVyZm9ybSB0aGUgZXhlcmNpc2VzIGluIGFuIGBSTWFya2Rvd25gIGRvY3VtZW50LgoKRm9yIGEgYnJpZWYgaW50cm9kdWN0aW9uIHRvIFJNYXJrZG93biwgc2VlIFtJbnRyb2R1Y3Rpb24gdG8gUk1hcmtkb3duXSguL0ludHJvZHVjdGlvbi1STWFya2Rvd24uaHRtbCkuCgpGb3IgYW4gaW50cm9kdWN0aW9uIHRvIHdvcmtpbmcgd2l0aCBtYXRyaWNlcyBpbiBSLCBzZWUgW1dvcmtpbmcgd2l0aCBNYXRyaWNlcyBpbiBSXSguL0ludHJvZHVjdGlvbi1NYXRyaWNlcy1SLmh0bWwpLgoKCiMjIExpYnJhcmllcyB7LX0KClBhY2thZ2VzIHVzZWQgaW4gdGhpcyBkb2N1bWVudC4KSW5zdGFsbGF0aW9uIGNvZGUgaXMgY29tbWVudGVkLCB1bmNvbW1lbnQgYW5kIHBhc3RlIHRoaXMgY29kZSBpbiBhbiBSIGNvbnNvbGUgdG8gaW5zdGFsbCB0aGUgcGFja2FnZXMuCgpgYGB7ciBsaWJyYXJpZXMsIG1lc3NhZ2U9RkFMU0UsIHdhcm5pbmc9RkFMU0V9CiMgaW5zdGFsbC5wYWNrYWdlcygidGlkeXZlcnNlIikKbGlicmFyeSh0aWR5dmVyc2UpCmBgYAoKCgojIE11bHRpZGltZW5zaW9uYWwgU2NhbGluZyAoTURTKSBkZW1vbnN0cmF0aW9uCgpTZWUgW2NvdXJzZSBub3Rlc10oaHR0cHM6Ly9zdGF0b21pY3MuZ2l0aHViLmlvL0hEREEyMS9zdmQuaHRtbCM3X1NWRF9hbmRfTXVsdGktRGltZW5zaW9uYWxfU2NhbGluZ18oTURTKSkgZm9yIGJhY2tncm91bmQuCgoKKiBXZSB3aWxsIHVzZSBgVVNjaXRpZXNEYCBkYXRhIGFzIGFuIGV4YW1wbGUKKiBPdXIgZ29hbCBpcyB0byB1c2UgdGhlIGRpc3RhbmNlIG1hdHJpeCAkXG1hdGhiZiBEX1gkICB3aXRob3V0IGtub3dsZWRnZSBvZiAkXG1hdGhiZiBYJCB0byByZXByZXNlbnQgdGhlIHJvd3Mgb2YgJFxtYXRoYmYgWCQgaW4gYSBsb3cgZGltZW5zaW9uYWwgc3BhY2UsIHNheSAyRCBvciAzRC4KKiBXZSBzZWFyY2ggZm9yICRcbWF0aGJmIFZfayQgdGhhdCBvcnRob2dvbmFsbHkgcHJvamVjdHMgdGhlIHJvd3Mgb2YgJFxtYXRoYmYgWCQgKCRcbWF0aGJmIHheVF9pJCkgb250byBhICRrJC1kaW1lbnNpb25hbCBzcGFjZSBzcGFubmVkIGJ5IHRoZSBjb2x1bW5zIG9mICRcbWF0aGJmIFZfayQuIEluIGZhY3Qgd2UgYXJlIGxvb2tpbmcgZm9yICRcbWF0aGJmIFpfayQsIHN1Y2ggdGhhdCAkXG1hdGhiZiBaX2s9XG1hdGhiZiBYIFxtYXRoYmYgVl9rJAoqICBCdXQgd2UgZG8gbm90IGtub3cgJFxtYXRoYmYgWCQsIHNvIGhvdyBkbyB3ZSBnZXQgJFxtYXRoYmYgWl9rJD8gV2Ugd2lsbCB1c2UgdGhlICRcbWF0aGJmIEdfWCQgKGdyYW0gbWF0cml4KSB0cmljaywgbWVudGlvbmVkIGluIHRoZSBjb3Vyc2Ugbm90ZXMKCgojIyBFeGFtcGxlOiBEaXN0YW5jZXMgYmV0d2VlbiBVUyBjaXRpZXMKCkFzIGFuIGV4YW1wbGUsIHdlIHdpbGwgdXNlIHRoZSBgVVNjaXRpZXNEYCBkYXRhIHNldCwgd2hpY2ggaXMgcGFydCBvZiBiYXNlIFIuClRoaXMgZGF0YSBnaXZlcyAic3RyYWlnaHQgbGluZSIgZGlzdGFuY2VzIChpbiBrbSkgYmV0d2VlbiAxMCBjaXRpZXMgaW4gdGhlIFVTLgoKYGBge3J9ClVTY2l0aWVzRApjbGFzcyhVU2NpdGllc0QpCmBgYAoKTm90ZSB0aGF0IHRoZSBgVVNjaXRpZXNEYCBvYmplY3QgaXMgb2YgY2xhc3MgYCJkaXN0ImAsIHdoaWNoIGlzIGEgc3BlY2lhbCB0eXBlIG9mIG9iamVjdCB0byByZXByZXNlbnQgdGhhdCBpdCBpcyBhIF9fZGlzdGFuY2UgbWF0cml4X18gKHdlJ2xsIGRlbm90ZSB0aGlzIGFzICRcbWF0aGJme0R9X1gkKSwgaS5lLiB0aGUgcmVzdWx0IGZyb20gY29tcHV0aW5nIGRpc3RhbmNlcyBmcm9tIGFuIG9yaWdpbmFsIG1hdHJpeCAkXG1hdGhiZntYfSQuCkluIHRoaXMgY2FzZSwgdGhlIG9yaWdpbmFsIG1hdHJpeCAkXG1hdGhiZntYfSQgd2FzIGxpa2VseSBhIG1hdHJpeCB3aXRoIGEgcm93IGZvciBldmVyeSBjaXR5IGFuZCBjb2x1bW5zIHNwZWNpZnlpbmcgaXRzIGNvb3JkaW5hdGVzLgpOb3RlIHRob3VnaCB0aGF0IHdlIGRvbid0IGtub3cgJFxtYXRoYmZ7WH0kIGV4YWN0bHkuClN0aWxsLCB3ZSBjYW4gdXNlIHRoZSBkaXN0YW5jZSBtYXRyaXggYW5kIE1EUyB0byBhcHByb3hpbWF0ZSBhIGxvdy1kaW1lbnNpb25hbCByZXByZXNlbnRhdGlvbiBvZiAkXG1hdGhiZntYfSQuCgoKIyMjIEV4cGxvcmluZyB0aGUgZGlzdGFuY2UgbWF0cml4CgpXZSBmaXJzdCBjb252ZXJ0IHRoZSBgVVNjaXRpZXNEYCB0byBhIG1hdHJpeCBmb3IgZWFzaWVyIG1hbmlwdWxhdGlvbiBhbmQgY2FsY3VsYXRpb24uCk5vdGUgdGhhdCB0aGlzIGNyZWF0ZXMgYSAic3ltbWV0cmljYWwiIG1hdHJpeCwgd2l0aCAwcyBvbiB0aGUgZGlhZ29uYWwgKGRpc3RhbmNlIG9mIGEgY2l0eSB0byBpdHNlbGYpLgoKYGBge3J9CihkaXN0X214IDwtIGFzLm1hdHJpeChVU2NpdGllc0QpKQpgYGAKClRoZSBkaW1lbnNpb25zIG9mIGBkaXN0X214YDoKCmBgYHtyfQojIDEwIHggMTAgc3F1YXJlIG1hdHJpeApkaW0oZGlzdF9teCkKYGBgCkFuZCB0aGUgcmFuayBvZiBgZGlzdF9teGAKCmBgYHtyfQpxcihkaXN0X214KSRyYW5rCmBgYAoKPlE6IGlzIHRoaXMgbWF0cml4IG9mIGZ1bGwgcmFuaz8KCjxkZXRhaWxzPjxzdW1tYXJ5PkFuc3dlcjwvc3VtbWFyeT4KQTogWWVzLCBpdCBpcy4KCmBgYHtyfQpxcihkaXN0X214KSRyYW5rID09IG1pbihkaW0oZGlzdF9teCkpCmBgYAoKPC9kZXRhaWxzPgoKCgojIyMgJFxtYXRoYmZ7SH0kIGFuZCAkXG1hdGhiZntHfV9YJCBtYXRyaWNlcwoKTm93IGxldCdzIGNyZWF0ZSB0aGUgJFxtYXRoYmYgIEgkIG1hdHJpeC4KCiQkIFxtYXRoYmZ7SH0gPSBcbWF0aGJme0l9X3tuIFx0aW1lcyBufSAtIFxmcmFjezF9e259IFxtYXRoYmZ7MX1fblxtYXRoYmZ7MX1fbl5UICQkCmBgYHtyIEhfbWF0cml4fQpuIDwtIG5yb3coZGlzdF9teCkKCiMgMTFeVAoob25lX21hdCA8LSBtYXRyaXgocmVwKDEsIG4gKiBuKSwgbmNvbCA9IG4sIG5yb3cgPSBuKSkKIyMgQWx0ZXJuYXRpdmVseTogb25lX21hdCA8LSByZXAoMSwgbikgJW8lIHJlcCgxLCBuKQoKIyMgQ2FsY3VsYXRlIEgsIGRpYWcobikgaXMgdGhlIG54biBpZGVudGl0eSBtYXRyaXgKKEggPC0gZGlhZyhuKSAtICgxL24pICogb25lX21hdCkKYGBgCgpXZSBjYW4gdXNlICRcbWF0aGJme0h9JCB0byBjZW50ZXIgb3VyIGRpc3RhbmNlIG1hdHJpeDoKCmBgYHtyIGRpc3RfbXhfY2VudGVyZWR9CihkaXN0X214X2NlbnRlcmVkIDwtIEggJSolIGRpc3RfbXgpCnJvdW5kKGNvbE1lYW5zKGRpc3RfbXhfY2VudGVyZWQpLCA4KSAgIyB2ZXJpZnkgY29sTWVhbnMgYXJlIDAKIyMgTm90ZSB0aGF0IHVzaW5nIGBzY2FsZShYLCBjZW50ZXIgPSBUUlVFLCBzY2FsZSA9IEZBTFNFKWAgaXMgbXVjaCBtb3JlIGVmZmljaWVudAojIyB0byBjZW50ZXIgYSBtYXRyaXgKIyMgSGVyZSB3ZSB1c2UgdGhlIGFwcHJvYWNoIHdpdGggSCBiZWNhdXNlIHdlIG5lZWQgaXQgZnVydGhlciBvbgpgYGAKCldlIHdpbGwgdXNlIHRoaXMgbWF0cml4IHRvIGNhbGN1bGF0ZSAkXG1hdGhiZntHfV9YJCAoR3JhbSBtYXRyaXggb2YgJFxtYXRoYmZ7WH0kKS4KCiQkClxtYXRoYmZ7R31fWCA9IC1cZnJhY3sxfXsyfVxtYXRoYmZ7SH1cbWF0aGJme0R9X1hcbWF0aGJme0h9ID0gXG1hdGhiZntYfVxtYXRoYmZ7WH1eVAokJAoKV2hlcmUgJFxtYXRoYmZ7RH1fWCQgaXMgdGhlIG1hdHJpeCBvZiBfXypzcXVhcmVkKiBkaXN0YW5jZXNfXy4KU28gd2Ugd2lsbCBmaXJzdCBoYXZlIHRvIHNxdWFyZSBvdXIgYGRpc3RfbXhgLgoKYGBge3IgR3JhbV9tYXRyaXh9CiMjIERfWCA9IHNxdWFyZWQgZGlzdGFuY2UgbWF0cml4CkRfWCA8LSBkaXN0X214IF4gMgoKIyMgR3JhbSBtYXRyaXgKKEdfWCA8LSAtMS8yICogSCAlKiUgKERfWCkgJSolIEgpCmBgYAoKCiMjIyBUaGUgU1ZECgpXZSBjYW4gbm93IGNvbXB1dGUgdGhlIFNWRCBvZiB0aGUgR3JhbSBtYXRyaXggYW5kIHVzZSBpdCB0byBwcm9qZWN0IG91ciBvcmlnaW5hbCBtYXRyaXggJFxtYXRoYmZ7WH0kICh3aGljaCBpcyBzdGlsbCB1bmtub3duIHRvIHVzISkgaW50byBhIGxvd2VyIGRpbWVuc2lvbmFsIHNwYWNlIHdoaWxlIHByZXNlcnZpbmcgdGhlIEV1Y2xpZGVhbiBkaXN0YW5jZXMgYXMgd2VsbCBhcyBwb3NzaWJsZS4KVGhpcyBpcyB0aGUgZXNzZW5jZSBvZiBNRFMuCgpgYGB7ciBHWCBtYXRyaXh9CiMjIHNpbmd1bGFyIHZhbHVlIGRlY29tcG9zaXRpb24gb24gZ3JhbSBtYXRyaXgKR3hfc3ZkIDwtIHN2ZChHX1gpCgojIyBVc2UgYHN0cmAgdG8gZXhwbG9yZSBzdHJ1Y3R1cmUgb2YgdGhlIFNWRCBvYmplY3QKc3RyKEd4X3N2ZCkKYGBgCgpDb21wb25lbnRzIG9mIHRoZSBgR3hfc3ZkYCBvYmplY3Q6CgotIGBHeF9zdmQkZGA6IGRpYWdvbmFsIGVsZW1lbnRzIG9mIHRoZSAkXG1hdGhiZntcRGVsdGF9JCBtYXRyaXgsIHRvIHJlY3JlYXRlIHRoZSBtYXRyaXgsIHVzZSB0aGUgYGRpYWcoKWAgZnVuY3Rpb24KLSBgR3hfc3ZkJHVgOiB0aGUgbWF0cml4ICRcbWF0aGJme1V9JCBvZiBsZWZ0IHNpbmd1bGFyIHZlY3RvcnMKLSBgR3hfc3ZkJHZgOiB0aGUgbWF0cml4ICRcbWF0aGJme1Z9JCBvZiByaWdodCBzaW5ndWxhciB2ZWN0b3JzCgoKIyMjIFRydW5jYXRlZCBTVkQgYW5kIHByb2plY3Rpb24gaW50byBsb3dlciBkaW1lbnNpb25hbCBzcGFjZQoKVGhlIHRydW5jYXRlZCBTVkQgZnJvbSB0aGUgR3JhbSBtYXRyaXggY2FuIGJlIHVzZWQgdG8gZmluZCBwcm9qZWN0aW9ucyAkWl9rJCBvZiAkXG1hdGhiZntYfSQgaW4gYSBsb3dlciBkaW1lbnNpb25hbCBzcGFjZS4KSGVyZSB3ZSB3aWxsIHVzZSAkayA9IDIkLgoKYGBge3J9CiMgaz0yIGFwcHJveGltYXRpb24KayA8LSAyClVrIDwtIEd4X3N2ZCR1WywgMTprXQpkZWx0YV9rIDwtIGRpYWcoR3hfc3ZkJGRbMTprXSkKWmsgPC0gVWsgJSolIHNxcnQoZGVsdGFfaykKcm93bmFtZXMoWmspIDwtIGNvbG5hbWVzKERfWCkKY29sbmFtZXMoWmspIDwtIGMoIloxIiwgIloyIikKWmsKCiMgUGxvdHRpbmcgWmsgaW4gMi1ECgojIyBVc2luZyBiYXNlIFIKIyBwbG90KFprLCB0eXBlID0gIm4iLCB4bGFiID0gIloxIiwgeWxhYiA9ICJaMiIsIHhsaW0gPSBjKC0xNTAwLCAxNTAwKSkKIyB0ZXh0KFprLCByb3duYW1lcyhaayksIGNleCA9IDEuMjUpCgojIyBVc2luZyBnZ3Bsb3QsIGJ5IGZpcnN0IGNvbnZlcnRpbmcgWmsgdG8gYSB0aWJibGUKWmsgJT4lCiAgIyBjcmVhdGUgdGliYmxlIGFuZCBjaGFuZ2Ugcm93bmFtZXMgdG8gY29sdW1uIG5hbWVkICJjaXR5IgogIGFzX3RpYmJsZShyb3duYW1lcyA9ICJjaXR5IikgJT4lCiAgZ2dwbG90KGFlcyhaMSwgWjIsIGxhYmVsID0gY2l0eSkpICsKICAgIGdlb21fcG9pbnQoKSArCiAgICAjIGFkZGluZyB0aGUgY2l0eSBuYW1lcyBhcyBsYWJlbAogICAgZ2VvbV90ZXh0KG51ZGdlX3kgPSA1MCkgKwogICAgIyBzZXR0aW5nIGxpbWl0cyBvZiB0aGUgeC1heGlzIHRvIGNlbnRlciB0aGUgcGxvdCBhcm91bmQgMAogICAgeGxpbShjKC0xNTAwLCAxNTAwKSkgKwogICAgZ2d0aXRsZSgiTURTIHBsb3Qgb2YgdGhlIFVTY2l0aWVzRCBkYXRhIikgKwogICAgdGhlbWVfbWluaW1hbCgpCmBgYAoKV2hhdCBjYW4geW91IHNheSBhYm91dCB0aGUgcGxvdD8KVGhpbmsgYWJvdXQgdGhlIHJlYWwgbG9jYXRpb25zIG9mIHRoZXNlIGNpdGllcyBvbiBhIG1hcCBvZiB0aGUgVVMuCgo8ZGV0YWlscz48c3VtbWFyeT5BbnN3ZXI8L3N1bW1hcnk+CiRaXzEkIGNhbiBiZSBpbnRlcnByZXRlZCBhcyB0aGUgKmxvbmdpdHVkZSosIGkuZS4gdGhlIEVhc3QtV2VzdCBwb3NpdGlvbi4KJFpfMiQgcmVmbGVjdHMgdGhlICpsYXRpdHVkZSosIG9yIHRoZSBOb3J0aC1Tb3V0aCBwb3NpdGlvbi4KPC9kZXRhaWxzPgoKCiMjIFRoZSBzaG9ydCB3YXkKClRoZSBjYWxjdWxhdGlvbnMgYWJvdmUgZGVtb25zdHJhdGUgaG93IE1EUyB3b3JrcyBhbmQgd2hhdCB0aGUgdW5kZXJseWluZyBjb21wb25lbnRzIGFyZS4KSG93ZXZlciwgaW4gYSByZWFsIGRhdGEgYW5hbHlzaXMsIG9uZSB3b3VsZCB0eXBpY2FsbHkgbm90IGdvIHRocm91Z2ggYWxsIHRoZSBoYXNzbGUgb2YgY2FsY3VsYXRpbmcgYWxsIHRoZSBpbnRlcm1lZGlhdGUgc3RlcHMuCkZvcnR1bmF0ZWx5LCB0aGUgTURTIGlzIGFscmVhZHkgaW1wbGVtZW50ZWQgaW4gYmFzZSBSIChpbiB0aGUgYHN0YXRzYCBwYWNrYWdlKS4KClNvIHRoZSB3aG9sZSBkZXJpdmF0aW9uIHdlIGRpZCBhYm92ZSBjYW4gYmUgcmVwcm9kdWNlZCB3aXRoIGEgc2luZ2xlIGxpbmUgb2YgY29kZSwgdXNpbmcgdGhlIGBjbWRzY2FsZWAgZnVuY3Rpb24gKHNlZSBgP2NtZHNjYWxlYCBmb3IgZGV0YWlscykuCgpgYGB7cn0KIyMgQ2FsY3VsYXRlIE1EUyBpbiAyIGRpbWVuc2lvbnMgZnJvbSBkaXN0YW5jZSBtYXRyaXgKKHVzX21kcyA8LSBjbWRzY2FsZShVU2NpdGllc0QsIGsgPSAyKSkKY29sbmFtZXModXNfbWRzKSA8LSBjKCJaMSIsICJaMiIpCgojIyBQbG90IE1EUwp1c19tZHMgJT4lCiAgYXNfdGliYmxlKHJvd25hbWVzID0gImNpdHkiKSAlPiUKICBnZ3Bsb3QoYWVzKFoxLCBaMiwgbGFiZWwgPSBjaXR5KSkgKwogIGdlb21fcG9pbnQoKSArCiAgZ2VvbV90ZXh0KG51ZGdlX3kgPSA1MCkgKwogIHhsaW0oYygtMTUwMCwgMTUwMCkpICsKICB0aGVtZV9taW5pbWFsKCkKYGBgCgpXaGljaCBnaXZlcyB1cyB0aGUgc2FtZSByZXN1bHQgYXMgYmVmb3JlICh3aGljaCBpcyBhIGdvb2QgY2hlY2sgdGhhdCB3ZSBkaWRuJ3QgbWFrZSBtaXN0YWtlcyEpLgoKCgojIEV4ZXJjaXNlcwoKIyMgQ2hlZXNlIGRhdGEKCiMjIyBEYXRhIHByZXAgey19CgpSZWFkIGluIHRoZSBgY2hlZXNlYCBkYXRhLCB3aGljaCBjaGFyYWN0ZXJpemVzIDMwIGNoZWVzZXMgb24gdmFyaW91cyBtZXRyaWNzLgoKYGBge3J9CmNoZWVzZSA8LSByZWFkX2NzdigiaHR0cHM6Ly9naXRodWIuY29tL3N0YXRPbWljcy9IREEyMDIwL3Jhdy9kYXRhL2NoZWVzZS5jc3YiLAogICAgICAgICAgICAgICAgICAgY29sX3R5cGVzID0gImlkZGRkIikKY2hlZXNlCmBgYAoKPl9fUV9fOiB3aGF0IGlzIHRoZSAqZGltZW5zaW9uYWxpdHkqIG9mIHRoaXMgZGF0YT8KCjxkZXRhaWxzPjxzdW1tYXJ5PkFuc3dlcjwvc3VtbWFyeT4KX19BX186IDQsIHNpbmNlIHdlIGhhdmUgNCBmZWF0dXJlcyAodGhlIGZpcnN0IGNvbHVtbiBpcyBqdXN0IGFuIGlkZW50aWZpZXIgZm9yIHRoZSBvYnNlcnZhdGlvbiwgc28gd2UgZG9uJ3QgcmVnYXJkIHRoaXMgYXMgYSBmZWF0dXJlKS4KCmBgYHtyfQpuY29sKGNoZWVzZSkgLSAxCmBgYAoKPC9kZXRhaWxzPgoKQ29udmVydCB0aGUgYGNoZWVzZWAgdGFibGUgdG8gYSBtYXRyaXggZm9yIGVhc2llciBjYWxjdWxhdGlvbnMuCldlIHdpbGwgZHJvcCB0aGUgZmlyc3QgY29sdW1uIChhcyBpdCdzIG5vdCBhIGZlYXR1cmUpIGFuZCBpbnN0ZWFkIHVzZSBpdCB0byBjcmVhdGUgYHJvd25hbWVzYC4KCmBgYHtyfQpjaGVlc2VfbXggPC0gYXMubWF0cml4KGNoZWVzZVssIC0xXSkKcm93bmFtZXMoY2hlZXNlX214KSA8LSBwYXN0ZSgiY2FzZSIsIGNoZWVzZSRDYXNlLCBzZXAgPSAiXyIpCmNoZWVzZV9teApgYGAKCkNoZWNrIHJhbmsgb2YgYGNoZWVzZV9teGAgYW5kIGNlbnRlciB0aGUgbWF0cml4LgoKYGBge3J9CnFyKGNoZWVzZV9teCkkcmFuawoKIyBDZW50ZXJpbmcgdGhlIGRhdGEgbWF0cml4Cm4gPC0gbnJvdyhjaGVlc2VfbXgpCmNoZWVzZV9IIDwtIGRpYWcobikgLSAxIC8gbiAqIG1hdHJpeCgxLCBuY29sID0gbiwgbnJvdyA9IG4pCmNoZWVzZV9jZW50ZXJlZCA8LSBjaGVlc2VfSCAlKiUgYXMubWF0cml4KGNoZWVzZV9teCkKIyMgQWdhaW4gd2UgdXNlIEggaGVyZSBiZWNhdXNlIHdlIHVzZSBpdCBmb3Igc29tZSBleGVyY2lzZXMgbGF0ZXIgb24KIyMgSW4gcmVhbC1saWZlIGFwcGxpY2F0aW9ucyB1c2luZyB0aGUgYHNjYWxlYCBmdW5jdGlvbiB3b3VsZCBiZSBtb3JlIGFwcHJvcHJpYXRlCmBgYAoKCiMjIyBUYXNrcyB7LX0KCipOb3RlKjogbm8gbmVlZCBmb3IgbWF0aGVtYXRpY2FsIGRlcml2YXRpb25zLCBqdXN0IHZlcmlmeSBjb2RlLXdpc2UgaW4gUi4KCiBXZSBvYnRhaW5lZCB0aGUgY29sdW1uLWNlbnRlcmVkIGRhdGEgbWF0cml4ICRcbWF0aGJme1h9JCBhZnRlciBtdWx0aXBseWluZyB0aGUgb3JpZ2luYWwgbWF0cml4IHdpdGgKCiQkClxtYXRoYmZ7SH0gPSBcbWF0aGJme0l9IC0gXGZyYWN7MX17bn0gXG1hdGhiZnsxfVxtYXRoYmZ7MX1eVAokJAoKIyMjIyMgMS4gU2hvdyB0aGF0ICRcbWF0aGJme1h9JCAoaGVyZTogYGNoZWVzZV9jZW50ZXJlZGApIGlzIGluZGVlZCBjb2x1bW4tY2VudGVyZWQgKGFuZCBub3Qgcm93LWNlbnRlcmVkKSB7LX0KCjxkZXRhaWxzPjxzdW1tYXJ5PlNvbHV0aW9uPC9zdW1tYXJ5PgpgYGB7cn0KIyBYIGlzIGluZGVlZCBjb2x1bW4tY2VudGVyZWQ6CnJvdW5kKGNvbE1lYW5zKGNoZWVzZV9jZW50ZXJlZCksIDE0KSAjIyBwcmFjdGljYWxseSB6ZXJvCgojIGJ1dCBpdCBpcyBub3Qgcm93LWNlbnRlcmVkOgogcm93TWVhbnMoY2hlZXNlX2NlbnRlcmVkKQpgYGAKPC9kZXRhaWxzPgoKCiMjIyMjIDIuIFZlcmlmeSB0aGF0IHdoZW5ldmVyICRcbWF0aGJme1h9JCBpcyBjb2x1bW4tY2VudGVyZWQsIHRoZSBlcXVhbGl0eSAkXG1hdGhiZntIWCA9IFh9JCBob2xkcyB7LX0KCjxkZXRhaWxzPjxzdW1tYXJ5PlNvbHV0aW9uPC9zdW1tYXJ5PgpgYGB7cn0KIyB2ZXJpZnlpbmcgdGhhdCBIWCA9IFgKYWxsLmVxdWFsKGNoZWVzZV9IICUqJSBjaGVlc2VfY2VudGVyZWQsIGNoZWVzZV9jZW50ZXJlZCkKYGBgCjwvZGV0YWlscz4KCgojIyMjIyAzLiBQZXJmb3JtIGFuIFNWRCBvbiBgY2hlZXNlX2NlbnRlcmVkYCwgYW5kIHN0b3JlIHRoZSBtYXRyaWNlcyAkXG1hdGhiZntVfSQsICRcbWF0aGJme1Z9JCBhbmQgJFxtYXRoYmZ7XERlbHRhfSQgYXMgc2VwYXJhdGUgb2JqZWN0cyB7LX0KCjxkZXRhaWxzPjxzdW1tYXJ5PlNvbHV0aW9uPC9zdW1tYXJ5PgpgYGB7ciBjaGVlc2Vfc3ZkfQpjaGVlc2Vfc3ZkIDwtIHN2ZChjaGVlc2VfY2VudGVyZWQpCnN0cihjaGVlc2Vfc3ZkKQpVIDwtIGNoZWVzZV9zdmQkdQpWIDwtIGNoZWVzZV9zdmQkdgpEIDwtIGRpYWcoY2hlZXNlX3N2ZCRkKQpgYGAKPC9kZXRhaWxzPgoKCiMjIyMjIDQuIFNob3cgdGhhdCAkXG1hdGhiZnt1XzF9JCBpcyBhIG5vcm1hbGl6ZWQgdmVjdG9yOyBzaG93IHRoZSBzYW1lIGZvciAkXG1hdGhiZnt1XzJ9JC4gU2hvdyB0aGF0ICRcbWF0aGJme3VfMX0kIGFuZCAkXG1hdGhiZnt1XzJ9JCBhcmUgb3J0aG9nb25hbCB2ZWN0b3JzLiBUaGVuIHNob3cgdGhlIG9ydGhvbm9ybWFsaXR5IG9mIGFsbCB2ZWN0b3JzICRcbWF0aGJme3Vfan0kIGluIGEgc2luZ2xlIGNhbGN1bGF0aW9uICh1c2luZyB0aGUgbWF0cml4ICRcbWF0aGJme1V9JCkuIFNpbWlsYXJseSwgc2hvdyB0aGUgb3J0aG9ub3JtYWxpdHkgb2YgYWxsIHZlY3RvcnMgJFxtYXRoYmZ7dl9qfSQgaW4gYSBzaW5nbGUgY2FsY3VsYXRpb24gKHVzaW5nIHRoZSBtYXRyaXggJFxtYXRoYmZ7Vn0kKS4gey19Cgo8ZGV0YWlscz48c3VtbWFyeT5Tb2x1dGlvbjwvc3VtbWFyeT4KYGBge3J9CiMgVmVyaWZ5aW5nIG9ydGhvbm9ybWFsaXR5CiMgLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCiMgVGhlIHZlY3RvcnMgdTEgYW5kIHUyIGFyZSBvcnRob25vcm1hbAp0KFVbLCAxXSkgJSolIFVbLCAxXQp0KFVbLCAyXSkgJSolIFVbLCAyXQp0KFVbLCAxXSkgJSolIFVbLCAyXQoKIyBWZXJpZnlpbmcgdGhhdCBVIGZvcm1zIGFuIG9ydGhvbm9ybWFsIGJhc2lzIGluIG9uZSBzdGVwOgp0KFUpICUqJSBVICMgY29tcHV0YXRpb25hbCBpbXBlcmZlY3Rpb25zCnJvdW5kKHQoVSkgJSolIFUsIGRpZ2l0cyA9IDE1KQoKCiMgVmVyaWZ5aW5nIHRoYXQgViBmb3JtcyBhbiBvcnRob25vcm1hbCBiYXNpczoKdChWKSAlKiUgViAjIGNvbXB1dGF0aW9uYWwgaW1wZXJmZWN0aW9ucwpyb3VuZCh0KFYpICUqJSBWLCBkaWdpdHMgPSAxNSkKYGBgCjwvZGV0YWlscz4KCgojIyMjIyA1LiBDaGVjayB0aGF0IHRoZSBTVkQgd2FzIHBlcmZvcm1lZCBjb3JyZWN0bHksIGkuZS4gY2FsY3VsYXRlIHRoZSBtYXRyaXggJFxtYXRoYmZ7WH0kIGZyb20gdGhlIGVsZW1lbnRzIG9mIHRoZSBTVkQuIHstfQoKPGRldGFpbHM+PHN1bW1hcnk+U29sdXRpb248L3N1bW1hcnk+CgpUaGVyZSBhcmUgMiB3YXlzIHRvIGRvIHRoaXMKCiAgLSBVc2luZyB0aGUgc3VtIGRlZmluaXRpb24gb2YgdGhlIFNWRAogICAgJFxtYXRoYmZ7WH0gPSBcc3VtX3tqPTF9XnIgXGRlbHRhX2ogXG1hdGhiZnt1fV9qXG1hdGhiZnt2fV9qXlQkCgpgYGB7cn0KIyBDYWxjdWxhdGluZyBYIHZpYSB0aGUgc3VtIGRlZmluaXRpb24gb2YgdGhlIFNWRDoKIyAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KCiMjIEluaXRpYWxpemUgZW1wdHkgbWF0cml4Clhfc3VtIDwtIG1hdHJpeCgwLCBucm93ID0gbnJvdyhVKSwgbmNvbCA9IG5jb2woVikpCgojIyBDb21wdXRlIHN1bSBieSBsb29waW5nIG92ZXIgY29sdW1ucwpmb3IgKGogaW4gMTpuY29sKFUpKSB7CiAgWF9zdW0gPC0gWF9zdW0gKyAoZGlhZyhEKVtqXSAqIFVbLCBqXSAlKiUgdChWWywgal0pKQp9CmBgYAoKICAtIHVzaW5nIHRoZSBtYXRyaXggbm90YXRpb24gb2YgdGhlIFNWRAoKICAkXG1hdGhiZntYfT1cbWF0aGJme1V9X3tuXHRpbWVzIG59XGJvbGRzeW1ib2x7XERlbHRhfV97blx0aW1lcyBwfVxtYXRoYmZ7Vn1eVF97cCBcdGltZXMgcH0kCgpgYGB7cn0KIyBDYWxjdWxhdGluZyBYIHZpYSB0aGUgU1ZEIG1hdHJpeCBtdWx0aXBsaWNhdGlvbjoKIyAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KWF9tdWx0IDwtIFUgJSolIEQgJSolIHQoVikKYGBgCgogIC0gVmVyaWZ5IHRoYXQgdGhlIG9idGFpbmVkIHJlc3VsdHMgYXJlIGlkZW50aWNhbCB0byB0aGUgIG1hdHJpeCAkXG1hdGhiZntYfSQuCgpgYGB7cn0KIyMgUmVtb3ZlIGRpbW5hbWVzIHdpdGggdW5uYW1lIGZvciBjb21wYXJpc29uCmFsbC5lcXVhbChYX3N1bSwgdW5uYW1lKGNoZWVzZV9jZW50ZXJlZCkpCmFsbC5lcXVhbChYX211bHQsIHVubmFtZShjaGVlc2VfY2VudGVyZWQpKQpgYGAKPC9kZXRhaWxzPgoKIyMjIyMgNi4gQXBwcm94aW1hdGUgdGhlIG1hdHJpeCAkXG1hdGhiZntcdGlsZGV7XG1hdGhiZntYfX19JCwgZm9yICRrID0gMiQgdXNpbmcgdGhlIHRydW5jYXRlZCBTVkQuIHstfQoKPGRldGFpbHM+PHN1bW1hcnk+U29sdXRpb248L3N1bW1hcnk+CgpVc2luZyB0aGUgbWF0cml4IG5vdGF0aW9uIG9mIHRoZSBTVkQgJFx0aWxkZXtcbWF0aGJme1h9fT1cbWF0aGJme1V9X3tuXHRpbWVzIGt9XGJvbGRzeW1ib2x7XERlbHRhfV97a1x0aW1lcyBrfVxtYXRoYmZ7Vn1fe3AgXHRpbWVzIGt9XlQkCgpgYGB7cn0KayA8LSAyClhfdGlsZGUgPC0gVVssIDE6a10gJSolIERbMTprLDE6a10gJSolIHQoVlssMTprXSkKWF90aWxkZQpgYGAKCi0gQ29tcGFyZSB0aGUgb2J0YWluZWQgcmVzdWx0cyB3aXRoIHRoZSBtYXRyaXggJFxtYXRoYmZ7WH0kIChgY2hlZXNlX2NlbnRlcmVkYCkuCkp1c3QgYXQgYSBmaXJzdCBnbGFuY2UsIGRvZXMgaXQgc2VlbSB0aGF0ICRcbWF0aGJme1x0aWxkZXtYfX0kIGlzIGEgZ29vZCBhcHByb3hpbWF0aW9uIG9mICRcbWF0aGJme1h9JD8KCgojIyMjIyA3LiBTVkQgYW5kIGxpbmVhciByZWdyZXNzaW9uOiBwZXJmb3JtIGEgbGluZWFyIHJlZ3Jlc3Npb24gdXNpbmcgU1ZEIHRvIGVzdGltYXRlIHRoZSBlZmZlY3RzIG9mIHRoZSBgQWNldGljYCwgYEgyU2AgYW5kIGBMYWN0aWNgIHZhcmlhYmxlcyBvbiB0aGUgYHRhc3RlYC4gey19CgpOb3RlOiB3ZSBjYW5ub3QgdXNlIHRoZSBTVkQgZnJvbSBiZWZvcmUgYXMgdGhpcyB3YXMgY2FsY3VsYXRlZCBmcm9tIHRoZSBjb21wbGV0ZSBgY2hlZXNlYCB0YWJsZSwgYWxzbyBpbmNsdWRpbmcgdGhlIGB0YXN0ZWAgY29sdW1uLCB3aGljaCBpcyB0aGUgcmVzcG9uc2UgdmFyaWFibGUgb2YgaW50ZXJlc3QgaGVyZS4KSW5zdGVhZCwgd2UgbmVlZCB0byBjcmVhdGUgYSBuZXcgZGVzaWduIG1hdHJpeCAkXG1hdGhiZntYfSQgY29udGFpbmluZyB0aGUgcHJlZGljdG9ycyBhbmQgYSBzZXBhcmF0ZSB2ZWN0b3IgJFxtYXRoYmZ7eX0kIGNvbnRhaW5pbmcgdGhlIHJlc3BvbnNlLgoKYGBge3J9CmNoZWVzZV95IDwtIGNoZWVzZSR0YXN0ZQpjaGVlc2VfZGVzaWduIDwtIGNiaW5kKEludGVyY2VwdCA9IDEsIGNoZWVzZVtjKCJBY2V0aWMiLCAiSDJTIiwgIkxhY3RpYyIpXSkKYGBgCgpBbHNvIHBlcmZvcm0gdGhlIHJlZ3Jlc3Npb24gd2l0aCBgbG1gIGFuZCBjb21wYXJlIHRoZSByZXN1bHRzLgoKPGRldGFpbHM+PHN1bW1hcnk+U29sdXRpb248L3N1bW1hcnk+CgpgYGB7cn0KIyMgRml0IHdpdGggbG0KbG1fZml0IDwtIGxtKHRhc3RlIH4gQWNldGljICsgSDJTICsgTGFjdGljLCBkYXRhID0gY2hlZXNlKQoKIyMgRml0IHdpdGggU1ZECmRlc2lnbl9zdmQgPC0gc3ZkKGNoZWVzZV9kZXNpZ24pCnN2ZF9jb2VmIDwtIGRlc2lnbl9zdmQkdiAlKiUgZGlhZygxL2Rlc2lnbl9zdmQkZCkgJSolIHQoZGVzaWduX3N2ZCR1KSAlKiUgY2hlZXNlX3kKCiMjIENvbXBhcmUKY2JpbmQoCiAgImxtIiA9IGNvZWYobG1fZml0KSwKICAic3ZkIiA9IGRyb3Aoc3ZkX2NvZWYpCikKYGBgCjwvZGV0YWlscz4KCgojIyBFeGVyY2lzZTogZW1wbG95bWVudCBieSBpbmR1c3RyeSBpbiBFdXJvcGVhbiBjb3VudHJpZXMKCkluIHRoaXMgZXhlcmNpc2Ugd2Ugd2lsbCBmb2N1cyBvbiB0aGUgaW50ZXJwcmV0YXRpb24gb2YgdGhlICpiaXBsb3QqLgoKIyMjIERhdGEgcHJlcCB7LX0KClRoZSBgaW5kdXN0cmllcy50eHRgIGZpbGUgY29udGFpbnMgZGF0YSBvbiB0aGUgZGlzdHJpYnV0aW9uIG9mIGVtcGxveW1lbnQgYmV0d2VlbiA5IGluZHVzdHJpYWwgc2VjdG9ycywgaW4gMjYgRXVyb3BlYW4gY291bnRyaWVzLiBUaGUgZGF0YXNldCBzdGVtcyBmcm9tIHRoZSBDb2xkLVdhciBlcmE7IHRoZSBkYXRhIGFyZSBleHByZXNzZWQgYXMgcGVyY2VudGFnZXMuIFJlYWQgaW4gdGhlIGRhdGEgYW5kIGV4cGxvcmUgaXRzIGNvbnRlbnRzLgoKWW91IGNhbiByZWFkIGluIHRoZSBmaWxlIHdpdGggdGhlIGZvbGxvd2luZyBVUkw6CgpgYGB7cn0KaW5kdXN0cmllc191cmwgPC0gImh0dHBzOi8vZ2l0aHViLmNvbS9zdGF0T21pY3MvSERBMjAyMC9yYXcvZGF0YS9pbmR1c3RyaWVzLnR4dCIKYGBgCgo8ZGV0YWlscz48c3VtbWFyeT5Tb2x1dGlvbjwvc3VtbWFyeT4KYGBge3IgcmVhZC1pbmR1c3RyaWVzLWRhdGF9CmluZHVzdHJpZXMgPC0gcmVhZF9kZWxpbShpbmR1c3RyaWVzX3VybCwgZGVsaW0gPSAiICIsCiAgICAgICAgICAgICAgICAgICAgICAgICBjb2xfdHlwZXMgPSBjb2xzKCkpCiMgRXhwbG9yZSBjb250ZW50cwppbmR1c3RyaWVzCmRpbShpbmR1c3RyaWVzKQpzdW1tYXJ5KGluZHVzdHJpZXMpCmBgYAoKQ3JlYXRlIGRhdGEgbWF0cml4ICRcbWF0aGJme1h9JC4KCmBgYHtyfQojIENyZWF0ZSBtYXRyaXggd2l0aG91dCBmaXJzdCBjb2x1bW4gKCJjb3VudHJ5Iiwgd2hpY2ggd2lsbCBiZSB1c2VkIGZvciByb3duYW1lcykKaW5kdXNfWCA8LSBhcy5tYXRyaXgoaW5kdXN0cmllc1ssIC0xXSkKcm93bmFtZXMoaW5kdXNfWCkgPC0gaW5kdXN0cmllcyRjb3VudHJ5CgojIENoZWNrIHRoZSBkaW1lbnNpb25hbGl0eQpkaW0oaW5kdXNfWCkKCiMgYW5kIHRoZSByYW5rCnFyKGluZHVzX1gpJHJhbmsKCiMgbiB3aWxsIGJlIHVzZWQgc3Vic2VxdWVudGx5Cm4gPC0gbnJvdyhpbmR1c19YKQpgYGAKPC9kZXRhaWxzPgoKCiMjIyBUYXNrcyB7LX0KCiMjIyMjIDEuIFBlcmZvcm0gYSB0cnVuY2F0ZWQgU1ZEIGZvciAkaz0yJCwgYW5kIGNvbnN0cnVjdCB0aGUgYmlwbG90IGFjY29yZGluZ2x5LiB7LX0KCjxkZXRhaWxzPjxzdW1tYXJ5PlNvbHV0aW9uPC9zdW1tYXJ5PgpgYGB7cn0KIyBDZW50ZXJpbmcgdGhlIGRhdGEgbWF0cml4IGZpcnN0CiMgSCA8LSBkaWFnKG4pIC0gMSAvIG4gKiBtYXRyaXgoMSwgbmNvbCA9IG4sIG5yb3cgPSBuKQojIGluZHVzX2NlbnRlcmVkIDwtIEggJSolIGFzLm1hdHJpeChpbmR1c19YKQppbmR1c19jZW50ZXJlZCA8LSBzY2FsZShpbmR1c19YLCBzY2FsZSA9IEZBTFNFKQpgYGAKCmBgYHtyfQojIFBlcmZvcm0gU1ZECmluZHVzX3N2ZCA8LSBzdmQoaW5kdXNfY2VudGVyZWQpCnN0cihpbmR1c19zdmQpCgojIEV4dHJhY3Qgc2luZ3VsYXIgdmVjdG9ycyBmb3IgayA9IDIgYW5kIGNhbGN1bGF0ZSBrPTIgcHJvamVjdGlvbiBaawprIDwtIDIKVWsgPC0gaW5kdXNfc3ZkJHVbICwgMTprXQpEayA8LSBkaWFnKGluZHVzX3N2ZCRkWzE6a10pCgpWayA8LSBpbmR1c19zdmQkdlssIDE6a10Kcm93bmFtZXMoVmspIDwtIGNvbG5hbWVzKGluZHVzX1gpCmNvbG5hbWVzKFZrKSA8LSBjKCJWMSIsICJWMiIpCgpaayA8LSBVayAlKiUgRGsKcm93bmFtZXMoWmspIDwtIGluZHVzdHJpZXMkY291bnRyeQpjb2xuYW1lcyhaaykgPC0gYygiWjEiLCAiWjIiKQpaawpgYGAKCkJpcGxvdCB3aXRoICpnZ3Bsb3QyKjoKCmBgYHtyLCBmaWcud2lkdGg9OCwgZmlnLmhlaWdodD02fQojIyBTY2FsZSBmYWN0b3IgdG8gZHJhdyBWayBhcnJvd3MgKGNhbiBiZSBzZXQgYXJiaXRyYXJpbHkpCnNjYWxlX2ZhY3RvciA8LSAyMAoKIyMgQ3JlYXRlIHRpYmJsZSB3aXRoIHJvd25hbWVzIGluICJjb3VudHJ5IiBjb2x1bW4KYXNfdGliYmxlKFprLCByb3duYW1lcyA9ICJjb3VudHJ5IikgJT4lCiAgZ2dwbG90KGFlcyhaMSwgWjIpKSArCiAgZ2VvbV9wb2ludCgpICsKICBnZW9tX3RleHQoYWVzKGxhYmVsID0gY291bnRyeSksIHNpemUgPSAzLCBudWRnZV95ID0gMC41KSArCiAgIyMgUGxvdCBTaW5ndWxhciB2ZWN0b3JzIFZrCiAgZ2VvbV9zZWdtZW50KAogICAgZGF0YSA9IGFzX3RpYmJsZShWaywgcm93bmFtZXMgPSAic2VjdG9yIiksCiAgICBhZXMoeCA9IDAsIHkgPSAwLCB4ZW5kID0gVjEgKiBzY2FsZV9mYWN0b3IsIHllbmQgPSBWMiAqIHNjYWxlX2ZhY3RvciksCiAgICBhcnJvdyA9IGFycm93KGxlbmd0aCA9IHVuaXQoMC40LCAiY20iKSksCiAgICBjb2xvciA9ICJmaXJlYnJpY2siCiAgKSArCiAgZ2VvbV90ZXh0KAogICAgZGF0YSA9IGFzX3RpYmJsZShWaywgcm93bmFtZXMgPSAic2VjdG9yIiksCiAgICBhZXMoVjEgKiBzY2FsZV9mYWN0b3IsIFYyICogc2NhbGVfZmFjdG9yLCBsYWJlbCA9IHNlY3RvciksCiAgICBudWRnZV94ID0gMC41LCBudWRnZV95ID0gaWZlbHNlKFZrWywgMl0gPj0gMCwgMC41LCAtMC41KSwKICAgIGNvbG9yID0gImZpcmVicmljayIsIHNpemUgPSAzCiAgKSArCiAgdGhlbWVfbWluaW1hbCgpCmBgYAoKVXNpbmcgYmFzZSBSOgoKYGBge3IsIGZpZy53aWR0aD04LCBmaWcuaGVpZ2h0PTZ9CiMgIyBDb25zdHJ1Y3RpbmcgdGhlIGJpcGxvdCBmb3IgWjEgYW5kIFoyCiMgICMgLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQpwbG90KFprWywxOjJdLCB0eXBlPSJuIiwgeGxpbT1jKC0zMCw2MCksIHlsaW09YygtMTUsMTUpLAogICAgICB4bGFiPSJaMSIsIHlsYWI9IloyIikKdGV4dChaa1ssMToyXSwgcm93bmFtZXMoWmspLCBjZXg9MC45KQojIGFscGhhIDwtIDEKYWxwaGEgPC0gMjAgICMgcmVzY2FsaW5nIHRvIGdldCBiZXR0ZXIgdmlzdWFsaXNhdGlvbgpmb3IoaSBpbiAxOjkpIHsKICBhcnJvd3MoMCwwLCBhbHBoYSpWa1tpLDFdLCBhbHBoYSpWa1tpLDJdLCBsZW5ndGg9MC4yLCBjb2w9MikKICB0ZXh0KGFscGhhKlZrW2ksMV0sIGFscGhhKlZrW2ksMl0sIHJvd25hbWVzKFZrKVtpXSwgY29sPTIpCn0KYGBgCjwvZGV0YWlscz4KCiMjIyMjIDIuIFRvIHNlZSBpZiB3ZSBjYW4gbGVhcm4gbW9yZSB3aGVuIHJldGFpbmluZyBtb3JlIGRpbWVuc2lvbnMsIHJlcGVhdCB0aGUgdHJ1bmNhdGVkIFNWRCBmb3IgJGs9MyQuIENvbnN0cnVjdCB0d28tZGltZW5zaW9uYWwgYmlwbG90cyBmb3I6IHstfQoKLSBaMSBhbmQgWjMKLSBaMiBhbmQgWjMKCjxkZXRhaWxzPjxzdW1tYXJ5PlNvbHV0aW9uPC9zdW1tYXJ5PgoKTm8gbmVlZCB0byByZS1kbyBTVkQsIGp1c3QgZXh0cmFjdCBzaW5ndWxhciB2ZWN0b3JzIGZvciAkaz0zJCBmcm9tIHByZXZpb3VzIFNWRC4KCmBgYHtyfQojIEV4dHJhY3Qgc2luZ3VsYXIgdmVjdG9ycyBmb3IgayA9IDMgYW5kIGNhbGN1bGF0ZSBwcm9qZWN0aW9uIFprCmsgPC0gMwpVayA8LSBpbmR1c19zdmQkdVsgLCAxOmtdCkRrIDwtIGRpYWcoaW5kdXNfc3ZkJGRbMTprXSkKClZrIDwtIGluZHVzX3N2ZCR2WywgMTprXQpyb3duYW1lcyhWaykgPC0gY29sbmFtZXMoaW5kdXNfWCkKY29sbmFtZXMoVmspIDwtIGMoIlYxIiwgIlYyIiwgIlYzIikKClprIDwtIFVrICUqJSBEawpyb3duYW1lcyhaaykgPC0gaW5kdXN0cmllcyRjb3VudHJ5CmNvbG5hbWVzKFprKSA8LSBjKCJaMSIsICJaMiIsICJaMyIpClprCmBgYAoKQ3JlYXRlIGJpcGxvdCBhcyBiZWZvcmUuCgotIFoxICp2cy4qIFozCgpgYGB7ciwgZmlnLndpZHRoPTgsIGZpZy5oZWlnaHQ9Nn0KIyMgU2NhbGUgZmFjdG9yIHRvIGRyYXcgVmsgYXJyb3dzIChjYW4gYmUgc2V0IGFyYml0cmFyaWx5KQpzY2FsZV9mYWN0b3IgPC0gMjAKCiMjIENyZWF0ZSB0aWJibGUgd2l0aCByb3duYW1lcyBpbiAiY291bnRyeSIgY29sdW1uCmFzX3RpYmJsZShaaywgcm93bmFtZXMgPSAiY291bnRyeSIpICU+JQogIGdncGxvdChhZXMoWjEsIFozKSkgKwogIGdlb21fcG9pbnQoKSArCiAgZ2VvbV90ZXh0KGFlcyhsYWJlbCA9IGNvdW50cnkpLCBzaXplID0gMywgbnVkZ2VfeSA9IDAuNSkgKwogICMjIFBsb3QgU2luZ3VsYXIgdmVjdG9ycyBWawogIGdlb21fc2VnbWVudCgKICAgIGRhdGEgPSBhc190aWJibGUoVmssIHJvd25hbWVzID0gInNlY3RvciIpLAogICAgYWVzKHggPSAwLCB5ID0gMCwgeGVuZCA9IFYxICogc2NhbGVfZmFjdG9yLCB5ZW5kID0gVjMgKiBzY2FsZV9mYWN0b3IpLAogICAgYXJyb3cgPSBhcnJvdyhsZW5ndGggPSB1bml0KDAuNCwgImNtIikpLAogICAgY29sb3IgPSAiZmlyZWJyaWNrIgogICkgKwogIGdlb21fdGV4dCgKICAgIGRhdGEgPSBhc190aWJibGUoVmssIHJvd25hbWVzID0gInNlY3RvciIpLAogICAgYWVzKFYxICogc2NhbGVfZmFjdG9yLCBWMyAqIHNjYWxlX2ZhY3RvciwgbGFiZWwgPSBzZWN0b3IpLAogICAgbnVkZ2VfeCA9IDAuNSwgbnVkZ2VfeSA9IGlmZWxzZShWa1ssIDNdID49IDAsIDAuNSwgLTAuNSksCiAgICBjb2xvciA9ICJmaXJlYnJpY2siLCBzaXplID0gMwogICkgKwogIHRoZW1lX21pbmltYWwoKQpgYGAKCgotIFoyICp2cy4qIFozCgpgYGB7ciwgZmlnLndpZHRoPTgsIGZpZy5oZWlnaHQ9Nn0KIyBTY2FsZSBmYWN0b3IgdG8gZHJhdyBWayBhcnJvd3MgKGNhbiBiZSBzZXQgYXJiaXRyYXJpbHkpCnNjYWxlX2ZhY3RvciA8LSAyMAoKIyMgQ3JlYXRlIHRpYmJsZSB3aXRoIHJvd25hbWVzIGluICJjb3VudHJ5IiBjb2x1bW4KYXNfdGliYmxlKFprLCByb3duYW1lcyA9ICJjb3VudHJ5IikgJT4lCiAgZ2dwbG90KGFlcyhaMiwgWjMpKSArCiAgZ2VvbV9wb2ludCgpICsKICBnZW9tX3RleHQoYWVzKGxhYmVsID0gY291bnRyeSksIHNpemUgPSAzLCBudWRnZV95ID0gMC41KSArCiAgIyMgUGxvdCBTaW5ndWxhciB2ZWN0b3JzIFZrCiAgZ2VvbV9zZWdtZW50KAogICAgZGF0YSA9IGFzX3RpYmJsZShWaywgcm93bmFtZXMgPSAic2VjdG9yIiksCiAgICBhZXMoeCA9IDAsIHkgPSAwLCB4ZW5kID0gVjIgKiBzY2FsZV9mYWN0b3IsIHllbmQgPSBWMyAqIHNjYWxlX2ZhY3RvciksCiAgICBhcnJvdyA9IGFycm93KGxlbmd0aCA9IHVuaXQoMC40LCAiY20iKSksCiAgICBjb2xvciA9ICJmaXJlYnJpY2siCiAgKSArCiAgZ2VvbV90ZXh0KAogICAgZGF0YSA9IGFzX3RpYmJsZShWaywgcm93bmFtZXMgPSAic2VjdG9yIiksCiAgICBhZXMoVjIgKiBzY2FsZV9mYWN0b3IsIFYzICogc2NhbGVfZmFjdG9yLCBsYWJlbCA9IHNlY3RvciksCiAgICBudWRnZV94ID0gMC41LCBudWRnZV95ID0gaWZlbHNlKFZrWywgM10gPj0gMCwgMC41LCAtMC41KSwKICAgIGNvbG9yID0gImZpcmVicmljayIsIHNpemUgPSAzCiAgKSArCiAgdGhlbWVfbWluaW1hbCgpCmBgYAoKCiMjIyMjIDMuIENhbiB5b3UgZ2l2ZSBhIG1lYW5pbmdmdWwgaW50ZXJwcmV0YXRpb24gdG8gZWFjaCBkaW1lbnNpb24/IHstfQo=</div>
+<div class="footer">
+    <hr>
+    This work is licensed under the <a href= "https://creativecommons.org/licenses/by-nc-sa/4.0">
+    CC BY-NC-SA 4.0</a> licence.
+</div>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeSourceEmbed("Lab1-Intro-SVD.Rmd");
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
