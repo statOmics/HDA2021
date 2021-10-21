@@ -9,6 +9,8 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+
+options(width = 80)
 ```
 
 ***
@@ -51,8 +53,9 @@ See [course notes](https://statomics.github.io/HDDA21/svd.html#7_SVD_and_Multi-D
 As an example, we will use the `UScitiesD` data set, which is part of base R.
 This data gives "straight line" distances (in km) between 10 cities in the US.
 
-```{r}
+```{r, R.options=list(width=100)}
 UScitiesD
+
 class(UScitiesD)
 ```
 
@@ -104,9 +107,9 @@ $$ \mathbf{H} = \mathbf{I}_{n \times n} - \frac{1}{n} \mathbf{1}_n\mathbf{1}_n^T
 ```{r H_matrix}
 n <- nrow(dist_mx)
 
-# 11^T
-(one_mat <- matrix(rep(1, n * n), ncol = n, nrow = n))
+## 11^T
 ## Alternatively: one_mat <- rep(1, n) %o% rep(1, n)
+(one_mat <- matrix(rep(1, n * n), ncol = n, nrow = n))
 
 ## Calculate H, diag(n) is the nxn identity matrix
 (H <- diag(n) - (1/n) * one_mat)
@@ -116,7 +119,10 @@ We can use $\mathbf{H}$ to center our distance matrix:
 
 ```{r dist_mx_centered}
 (dist_mx_centered <- H %*% dist_mx)
-round(colMeans(dist_mx_centered), 8)  # verify colMeans are 0
+
+## Verify colMeans are 0
+round(colMeans(dist_mx_centered), 8)
+
 ## Note that using `scale(X, center = TRUE, scale = FALSE)` is much more efficient
 ## to center a matrix
 ## Here we use the approach with H because we need it further on
