@@ -577,7 +577,7 @@ c</code></pre>
 # (mean = 0, standard deviation = 1)
 draws &lt;- rnorm(100)
 head(draws)</code></pre>
-<pre><code>## [1]  0.5428896  0.5169169 -1.0023867 -0.5012497  2.6881909 -0.6123534</code></pre>
+<pre><code>## [1]  0.2140363 -1.2637305  0.6091019  1.3691542  0.8612728 -0.8291419</code></pre>
 </div>
 <div id="getting-help-in-r" class="section level2">
 <h2><span class="header-section-number">2.5</span> Getting help in R: <code>?</code></h2>
@@ -587,7 +587,7 @@ head(draws)</code></pre>
 <p>The solution is to specify the <code>mean</code> and <code>sd</code> arguments.</p>
 <pre class="r"><code>draws2 &lt;- rnorm(100, mean = 5, sd = 2)
 head(draws2)</code></pre>
-<pre><code>## [1] 3.974624 6.350813 2.388016 9.343177 3.831036 6.727819</code></pre>
+<pre><code>## [1] 4.4823783 3.1112640 6.4209075 0.8529582 6.3223040 5.8633876</code></pre>
 <p>Each built-in R function or functions loaded through a package has a help page. In addition, there is a wealth of information through the wonderful magic of <a href="https://www.google.com/">Google</a>. Another great place to look for answers or ask questions yourself is <a href="https://stackoverflow.com/">StackOverflow</a>.</p>
 </div>
 <div id="tidyverse" class="section level2">
@@ -783,7 +783,7 @@ y_i = \beta_0 + \beta_1 x_i + \epsilon_i
 <p>Finally, it’s always good practice to include the <a href="">Session Info</a> for your R session in your document. That way, other persons (including your future self) looking at your document can see what versions of R and loaded packages were used, which can be quite essential for reproducibility.</p>
 <p>You can also include the date with <code>Sys.time()</code> so you have a time stamp of when the report was compiled.</p>
 <pre class="r"><code>Sys.time()</code></pre>
-<pre><code>## [1] &quot;2021-10-22 09:43:42 UTC&quot;</code></pre>
+<pre><code>## [1] &quot;2021-10-22 10:30:15 UTC&quot;</code></pre>
 <pre class="r"><code>sessionInfo()</code></pre>
 <pre><code>## R version 4.1.1 (2021-08-10)
 ## Platform: x86_64-apple-darwin17.0 (64-bit)
