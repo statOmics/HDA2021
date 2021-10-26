@@ -56,7 +56,7 @@ analysing the dataset and set it to a value that seems appropriate to you -- no 
 your choice).
 
 You must apply your implemented method to the **nutrimouse** data, which is part of the
-`r BiocStyle::CRANpkg("CDA")` R package. More information about the data can be found in the paper.
+`r BiocStyle::CRANpkg("CCA")` R package. More information about the data can be found in the paper.
 You must only look at the first two dimensions of the CCA, which will allow you to make
 two-dimensional graphs.
 
