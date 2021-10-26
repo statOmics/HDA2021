@@ -35,8 +35,7 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script src="site_libs/navigation-1.1/codefolding.js"></script>
 <script src="site_libs/navigation-1.1/sourceembed.js"></script>
-<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
 <script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
@@ -51,17 +50,110 @@
   ul.task-list{list-style: none;}
     </style>
 
-<style type="text/css">code{white-space: pre;}</style>
-<script type="text/javascript">
-if (window.hljs) {
-  hljs.configure({languages: []});
-  hljs.initHighlightingOnLoad();
-  if (document.readyState && document.readyState === "complete") {
-    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
-  }
-}
-</script>
 
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
+.sourceCode .row {
+  width: 100%;
+}
+.sourceCode {
+  overflow-x: auto;
+}
+.code-folding-btn {
+  margin-right: -30px;
+}
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 
 
 <style type="text/css">
@@ -449,26 +541,26 @@ div.tocify {
 <li>Spatial location (x, y, z) of each voxel</li>
 <li>z-statistic for assessing differential brain activity between dyslexic and non-dyslexic children</li>
 </ul>
-<pre class="r"><code>library(tidyverse)
-library(locfdr)
-library(gganimate)
-
-dti &lt;- read_csv(&quot;https://raw.githubusercontent.com/statOmics/HDA2020/data/dti.csv&quot;,
-                col_types = cols())</code></pre>
-<pre class="r"><code>pZ &lt;- dti %&gt;%
-  ggplot(
-    aes(
-      coord.y,
-      coord.x,
-      color=z.value)
-    ) +
-  geom_point() +
-  scale_colour_gradient2(low = &quot;blue&quot;,mid=&quot;white&quot;,high=&quot;red&quot;) +
-  transition_manual(coord.z) +
-  labs(title = &quot;transection z = {frame}&quot;) +
-  theme_grey()</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">library</span>(locfdr)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="kw">library</span>(gganimate)</span>
+<span id="cb1-4"><a href="#cb1-4"></a></span>
+<span id="cb1-5"><a href="#cb1-5"></a>dti &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/statOmics/HDA2020/data/dti.csv&quot;</span>,</span>
+<span id="cb1-6"><a href="#cb1-6"></a>                <span class="dt">col_types =</span> <span class="kw">cols</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>pZ &lt;-<span class="st"> </span>dti <span class="op">%&gt;%</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="st">  </span><span class="kw">ggplot</span>(</span>
+<span id="cb2-3"><a href="#cb2-3"></a>    <span class="kw">aes</span>(</span>
+<span id="cb2-4"><a href="#cb2-4"></a>      coord.y,</span>
+<span id="cb2-5"><a href="#cb2-5"></a>      coord.x,</span>
+<span id="cb2-6"><a href="#cb2-6"></a>      <span class="dt">color=</span>z.value)</span>
+<span id="cb2-7"><a href="#cb2-7"></a>    ) <span class="op">+</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a><span class="st">  </span><span class="kw">scale_colour_gradient2</span>(<span class="dt">low =</span> <span class="st">&quot;blue&quot;</span>,<span class="dt">mid=</span><span class="st">&quot;white&quot;</span>,<span class="dt">high=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a><span class="st">  </span><span class="kw">transition_manual</span>(coord.z) <span class="op">+</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;transection z = {frame}&quot;</span>) <span class="op">+</span></span>
+<span id="cb2-12"><a href="#cb2-12"></a><span class="st">  </span><span class="kw">theme_grey</span>()</span></code></pre></div>
 <p>We will now plot the animated graph</p>
-<pre class="r"><code>pZ</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>pZ</span></code></pre></div>
 <p><strong>WARNING</strong>: The animated graph will only be visible in the HTML output, not in PDF format. If you’re reading the PDF version, check <a href="https://statomics.github.io/HDDA21/lsi.html#111_Data_Exploration">online</a> for the animated graph.</p>
 <pre><code>## Warning: No renderer available. Please install the gifski, av, or magick package
 ## to create animated output</code></pre>
@@ -482,25 +574,25 @@ dti &lt;- read_csv(&quot;https://raw.githubusercontent.com/statOmics/HDA2020/dat
 <p>vs</p>
 <p><span class="math display">\[H_0: \text{There is on average a difference in brain activity in voxel xyz between dyslexic and non-dyslexic children}\]</span> <span class="math display">\[\mu_d\neq\mu_{nd}\]</span></p>
 <p>Below, we calculate the p-values and a variable zP for which we keep the z-value if it is statistical significant at the 5% level otherwise we set it equal to zP=0.</p>
-<pre class="r"><code>dti &lt;- dti %&gt;%
-  mutate(
-    p.value = pnorm(abs(z.value),lower=FALSE)*2,
-    zP = (p.value &lt; 0.05) * z.value)
-
-pPval &lt;- dti %&gt;%
-  ggplot(
-    aes(
-      coord.y,
-      coord.x,
-      color=zP)
-    ) +
-  geom_point() +
-  scale_colour_gradient2(low = &quot;blue&quot;,mid=&quot;white&quot;,high=&quot;red&quot;) +
-  transition_manual(coord.z) +
-  labs(title = &quot;transection z = {frame}&quot;) +
-  theme_grey()</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>dti &lt;-<span class="st"> </span>dti <span class="op">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
+<span id="cb5-3"><a href="#cb5-3"></a>    <span class="dt">p.value =</span> <span class="kw">pnorm</span>(<span class="kw">abs</span>(z.value),<span class="dt">lower=</span><span class="ot">FALSE</span>)<span class="op">*</span><span class="dv">2</span>,</span>
+<span id="cb5-4"><a href="#cb5-4"></a>    <span class="dt">zP =</span> (p.value <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.05</span>) <span class="op">*</span><span class="st"> </span>z.value)</span>
+<span id="cb5-5"><a href="#cb5-5"></a></span>
+<span id="cb5-6"><a href="#cb5-6"></a>pPval &lt;-<span class="st"> </span>dti <span class="op">%&gt;%</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a><span class="st">  </span><span class="kw">ggplot</span>(</span>
+<span id="cb5-8"><a href="#cb5-8"></a>    <span class="kw">aes</span>(</span>
+<span id="cb5-9"><a href="#cb5-9"></a>      coord.y,</span>
+<span id="cb5-10"><a href="#cb5-10"></a>      coord.x,</span>
+<span id="cb5-11"><a href="#cb5-11"></a>      <span class="dt">color=</span>zP)</span>
+<span id="cb5-12"><a href="#cb5-12"></a>    ) <span class="op">+</span></span>
+<span id="cb5-13"><a href="#cb5-13"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb5-14"><a href="#cb5-14"></a><span class="st">  </span><span class="kw">scale_colour_gradient2</span>(<span class="dt">low =</span> <span class="st">&quot;blue&quot;</span>,<span class="dt">mid=</span><span class="st">&quot;white&quot;</span>,<span class="dt">high=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span></span>
+<span id="cb5-15"><a href="#cb5-15"></a><span class="st">  </span><span class="kw">transition_manual</span>(coord.z) <span class="op">+</span></span>
+<span id="cb5-16"><a href="#cb5-16"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;transection z = {frame}&quot;</span>) <span class="op">+</span></span>
+<span id="cb5-17"><a href="#cb5-17"></a><span class="st">  </span><span class="kw">theme_grey</span>()</span></code></pre></div>
 <p>We will now plot the animated graph</p>
-<pre class="r"><code>pPval</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>pPval</span></code></pre></div>
 <pre><code>## Warning: No renderer available. Please install the gifski, av, or magick package
 ## to create animated output</code></pre>
 <p>It is much more easy to observe patterns of activity.</p>
@@ -512,12 +604,12 @@ pPval &lt;- dti %&gt;%
 <li>If there would be no association between brain activity and dyslexia we can expect on average 772.15 false positive voxels.</li>
 <li>Note, that only 1241 were significant at the 5% significance level, so we can expect that the majority of the returned voxels are false positives.</li>
 </ul>
-<pre class="r"><code>FPexpected  &lt;- nrow(dti) * 0.05
-Preported &lt;- sum(dti$p.value &lt; 0.05)
-
-FPexpected</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>FPexpected  &lt;-<span class="st"> </span><span class="kw">nrow</span>(dti) <span class="op">*</span><span class="st"> </span><span class="fl">0.05</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>Preported &lt;-<span class="st"> </span><span class="kw">sum</span>(dti<span class="op">$</span>p.value <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.05</span>)</span>
+<span id="cb8-3"><a href="#cb8-3"></a></span>
+<span id="cb8-4"><a href="#cb8-4"></a>FPexpected</span></code></pre></div>
 <pre><code>## [1] 772.15</code></pre>
-<pre class="r"><code>Preported</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>Preported</span></code></pre></div>
 <pre><code>## [1] 1241</code></pre>
 </div>
 </div>
@@ -553,30 +645,30 @@ FPexpected</code></pre>
   \text{P}\left[\text{reject }H_0 \mid H_0\right] = \text{P}\left[P&lt;\alpha \mid H_0\right] = \alpha.
 \]</span></p>
 <p>The distribution of the z-statistic and the p-values under <span class="math inline">\(H_0\)</span> are illustrated below:</p>
-<pre class="r"><code>library(gridExtra)</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw">library</span>(gridExtra)</span></code></pre></div>
 <pre><code>## 
 ## Attaching package: &#39;gridExtra&#39;</code></pre>
 <pre><code>## The following object is masked from &#39;package:dplyr&#39;:
 ## 
 ##     combine</code></pre>
-<pre class="r"><code>simData &lt;- tibble(
-  z.value = rnorm(20000)
-  )
-
-simData &lt;- simData %&gt;% mutate(p.value = 2*(1-pnorm(abs(z.value))))
-
-p1 &lt;- simData %&gt;%
-  ggplot(aes(x = z.value)) +
-  geom_histogram(
-    aes(y=..density..),
-    color = &quot;black&quot;) +
-  stat_function(fun = dnorm, args=list(mean=0, sd=1))
-
-p2 &lt;- simData %&gt;%
-  ggplot(aes(x = p.value)) +
-  geom_histogram(color = &quot;black&quot;, breaks = seq(0,1,.05))
-
-grid.arrange(p1, p2, ncol=2)</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>simData &lt;-<span class="st"> </span><span class="kw">tibble</span>(</span>
+<span id="cb15-2"><a href="#cb15-2"></a>  <span class="dt">z.value =</span> <span class="kw">rnorm</span>(<span class="dv">20000</span>)</span>
+<span id="cb15-3"><a href="#cb15-3"></a>  )</span>
+<span id="cb15-4"><a href="#cb15-4"></a></span>
+<span id="cb15-5"><a href="#cb15-5"></a>simData &lt;-<span class="st"> </span>simData <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">p.value =</span> <span class="dv">2</span><span class="op">*</span>(<span class="dv">1</span><span class="op">-</span><span class="kw">pnorm</span>(<span class="kw">abs</span>(z.value))))</span>
+<span id="cb15-6"><a href="#cb15-6"></a></span>
+<span id="cb15-7"><a href="#cb15-7"></a>p1 &lt;-<span class="st"> </span>simData <span class="op">%&gt;%</span></span>
+<span id="cb15-8"><a href="#cb15-8"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> z.value)) <span class="op">+</span></span>
+<span id="cb15-9"><a href="#cb15-9"></a><span class="st">  </span><span class="kw">geom_histogram</span>(</span>
+<span id="cb15-10"><a href="#cb15-10"></a>    <span class="kw">aes</span>(<span class="dt">y=</span>..density..),</span>
+<span id="cb15-11"><a href="#cb15-11"></a>    <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></span>
+<span id="cb15-12"><a href="#cb15-12"></a><span class="st">  </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm, <span class="dt">args=</span><span class="kw">list</span>(<span class="dt">mean=</span><span class="dv">0</span>, <span class="dt">sd=</span><span class="dv">1</span>))</span>
+<span id="cb15-13"><a href="#cb15-13"></a></span>
+<span id="cb15-14"><a href="#cb15-14"></a>p2 &lt;-<span class="st"> </span>simData <span class="op">%&gt;%</span></span>
+<span id="cb15-15"><a href="#cb15-15"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> p.value)) <span class="op">+</span></span>
+<span id="cb15-16"><a href="#cb15-16"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">color =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,.<span class="dv">05</span>))</span>
+<span id="cb15-17"><a href="#cb15-17"></a></span>
+<span id="cb15-18"><a href="#cb15-18"></a><span class="kw">grid.arrange</span>(p1, p2, <span class="dt">ncol=</span><span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="lsi_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <p>We indeed observe that the p-values are uniform under the null hypothesis. So statistical hypothesis testing provides a uniform testing strategy.</p>
@@ -1200,54 +1292,54 @@ grid.arrange(p1, p2, ncol=2)</code></pre>
 </div>
 <div id="brain-example" class="section level2">
 <h2><span class="header-section-number">2.4</span> Brain Example</h2>
-<pre class="r"><code>dti %&gt;%
-  ggplot(aes(x = p.value)) +
-  geom_histogram(color = &quot;black&quot;,breaks = seq(0,1,.05))</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>dti <span class="op">%&gt;%</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> p.value)) <span class="op">+</span></span>
+<span id="cb17-3"><a href="#cb17-3"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">color =</span> <span class="st">&quot;black&quot;</span>,<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,.<span class="dv">05</span>))</span></code></pre></div>
 <p><img src="lsi_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 <ul>
 <li><p>The graph shows the histogram of the <span class="math inline">\(m=15443\)</span> <span class="math inline">\(p\)</span>-values. It shows a distribution which is close to a uniform distribution for the larger p-values, but with more small <span class="math inline">\(p\)</span>-values than expected under a uniform distribution.</p></li>
 <li><p>This is a trend that would arise if most of the hypotheses are nulls (resulting in <span class="math inline">\(p\)</span>-values from a uniform distribution), but some are non-nulls (more likely to result in small <span class="math inline">\(p\)</span>-values).</p></li>
 </ul>
 <hr />
-<pre class="r"><code>dti &lt;- dti %&gt;%
-  mutate(
-    padj = p.adjust(p.value, method=&quot;fdr&quot;),
-    zFDR = (padj &lt; 0.05) * z.value)
-
-pPadj &lt;- dti %&gt;%
-  ggplot(aes(p.value,padj)) +
-  geom_point() +
-  geom_segment(x=0,y=0,xend=1,yend=1) +
-  ylab(&quot;adjusted p-value (BH, 1995)&quot;)
-
-grid.arrange(pPadj,
-  pPadj + ylim(c(0,0.05)),
-  ncol=2)</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>dti &lt;-<span class="st"> </span>dti <span class="op">%&gt;%</span></span>
+<span id="cb18-2"><a href="#cb18-2"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
+<span id="cb18-3"><a href="#cb18-3"></a>    <span class="dt">padj =</span> <span class="kw">p.adjust</span>(p.value, <span class="dt">method=</span><span class="st">&quot;fdr&quot;</span>),</span>
+<span id="cb18-4"><a href="#cb18-4"></a>    <span class="dt">zFDR =</span> (padj <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.05</span>) <span class="op">*</span><span class="st"> </span>z.value)</span>
+<span id="cb18-5"><a href="#cb18-5"></a></span>
+<span id="cb18-6"><a href="#cb18-6"></a>pPadj &lt;-<span class="st"> </span>dti <span class="op">%&gt;%</span></span>
+<span id="cb18-7"><a href="#cb18-7"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(p.value,padj)) <span class="op">+</span></span>
+<span id="cb18-8"><a href="#cb18-8"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb18-9"><a href="#cb18-9"></a><span class="st">  </span><span class="kw">geom_segment</span>(<span class="dt">x=</span><span class="dv">0</span>,<span class="dt">y=</span><span class="dv">0</span>,<span class="dt">xend=</span><span class="dv">1</span>,<span class="dt">yend=</span><span class="dv">1</span>) <span class="op">+</span></span>
+<span id="cb18-10"><a href="#cb18-10"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;adjusted p-value (BH, 1995)&quot;</span>)</span>
+<span id="cb18-11"><a href="#cb18-11"></a></span>
+<span id="cb18-12"><a href="#cb18-12"></a><span class="kw">grid.arrange</span>(pPadj,</span>
+<span id="cb18-13"><a href="#cb18-13"></a>  pPadj <span class="op">+</span><span class="st"> </span><span class="kw">ylim</span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">0.05</span>)),</span>
+<span id="cb18-14"><a href="#cb18-14"></a>  <span class="dt">ncol=</span><span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## Warning: Removed 15411 rows containing missing values (geom_point).</code></pre>
 <p><img src="lsi_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
-<pre class="r"><code># uncorrected p-values
-table(dti$p.value &lt; 0.05)</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="co"># uncorrected p-values</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a><span class="kw">table</span>(dti<span class="op">$</span>p.value <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.05</span>)</span></code></pre></div>
 <pre><code>## 
 ## FALSE  TRUE 
 ## 14202  1241</code></pre>
-<pre class="r"><code># BH corrected p-values
-table(dti$padj &lt; 0.05)</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="co"># BH corrected p-values</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a><span class="kw">table</span>(dti<span class="op">$</span>padj <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.05</span>)</span></code></pre></div>
 <pre><code>## 
 ## FALSE  TRUE 
 ## 15411    32</code></pre>
 <p>At the 5% FDR, 32 voxels are returned as significantly differentially active between dyslexic and non-dyslexic children.</p>
-<pre class="r"><code>pFDR &lt;- dti %&gt;%
-  ggplot(
-    aes(
-      coord.y,
-      coord.x,
-      color=zFDR)
-    ) +
-  geom_point() +
-  scale_colour_gradient2(low = &quot;blue&quot;,mid=&quot;white&quot;,high=&quot;red&quot;) +
-  transition_manual(coord.z) +
-  labs(title = &quot;transection z = {frame}&quot;) +
-  theme_grey()</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>pFDR &lt;-<span class="st"> </span>dti <span class="op">%&gt;%</span></span>
+<span id="cb24-2"><a href="#cb24-2"></a><span class="st">  </span><span class="kw">ggplot</span>(</span>
+<span id="cb24-3"><a href="#cb24-3"></a>    <span class="kw">aes</span>(</span>
+<span id="cb24-4"><a href="#cb24-4"></a>      coord.y,</span>
+<span id="cb24-5"><a href="#cb24-5"></a>      coord.x,</span>
+<span id="cb24-6"><a href="#cb24-6"></a>      <span class="dt">color=</span>zFDR)</span>
+<span id="cb24-7"><a href="#cb24-7"></a>    ) <span class="op">+</span></span>
+<span id="cb24-8"><a href="#cb24-8"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb24-9"><a href="#cb24-9"></a><span class="st">  </span><span class="kw">scale_colour_gradient2</span>(<span class="dt">low =</span> <span class="st">&quot;blue&quot;</span>,<span class="dt">mid=</span><span class="st">&quot;white&quot;</span>,<span class="dt">high=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span></span>
+<span id="cb24-10"><a href="#cb24-10"></a><span class="st">  </span><span class="kw">transition_manual</span>(coord.z) <span class="op">+</span></span>
+<span id="cb24-11"><a href="#cb24-11"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;transection z = {frame}&quot;</span>) <span class="op">+</span></span>
+<span id="cb24-12"><a href="#cb24-12"></a><span class="st">  </span><span class="kw">theme_grey</span>()</span></code></pre></div>
 <pre><code>## Warning: No renderer available. Please install the gifski, av, or magick package
 ## to create animated output</code></pre>
 </div>
@@ -1287,16 +1379,16 @@ table(dti$padj &lt; 0.05)</code></pre>
 <ul>
 <li>blue: <span class="math inline">\(f_0\)</span>: <span class="math inline">\(N(0,1)\)</span>, red: <span class="math inline">\(f_1\)</span>: <span class="math inline">\(N(1,1)\)</span></li>
 </ul>
-<pre class="r"><code>components &lt;- tibble(z = seq(-6,6,.01)) %&gt;%
-  mutate(
-    f0 = dnorm(z),
-    f1 = dnorm(z, mean = 1))
-
-components %&gt;%
-  gather(component, density, -z) %&gt;%
-  ggplot(aes(z,density,color = component)) +
-  geom_line() +
-  scale_color_manual(values=c(&quot;blue&quot;,&quot;red&quot;))</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>components &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">z =</span> <span class="kw">seq</span>(<span class="op">-</span><span class="dv">6</span>,<span class="dv">6</span>,.<span class="dv">01</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb27-2"><a href="#cb27-2"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
+<span id="cb27-3"><a href="#cb27-3"></a>    <span class="dt">f0 =</span> <span class="kw">dnorm</span>(z),</span>
+<span id="cb27-4"><a href="#cb27-4"></a>    <span class="dt">f1 =</span> <span class="kw">dnorm</span>(z, <span class="dt">mean =</span> <span class="dv">1</span>))</span>
+<span id="cb27-5"><a href="#cb27-5"></a></span>
+<span id="cb27-6"><a href="#cb27-6"></a>components <span class="op">%&gt;%</span></span>
+<span id="cb27-7"><a href="#cb27-7"></a><span class="st">  </span><span class="kw">gather</span>(component, density, <span class="op">-</span>z) <span class="op">%&gt;%</span></span>
+<span id="cb27-8"><a href="#cb27-8"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(z,density,<span class="dt">color =</span> component)) <span class="op">+</span></span>
+<span id="cb27-9"><a href="#cb27-9"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
+<span id="cb27-10"><a href="#cb27-10"></a><span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values=</span><span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;red&quot;</span>))</span></code></pre></div>
 <p><img src="lsi_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 <p>The graphs shows the two component distributions separately.</p>
 <hr />
@@ -1304,21 +1396,21 @@ components %&gt;%
 <li>blue: <span class="math inline">\(\pi_0 \times f_0\)</span> with <span class="math inline">\(\pi_0=0.9\)</span> and <span class="math inline">\(f_0 = N(0,1)\)</span></li>
 <li>red: <span class="math inline">\(\pi_1\times f_1\)</span> with <span class="math inline">\(\pi_1=1-\pi_0=0.1\)</span> and <span class="math inline">\(f_1 = N(1,1)\)</span></li>
 </ul>
-<pre class="r"><code>p0 &lt;- 0.9
-p1 &lt;- 1-p0
-mu1 &lt;- 1
-scaledComponents &lt;- tibble(z = seq(-6,6,.01)) %&gt;%
-  mutate(
-    p0xf0 = dnorm(z) * p0,
-    p1xf1 = dnorm(z, mean = mu1)*p1
-    )
-
-scaledComponents %&gt;%
-  gather(component, density, -z) %&gt;%
-  ggplot(aes(z,density,color = component)) +
-  geom_line() +
-  scale_color_manual(values=c(&quot;blue&quot;,&quot;red&quot;)) +
-  ggtitle(&quot;Scaled components&quot;)</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>p0 &lt;-<span class="st"> </span><span class="fl">0.9</span></span>
+<span id="cb28-2"><a href="#cb28-2"></a>p1 &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">-</span>p0</span>
+<span id="cb28-3"><a href="#cb28-3"></a>mu1 &lt;-<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb28-4"><a href="#cb28-4"></a>scaledComponents &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">z =</span> <span class="kw">seq</span>(<span class="op">-</span><span class="dv">6</span>,<span class="dv">6</span>,.<span class="dv">01</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb28-5"><a href="#cb28-5"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
+<span id="cb28-6"><a href="#cb28-6"></a>    <span class="dt">p0xf0 =</span> <span class="kw">dnorm</span>(z) <span class="op">*</span><span class="st"> </span>p0,</span>
+<span id="cb28-7"><a href="#cb28-7"></a>    <span class="dt">p1xf1 =</span> <span class="kw">dnorm</span>(z, <span class="dt">mean =</span> mu1)<span class="op">*</span>p1</span>
+<span id="cb28-8"><a href="#cb28-8"></a>    )</span>
+<span id="cb28-9"><a href="#cb28-9"></a></span>
+<span id="cb28-10"><a href="#cb28-10"></a>scaledComponents <span class="op">%&gt;%</span></span>
+<span id="cb28-11"><a href="#cb28-11"></a><span class="st">  </span><span class="kw">gather</span>(component, density, <span class="op">-</span>z) <span class="op">%&gt;%</span></span>
+<span id="cb28-12"><a href="#cb28-12"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(z,density,<span class="dt">color =</span> component)) <span class="op">+</span></span>
+<span id="cb28-13"><a href="#cb28-13"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
+<span id="cb28-14"><a href="#cb28-14"></a><span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values=</span><span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;red&quot;</span>)) <span class="op">+</span></span>
+<span id="cb28-15"><a href="#cb28-15"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Scaled components&quot;</span>)</span></code></pre></div>
 <p><img src="lsi_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 <hr />
 <p>Mixture distribution</p>
@@ -1327,57 +1419,57 @@ scaledComponents %&gt;%
 <li>red: <span class="math inline">\(\pi_1\times f_1\)</span> with <span class="math inline">\(\pi_1=1-\pi_0=0.1\)</span> and <span class="math inline">\(f_1 = N(1,1)\)</span></li>
 <li>black: <span class="math inline">\(f=\pi_0 f_0 + \pi_1 f_1\)</span></li>
 </ul>
-<pre class="r"><code>scaledComponents %&gt;%
-  mutate(f=p0xf0+p1xf1) %&gt;%
-  gather(component, density, -z) %&gt;%
-  ggplot(aes(z,density,color = component)) +
-  geom_line() +
-  scale_color_manual(values=c(&quot;black&quot;,&quot;blue&quot;,&quot;red&quot;)) +
-  ggtitle(&quot;Mixture and scaled components&quot;)</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>scaledComponents <span class="op">%&gt;%</span></span>
+<span id="cb29-2"><a href="#cb29-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">f=</span>p0xf0<span class="op">+</span>p1xf1) <span class="op">%&gt;%</span></span>
+<span id="cb29-3"><a href="#cb29-3"></a><span class="st">  </span><span class="kw">gather</span>(component, density, <span class="op">-</span>z) <span class="op">%&gt;%</span></span>
+<span id="cb29-4"><a href="#cb29-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(z,density,<span class="dt">color =</span> component)) <span class="op">+</span></span>
+<span id="cb29-5"><a href="#cb29-5"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
+<span id="cb29-6"><a href="#cb29-6"></a><span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values=</span><span class="kw">c</span>(<span class="st">&quot;black&quot;</span>,<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;red&quot;</span>)) <span class="op">+</span></span>
+<span id="cb29-7"><a href="#cb29-7"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Mixture and scaled components&quot;</span>)</span></code></pre></div>
 <p><img src="lsi_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
 <hr />
 <p>Mixture <span class="math inline">\(\pi_0 f_0(z)+\pi_1 f_1(z)\)</span> with <span class="math inline">\(\pi_0=0.65\)</span> and <span class="math inline">\(f_1= N(2,1)\)</span> and <span class="math inline">\(f_0 = N(0,1)\)</span></p>
-<pre class="r"><code>p0 &lt;- 0.65
-p1 &lt;- 1-p0
-mu1 &lt;- 2
-scaledComponents &lt;- tibble(z = seq(-6,6,.01)) %&gt;%
-  mutate(
-    p0xf0 = dnorm(z) * p0,
-    p1xf1 = dnorm(z, mean = mu1)*p1)
-
-scaledComponents %&gt;%
-  mutate(f=p0xf0+p1xf1) %&gt;%
-  gather(component, density, -z) %&gt;%
-  ggplot(aes(z,density,color = component)) +
-  geom_line() +
-  scale_color_manual(values=c(&quot;black&quot;,&quot;blue&quot;,&quot;red&quot;)) +
-  ggtitle(&quot;Mixture and scaled components (p0 = 0.35)&quot;)</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>p0 &lt;-<span class="st"> </span><span class="fl">0.65</span></span>
+<span id="cb30-2"><a href="#cb30-2"></a>p1 &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">-</span>p0</span>
+<span id="cb30-3"><a href="#cb30-3"></a>mu1 &lt;-<span class="st"> </span><span class="dv">2</span></span>
+<span id="cb30-4"><a href="#cb30-4"></a>scaledComponents &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">z =</span> <span class="kw">seq</span>(<span class="op">-</span><span class="dv">6</span>,<span class="dv">6</span>,.<span class="dv">01</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb30-5"><a href="#cb30-5"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
+<span id="cb30-6"><a href="#cb30-6"></a>    <span class="dt">p0xf0 =</span> <span class="kw">dnorm</span>(z) <span class="op">*</span><span class="st"> </span>p0,</span>
+<span id="cb30-7"><a href="#cb30-7"></a>    <span class="dt">p1xf1 =</span> <span class="kw">dnorm</span>(z, <span class="dt">mean =</span> mu1)<span class="op">*</span>p1)</span>
+<span id="cb30-8"><a href="#cb30-8"></a></span>
+<span id="cb30-9"><a href="#cb30-9"></a>scaledComponents <span class="op">%&gt;%</span></span>
+<span id="cb30-10"><a href="#cb30-10"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">f=</span>p0xf0<span class="op">+</span>p1xf1) <span class="op">%&gt;%</span></span>
+<span id="cb30-11"><a href="#cb30-11"></a><span class="st">  </span><span class="kw">gather</span>(component, density, <span class="op">-</span>z) <span class="op">%&gt;%</span></span>
+<span id="cb30-12"><a href="#cb30-12"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(z,density,<span class="dt">color =</span> component)) <span class="op">+</span></span>
+<span id="cb30-13"><a href="#cb30-13"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
+<span id="cb30-14"><a href="#cb30-14"></a><span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values=</span><span class="kw">c</span>(<span class="st">&quot;black&quot;</span>,<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;red&quot;</span>)) <span class="op">+</span></span>
+<span id="cb30-15"><a href="#cb30-15"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Mixture and scaled components (p0 = 0.35)&quot;</span>)</span></code></pre></div>
 <p><img src="lsi_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
 </div>
 <div id="simulations" class="section level3">
 <h3><span class="header-section-number">3.2.2</span> simulations</h3>
 <p>Simulated data: 20000 <span class="math inline">\(z\)</span>-statistics with <span class="math inline">\(\pi_1=0.10\)</span> non-nulls with <span class="math inline">\(f_1=N(1,1)\)</span>.</p>
-<pre class="r"><code>p0 &lt;- .9
-p1 &lt;- 1-p0
-mu1 &lt;- 1
-m &lt;- 20000
-
-zSim &lt;- c(
-  rnorm(m * p0),
-  rnorm(m * p1, mean=mu1)
-  )
-
-zSim %&gt;%
-  as_tibble %&gt;%
-  ggplot(aes(x = zSim)) +
-  geom_histogram(
-    aes(y=..density..),
-    color = &quot;black&quot;) +
-  stat_function(fun = dnorm,
-    args = list(
-      mean = 0,
-      sd=1),
-    color=&quot;blue&quot;)</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a>p0 &lt;-<span class="st"> </span><span class="fl">.9</span></span>
+<span id="cb31-2"><a href="#cb31-2"></a>p1 &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">-</span>p0</span>
+<span id="cb31-3"><a href="#cb31-3"></a>mu1 &lt;-<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb31-4"><a href="#cb31-4"></a>m &lt;-<span class="st"> </span><span class="dv">20000</span></span>
+<span id="cb31-5"><a href="#cb31-5"></a></span>
+<span id="cb31-6"><a href="#cb31-6"></a>zSim &lt;-<span class="st"> </span><span class="kw">c</span>(</span>
+<span id="cb31-7"><a href="#cb31-7"></a>  <span class="kw">rnorm</span>(m <span class="op">*</span><span class="st"> </span>p0),</span>
+<span id="cb31-8"><a href="#cb31-8"></a>  <span class="kw">rnorm</span>(m <span class="op">*</span><span class="st"> </span>p1, <span class="dt">mean=</span>mu1)</span>
+<span id="cb31-9"><a href="#cb31-9"></a>  )</span>
+<span id="cb31-10"><a href="#cb31-10"></a></span>
+<span id="cb31-11"><a href="#cb31-11"></a>zSim <span class="op">%&gt;%</span></span>
+<span id="cb31-12"><a href="#cb31-12"></a><span class="st">  </span>as_tibble <span class="op">%&gt;%</span></span>
+<span id="cb31-13"><a href="#cb31-13"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> zSim)) <span class="op">+</span></span>
+<span id="cb31-14"><a href="#cb31-14"></a><span class="st">  </span><span class="kw">geom_histogram</span>(</span>
+<span id="cb31-15"><a href="#cb31-15"></a>    <span class="kw">aes</span>(<span class="dt">y=</span>..density..),</span>
+<span id="cb31-16"><a href="#cb31-16"></a>    <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></span>
+<span id="cb31-17"><a href="#cb31-17"></a><span class="st">  </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm,</span>
+<span id="cb31-18"><a href="#cb31-18"></a>    <span class="dt">args =</span> <span class="kw">list</span>(</span>
+<span id="cb31-19"><a href="#cb31-19"></a>      <span class="dt">mean =</span> <span class="dv">0</span>,</span>
+<span id="cb31-20"><a href="#cb31-20"></a>      <span class="dt">sd=</span><span class="dv">1</span>),</span>
+<span id="cb31-21"><a href="#cb31-21"></a>    <span class="dt">color=</span><span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="lsi_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
 <p>It is hard to see the difference between the histogram and the density function of the null distribution (blue curve), because the mean of <span class="math inline">\(f_1\)</span> is not much larger than 0 and because only <span class="math inline">\(\pi_1=10\%\)</span> non-nulls are included and because the alternative is not far from the null distribution. However, this is not an unrealistic setting.</p>
@@ -1445,8 +1537,8 @@ zSim %&gt;%
 </div>
 <div id="brainscan-example" class="section level3">
 <h3><span class="header-section-number">3.3.3</span> Brainscan example</h3>
-<pre class="r"><code>library(locfdr)
-lfdr &lt;- locfdr(dti$z.value, nulltype = 0)</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="kw">library</span>(locfdr)</span>
+<span id="cb33-2"><a href="#cb33-2"></a>lfdr &lt;-<span class="st"> </span><span class="kw">locfdr</span>(dti<span class="op">$</span>z.value, <span class="dt">nulltype =</span> <span class="dv">0</span>)</span></code></pre></div>
 <p><img src="lsi_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
 <ul>
 <li><p>In the brainscan example the test statistics are supposed to be <span class="math inline">\(N(0,1)\)</span> distributed under the null hypothesis. Tests are performed two-sided.</p></li>
@@ -1490,7 +1582,7 @@ lfdr &lt;- locfdr(dti$z.value, nulltype = 0)</code></pre>
 </ol>
 <div id="brainscan-example-1" class="section level3">
 <h3><span class="header-section-number">3.4.1</span> Brainscan example</h3>
-<pre class="r"><code>lfdr &lt;- locfdr(dti$z.value)</code></pre>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a>lfdr &lt;-<span class="st"> </span><span class="kw">locfdr</span>(dti<span class="op">$</span>z.value)</span></code></pre></div>
 <p><img src="lsi_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
 <p>The plot shows that the null distribution is shifted to negative values and has a standard deviation that remains close to 1.</p>
 <ul>
@@ -1500,7 +1592,7 @@ lfdr &lt;- locfdr(dti$z.value, nulltype = 0)</code></pre>
 <li><p>The purple bars indicate the estimated number of non-nulls (among the hypotheses/voxels for a given <span class="math inline">\(z\)</span>-value). The plots shows that only non-nulls for positive <span class="math inline">\(z\)</span>-values are expected (sign of <span class="math inline">\(z\)</span> corresponds to more or less brain activity in normal versus dyslectic children).</p></li>
 </ul>
 <hr />
-<pre class="r"><code>lfdr &lt;- locfdr(dti$z.value, plot=2)</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a>lfdr &lt;-<span class="st"> </span><span class="kw">locfdr</span>(dti<span class="op">$</span>z.value, <span class="dt">plot=</span><span class="dv">2</span>)</span></code></pre></div>
 <p><img src="lsi_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
 <ul>
 <li><p>The plot at the left is the same as on the previous page.</p></li>
@@ -1510,31 +1602,31 @@ lfdr &lt;- locfdr(dti$z.value, nulltype = 0)</code></pre>
 <li><p>Note, that the result is atypically. In most applications we typically pick-up both downregulated (negative z) and upregulated (positive z) features.</p></li>
 </ul>
 <hr />
-<pre class="r"><code>dti &lt;- dti %&gt;%
-  mutate(
-    lfdr = lfdr$fdr,
-    zfdr = (lfdr&lt;0.2) * z.value)
-
-pfdr &lt;- dti %&gt;%
-  ggplot(
-    aes(
-      coord.y,
-      coord.x,
-      color=zfdr)
-    ) +
-  geom_point() +
-  scale_colour_gradient2(low = &quot;blue&quot;,mid=&quot;white&quot;,high=&quot;red&quot;) +
-  transition_manual(coord.z) +
-  labs(title = &quot;transection z = {frame}&quot;) +
-  theme_grey()</code></pre>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a>dti &lt;-<span class="st"> </span>dti <span class="op">%&gt;%</span></span>
+<span id="cb36-2"><a href="#cb36-2"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
+<span id="cb36-3"><a href="#cb36-3"></a>    <span class="dt">lfdr =</span> lfdr<span class="op">$</span>fdr,</span>
+<span id="cb36-4"><a href="#cb36-4"></a>    <span class="dt">zfdr =</span> (lfdr<span class="op">&lt;</span><span class="fl">0.2</span>) <span class="op">*</span><span class="st"> </span>z.value)</span>
+<span id="cb36-5"><a href="#cb36-5"></a></span>
+<span id="cb36-6"><a href="#cb36-6"></a>pfdr &lt;-<span class="st"> </span>dti <span class="op">%&gt;%</span></span>
+<span id="cb36-7"><a href="#cb36-7"></a><span class="st">  </span><span class="kw">ggplot</span>(</span>
+<span id="cb36-8"><a href="#cb36-8"></a>    <span class="kw">aes</span>(</span>
+<span id="cb36-9"><a href="#cb36-9"></a>      coord.y,</span>
+<span id="cb36-10"><a href="#cb36-10"></a>      coord.x,</span>
+<span id="cb36-11"><a href="#cb36-11"></a>      <span class="dt">color=</span>zfdr)</span>
+<span id="cb36-12"><a href="#cb36-12"></a>    ) <span class="op">+</span></span>
+<span id="cb36-13"><a href="#cb36-13"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb36-14"><a href="#cb36-14"></a><span class="st">  </span><span class="kw">scale_colour_gradient2</span>(<span class="dt">low =</span> <span class="st">&quot;blue&quot;</span>,<span class="dt">mid=</span><span class="st">&quot;white&quot;</span>,<span class="dt">high=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span></span>
+<span id="cb36-15"><a href="#cb36-15"></a><span class="st">  </span><span class="kw">transition_manual</span>(coord.z) <span class="op">+</span></span>
+<span id="cb36-16"><a href="#cb36-16"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;transection z = {frame}&quot;</span>) <span class="op">+</span></span>
+<span id="cb36-17"><a href="#cb36-17"></a><span class="st">  </span><span class="kw">theme_grey</span>()</span></code></pre></div>
 <pre><code>## Warning: No renderer available. Please install the gifski, av, or magick package
 ## to create animated output</code></pre>
 <p>Note, that the local fdr method allows us to detect differential brain activity in a specific region in the front part of the brain for which a larger fractional anisotropy is observed on average for childeren having dyslexia.</p>
 <p>We can also estimate the FDR of the set that we return as the average local fdr in this set.</p>
-<pre class="r"><code>dti %&gt;%
-  filter(lfdr &lt; 0.2) %&gt;%
-  pull(lfdr) %&gt;%
-  mean</code></pre>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a>dti <span class="op">%&gt;%</span></span>
+<span id="cb38-2"><a href="#cb38-2"></a><span class="st">  </span><span class="kw">filter</span>(lfdr <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.2</span>) <span class="op">%&gt;%</span></span>
+<span id="cb38-3"><a href="#cb38-3"></a><span class="st">  </span><span class="kw">pull</span>(lfdr) <span class="op">%&gt;%</span></span>
+<span id="cb38-4"><a href="#cb38-4"></a><span class="st">  </span>mean</span></code></pre></div>
 <pre><code>## [1] 0.1034925</code></pre>
 </div>
 </div>
@@ -1547,7 +1639,7 @@ pfdr &lt;- dti %&gt;%
 \]</span></p>
 <p>With estimates of fdr<span class="math inline">\((z)\)</span> and <span class="math inline">\(f_1(z)\)</span>, the Efdr can be computed.</p>
 <p>A small Efdr is an indication of a powerful study.</p>
-<pre class="r"><code>lfdr &lt;- locfdr(dti$z.value, plot = 3)</code></pre>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a>lfdr &lt;-<span class="st"> </span><span class="kw">locfdr</span>(dti<span class="op">$</span>z.value, <span class="dt">plot =</span> <span class="dv">3</span>)</span></code></pre></div>
 <p><img src="lsi_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
 <p>With <span class="math inline">\(\alpha\)</span> the nominal local fdr level, the vertical axis gives <span class="math display">\[
   \text{E}_{f_1}\left[\text{fdr}(Z)&lt;\alpha\right].

@@ -35,8 +35,7 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script src="site_libs/navigation-1.1/codefolding.js"></script>
 <script src="site_libs/navigation-1.1/sourceembed.js"></script>
-<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
 <script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
@@ -51,17 +50,110 @@
   ul.task-list{list-style: none;}
     </style>
 
-<style type="text/css">code{white-space: pre;}</style>
-<script type="text/javascript">
-if (window.hljs) {
-  hljs.configure({languages: []});
-  hljs.initHighlightingOnLoad();
-  if (document.readyState && document.readyState === "complete") {
-    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
-  }
-}
-</script>
 
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
+.sourceCode .row {
+  width: 100%;
+}
+.sourceCode {
+  overflow-x: auto;
+}
+.code-folding-btn {
+  margin-right: -30px;
+}
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 
 
 <style type="text/css">
@@ -464,38 +556,38 @@ div.tocify {
 <li>Each of the facial images in our library will be reshaped into a large vector with 192 × 168 = 32 256 elements.</li>
 <li>We will use the 64 images of 36 people to build our models</li>
 </ul>
-<pre class="r"><code>library(pixmap)
-library(tidyverse)
-library(gridExtra)
-library(grid)
-library(ggmap)
-library(downloader)
-library(imager)</code></pre>
-<pre class="r"><code>## Download and unzip data
-if(!dir.exists(&quot;raw-data&quot;)) dir.create(&quot;raw-data&quot;)
-download(
-  &quot;https://github.com/statOmics/HDA2020/raw/data/yalefaces_cropped.zip&quot;,
-  destfile = &quot;raw-data/yalefaces_cropped.zip&quot;, mode = &quot;wb&quot;, quiet = TRUE
-)
-unzip (&quot;raw-data/yalefaces_cropped.zip&quot;, exdir = &quot;./raw-data&quot;)
-
-dir &lt;- &quot;./raw-data/CroppedYale&quot;</code></pre>
-<pre class="r"><code>people &lt;- list.files(dir)
-people2 &lt;- sapply(people,
-  function(x) list.files(
-    paste0(dir,&quot;/&quot;,x),
-    full.names=TRUE
-    )
-  )
-
-facesList &lt;- lapply(people2, function(x) read.pnm(x))
-
- grid.arrange(
-  grobs=lapply(facesList[1+(0:35)*64],
-     function(x) getChannels(x) %&gt;%
-        ggimage(.,coord_equal=TRUE)
-        ),
-  ncol=6)</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">library</span>(pixmap)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="kw">library</span>(gridExtra)</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="kw">library</span>(grid)</span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="kw">library</span>(ggmap)</span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="kw">library</span>(downloader)</span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="kw">library</span>(imager)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co">## Download and unzip data</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="cf">if</span>(<span class="op">!</span><span class="kw">dir.exists</span>(<span class="st">&quot;raw-data&quot;</span>)) <span class="kw">dir.create</span>(<span class="st">&quot;raw-data&quot;</span>)</span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="kw">download</span>(</span>
+<span id="cb2-4"><a href="#cb2-4"></a>  <span class="st">&quot;https://github.com/statOmics/HDA2020/raw/data/yalefaces_cropped.zip&quot;</span>,</span>
+<span id="cb2-5"><a href="#cb2-5"></a>  <span class="dt">destfile =</span> <span class="st">&quot;raw-data/yalefaces_cropped.zip&quot;</span>, <span class="dt">mode =</span> <span class="st">&quot;wb&quot;</span>, <span class="dt">quiet =</span> <span class="ot">TRUE</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a>)</span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="kw">unzip</span> (<span class="st">&quot;raw-data/yalefaces_cropped.zip&quot;</span>, <span class="dt">exdir =</span> <span class="st">&quot;./raw-data&quot;</span>)</span>
+<span id="cb2-8"><a href="#cb2-8"></a></span>
+<span id="cb2-9"><a href="#cb2-9"></a>dir &lt;-<span class="st"> &quot;./raw-data/CroppedYale&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>people &lt;-<span class="st"> </span><span class="kw">list.files</span>(dir)</span>
+<span id="cb3-2"><a href="#cb3-2"></a>people2 &lt;-<span class="st"> </span><span class="kw">sapply</span>(people,</span>
+<span id="cb3-3"><a href="#cb3-3"></a>  <span class="cf">function</span>(x) <span class="kw">list.files</span>(</span>
+<span id="cb3-4"><a href="#cb3-4"></a>    <span class="kw">paste0</span>(dir,<span class="st">&quot;/&quot;</span>,x),</span>
+<span id="cb3-5"><a href="#cb3-5"></a>    <span class="dt">full.names=</span><span class="ot">TRUE</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a>    )</span>
+<span id="cb3-7"><a href="#cb3-7"></a>  )</span>
+<span id="cb3-8"><a href="#cb3-8"></a></span>
+<span id="cb3-9"><a href="#cb3-9"></a>facesList &lt;-<span class="st"> </span><span class="kw">lapply</span>(people2, <span class="cf">function</span>(x) <span class="kw">read.pnm</span>(x))</span>
+<span id="cb3-10"><a href="#cb3-10"></a></span>
+<span id="cb3-11"><a href="#cb3-11"></a> <span class="kw">grid.arrange</span>(</span>
+<span id="cb3-12"><a href="#cb3-12"></a>  <span class="dt">grobs=</span><span class="kw">lapply</span>(facesList[<span class="dv">1</span><span class="op">+</span>(<span class="dv">0</span><span class="op">:</span><span class="dv">35</span>)<span class="op">*</span><span class="dv">64</span>],</span>
+<span id="cb3-13"><a href="#cb3-13"></a>     <span class="cf">function</span>(x) <span class="kw">getChannels</span>(x) <span class="op">%&gt;%</span></span>
+<span id="cb3-14"><a href="#cb3-14"></a><span class="st">        </span><span class="kw">ggimage</span>(.,<span class="dt">coord_equal=</span><span class="ot">TRUE</span>)</span>
+<span id="cb3-15"><a href="#cb3-15"></a>        ),</span>
+<span id="cb3-16"><a href="#cb3-16"></a>  <span class="dt">ncol=</span><span class="dv">6</span>)</span></code></pre></div>
 <p><img src="svd_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 </div>
 <div id="method" class="section level2">
@@ -632,11 +724,11 @@ facesList &lt;- lapply(people2, function(x) read.pnm(x))
 <li>We transpose the resulting matrix from sapply</li>
 </ul></li>
 </ol>
-<pre class="r"><code>allFacesMx &lt;- sapply(facesList,
-                     function(x)
-                        getChannels(x) %&gt;% c
-                     ) %&gt;% t
-dim(allFacesMx)</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>allFacesMx &lt;-<span class="st"> </span><span class="kw">sapply</span>(facesList,</span>
+<span id="cb4-2"><a href="#cb4-2"></a>                     <span class="cf">function</span>(x)</span>
+<span id="cb4-3"><a href="#cb4-3"></a>                        <span class="kw">getChannels</span>(x) <span class="op">%&gt;%</span><span class="st"> </span>c</span>
+<span id="cb4-4"><a href="#cb4-4"></a>                     ) <span class="op">%&gt;%</span><span class="st"> </span>t</span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="kw">dim</span>(allFacesMx)</span></code></pre></div>
 <pre><code>## [1]  2432 32256</code></pre>
 <p>Save memory by removing facesList object</p>
 <pre><code>rm(facesList)
@@ -644,21 +736,21 @@ gc()</code></pre>
 <p>Hence we obtain a matrix for n = 2432 images with p = 32256 intensities for each pixel of an image.</p>
 <p>Before we do the svd we typically center the data by substracting the average of the columns, i.e. the average face.</p>
 <p>We will only work with the first 36 people: <span class="math inline">\(n = 36 \times 64 = 2304\)</span> pictures.</p>
-<pre class="r"><code>allFacesCenteredMx &lt;- allFacesMx[1:(36*64),]
-meanFace &lt;- colMeans(allFacesCenteredMx)
-
-allFacesMxCentered &lt;- allFacesCenteredMx -
-  matrix(1, nrow=nrow(allFacesCenteredMx), ncol=1) %*% matrix(meanFace,nrow=1)</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>allFacesCenteredMx &lt;-<span class="st"> </span>allFacesMx[<span class="dv">1</span><span class="op">:</span>(<span class="dv">36</span><span class="op">*</span><span class="dv">64</span>),]</span>
+<span id="cb7-2"><a href="#cb7-2"></a>meanFace &lt;-<span class="st"> </span><span class="kw">colMeans</span>(allFacesCenteredMx)</span>
+<span id="cb7-3"><a href="#cb7-3"></a></span>
+<span id="cb7-4"><a href="#cb7-4"></a>allFacesMxCentered &lt;-<span class="st"> </span>allFacesCenteredMx <span class="op">-</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="st">  </span><span class="kw">matrix</span>(<span class="dv">1</span>, <span class="dt">nrow=</span><span class="kw">nrow</span>(allFacesCenteredMx), <span class="dt">ncol=</span><span class="dv">1</span>) <span class="op">%*%</span><span class="st"> </span><span class="kw">matrix</span>(meanFace,<span class="dt">nrow=</span><span class="dv">1</span>)</span></code></pre></div>
 </div>
 <div id="visualisation-of-mean-image" class="section level3">
 <h3><span class="header-section-number">1.5.2</span> Visualisation of mean image</h3>
-<pre class="r"><code>plotFaceVector &lt;- function(faceVector,nrow=192,ncol=168) {
-  matrix(faceVector,nrow=nrow,ncol=ncol) %&gt;%
-  ggimage()
-}
-
-meanFace %&gt;%
-  plotFaceVector</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>plotFaceVector &lt;-<span class="st"> </span><span class="cf">function</span>(faceVector,<span class="dt">nrow=</span><span class="dv">192</span>,<span class="dt">ncol=</span><span class="dv">168</span>) {</span>
+<span id="cb8-2"><a href="#cb8-2"></a>  <span class="kw">matrix</span>(faceVector,<span class="dt">nrow=</span>nrow,<span class="dt">ncol=</span>ncol) <span class="op">%&gt;%</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="st">  </span><span class="kw">ggimage</span>()</span>
+<span id="cb8-4"><a href="#cb8-4"></a>}</span>
+<span id="cb8-5"><a href="#cb8-5"></a></span>
+<span id="cb8-6"><a href="#cb8-6"></a>meanFace <span class="op">%&gt;%</span></span>
+<span id="cb8-7"><a href="#cb8-7"></a><span class="st">  </span>plotFaceVector</span></code></pre></div>
 <p><img src="svd_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 </div>
 <div id="svd" class="section level3">
@@ -669,7 +761,7 @@ meanFace %&gt;%
 <li>We adopt svd on the centered matrix</li>
 <li>We cache the result because the calculation takes 10 minutes.</li>
 </ol>
-<pre class="r"><code>faceSvd &lt;- svd(allFacesMxCentered)</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>faceSvd &lt;-<span class="st"> </span><span class="kw">svd</span>(allFacesMxCentered)</span></code></pre></div>
 <!-- ```{r, eval=FALSE} -->
 <!-- ## Run this code manually to store the SVD for later re-use -->
 <!-- saveRDS(faceSvd, file = "faceSvd.rds") -->
@@ -682,66 +774,66 @@ meanFace %&gt;%
 <div id="svd-1" class="section level4">
 <h4><span class="header-section-number">1.5.3.2</span> SVD</h4>
 <p>Dimensions of <span class="math inline">\(\mathbf{U}\)</span>, <span class="math inline">\(\mathbf{V}\)</span>?</p>
-<pre class="r"><code>n &lt;- nrow(allFacesCenteredMx)
-p &lt;- ncol(allFacesCenteredMx)
-dim(faceSvd$u)</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>n &lt;-<span class="st"> </span><span class="kw">nrow</span>(allFacesCenteredMx)</span>
+<span id="cb10-2"><a href="#cb10-2"></a>p &lt;-<span class="st"> </span><span class="kw">ncol</span>(allFacesCenteredMx)</span>
+<span id="cb10-3"><a href="#cb10-3"></a><span class="kw">dim</span>(faceSvd<span class="op">$</span>u)</span></code></pre></div>
 <pre><code>## [1] 2304 2304</code></pre>
-<pre class="r"><code>dim(faceSvd$v)</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw">dim</span>(faceSvd<span class="op">$</span>v)</span></code></pre></div>
 <pre><code>## [1] 32256  2304</code></pre>
 <p>Indeed, for the face example <span class="math inline">\(n&lt;p\)</span> so <span class="math inline">\(r=n\)</span></p>
 <p>Check orthogonality?</p>
 <p>We do not do it for all vectors because it takes too long. First left eigen vector and second left eigenvector. Happens in <span class="math inline">\(\mathbf{U}^T\mathbf{U}\)</span></p>
-<pre class="r"><code>t(faceSvd$u[,1])%*%faceSvd$u[,1]</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="kw">t</span>(faceSvd<span class="op">$</span>u[,<span class="dv">1</span>])<span class="op">%*%</span>faceSvd<span class="op">$</span>u[,<span class="dv">1</span>]</span></code></pre></div>
 <pre><code>##      [,1]
 ## [1,]    1</code></pre>
-<pre class="r"><code>t(faceSvd$u[,1])%*%faceSvd$u[,2]</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="kw">t</span>(faceSvd<span class="op">$</span>u[,<span class="dv">1</span>])<span class="op">%*%</span>faceSvd<span class="op">$</span>u[,<span class="dv">2</span>]</span></code></pre></div>
 <pre><code>##               [,1]
 ## [1,] -3.794708e-19</code></pre>
-<pre class="r"><code>t(faceSvd$u[,2])%*%faceSvd$u[,2]</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="kw">t</span>(faceSvd<span class="op">$</span>u[,<span class="dv">2</span>])<span class="op">%*%</span>faceSvd<span class="op">$</span>u[,<span class="dv">2</span>]</span></code></pre></div>
 <pre><code>##      [,1]
 ## [1,]    1</code></pre>
 <p>So we see that the left eigenvectors are orthonormal.</p>
 <p>We check if it also holds for the rows i.e. <span class="math inline">\(\mathbf{U}\mathbf{U}^T\)</span></p>
-<pre class="r"><code>t(faceSvd$u[1,])%*%faceSvd$u[1,]</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="kw">t</span>(faceSvd<span class="op">$</span>u[<span class="dv">1</span>,])<span class="op">%*%</span>faceSvd<span class="op">$</span>u[<span class="dv">1</span>,]</span></code></pre></div>
 <pre><code>##      [,1]
 ## [1,]    1</code></pre>
-<pre class="r"><code>t(faceSvd$u[2,])%*%faceSvd$u[1,]</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="kw">t</span>(faceSvd<span class="op">$</span>u[<span class="dv">2</span>,])<span class="op">%*%</span>faceSvd<span class="op">$</span>u[<span class="dv">1</span>,]</span></code></pre></div>
 <pre><code>##               [,1]
 ## [1,] -1.691355e-16</code></pre>
-<pre class="r"><code>t(faceSvd$u[2,])%*%faceSvd$u[2,]</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="kw">t</span>(faceSvd<span class="op">$</span>u[<span class="dv">2</span>,])<span class="op">%*%</span>faceSvd<span class="op">$</span>u[<span class="dv">2</span>,]</span></code></pre></div>
 <pre><code>##      [,1]
 ## [1,]    1</code></pre>
 <p>We also see that the rows of <span class="math inline">\(\mathbf{U}\)</span> are orthonormal.</p>
-<pre class="r"><code>t(faceSvd$v[,1])%*%faceSvd$v[,1]</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="kw">t</span>(faceSvd<span class="op">$</span>v[,<span class="dv">1</span>])<span class="op">%*%</span>faceSvd<span class="op">$</span>v[,<span class="dv">1</span>]</span></code></pre></div>
 <pre><code>##      [,1]
 ## [1,]    1</code></pre>
-<pre class="r"><code>t(faceSvd$v[,1])%*%faceSvd$v[,2]</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="kw">t</span>(faceSvd<span class="op">$</span>v[,<span class="dv">1</span>])<span class="op">%*%</span>faceSvd<span class="op">$</span>v[,<span class="dv">2</span>]</span></code></pre></div>
 <pre><code>##               [,1]
 ## [1,] -9.397551e-16</code></pre>
-<pre class="r"><code>t(faceSvd$v[,2])%*%faceSvd$v[,2]</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="kw">t</span>(faceSvd<span class="op">$</span>v[,<span class="dv">2</span>])<span class="op">%*%</span>faceSvd<span class="op">$</span>v[,<span class="dv">2</span>]</span></code></pre></div>
 <pre><code>##      [,1]
 ## [1,]    1</code></pre>
 <p>So we see that the right eigenvectors are orthonormal.</p>
-<pre class="r"><code>t(faceSvd$v[1,])%*%faceSvd$v[1,]</code></pre>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="kw">t</span>(faceSvd<span class="op">$</span>v[<span class="dv">1</span>,])<span class="op">%*%</span>faceSvd<span class="op">$</span>v[<span class="dv">1</span>,]</span></code></pre></div>
 <pre><code>##           [,1]
 ## [1,] 0.6181993</code></pre>
-<pre class="r"><code>t(faceSvd$v[1,])%*%faceSvd$v[2,]</code></pre>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="kw">t</span>(faceSvd<span class="op">$</span>v[<span class="dv">1</span>,])<span class="op">%*%</span>faceSvd<span class="op">$</span>v[<span class="dv">2</span>,]</span></code></pre></div>
 <pre><code>##            [,1]
 ## [1,] 0.07690404</code></pre>
-<pre class="r"><code>t(faceSvd$v[2,])%*%faceSvd$v[2,]</code></pre>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="kw">t</span>(faceSvd<span class="op">$</span>v[<span class="dv">2</span>,])<span class="op">%*%</span>faceSvd<span class="op">$</span>v[<span class="dv">2</span>,]</span></code></pre></div>
 <pre><code>##           [,1]
 ## [1,] 0.1017995</code></pre>
 <p>This, however does not hold for the rows of <span class="math inline">\(\mathbf{V}\)</span>. This is because the matrix <span class="math inline">\(\mathbf{V}\)</span> no longer is a square matrix! <span class="math inline">\(r=n\)</span> and <span class="math inline">\(r&lt;p\)</span>!</p>
 </div>
 <div id="visualize-right-eigenvectors-mathbfv" class="section level4">
 <h4><span class="header-section-number">1.5.3.3</span> Visualize right eigenvectors <span class="math inline">\(\mathbf{V}\)</span></h4>
-<pre class="r"><code>grid.arrange(
- grobs=apply(
-   faceSvd$v[,1:36],
-   2,
-   plotFaceVector
-   )
- )</code></pre>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="kw">grid.arrange</span>(</span>
+<span id="cb38-2"><a href="#cb38-2"></a> <span class="dt">grobs=</span><span class="kw">apply</span>(</span>
+<span id="cb38-3"><a href="#cb38-3"></a>   faceSvd<span class="op">$</span>v[,<span class="dv">1</span><span class="op">:</span><span class="dv">36</span>],</span>
+<span id="cb38-4"><a href="#cb38-4"></a>   <span class="dv">2</span>,</span>
+<span id="cb38-5"><a href="#cb38-5"></a>   plotFaceVector</span>
+<span id="cb38-6"><a href="#cb38-6"></a>   )</span>
+<span id="cb38-7"><a href="#cb38-7"></a> )</span></code></pre></div>
 <pre><code>## rescaling mat to [0,1]...
 ## rescaling mat to [0,1]...
 ## rescaling mat to [0,1]...
@@ -939,29 +1031,29 @@ dim(faceSvd$u)</code></pre>
 \end{array}
 \]</span></p>
 <p>If we truncate the eigen faces say at <span class="math inline">\(k&lt;r\)</span> we can approximate faces using a limited number of eigen faces!</p>
-<pre class="r"><code>approximateFace &lt;- function(meanFace,faceSvd,k){
-  reconstruct &lt;- (meanFace + faceSvd$u[1,1:k] %*%
-    diag(faceSvd$d[1:k]) %*%
-  t(faceSvd$v[,1:k]) %&gt;%
-  c)
-}
-
-approxHlp &lt;- sapply(
-      c(25,100,500),
-      approximateFace,
-      meanFace=meanFace,
-      faceSvd=faceSvd)
-
-grid.arrange(
- grobs=apply(
-   cbind(
-     approxHlp,
-     allFacesMxCentered[1,]+meanFace
-   ),
-   2,
-   plotFaceVector
-   )
- )</code></pre>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a>approximateFace &lt;-<span class="st"> </span><span class="cf">function</span>(meanFace,faceSvd,k){</span>
+<span id="cb40-2"><a href="#cb40-2"></a>  reconstruct &lt;-<span class="st"> </span>(meanFace <span class="op">+</span><span class="st"> </span>faceSvd<span class="op">$</span>u[<span class="dv">1</span>,<span class="dv">1</span><span class="op">:</span>k] <span class="op">%*%</span></span>
+<span id="cb40-3"><a href="#cb40-3"></a><span class="st">    </span><span class="kw">diag</span>(faceSvd<span class="op">$</span>d[<span class="dv">1</span><span class="op">:</span>k]) <span class="op">%*%</span></span>
+<span id="cb40-4"><a href="#cb40-4"></a><span class="st">  </span><span class="kw">t</span>(faceSvd<span class="op">$</span>v[,<span class="dv">1</span><span class="op">:</span>k]) <span class="op">%&gt;%</span></span>
+<span id="cb40-5"><a href="#cb40-5"></a><span class="st">  </span>c)</span>
+<span id="cb40-6"><a href="#cb40-6"></a>}</span>
+<span id="cb40-7"><a href="#cb40-7"></a></span>
+<span id="cb40-8"><a href="#cb40-8"></a>approxHlp &lt;-<span class="st"> </span><span class="kw">sapply</span>(</span>
+<span id="cb40-9"><a href="#cb40-9"></a>      <span class="kw">c</span>(<span class="dv">25</span>,<span class="dv">100</span>,<span class="dv">500</span>),</span>
+<span id="cb40-10"><a href="#cb40-10"></a>      approximateFace,</span>
+<span id="cb40-11"><a href="#cb40-11"></a>      <span class="dt">meanFace=</span>meanFace,</span>
+<span id="cb40-12"><a href="#cb40-12"></a>      <span class="dt">faceSvd=</span>faceSvd)</span>
+<span id="cb40-13"><a href="#cb40-13"></a></span>
+<span id="cb40-14"><a href="#cb40-14"></a><span class="kw">grid.arrange</span>(</span>
+<span id="cb40-15"><a href="#cb40-15"></a> <span class="dt">grobs=</span><span class="kw">apply</span>(</span>
+<span id="cb40-16"><a href="#cb40-16"></a>   <span class="kw">cbind</span>(</span>
+<span id="cb40-17"><a href="#cb40-17"></a>     approxHlp,</span>
+<span id="cb40-18"><a href="#cb40-18"></a>     allFacesMxCentered[<span class="dv">1</span>,]<span class="op">+</span>meanFace</span>
+<span id="cb40-19"><a href="#cb40-19"></a>   ),</span>
+<span id="cb40-20"><a href="#cb40-20"></a>   <span class="dv">2</span>,</span>
+<span id="cb40-21"><a href="#cb40-21"></a>   plotFaceVector</span>
+<span id="cb40-22"><a href="#cb40-22"></a>   )</span>
+<span id="cb40-23"><a href="#cb40-23"></a> )</span></code></pre></div>
 <div class="figure">
 <img src="svd_files/figure-html/unnamed-chunk-11-1.png" alt="approximation with 25 (top left),  100 (top right) and 500 (bottom left) eigenfaces and original face (bottom right, or with all eigenfaces)" width="672" />
 <p class="caption">
@@ -1019,11 +1111,11 @@ approximation with 25 (top left), 100 (top right) and 500 (bottom left) eigenfac
 <li>plot</li>
 <li>save as Matrix</li>
 </ol>
-<pre class="r"><code>mondriaan &lt;- load.image(&quot;https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Piet_Mondrian_-_Composition_No._III%2C_with_red%2C_blue%2C_yellow_and_black%2C_1929.jpg/1920px-Piet_Mondrian_-_Composition_No._III%2C_with_red%2C_blue%2C_yellow_and_black%2C_1929.jpg&quot;)
-mondriaan &lt;- grayscale(mondriaan)
-plot(mondriaan,axes=FALSE)</code></pre>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a>mondriaan &lt;-<span class="st"> </span><span class="kw">load.image</span>(<span class="st">&quot;https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Piet_Mondrian_-_Composition_No._III%2C_with_red%2C_blue%2C_yellow_and_black%2C_1929.jpg/1920px-Piet_Mondrian_-_Composition_No._III%2C_with_red%2C_blue%2C_yellow_and_black%2C_1929.jpg&quot;</span>)</span>
+<span id="cb41-2"><a href="#cb41-2"></a>mondriaan &lt;-<span class="st"> </span><span class="kw">grayscale</span>(mondriaan)</span>
+<span id="cb41-3"><a href="#cb41-3"></a><span class="kw">plot</span>(mondriaan,<span class="dt">axes=</span><span class="ot">FALSE</span>)</span></code></pre></div>
 <p><img src="svd_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
-<pre class="r"><code>X &lt;- matrix(as.data.frame(mondriaan)[,3],nrow=nrow(mondriaan),ncol=ncol(mondriaan))</code></pre>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a>X &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">as.data.frame</span>(mondriaan)[,<span class="dv">3</span>],<span class="dt">nrow=</span><span class="kw">nrow</span>(mondriaan),<span class="dt">ncol=</span><span class="kw">ncol</span>(mondriaan))</span></code></pre></div>
 <ul>
 <li><p>This picture can be represented as a <span class="math inline">\(1920 \times 1913`\)</span> matrix <span class="math inline">\(\mathbf{X}\)</span> with gray scale intensities <span class="math inline">\(\in [0,1]\)</span>. (<span class="math inline">\(\approx 4\times 10^6\)</span> data entries)</p></li>
 <li><p>We will here not transform the image in a vector, but will look at the performance of the SVD to compress this image. The SVD can be applied to any matrix!</p></li>
@@ -1031,21 +1123,21 @@ plot(mondriaan,axes=FALSE)</code></pre>
 </div>
 <div id="singular-values" class="section level4">
 <h4><span class="header-section-number">2.1.1.2</span> Singular values</h4>
-<pre class="r"><code>monSvd &lt;- svd(X)
-
-p1 &lt;- data.frame(x=1:length(monSvd$d),y=monSvd$d) %&gt;%
-  ggplot(aes(x=x,y=y)) +
-  geom_point() +
-  xlab(&quot;k&quot;) +
-  ylab(&quot;singular value&quot;)
-
-p2 &lt;- data.frame(x=1:10,y=monSvd$d[1:10]) %&gt;%
-  ggplot(aes(x=x,y=y)) +
-  geom_point() +
-  xlab(&quot;k&quot;) +
-  ylab(&quot;singular value&quot;)
-
-grid.arrange(p1,p2,nrow=1)</code></pre>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a>monSvd &lt;-<span class="st"> </span><span class="kw">svd</span>(X)</span>
+<span id="cb43-2"><a href="#cb43-2"></a></span>
+<span id="cb43-3"><a href="#cb43-3"></a>p1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x=</span><span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(monSvd<span class="op">$</span>d),<span class="dt">y=</span>monSvd<span class="op">$</span>d) <span class="op">%&gt;%</span></span>
+<span id="cb43-4"><a href="#cb43-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>x,<span class="dt">y=</span>y)) <span class="op">+</span></span>
+<span id="cb43-5"><a href="#cb43-5"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb43-6"><a href="#cb43-6"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;k&quot;</span>) <span class="op">+</span></span>
+<span id="cb43-7"><a href="#cb43-7"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;singular value&quot;</span>)</span>
+<span id="cb43-8"><a href="#cb43-8"></a></span>
+<span id="cb43-9"><a href="#cb43-9"></a>p2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x=</span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,<span class="dt">y=</span>monSvd<span class="op">$</span>d[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]) <span class="op">%&gt;%</span></span>
+<span id="cb43-10"><a href="#cb43-10"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>x,<span class="dt">y=</span>y)) <span class="op">+</span></span>
+<span id="cb43-11"><a href="#cb43-11"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb43-12"><a href="#cb43-12"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;k&quot;</span>) <span class="op">+</span></span>
+<span id="cb43-13"><a href="#cb43-13"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;singular value&quot;</span>)</span>
+<span id="cb43-14"><a href="#cb43-14"></a></span>
+<span id="cb43-15"><a href="#cb43-15"></a><span class="kw">grid.arrange</span>(p1,p2,<span class="dt">nrow=</span><span class="dv">1</span>)</span></code></pre></div>
 <p><img src="svd_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <ul>
 <li>The singular values decay very quickly!</li>
@@ -1056,49 +1148,49 @@ grid.arrange(p1,p2,nrow=1)</code></pre>
 <ul>
 <li>We make the plot for a reconstruction with 1 singular vector. This leads to a data compression of <span class="math inline">\(1-\frac{(1+1920+1913)}{1920\times 1913}\)</span> = 99.9%. We only use 1 left singular vector (1920), 1 eigen value, 1 right singular vector (1913).</li>
 </ul>
-<pre class="r"><code>k &lt;- 1
-approxMon &lt;- monSvd$u[,1:k] %*%
-  diag(monSvd$d[1:k],ncol=k) %*%
-  t(monSvd$v[,1:k])
-
-approxMon[approxMon &lt; 0] &lt;- 0
-approxMon[approxMon &gt; 1] &lt;- 1
-
-as.cimg(approxMon) %&gt;%
-  plot(.,main=paste0(&quot;Approximation with &quot;,k,&quot; singular vectors&quot;),axes=FALSE)</code></pre>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a>k &lt;-<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb44-2"><a href="#cb44-2"></a>approxMon &lt;-<span class="st"> </span>monSvd<span class="op">$</span>u[,<span class="dv">1</span><span class="op">:</span>k] <span class="op">%*%</span></span>
+<span id="cb44-3"><a href="#cb44-3"></a><span class="st">  </span><span class="kw">diag</span>(monSvd<span class="op">$</span>d[<span class="dv">1</span><span class="op">:</span>k],<span class="dt">ncol=</span>k) <span class="op">%*%</span></span>
+<span id="cb44-4"><a href="#cb44-4"></a><span class="st">  </span><span class="kw">t</span>(monSvd<span class="op">$</span>v[,<span class="dv">1</span><span class="op">:</span>k])</span>
+<span id="cb44-5"><a href="#cb44-5"></a></span>
+<span id="cb44-6"><a href="#cb44-6"></a>approxMon[approxMon <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>] &lt;-<span class="st"> </span><span class="dv">0</span></span>
+<span id="cb44-7"><a href="#cb44-7"></a>approxMon[approxMon <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>] &lt;-<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb44-8"><a href="#cb44-8"></a></span>
+<span id="cb44-9"><a href="#cb44-9"></a><span class="kw">as.cimg</span>(approxMon) <span class="op">%&gt;%</span></span>
+<span id="cb44-10"><a href="#cb44-10"></a><span class="st">  </span><span class="kw">plot</span>(.,<span class="dt">main=</span><span class="kw">paste0</span>(<span class="st">&quot;Approximation with &quot;</span>,k,<span class="st">&quot; singular vectors&quot;</span>),<span class="dt">axes=</span><span class="ot">FALSE</span>)</span></code></pre></div>
 <p><img src="svd_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 <ul>
 <li>We make the plot for a reconstruction with 2 singular vector. This leads to a data compression of <span class="math inline">\(1-\frac{2\times (1+1920+1913)}{1920\times 1913}\)</span> = 99.8%. We only use 2 left singular vectors (2 <span class="math inline">\(\times\)</span> 1920), 2 singular values, 2 right singular vectors (2 <span class="math inline">\(\times\)</span> 1913).</li>
 </ul>
-<pre class="r"><code>k &lt;- 2
-approxMon &lt;- monSvd$u[,1:k] %*%
-  diag(monSvd$d[1:k],ncol=k) %*%
-  t(monSvd$v[,1:k])
-
-approxMon[approxMon &lt; 0] &lt;- 0
-approxMon[approxMon &gt; 1] &lt;- 1
-
-as.cimg(approxMon) %&gt;%
-  plot(.,main=paste0(&quot;Approximation with &quot;,k,&quot; singular vectors&quot;),axes=FALSE)</code></pre>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a>k &lt;-<span class="st"> </span><span class="dv">2</span></span>
+<span id="cb45-2"><a href="#cb45-2"></a>approxMon &lt;-<span class="st"> </span>monSvd<span class="op">$</span>u[,<span class="dv">1</span><span class="op">:</span>k] <span class="op">%*%</span></span>
+<span id="cb45-3"><a href="#cb45-3"></a><span class="st">  </span><span class="kw">diag</span>(monSvd<span class="op">$</span>d[<span class="dv">1</span><span class="op">:</span>k],<span class="dt">ncol=</span>k) <span class="op">%*%</span></span>
+<span id="cb45-4"><a href="#cb45-4"></a><span class="st">  </span><span class="kw">t</span>(monSvd<span class="op">$</span>v[,<span class="dv">1</span><span class="op">:</span>k])</span>
+<span id="cb45-5"><a href="#cb45-5"></a></span>
+<span id="cb45-6"><a href="#cb45-6"></a>approxMon[approxMon <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>] &lt;-<span class="st"> </span><span class="dv">0</span></span>
+<span id="cb45-7"><a href="#cb45-7"></a>approxMon[approxMon <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>] &lt;-<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb45-8"><a href="#cb45-8"></a></span>
+<span id="cb45-9"><a href="#cb45-9"></a><span class="kw">as.cimg</span>(approxMon) <span class="op">%&gt;%</span></span>
+<span id="cb45-10"><a href="#cb45-10"></a><span class="st">  </span><span class="kw">plot</span>(.,<span class="dt">main=</span><span class="kw">paste0</span>(<span class="st">&quot;Approximation with &quot;</span>,k,<span class="st">&quot; singular vectors&quot;</span>),<span class="dt">axes=</span><span class="ot">FALSE</span>)</span></code></pre></div>
 <p><img src="svd_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
-<pre class="r"><code>par (mfrow=c(3,3))
-par(mar=c(1,2,1,1))
-for (k in c(1:8))
-{
-approxMon &lt;- monSvd$u[,1:k] %*%
-  diag(monSvd$d[1:k],ncol=k) %*%
-  t(monSvd$v[,1:k])
-
-
-approxMon[approxMon &lt; 0] &lt;- 0
-approxMon[approxMon &gt; 1] &lt;- 1
-
-
-approxMon %&gt;%
-  as.cimg %&gt;%
-  plot(.,main=paste0(k,&quot; singular vectors&quot;),axes=FALSE)
-}
-plot(as.cimg(X),main=paste0(&quot;Original image&quot;),axes=FALSE)</code></pre>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a><span class="kw">par</span> (<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">3</span>))</span>
+<span id="cb46-2"><a href="#cb46-2"></a><span class="kw">par</span>(<span class="dt">mar=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb46-3"><a href="#cb46-3"></a><span class="cf">for</span> (k <span class="cf">in</span> <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">8</span>))</span>
+<span id="cb46-4"><a href="#cb46-4"></a>{</span>
+<span id="cb46-5"><a href="#cb46-5"></a>approxMon &lt;-<span class="st"> </span>monSvd<span class="op">$</span>u[,<span class="dv">1</span><span class="op">:</span>k] <span class="op">%*%</span></span>
+<span id="cb46-6"><a href="#cb46-6"></a><span class="st">  </span><span class="kw">diag</span>(monSvd<span class="op">$</span>d[<span class="dv">1</span><span class="op">:</span>k],<span class="dt">ncol=</span>k) <span class="op">%*%</span></span>
+<span id="cb46-7"><a href="#cb46-7"></a><span class="st">  </span><span class="kw">t</span>(monSvd<span class="op">$</span>v[,<span class="dv">1</span><span class="op">:</span>k])</span>
+<span id="cb46-8"><a href="#cb46-8"></a></span>
+<span id="cb46-9"><a href="#cb46-9"></a></span>
+<span id="cb46-10"><a href="#cb46-10"></a>approxMon[approxMon <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>] &lt;-<span class="st"> </span><span class="dv">0</span></span>
+<span id="cb46-11"><a href="#cb46-11"></a>approxMon[approxMon <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>] &lt;-<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb46-12"><a href="#cb46-12"></a></span>
+<span id="cb46-13"><a href="#cb46-13"></a></span>
+<span id="cb46-14"><a href="#cb46-14"></a>approxMon <span class="op">%&gt;%</span></span>
+<span id="cb46-15"><a href="#cb46-15"></a><span class="st">  </span>as.cimg <span class="op">%&gt;%</span></span>
+<span id="cb46-16"><a href="#cb46-16"></a><span class="st">  </span><span class="kw">plot</span>(.,<span class="dt">main=</span><span class="kw">paste0</span>(k,<span class="st">&quot; singular vectors&quot;</span>),<span class="dt">axes=</span><span class="ot">FALSE</span>)</span>
+<span id="cb46-17"><a href="#cb46-17"></a>}</span>
+<span id="cb46-18"><a href="#cb46-18"></a><span class="kw">plot</span>(<span class="kw">as.cimg</span>(X),<span class="dt">main=</span><span class="kw">paste0</span>(<span class="st">&quot;Original image&quot;</span>),<span class="dt">axes=</span><span class="ot">FALSE</span>)</span></code></pre></div>
 <p><img src="svd_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 </div>
 </div>
@@ -1106,28 +1198,28 @@ plot(as.cimg(X),main=paste0(&quot;Original image&quot;),axes=FALSE)</code></pre>
 <h3><span class="header-section-number">2.1.2</span> More complex painting: Composition A, Piet Mondriaan</h3>
 <div id="load-the-original-painting-1" class="section level4">
 <h4><span class="header-section-number">2.1.2.1</span> Load the original painting</h4>
-<pre class="r"><code>mondriaan &lt;- load.image(&quot;https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Composition_A_by_Piet_Mondrian_Galleria_Nazionale_d%27Arte_Moderna_e_Contemporanea.jpg/1920px-Composition_A_by_Piet_Mondrian_Galleria_Nazionale_d%27Arte_Moderna_e_Contemporanea.jpg&quot;)
-mondriaan &lt;- grayscale(mondriaan)
-plot(mondriaan,axes=FALSE)</code></pre>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a>mondriaan &lt;-<span class="st"> </span><span class="kw">load.image</span>(<span class="st">&quot;https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Composition_A_by_Piet_Mondrian_Galleria_Nazionale_d%27Arte_Moderna_e_Contemporanea.jpg/1920px-Composition_A_by_Piet_Mondrian_Galleria_Nazionale_d%27Arte_Moderna_e_Contemporanea.jpg&quot;</span>)</span>
+<span id="cb47-2"><a href="#cb47-2"></a>mondriaan &lt;-<span class="st"> </span><span class="kw">grayscale</span>(mondriaan)</span>
+<span id="cb47-3"><a href="#cb47-3"></a><span class="kw">plot</span>(mondriaan,<span class="dt">axes=</span><span class="ot">FALSE</span>)</span></code></pre></div>
 <p><img src="svd_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
-<pre class="r"><code>X &lt;- matrix(as.data.frame(mondriaan)[,3],nrow=dim(mondriaan)[1],ncol=dim(mondriaan)[2])</code></pre>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a>X &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">as.data.frame</span>(mondriaan)[,<span class="dv">3</span>],<span class="dt">nrow=</span><span class="kw">dim</span>(mondriaan)[<span class="dv">1</span>],<span class="dt">ncol=</span><span class="kw">dim</span>(mondriaan)[<span class="dv">2</span>])</span></code></pre></div>
 </div>
 <div id="singular-values-1" class="section level4">
 <h4><span class="header-section-number">2.1.2.2</span> Singular values</h4>
-<pre class="r"><code>monSvd &lt;- svd(X)</code></pre>
-<pre class="r"><code>p1 &lt;- data.frame(x=1:length(monSvd$d),y=monSvd$d) %&gt;%
-  ggplot(aes(x=x,y=y)) +
-  geom_point() +
-  xlab(&quot;k&quot;) +
-  ylab(&quot;singular value&quot;)
-
-p2 &lt;- data.frame(x=1:10,y=monSvd$d[1:10]) %&gt;%
-  ggplot(aes(x=x,y=y)) +
-  geom_point() +
-  xlab(&quot;k&quot;) +
-  ylab(&quot;singular value&quot;)
-
-grid.arrange(p1,p2,nrow=1)</code></pre>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a>monSvd &lt;-<span class="st"> </span><span class="kw">svd</span>(X)</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a>p1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x=</span><span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(monSvd<span class="op">$</span>d),<span class="dt">y=</span>monSvd<span class="op">$</span>d) <span class="op">%&gt;%</span></span>
+<span id="cb50-2"><a href="#cb50-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>x,<span class="dt">y=</span>y)) <span class="op">+</span></span>
+<span id="cb50-3"><a href="#cb50-3"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb50-4"><a href="#cb50-4"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;k&quot;</span>) <span class="op">+</span></span>
+<span id="cb50-5"><a href="#cb50-5"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;singular value&quot;</span>)</span>
+<span id="cb50-6"><a href="#cb50-6"></a></span>
+<span id="cb50-7"><a href="#cb50-7"></a>p2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x=</span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,<span class="dt">y=</span>monSvd<span class="op">$</span>d[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]) <span class="op">%&gt;%</span></span>
+<span id="cb50-8"><a href="#cb50-8"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>x,<span class="dt">y=</span>y)) <span class="op">+</span></span>
+<span id="cb50-9"><a href="#cb50-9"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb50-10"><a href="#cb50-10"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;k&quot;</span>) <span class="op">+</span></span>
+<span id="cb50-11"><a href="#cb50-11"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;singular value&quot;</span>)</span>
+<span id="cb50-12"><a href="#cb50-12"></a></span>
+<span id="cb50-13"><a href="#cb50-13"></a><span class="kw">grid.arrange</span>(p1,p2,<span class="dt">nrow=</span><span class="dv">1</span>)</span></code></pre></div>
 <p><img src="svd_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
 <ul>
 <li>The singular values decay a bit slower. The painting is a bit more complex. More lines and colors.</li>
@@ -1135,24 +1227,24 @@ grid.arrange(p1,p2,nrow=1)</code></pre>
 </div>
 <div id="evaluate-data-compression" class="section level4">
 <h4><span class="header-section-number">2.1.2.3</span> Evaluate data compression</h4>
-<pre class="r"><code>par (mfrow=c(3,3))
-par(mar=c(1,2,1,1))
-for (k in c(1,seq(3,21,3)))
-{
-approxMon &lt;- monSvd$u[,1:k] %*%
-  diag(monSvd$d[1:k],ncol=k) %*%
-  t(monSvd$v[,1:k])
-
-
-approxMon[approxMon &lt; 0] &lt;- 0
-approxMon[approxMon &gt; 1] &lt;- 1
-
-
-approxMon %&gt;%
-  as.cimg %&gt;%
-  plot(.,main=paste0(k,&quot; singular vectors&quot;),axes=FALSE)
-}
-plot(as.cimg(X),main=paste0(&quot;Original image&quot;),axes=FALSE)</code></pre>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1"></a><span class="kw">par</span> (<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">3</span>))</span>
+<span id="cb51-2"><a href="#cb51-2"></a><span class="kw">par</span>(<span class="dt">mar=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb51-3"><a href="#cb51-3"></a><span class="cf">for</span> (k <span class="cf">in</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="kw">seq</span>(<span class="dv">3</span>,<span class="dv">21</span>,<span class="dv">3</span>)))</span>
+<span id="cb51-4"><a href="#cb51-4"></a>{</span>
+<span id="cb51-5"><a href="#cb51-5"></a>approxMon &lt;-<span class="st"> </span>monSvd<span class="op">$</span>u[,<span class="dv">1</span><span class="op">:</span>k] <span class="op">%*%</span></span>
+<span id="cb51-6"><a href="#cb51-6"></a><span class="st">  </span><span class="kw">diag</span>(monSvd<span class="op">$</span>d[<span class="dv">1</span><span class="op">:</span>k],<span class="dt">ncol=</span>k) <span class="op">%*%</span></span>
+<span id="cb51-7"><a href="#cb51-7"></a><span class="st">  </span><span class="kw">t</span>(monSvd<span class="op">$</span>v[,<span class="dv">1</span><span class="op">:</span>k])</span>
+<span id="cb51-8"><a href="#cb51-8"></a></span>
+<span id="cb51-9"><a href="#cb51-9"></a></span>
+<span id="cb51-10"><a href="#cb51-10"></a>approxMon[approxMon <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>] &lt;-<span class="st"> </span><span class="dv">0</span></span>
+<span id="cb51-11"><a href="#cb51-11"></a>approxMon[approxMon <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>] &lt;-<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb51-12"><a href="#cb51-12"></a></span>
+<span id="cb51-13"><a href="#cb51-13"></a></span>
+<span id="cb51-14"><a href="#cb51-14"></a>approxMon <span class="op">%&gt;%</span></span>
+<span id="cb51-15"><a href="#cb51-15"></a><span class="st">  </span>as.cimg <span class="op">%&gt;%</span></span>
+<span id="cb51-16"><a href="#cb51-16"></a><span class="st">  </span><span class="kw">plot</span>(.,<span class="dt">main=</span><span class="kw">paste0</span>(k,<span class="st">&quot; singular vectors&quot;</span>),<span class="dt">axes=</span><span class="ot">FALSE</span>)</span>
+<span id="cb51-17"><a href="#cb51-17"></a>}</span>
+<span id="cb51-18"><a href="#cb51-18"></a><span class="kw">plot</span>(<span class="kw">as.cimg</span>(X),<span class="dt">main=</span><span class="kw">paste0</span>(<span class="st">&quot;Original image&quot;</span>),<span class="dt">axes=</span><span class="ot">FALSE</span>)</span></code></pre></div>
 <p><img src="svd_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
 </div>
 </div>
@@ -1160,28 +1252,28 @@ plot(as.cimg(X),main=paste0(&quot;Original image&quot;),axes=FALSE)</code></pre>
 <h3><span class="header-section-number">2.1.3</span> Self portret Piet Mondriaan</h3>
 <div id="load-the-painting" class="section level4">
 <h4><span class="header-section-number">2.1.3.1</span> Load the painting</h4>
-<pre class="r"><code>mondriaan &lt;- load.image(&quot;https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Mondrian_Zelfportret.jpg/1920px-Mondrian_Zelfportret.jpg&quot;)
-mondriaan &lt;- grayscale(mondriaan)
-plot(mondriaan,axes=FALSE)</code></pre>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a>mondriaan &lt;-<span class="st"> </span><span class="kw">load.image</span>(<span class="st">&quot;https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Mondrian_Zelfportret.jpg/1920px-Mondrian_Zelfportret.jpg&quot;</span>)</span>
+<span id="cb52-2"><a href="#cb52-2"></a>mondriaan &lt;-<span class="st"> </span><span class="kw">grayscale</span>(mondriaan)</span>
+<span id="cb52-3"><a href="#cb52-3"></a><span class="kw">plot</span>(mondriaan,<span class="dt">axes=</span><span class="ot">FALSE</span>)</span></code></pre></div>
 <p><img src="svd_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
-<pre class="r"><code>X &lt;- matrix(as.data.frame(mondriaan)[,3],nrow=dim(mondriaan)[1],ncol=dim(mondriaan)[2])</code></pre>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1"></a>X &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">as.data.frame</span>(mondriaan)[,<span class="dv">3</span>],<span class="dt">nrow=</span><span class="kw">dim</span>(mondriaan)[<span class="dv">1</span>],<span class="dt">ncol=</span><span class="kw">dim</span>(mondriaan)[<span class="dv">2</span>])</span></code></pre></div>
 </div>
 <div id="singular-values-2" class="section level4">
 <h4><span class="header-section-number">2.1.3.2</span> Singular values</h4>
-<pre class="r"><code>monSvd &lt;- svd(X)</code></pre>
-<pre class="r"><code>p1 &lt;- data.frame(x=1:length(monSvd$d),y=monSvd$d) %&gt;%
-  ggplot(aes(x=x,y=y)) +
-  geom_point() +
-  xlab(&quot;k&quot;) +
-  ylab(&quot;singular value&quot;)
-
-p2 &lt;- data.frame(x=1:10,y=monSvd$d[1:10]) %&gt;%
-  ggplot(aes(x=x,y=y)) +
-  geom_point() +
-  xlab(&quot;k&quot;) +
-  ylab(&quot;singular value&quot;)
-
-grid.arrange(p1,p2,nrow=1)</code></pre>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1"></a>monSvd &lt;-<span class="st"> </span><span class="kw">svd</span>(X)</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1"></a>p1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x=</span><span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(monSvd<span class="op">$</span>d),<span class="dt">y=</span>monSvd<span class="op">$</span>d) <span class="op">%&gt;%</span></span>
+<span id="cb55-2"><a href="#cb55-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>x,<span class="dt">y=</span>y)) <span class="op">+</span></span>
+<span id="cb55-3"><a href="#cb55-3"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb55-4"><a href="#cb55-4"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;k&quot;</span>) <span class="op">+</span></span>
+<span id="cb55-5"><a href="#cb55-5"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;singular value&quot;</span>)</span>
+<span id="cb55-6"><a href="#cb55-6"></a></span>
+<span id="cb55-7"><a href="#cb55-7"></a>p2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x=</span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,<span class="dt">y=</span>monSvd<span class="op">$</span>d[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]) <span class="op">%&gt;%</span></span>
+<span id="cb55-8"><a href="#cb55-8"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>x,<span class="dt">y=</span>y)) <span class="op">+</span></span>
+<span id="cb55-9"><a href="#cb55-9"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb55-10"><a href="#cb55-10"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;k&quot;</span>) <span class="op">+</span></span>
+<span id="cb55-11"><a href="#cb55-11"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;singular value&quot;</span>)</span>
+<span id="cb55-12"><a href="#cb55-12"></a></span>
+<span id="cb55-13"><a href="#cb55-13"></a><span class="kw">grid.arrange</span>(p1,p2,<span class="dt">nrow=</span><span class="dv">1</span>)</span></code></pre></div>
 <p><img src="svd_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
 <ul>
 <li>The singular values decay much slower. The painting is more complex.</li>
@@ -1189,24 +1281,24 @@ grid.arrange(p1,p2,nrow=1)</code></pre>
 </div>
 <div id="evaluate-compression" class="section level4">
 <h4><span class="header-section-number">2.1.3.3</span> Evaluate compression</h4>
-<pre class="r"><code>par (mfrow=c(3,3))
-par(mar=c(1,2,1,1))
-for (k in c(1,5,10,20,30,40,50,100))
-{
-approxMon &lt;- monSvd$u[,1:k] %*%
-  diag(monSvd$d[1:k],ncol=k) %*%
-  t(monSvd$v[,1:k])
-
-
-approxMon[approxMon &lt; 0] &lt;- 0
-approxMon[approxMon &gt; 1] &lt;- 1
-
-
-approxMon %&gt;%
-  as.cimg %&gt;%
-  plot(.,main=paste0(k,&quot; singular vectors&quot;),axes=FALSE)
-}
-plot(as.cimg(X),main=paste0(&quot;Original image&quot;),axes=FALSE)</code></pre>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1"></a><span class="kw">par</span> (<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">3</span>))</span>
+<span id="cb56-2"><a href="#cb56-2"></a><span class="kw">par</span>(<span class="dt">mar=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb56-3"><a href="#cb56-3"></a><span class="cf">for</span> (k <span class="cf">in</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">30</span>,<span class="dv">40</span>,<span class="dv">50</span>,<span class="dv">100</span>))</span>
+<span id="cb56-4"><a href="#cb56-4"></a>{</span>
+<span id="cb56-5"><a href="#cb56-5"></a>approxMon &lt;-<span class="st"> </span>monSvd<span class="op">$</span>u[,<span class="dv">1</span><span class="op">:</span>k] <span class="op">%*%</span></span>
+<span id="cb56-6"><a href="#cb56-6"></a><span class="st">  </span><span class="kw">diag</span>(monSvd<span class="op">$</span>d[<span class="dv">1</span><span class="op">:</span>k],<span class="dt">ncol=</span>k) <span class="op">%*%</span></span>
+<span id="cb56-7"><a href="#cb56-7"></a><span class="st">  </span><span class="kw">t</span>(monSvd<span class="op">$</span>v[,<span class="dv">1</span><span class="op">:</span>k])</span>
+<span id="cb56-8"><a href="#cb56-8"></a></span>
+<span id="cb56-9"><a href="#cb56-9"></a></span>
+<span id="cb56-10"><a href="#cb56-10"></a>approxMon[approxMon <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>] &lt;-<span class="st"> </span><span class="dv">0</span></span>
+<span id="cb56-11"><a href="#cb56-11"></a>approxMon[approxMon <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>] &lt;-<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb56-12"><a href="#cb56-12"></a></span>
+<span id="cb56-13"><a href="#cb56-13"></a></span>
+<span id="cb56-14"><a href="#cb56-14"></a>approxMon <span class="op">%&gt;%</span></span>
+<span id="cb56-15"><a href="#cb56-15"></a><span class="st">  </span>as.cimg <span class="op">%&gt;%</span></span>
+<span id="cb56-16"><a href="#cb56-16"></a><span class="st">  </span><span class="kw">plot</span>(.,<span class="dt">main=</span><span class="kw">paste0</span>(k,<span class="st">&quot; singular vectors&quot;</span>),<span class="dt">axes=</span><span class="ot">FALSE</span>)</span>
+<span id="cb56-17"><a href="#cb56-17"></a>}</span>
+<span id="cb56-18"><a href="#cb56-18"></a><span class="kw">plot</span>(<span class="kw">as.cimg</span>(X),<span class="dt">main=</span><span class="kw">paste0</span>(<span class="st">&quot;Original image&quot;</span>),<span class="dt">axes=</span><span class="ot">FALSE</span>)</span></code></pre></div>
 <p><img src="svd_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
 <p>Here we need at least 40 singular vector. This leads to a data compression of <span class="math inline">\(1-\frac{40\times (1+1920+2494)}{1920 \times 2494}\)</span> = 96.3%. We only use 40 left singular vectors (<span class="math inline">\(40 \times 1920\)</span>), 40 singular values, 40 right eigens vector (<span class="math inline">\(40\times 2494\)</span>).</p>
 </div>
@@ -1371,22 +1463,22 @@ plot(as.cimg(X),main=paste0(&quot;Original image&quot;),axes=FALSE)</code></pre>
 <h2><span class="header-section-number">6.1</span> Example prostate dataset</h2>
 <div id="fit-with-lm" class="section level3">
 <h3><span class="header-section-number">6.1.1</span> Fit with lm</h3>
-<pre class="r"><code>prostate &lt;- read_csv(
-  &quot;https://raw.githubusercontent.com/GTPB/PSLS20/master/data/prostate.csv&quot;,
-  col_types = cols()
-)
-lm1 &lt;- lm(lpsa ~ lcavol + lweight + svi, prostate)</code></pre>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1"></a>prostate &lt;-<span class="st"> </span><span class="kw">read_csv</span>(</span>
+<span id="cb57-2"><a href="#cb57-2"></a>  <span class="st">&quot;https://raw.githubusercontent.com/GTPB/PSLS20/master/data/prostate.csv&quot;</span>,</span>
+<span id="cb57-3"><a href="#cb57-3"></a>  <span class="dt">col_types =</span> <span class="kw">cols</span>()</span>
+<span id="cb57-4"><a href="#cb57-4"></a>)</span>
+<span id="cb57-5"><a href="#cb57-5"></a>lm1 &lt;-<span class="st"> </span><span class="kw">lm</span>(lpsa <span class="op">~</span><span class="st"> </span>lcavol <span class="op">+</span><span class="st"> </span>lweight <span class="op">+</span><span class="st"> </span>svi, prostate)</span></code></pre></div>
 </div>
 <div id="fit-with-svd" class="section level3">
 <h3><span class="header-section-number">6.1.2</span> Fit with SVD</h3>
-<pre class="r"><code>X &lt;- prostate[,c(1:2,5)]
-X[,3] &lt;- as.double(X[,3]!=&quot;healthy&quot;)
-X &lt;- cbind(Intercept=1,X)
-
-svdX &lt;- svd(X)
-betaSvd &lt;- svdX$v %*% diag(1/svdX$d) %*% t(svdX$u) %*% prostate$lpsa
-
-cbind(lm1$coef,betaSvd)</code></pre>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1"></a>X &lt;-<span class="st"> </span>prostate[,<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>,<span class="dv">5</span>)]</span>
+<span id="cb58-2"><a href="#cb58-2"></a>X[,<span class="dv">3</span>] &lt;-<span class="st"> </span><span class="kw">as.double</span>(X[,<span class="dv">3</span>]<span class="op">!=</span><span class="st">&quot;healthy&quot;</span>)</span>
+<span id="cb58-3"><a href="#cb58-3"></a>X &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="dt">Intercept=</span><span class="dv">1</span>,X)</span>
+<span id="cb58-4"><a href="#cb58-4"></a></span>
+<span id="cb58-5"><a href="#cb58-5"></a>svdX &lt;-<span class="st"> </span><span class="kw">svd</span>(X)</span>
+<span id="cb58-6"><a href="#cb58-6"></a>betaSvd &lt;-<span class="st"> </span>svdX<span class="op">$</span>v <span class="op">%*%</span><span class="st"> </span><span class="kw">diag</span>(<span class="dv">1</span><span class="op">/</span>svdX<span class="op">$</span>d) <span class="op">%*%</span><span class="st"> </span><span class="kw">t</span>(svdX<span class="op">$</span>u) <span class="op">%*%</span><span class="st"> </span>prostate<span class="op">$</span>lpsa</span>
+<span id="cb58-7"><a href="#cb58-7"></a></span>
+<span id="cb58-8"><a href="#cb58-8"></a><span class="kw">cbind</span>(lm1<span class="op">$</span>coef,betaSvd)</span></code></pre></div>
 <pre><code>##                   [,1]       [,2]
 ## (Intercept) -0.2680724 -0.2680724
 ## lcavol       0.5516386  0.5516386
@@ -1400,13 +1492,13 @@ cbind(lm1$coef,betaSvd)</code></pre>
 <div id="example" class="section level2">
 <h2><span class="header-section-number">7.1</span> Example</h2>
 <p>In this section we will use a dataset on food consumption in the UK. The data originate from the UKs ‘Department for Environment, Food and Rural Affairs’ (DEFRA), showing the consumption in grams (per person, per week) of 17 different types of foodstuff measured and averaged in the four countries of the United Kingdom in 1997. We would like to explore the data and interpret how the food patterns of the different countries differ.</p>
-<pre class="r"><code>uk &lt;- read_csv(
-  &quot;https://raw.githubusercontent.com/statOmics/HDA2020/data/ukFoods.csv&quot;,
-  col_types = cols()
-)</code></pre>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1"></a>uk &lt;-<span class="st"> </span><span class="kw">read_csv</span>(</span>
+<span id="cb60-2"><a href="#cb60-2"></a>  <span class="st">&quot;https://raw.githubusercontent.com/statOmics/HDA2020/data/ukFoods.csv&quot;</span>,</span>
+<span id="cb60-3"><a href="#cb60-3"></a>  <span class="dt">col_types =</span> <span class="kw">cols</span>()</span>
+<span id="cb60-4"><a href="#cb60-4"></a>)</span></code></pre></div>
 <pre><code>## New names:
 ## * `` -&gt; ...1</code></pre>
-<pre class="r"><code>knitr::kable(uk, caption = &quot;The full UK foods data table&quot;)</code></pre>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1"></a>knitr<span class="op">::</span><span class="kw">kable</span>(uk, <span class="dt">caption =</span> <span class="st">&quot;The full UK foods data table&quot;</span>)</span></code></pre></div>
 <table>
 <caption>The full UK foods data table</caption>
 <thead>
@@ -1622,29 +1714,29 @@ cbind(lm1$coef,betaSvd)</code></pre>
 </div>
 <div id="example-1" class="section level2">
 <h2><span class="header-section-number">7.4</span> Example</h2>
-<pre class="r"><code>X &lt;- as.matrix(t(uk[,-1]))
-n &lt;- nrow(X)
-H &lt;- diag(n) - matrix(1/n,nrow=n,ncol=n)
-X &lt;- H%*%X
-svdUk &lt;- svd(X)
-
-k &lt;- 2
-Uk &lt;- svdUk$u[,1:k]
-Dk &lt;- diag(svdUk$d[1:k])
-Zk &lt;- Uk%*%Dk
-rownames(Zk) &lt;- colnames(uk)[-1]
-colnames(Zk) &lt;- paste0(&quot;Z&quot;,1:k)
-Zk</code></pre>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1"></a>X &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(<span class="kw">t</span>(uk[,<span class="op">-</span><span class="dv">1</span>]))</span>
+<span id="cb63-2"><a href="#cb63-2"></a>n &lt;-<span class="st"> </span><span class="kw">nrow</span>(X)</span>
+<span id="cb63-3"><a href="#cb63-3"></a>H &lt;-<span class="st"> </span><span class="kw">diag</span>(n) <span class="op">-</span><span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">/</span>n,<span class="dt">nrow=</span>n,<span class="dt">ncol=</span>n)</span>
+<span id="cb63-4"><a href="#cb63-4"></a>X &lt;-<span class="st"> </span>H<span class="op">%*%</span>X</span>
+<span id="cb63-5"><a href="#cb63-5"></a>svdUk &lt;-<span class="st"> </span><span class="kw">svd</span>(X)</span>
+<span id="cb63-6"><a href="#cb63-6"></a></span>
+<span id="cb63-7"><a href="#cb63-7"></a>k &lt;-<span class="st"> </span><span class="dv">2</span></span>
+<span id="cb63-8"><a href="#cb63-8"></a>Uk &lt;-<span class="st"> </span>svdUk<span class="op">$</span>u[,<span class="dv">1</span><span class="op">:</span>k]</span>
+<span id="cb63-9"><a href="#cb63-9"></a>Dk &lt;-<span class="st"> </span><span class="kw">diag</span>(svdUk<span class="op">$</span>d[<span class="dv">1</span><span class="op">:</span>k])</span>
+<span id="cb63-10"><a href="#cb63-10"></a>Zk &lt;-<span class="st"> </span>Uk<span class="op">%*%</span>Dk</span>
+<span id="cb63-11"><a href="#cb63-11"></a><span class="kw">rownames</span>(Zk) &lt;-<span class="st"> </span><span class="kw">colnames</span>(uk)[<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb63-12"><a href="#cb63-12"></a><span class="kw">colnames</span>(Zk) &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;Z&quot;</span>,<span class="dv">1</span><span class="op">:</span>k)</span>
+<span id="cb63-13"><a href="#cb63-13"></a>Zk</span></code></pre></div>
 <pre><code>##                   Z1          Z2
 ## England   -144.99315    2.532999
 ## Wales     -240.52915  224.646925
 ## Scotland   -91.86934 -286.081786
 ## N.Ireland  477.39164   58.901862</code></pre>
-<pre class="r"><code>Zk %&gt;%
-  as.data.frame %&gt;%
-  ggplot(aes(x=Z1,y=Z2,label=rownames(Zk))) +
-  geom_point(size = 3) +
-  geom_text(nudge_x = 50)</code></pre>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1"></a>Zk <span class="op">%&gt;%</span></span>
+<span id="cb65-2"><a href="#cb65-2"></a><span class="st">  </span>as.data.frame <span class="op">%&gt;%</span></span>
+<span id="cb65-3"><a href="#cb65-3"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>Z1,<span class="dt">y=</span>Z2,<span class="dt">label=</span><span class="kw">rownames</span>(Zk))) <span class="op">+</span></span>
+<span id="cb65-4"><a href="#cb65-4"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span></span>
+<span id="cb65-5"><a href="#cb65-5"></a><span class="st">  </span><span class="kw">geom_text</span>(<span class="dt">nudge_x =</span> <span class="dv">50</span>)</span></code></pre></div>
 <p><img src="svd_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
 <ul>
 <li><p>The graph suggests that Wales and England are quite similar in terms of food consumption, and North Ireland seem to have a very different food consumption pattern.</p></li>
@@ -1682,34 +1774,34 @@ Zk</code></pre>
 <h3><span class="header-section-number">7.5.1</span> UK example</h3>
 <div id="biplot" class="section level4">
 <h4><span class="header-section-number">7.5.1.1</span> Biplot</h4>
-<pre class="r"><code>Vk &lt;- svdUk$v[,1:k]
-rownames(Vk) &lt;- uk[[1]]
-colnames(Vk) &lt;- colnames(Zk)
-scaleFactor &lt;- mean(svdUk$d[1:k])
-
-diyBiplot &lt;- ggplot() +
-  geom_point(
-    data=Zk %&gt;% as.data.frame,
-    aes(x=Z1,y=Z2),
-    size = 3) +
-  geom_text(
-    data=Zk %&gt;% as.data.frame,
-    aes(x=Z1,y=Z2,label=rownames(Zk)),
-    nudge_x = 50) +
-  geom_segment(
-    data=Vk %&gt;% as.data.frame,
-    aes(x=0, y=0, xend=Z1*scaleFactor, yend=Z2*scaleFactor),
-    arrow=arrow(length=unit(0.4,&quot;cm&quot;)),
-    alpha=0.25) +
-  geom_text(
-    data=Vk %&gt;% as.data.frame,
-    aes(x=Z1*scaleFactor, y=Z2*scaleFactor, label=rownames(Vk)),
-    alpha=0.5,
-    size=3)
-
-diyBiplot</code></pre>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1"></a>Vk &lt;-<span class="st"> </span>svdUk<span class="op">$</span>v[,<span class="dv">1</span><span class="op">:</span>k]</span>
+<span id="cb66-2"><a href="#cb66-2"></a><span class="kw">rownames</span>(Vk) &lt;-<span class="st"> </span>uk[[<span class="dv">1</span>]]</span>
+<span id="cb66-3"><a href="#cb66-3"></a><span class="kw">colnames</span>(Vk) &lt;-<span class="st"> </span><span class="kw">colnames</span>(Zk)</span>
+<span id="cb66-4"><a href="#cb66-4"></a>scaleFactor &lt;-<span class="st"> </span><span class="kw">mean</span>(svdUk<span class="op">$</span>d[<span class="dv">1</span><span class="op">:</span>k])</span>
+<span id="cb66-5"><a href="#cb66-5"></a></span>
+<span id="cb66-6"><a href="#cb66-6"></a>diyBiplot &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb66-7"><a href="#cb66-7"></a><span class="st">  </span><span class="kw">geom_point</span>(</span>
+<span id="cb66-8"><a href="#cb66-8"></a>    <span class="dt">data=</span>Zk <span class="op">%&gt;%</span><span class="st"> </span>as.data.frame,</span>
+<span id="cb66-9"><a href="#cb66-9"></a>    <span class="kw">aes</span>(<span class="dt">x=</span>Z1,<span class="dt">y=</span>Z2),</span>
+<span id="cb66-10"><a href="#cb66-10"></a>    <span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span></span>
+<span id="cb66-11"><a href="#cb66-11"></a><span class="st">  </span><span class="kw">geom_text</span>(</span>
+<span id="cb66-12"><a href="#cb66-12"></a>    <span class="dt">data=</span>Zk <span class="op">%&gt;%</span><span class="st"> </span>as.data.frame,</span>
+<span id="cb66-13"><a href="#cb66-13"></a>    <span class="kw">aes</span>(<span class="dt">x=</span>Z1,<span class="dt">y=</span>Z2,<span class="dt">label=</span><span class="kw">rownames</span>(Zk)),</span>
+<span id="cb66-14"><a href="#cb66-14"></a>    <span class="dt">nudge_x =</span> <span class="dv">50</span>) <span class="op">+</span></span>
+<span id="cb66-15"><a href="#cb66-15"></a><span class="st">  </span><span class="kw">geom_segment</span>(</span>
+<span id="cb66-16"><a href="#cb66-16"></a>    <span class="dt">data=</span>Vk <span class="op">%&gt;%</span><span class="st"> </span>as.data.frame,</span>
+<span id="cb66-17"><a href="#cb66-17"></a>    <span class="kw">aes</span>(<span class="dt">x=</span><span class="dv">0</span>, <span class="dt">y=</span><span class="dv">0</span>, <span class="dt">xend=</span>Z1<span class="op">*</span>scaleFactor, <span class="dt">yend=</span>Z2<span class="op">*</span>scaleFactor),</span>
+<span id="cb66-18"><a href="#cb66-18"></a>    <span class="dt">arrow=</span><span class="kw">arrow</span>(<span class="dt">length=</span><span class="kw">unit</span>(<span class="fl">0.4</span>,<span class="st">&quot;cm&quot;</span>)),</span>
+<span id="cb66-19"><a href="#cb66-19"></a>    <span class="dt">alpha=</span><span class="fl">0.25</span>) <span class="op">+</span></span>
+<span id="cb66-20"><a href="#cb66-20"></a><span class="st">  </span><span class="kw">geom_text</span>(</span>
+<span id="cb66-21"><a href="#cb66-21"></a>    <span class="dt">data=</span>Vk <span class="op">%&gt;%</span><span class="st"> </span>as.data.frame,</span>
+<span id="cb66-22"><a href="#cb66-22"></a>    <span class="kw">aes</span>(<span class="dt">x=</span>Z1<span class="op">*</span>scaleFactor, <span class="dt">y=</span>Z2<span class="op">*</span>scaleFactor, <span class="dt">label=</span><span class="kw">rownames</span>(Vk)),</span>
+<span id="cb66-23"><a href="#cb66-23"></a>    <span class="dt">alpha=</span><span class="fl">0.5</span>,</span>
+<span id="cb66-24"><a href="#cb66-24"></a>    <span class="dt">size=</span><span class="dv">3</span>)</span>
+<span id="cb66-25"><a href="#cb66-25"></a></span>
+<span id="cb66-26"><a href="#cb66-26"></a>diyBiplot</span></code></pre></div>
 <p><img src="svd_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
-<pre class="r"><code>biplot(Zk,Vk)</code></pre>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1"></a><span class="kw">biplot</span>(Zk,Vk)</span></code></pre></div>
 <p><img src="svd_files/figure-html/unnamed-chunk-29-2.png" width="672" /></p>
 <p>The R code shows two ways of constructing a biplot: the first method starts from the SVD of <span class="math inline">\(\mathbf{X}\)</span> and plots the p vectors <span class="math inline">\(\tilde{\mathbf{v}}_{2,j}\)</span> as arrows. Note that we used a scaling factor to give the arrows a convenient length in the graph (not too small, not too large); it does not affect the interpretation. The second way of obtaining the biplot is simply by using the R built-in function biplot.</p>
 </div>
@@ -1717,12 +1809,12 @@ diyBiplot</code></pre>
 <h4><span class="header-section-number">7.5.1.2</span> Illustration of projection</h4>
 <p>We project <span class="math inline">\(\mathbf{z}_{2,i}\)</span> for N.Ireland on Fresh_potatoes.</p>
 <p><img src="svd_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
-<pre class="r"><code>rownames(X) &lt;- rownames(Zk)
-colnames(X) &lt;- rownames(Vk)
-X[,&quot;Fresh_potatoes&quot;]</code></pre>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1"></a><span class="kw">rownames</span>(X) &lt;-<span class="st"> </span><span class="kw">rownames</span>(Zk)</span>
+<span id="cb68-2"><a href="#cb68-2"></a><span class="kw">colnames</span>(X) &lt;-<span class="st"> </span><span class="kw">rownames</span>(Vk)</span>
+<span id="cb68-3"><a href="#cb68-3"></a>X[,<span class="st">&quot;Fresh_potatoes&quot;</span>]</span></code></pre></div>
 <pre><code>##   England     Wales  Scotland N.Ireland 
 ##    -78.25     75.75   -232.25    234.75</code></pre>
-<pre class="r"><code>Zk[&quot;N.Ireland&quot;,]%*%Vk[&quot;Fresh_potatoes&quot;,]</code></pre>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1"></a>Zk[<span class="st">&quot;N.Ireland&quot;</span>,]<span class="op">%*%</span>Vk[<span class="st">&quot;Fresh_potatoes&quot;</span>,]</span></code></pre></div>
 <pre><code>##          [,1]
 ## [1,] 233.7418</code></pre>
 <p>We observe that N. Ireland has a consumption in Fresh_potatoes that is 234.75 above the average and this is well approximated by the projection 233.74.</p>
@@ -1752,24 +1844,24 @@ X[,&quot;Fresh_potatoes&quot;]</code></pre>
 </div>
 <div id="illustration-uk-food" class="section level2">
 <h2><span class="header-section-number">7.6</span> Illustration Uk food</h2>
-<pre class="r"><code>p1 &lt;- ggplot() +
-  geom_bar(
-    aes( x=rownames(Vk), y=Vk[,1]),
-    stat=&quot;identity&quot;) +
-  xlab(&quot;V1&quot;) +
-  ylab(&quot;contribution&quot;) +
-  coord_flip()
-
-p2 &lt;-
-ggplot() +
-  geom_bar(
-    aes( x=rownames(Vk), y=Vk[,2]),
-    stat=&quot;identity&quot;) +
-  xlab(&quot;V2&quot;) +
-  ylab(&quot;contribution&quot;) +
-  coord_flip()
-
-grid.arrange(p1,p2,ncol=2)</code></pre>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1"></a>p1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb72-2"><a href="#cb72-2"></a><span class="st">  </span><span class="kw">geom_bar</span>(</span>
+<span id="cb72-3"><a href="#cb72-3"></a>    <span class="kw">aes</span>( <span class="dt">x=</span><span class="kw">rownames</span>(Vk), <span class="dt">y=</span>Vk[,<span class="dv">1</span>]),</span>
+<span id="cb72-4"><a href="#cb72-4"></a>    <span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>) <span class="op">+</span></span>
+<span id="cb72-5"><a href="#cb72-5"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;V1&quot;</span>) <span class="op">+</span></span>
+<span id="cb72-6"><a href="#cb72-6"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;contribution&quot;</span>) <span class="op">+</span></span>
+<span id="cb72-7"><a href="#cb72-7"></a><span class="st">  </span><span class="kw">coord_flip</span>()</span>
+<span id="cb72-8"><a href="#cb72-8"></a></span>
+<span id="cb72-9"><a href="#cb72-9"></a>p2 &lt;-</span>
+<span id="cb72-10"><a href="#cb72-10"></a><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb72-11"><a href="#cb72-11"></a><span class="st">  </span><span class="kw">geom_bar</span>(</span>
+<span id="cb72-12"><a href="#cb72-12"></a>    <span class="kw">aes</span>( <span class="dt">x=</span><span class="kw">rownames</span>(Vk), <span class="dt">y=</span>Vk[,<span class="dv">2</span>]),</span>
+<span id="cb72-13"><a href="#cb72-13"></a>    <span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>) <span class="op">+</span></span>
+<span id="cb72-14"><a href="#cb72-14"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;V2&quot;</span>) <span class="op">+</span></span>
+<span id="cb72-15"><a href="#cb72-15"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;contribution&quot;</span>) <span class="op">+</span></span>
+<span id="cb72-16"><a href="#cb72-16"></a><span class="st">  </span><span class="kw">coord_flip</span>()</span>
+<span id="cb72-17"><a href="#cb72-17"></a></span>
+<span id="cb72-18"><a href="#cb72-18"></a><span class="kw">grid.arrange</span>(p1,p2,<span class="dt">ncol=</span><span class="dv">2</span>)</span></code></pre></div>
 <p><img src="svd_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
 <p>In giving an interpretation to the elements in <span class="math inline">\(\mathbf{v}_1\)</span> and <span class="math inline">\(\mathbf{v}_2\)</span>, we ignore the elements close to zero (this is a subjective decision; later we see more objective methods).</p>
 <p>For <span class="math inline">\(\mathbf{v}_1\)</span> (1st dimension of <span class="math inline">\(\mathbf{Z}_2\)</span>):</p>
@@ -1786,7 +1878,7 @@ grid.arrange(p1,p2,ncol=2)</code></pre>
 </ul>
 <hr />
 <p>The elements in v1 and v2 are also shown in the biplot.</p>
-<pre class="r"><code>grid.arrange(p1, p2, diyBiplot, ncol=2, layout_matrix = rbind(c(1,2),c(3,3)))</code></pre>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1"></a><span class="kw">grid.arrange</span>(p1, p2, diyBiplot, <span class="dt">ncol=</span><span class="dv">2</span>, <span class="dt">layout_matrix =</span> <span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),<span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">3</span>)))</span></code></pre></div>
 <p><img src="svd_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
 <p>From the graph we see e.g. that N. Ireland has a high score for the first dimension. Now that we can give an interpretation to the dimension, we conclude that in Northern Ireland people eat relatively much fresh potatoes and drink many soft drinks, but they do not drink much alcoholic drinks and eat not much fresh fruit. We had already come to these findings by projecting N. Ireland on the vectors of these four food products. This comes to no surprise: both interpretations arise from the same data set and its SVD, and so no contradictory results should arise. Other conclusions can be found in a similar fashion.</p>
 <p>We have derived the interpretation of the first dimension from the barplot of the elements of <span class="math inline">\(\mathbf{v}_1\)</span>. However, there is actually no need to make a separate plot to read the elements of <span class="math inline">\(\mathbf{v}_1\)</span>; they can also be read from projecting the vectors in the biplot onto the first dimension (i.e. basis vector of the first dimension). For example, fresh potatoes is in the 7th column of <span class="math inline">\(\mathbf{X}\)</span> and thus in the biplot its vector is <span class="math inline">\(\tilde{\mathbf{v}}_{2,7}\)</span>; it is a 2-dimensional vector (2-dimensional biplot is shown). In the space of the biplot (i.e. the column space of <span class="math inline">\(\mathbf{Z}_2\)</span>), the first basis vector is given by <span class="math inline">\((1,0)\)</span>. Projecting <span class="math inline">\(\tilde{\mathbf{v}}_{2,7}^T\)</span> orthogonally onto <span class="math inline">\((1,0)\)</span> gives <span class="math display">\[
@@ -1950,34 +2042,34 @@ grid.arrange(p1,p2,ncol=2)</code></pre>
 <div id="uk-example-1" class="section level3">
 <h3><span class="header-section-number">8.5.1</span> UK example</h3>
 <p>A scree plot is often used to look at the eigenvalues. Here it is shown for the UK consumption data.</p>
-<pre class="r"><code>n &lt;- nrow(X)
-r &lt;- ncol(svdUk$v)
-totVar &lt;- sum(svdUk$d^2)/(n-1)
-vars &lt;- data.frame(comp=1:4,var=svdUk$d^2/(n-1)) %&gt;%
-  mutate(propVar=var/totVar,cumVar=cumsum(var/totVar))
-
-pVar1 &lt;- vars %&gt;%
-  ggplot(aes(x=comp:r,y=var)) +
-  geom_point() +
-  geom_line() +
-  xlab(&quot;Component&quot;) +
-  ylab(&quot;Variance&quot;)
-
-pVar2 &lt;- vars %&gt;%
-  ggplot(aes(x=comp:r,y=propVar)) +
-  geom_point() +
-  geom_line() +
-  xlab(&quot;Component&quot;) +
-  ylab(&quot;Proportion of Total Variance&quot;)
-
-pVar3 &lt;- vars %&gt;%
-  ggplot(aes(x=comp:r,y=cumVar)) +
-  geom_point() +
-  geom_line() +
-  xlab(&quot;Component&quot;) +
-  ylab(&quot;Cum. prop. of tot. var.&quot;)
-
-grid.arrange(pVar1, pVar2, pVar3, nrow=1)</code></pre>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1"></a>n &lt;-<span class="st"> </span><span class="kw">nrow</span>(X)</span>
+<span id="cb74-2"><a href="#cb74-2"></a>r &lt;-<span class="st"> </span><span class="kw">ncol</span>(svdUk<span class="op">$</span>v)</span>
+<span id="cb74-3"><a href="#cb74-3"></a>totVar &lt;-<span class="st"> </span><span class="kw">sum</span>(svdUk<span class="op">$</span>d<span class="op">^</span><span class="dv">2</span>)<span class="op">/</span>(n<span class="dv">-1</span>)</span>
+<span id="cb74-4"><a href="#cb74-4"></a>vars &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">comp=</span><span class="dv">1</span><span class="op">:</span><span class="dv">4</span>,<span class="dt">var=</span>svdUk<span class="op">$</span>d<span class="op">^</span><span class="dv">2</span><span class="op">/</span>(n<span class="dv">-1</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb74-5"><a href="#cb74-5"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">propVar=</span>var<span class="op">/</span>totVar,<span class="dt">cumVar=</span><span class="kw">cumsum</span>(var<span class="op">/</span>totVar))</span>
+<span id="cb74-6"><a href="#cb74-6"></a></span>
+<span id="cb74-7"><a href="#cb74-7"></a>pVar1 &lt;-<span class="st"> </span>vars <span class="op">%&gt;%</span></span>
+<span id="cb74-8"><a href="#cb74-8"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>comp<span class="op">:</span>r,<span class="dt">y=</span>var)) <span class="op">+</span></span>
+<span id="cb74-9"><a href="#cb74-9"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb74-10"><a href="#cb74-10"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
+<span id="cb74-11"><a href="#cb74-11"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Component&quot;</span>) <span class="op">+</span></span>
+<span id="cb74-12"><a href="#cb74-12"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Variance&quot;</span>)</span>
+<span id="cb74-13"><a href="#cb74-13"></a></span>
+<span id="cb74-14"><a href="#cb74-14"></a>pVar2 &lt;-<span class="st"> </span>vars <span class="op">%&gt;%</span></span>
+<span id="cb74-15"><a href="#cb74-15"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>comp<span class="op">:</span>r,<span class="dt">y=</span>propVar)) <span class="op">+</span></span>
+<span id="cb74-16"><a href="#cb74-16"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb74-17"><a href="#cb74-17"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
+<span id="cb74-18"><a href="#cb74-18"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Component&quot;</span>) <span class="op">+</span></span>
+<span id="cb74-19"><a href="#cb74-19"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Proportion of Total Variance&quot;</span>)</span>
+<span id="cb74-20"><a href="#cb74-20"></a></span>
+<span id="cb74-21"><a href="#cb74-21"></a>pVar3 &lt;-<span class="st"> </span>vars <span class="op">%&gt;%</span></span>
+<span id="cb74-22"><a href="#cb74-22"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>comp<span class="op">:</span>r,<span class="dt">y=</span>cumVar)) <span class="op">+</span></span>
+<span id="cb74-23"><a href="#cb74-23"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb74-24"><a href="#cb74-24"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
+<span id="cb74-25"><a href="#cb74-25"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Component&quot;</span>) <span class="op">+</span></span>
+<span id="cb74-26"><a href="#cb74-26"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Cum. prop. of tot. var.&quot;</span>)</span>
+<span id="cb74-27"><a href="#cb74-27"></a></span>
+<span id="cb74-28"><a href="#cb74-28"></a><span class="kw">grid.arrange</span>(pVar1, pVar2, pVar3, <span class="dt">nrow=</span><span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## Warning in comp:r: numerical expression has 4 elements: only the first used
 
 ## Warning in comp:r: numerical expression has 4 elements: only the first used
@@ -2031,60 +2123,60 @@ grid.arrange(pVar1, pVar2, pVar3, nrow=1)</code></pre>
 <div id="iris-example" class="section level4">
 <h4><span class="header-section-number">8.6.1.1</span> Iris example</h4>
 <p>The iris dataset in R contains information on leaves of iris flowers from different species. Here, we will focus on the setosa species and on the sepal length and sepal width.</p>
-<pre class="r"><code>irisSetosa &lt;- iris %&gt;%
-  filter(Species == &quot;setosa&quot;) %&gt;%
-  dplyr::select(&quot;Sepal.Length&quot;,&quot;Sepal.Width&quot;)
-
-nIris &lt;- nrow(irisSetosa)
-hIris &lt;- diag(nIris) - matrix(1/nIris, nIris, nIris)
-irisX &lt;- irisSetosa %&gt;%
-  as.matrix
-irisX &lt;- hIris %*% irisX
-
-irisSvd &lt;- svd(irisX)
-
-pIris &lt;- irisX %&gt;%
-  as.data.frame %&gt;%
-  ggplot(aes(x=Sepal.Length,y=Sepal.Width)) +
-  geom_point()
-
-pIris &lt;- pIris +
-  geom_segment(
-    aes(
-      x = 0,
-      y = 0,
-      xend = -irisSvd$v[1,1]*irisSvd$d[1]/sqrt(nIris-1),
-      yend = -irisSvd$v[2,1]*irisSvd$d[1]/sqrt(nIris-1)
-      ),
-      arrow = arrow(length=unit(0.4,&quot;cm&quot;))
-    ) +
-  geom_segment(
-    aes(
-      x = 0,
-      y = 0,
-      xend = irisSvd$v[1,2]*irisSvd$d[2]/sqrt(nIris-1),
-      yend = irisSvd$v[2,2]*irisSvd$d[2]/sqrt(nIris-1)
-      ),
-    arrow = arrow(length=unit(0.4,&quot;cm&quot;))
-    ) +
-  geom_text(
-    aes(
-      x = -irisSvd$v[1,1]*irisSvd$d[1]/sqrt(nIris-1)*1.2,
-      y = -irisSvd$v[2,1]*irisSvd$d[1]/sqrt(nIris-1)*1.2,
-      label=&quot;e1&quot;
-      )
-    ) +
-  geom_text(
-    aes(
-      x = irisSvd$v[1,2]*irisSvd$d[2]/sqrt(nIris-1)*1.2,
-      y = irisSvd$v[2,2]*irisSvd$d[2]/sqrt(nIris-1)*1.2,
-      label=&quot;e2&quot;
-      )
-    ) +
-  xlim(-1, 1) +
-  ylim(-1,1)
-
-pIris</code></pre>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1"></a>irisSetosa &lt;-<span class="st"> </span>iris <span class="op">%&gt;%</span></span>
+<span id="cb76-2"><a href="#cb76-2"></a><span class="st">  </span><span class="kw">filter</span>(Species <span class="op">==</span><span class="st"> &quot;setosa&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb76-3"><a href="#cb76-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="st">&quot;Sepal.Length&quot;</span>,<span class="st">&quot;Sepal.Width&quot;</span>)</span>
+<span id="cb76-4"><a href="#cb76-4"></a></span>
+<span id="cb76-5"><a href="#cb76-5"></a>nIris &lt;-<span class="st"> </span><span class="kw">nrow</span>(irisSetosa)</span>
+<span id="cb76-6"><a href="#cb76-6"></a>hIris &lt;-<span class="st"> </span><span class="kw">diag</span>(nIris) <span class="op">-</span><span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">/</span>nIris, nIris, nIris)</span>
+<span id="cb76-7"><a href="#cb76-7"></a>irisX &lt;-<span class="st"> </span>irisSetosa <span class="op">%&gt;%</span></span>
+<span id="cb76-8"><a href="#cb76-8"></a><span class="st">  </span>as.matrix</span>
+<span id="cb76-9"><a href="#cb76-9"></a>irisX &lt;-<span class="st"> </span>hIris <span class="op">%*%</span><span class="st"> </span>irisX</span>
+<span id="cb76-10"><a href="#cb76-10"></a></span>
+<span id="cb76-11"><a href="#cb76-11"></a>irisSvd &lt;-<span class="st"> </span><span class="kw">svd</span>(irisX)</span>
+<span id="cb76-12"><a href="#cb76-12"></a></span>
+<span id="cb76-13"><a href="#cb76-13"></a>pIris &lt;-<span class="st"> </span>irisX <span class="op">%&gt;%</span></span>
+<span id="cb76-14"><a href="#cb76-14"></a><span class="st">  </span>as.data.frame <span class="op">%&gt;%</span></span>
+<span id="cb76-15"><a href="#cb76-15"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>Sepal.Length,<span class="dt">y=</span>Sepal.Width)) <span class="op">+</span></span>
+<span id="cb76-16"><a href="#cb76-16"></a><span class="st">  </span><span class="kw">geom_point</span>()</span>
+<span id="cb76-17"><a href="#cb76-17"></a></span>
+<span id="cb76-18"><a href="#cb76-18"></a>pIris &lt;-<span class="st"> </span>pIris <span class="op">+</span></span>
+<span id="cb76-19"><a href="#cb76-19"></a><span class="st">  </span><span class="kw">geom_segment</span>(</span>
+<span id="cb76-20"><a href="#cb76-20"></a>    <span class="kw">aes</span>(</span>
+<span id="cb76-21"><a href="#cb76-21"></a>      <span class="dt">x =</span> <span class="dv">0</span>,</span>
+<span id="cb76-22"><a href="#cb76-22"></a>      <span class="dt">y =</span> <span class="dv">0</span>,</span>
+<span id="cb76-23"><a href="#cb76-23"></a>      <span class="dt">xend =</span> <span class="op">-</span>irisSvd<span class="op">$</span>v[<span class="dv">1</span>,<span class="dv">1</span>]<span class="op">*</span>irisSvd<span class="op">$</span>d[<span class="dv">1</span>]<span class="op">/</span><span class="kw">sqrt</span>(nIris<span class="dv">-1</span>),</span>
+<span id="cb76-24"><a href="#cb76-24"></a>      <span class="dt">yend =</span> <span class="op">-</span>irisSvd<span class="op">$</span>v[<span class="dv">2</span>,<span class="dv">1</span>]<span class="op">*</span>irisSvd<span class="op">$</span>d[<span class="dv">1</span>]<span class="op">/</span><span class="kw">sqrt</span>(nIris<span class="dv">-1</span>)</span>
+<span id="cb76-25"><a href="#cb76-25"></a>      ),</span>
+<span id="cb76-26"><a href="#cb76-26"></a>      <span class="dt">arrow =</span> <span class="kw">arrow</span>(<span class="dt">length=</span><span class="kw">unit</span>(<span class="fl">0.4</span>,<span class="st">&quot;cm&quot;</span>))</span>
+<span id="cb76-27"><a href="#cb76-27"></a>    ) <span class="op">+</span></span>
+<span id="cb76-28"><a href="#cb76-28"></a><span class="st">  </span><span class="kw">geom_segment</span>(</span>
+<span id="cb76-29"><a href="#cb76-29"></a>    <span class="kw">aes</span>(</span>
+<span id="cb76-30"><a href="#cb76-30"></a>      <span class="dt">x =</span> <span class="dv">0</span>,</span>
+<span id="cb76-31"><a href="#cb76-31"></a>      <span class="dt">y =</span> <span class="dv">0</span>,</span>
+<span id="cb76-32"><a href="#cb76-32"></a>      <span class="dt">xend =</span> irisSvd<span class="op">$</span>v[<span class="dv">1</span>,<span class="dv">2</span>]<span class="op">*</span>irisSvd<span class="op">$</span>d[<span class="dv">2</span>]<span class="op">/</span><span class="kw">sqrt</span>(nIris<span class="dv">-1</span>),</span>
+<span id="cb76-33"><a href="#cb76-33"></a>      <span class="dt">yend =</span> irisSvd<span class="op">$</span>v[<span class="dv">2</span>,<span class="dv">2</span>]<span class="op">*</span>irisSvd<span class="op">$</span>d[<span class="dv">2</span>]<span class="op">/</span><span class="kw">sqrt</span>(nIris<span class="dv">-1</span>)</span>
+<span id="cb76-34"><a href="#cb76-34"></a>      ),</span>
+<span id="cb76-35"><a href="#cb76-35"></a>    <span class="dt">arrow =</span> <span class="kw">arrow</span>(<span class="dt">length=</span><span class="kw">unit</span>(<span class="fl">0.4</span>,<span class="st">&quot;cm&quot;</span>))</span>
+<span id="cb76-36"><a href="#cb76-36"></a>    ) <span class="op">+</span></span>
+<span id="cb76-37"><a href="#cb76-37"></a><span class="st">  </span><span class="kw">geom_text</span>(</span>
+<span id="cb76-38"><a href="#cb76-38"></a>    <span class="kw">aes</span>(</span>
+<span id="cb76-39"><a href="#cb76-39"></a>      <span class="dt">x =</span> <span class="op">-</span>irisSvd<span class="op">$</span>v[<span class="dv">1</span>,<span class="dv">1</span>]<span class="op">*</span>irisSvd<span class="op">$</span>d[<span class="dv">1</span>]<span class="op">/</span><span class="kw">sqrt</span>(nIris<span class="dv">-1</span>)<span class="op">*</span><span class="fl">1.2</span>,</span>
+<span id="cb76-40"><a href="#cb76-40"></a>      <span class="dt">y =</span> <span class="op">-</span>irisSvd<span class="op">$</span>v[<span class="dv">2</span>,<span class="dv">1</span>]<span class="op">*</span>irisSvd<span class="op">$</span>d[<span class="dv">1</span>]<span class="op">/</span><span class="kw">sqrt</span>(nIris<span class="dv">-1</span>)<span class="op">*</span><span class="fl">1.2</span>,</span>
+<span id="cb76-41"><a href="#cb76-41"></a>      <span class="dt">label=</span><span class="st">&quot;e1&quot;</span></span>
+<span id="cb76-42"><a href="#cb76-42"></a>      )</span>
+<span id="cb76-43"><a href="#cb76-43"></a>    ) <span class="op">+</span></span>
+<span id="cb76-44"><a href="#cb76-44"></a><span class="st">  </span><span class="kw">geom_text</span>(</span>
+<span id="cb76-45"><a href="#cb76-45"></a>    <span class="kw">aes</span>(</span>
+<span id="cb76-46"><a href="#cb76-46"></a>      <span class="dt">x =</span> irisSvd<span class="op">$</span>v[<span class="dv">1</span>,<span class="dv">2</span>]<span class="op">*</span>irisSvd<span class="op">$</span>d[<span class="dv">2</span>]<span class="op">/</span><span class="kw">sqrt</span>(nIris<span class="dv">-1</span>)<span class="op">*</span><span class="fl">1.2</span>,</span>
+<span id="cb76-47"><a href="#cb76-47"></a>      <span class="dt">y =</span> irisSvd<span class="op">$</span>v[<span class="dv">2</span>,<span class="dv">2</span>]<span class="op">*</span>irisSvd<span class="op">$</span>d[<span class="dv">2</span>]<span class="op">/</span><span class="kw">sqrt</span>(nIris<span class="dv">-1</span>)<span class="op">*</span><span class="fl">1.2</span>,</span>
+<span id="cb76-48"><a href="#cb76-48"></a>      <span class="dt">label=</span><span class="st">&quot;e2&quot;</span></span>
+<span id="cb76-49"><a href="#cb76-49"></a>      )</span>
+<span id="cb76-50"><a href="#cb76-50"></a>    ) <span class="op">+</span></span>
+<span id="cb76-51"><a href="#cb76-51"></a><span class="st">  </span><span class="kw">xlim</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="op">+</span></span>
+<span id="cb76-52"><a href="#cb76-52"></a><span class="st">  </span><span class="kw">ylim</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span>
+<span id="cb76-53"><a href="#cb76-53"></a></span>
+<span id="cb76-54"><a href="#cb76-54"></a>pIris</span></code></pre></div>
 <pre><code>## Warning: Removed 1 rows containing missing values (geom_point).</code></pre>
 <p><img src="svd_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
 </div>
@@ -2112,19 +2204,19 @@ pIris</code></pre>
 <hr />
 <div id="iris-example-1" class="section level4">
 <h4><span class="header-section-number">8.6.2.1</span> Iris Example</h4>
-<pre class="r"><code>var(irisX)</code></pre>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1"></a><span class="kw">var</span>(irisX)</span></code></pre></div>
 <pre><code>##              Sepal.Length Sepal.Width
 ## Sepal.Length   0.12424898  0.09921633
 ## Sepal.Width    0.09921633  0.14368980</code></pre>
-<pre class="r"><code>Sprime &lt;- diag(sqrt(diag(var(irisX))))
-Xs &lt;- irisX%*%solve(Sprime)
-var(Xs)</code></pre>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1"></a>Sprime &lt;-<span class="st"> </span><span class="kw">diag</span>(<span class="kw">sqrt</span>(<span class="kw">diag</span>(<span class="kw">var</span>(irisX))))</span>
+<span id="cb80-2"><a href="#cb80-2"></a>Xs &lt;-<span class="st"> </span>irisX<span class="op">%*%</span><span class="kw">solve</span>(Sprime)</span>
+<span id="cb80-3"><a href="#cb80-3"></a><span class="kw">var</span>(Xs)</span></code></pre></div>
 <pre><code>##           [,1]      [,2]
 ## [1,] 1.0000000 0.7425467
 ## [2,] 0.7425467 1.0000000</code></pre>
 <p>Much faster to use the scale function. By default center=TRUE and scale=TRUE.</p>
-<pre class="r"><code>Xs &lt;- irisSetosa %&gt;% scale
-var(Xs)</code></pre>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1"></a>Xs &lt;-<span class="st"> </span>irisSetosa <span class="op">%&gt;%</span><span class="st"> </span>scale</span>
+<span id="cb82-2"><a href="#cb82-2"></a><span class="kw">var</span>(Xs)</span></code></pre></div>
 <pre><code>##              Sepal.Length Sepal.Width
 ## Sepal.Length    1.0000000   0.7425467
 ## Sepal.Width     0.7425467   1.0000000</code></pre>
@@ -2133,53 +2225,53 @@ var(Xs)</code></pre>
 <li>Sepal length in cm</li>
 <li>Sepal width in mm</li>
 </ul>
-<pre class="r"><code>irisX2 &lt;- irisX
-irisX2[,2] &lt;- irisX2[,2]*10
-
-pIris2 &lt;- irisX2 %&gt;%
-  as.data.frame %&gt;%
-  ggplot(aes(x=Sepal.Length,y=Sepal.Width)) +
-  geom_point()
-
-irisSvd2 &lt;- svd(irisX2)
-
-pIris2 &lt;- pIris2 +
-  geom_segment(
-    aes(
-      x = 0,
-      y = 0,
-      xend = irisSvd2$v[1,1]*irisSvd2$d[1]/sqrt(nIris-1),
-      yend = irisSvd2$v[2,1]*irisSvd2$d[1]/sqrt(nIris-1)
-      ),
-      arrow = arrow(length=unit(0.4,&quot;cm&quot;))
-    ) +
-  geom_segment(
-    aes(
-      x = 0,
-      y = 0,
-      xend = irisSvd2$v[1,2]*irisSvd2$d[2]/sqrt(nIris-1),
-      yend = irisSvd2$v[2,2]*irisSvd2$d[2]/sqrt(nIris-1)
-      ),
-    arrow = arrow(length=unit(0.4,&quot;cm&quot;))
-    ) +
-  geom_text(
-    aes(
-      x = irisSvd2$v[1,1]*irisSvd2$d[1]/sqrt(nIris-1)*1.2,
-      y = irisSvd2$v[2,1]*irisSvd2$d[1]/sqrt(nIris-1)*1.2,
-      label=&quot;e1&quot;
-      )
-    ) +
-  geom_text(
-    aes(
-      x = irisSvd2$v[1,2]*irisSvd2$d[2]/sqrt(nIris-1)*1.2,
-      y = irisSvd2$v[2,2]*irisSvd2$d[2]/sqrt(nIris-1)*1.2,
-      label=&quot;e2&quot;
-      )
-    ) +
-  xlim(-10, 10) +
-  ylim(-10,10)
-
-grid.arrange(pIris, pIris2)</code></pre>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1"></a>irisX2 &lt;-<span class="st"> </span>irisX</span>
+<span id="cb84-2"><a href="#cb84-2"></a>irisX2[,<span class="dv">2</span>] &lt;-<span class="st"> </span>irisX2[,<span class="dv">2</span>]<span class="op">*</span><span class="dv">10</span></span>
+<span id="cb84-3"><a href="#cb84-3"></a></span>
+<span id="cb84-4"><a href="#cb84-4"></a>pIris2 &lt;-<span class="st"> </span>irisX2 <span class="op">%&gt;%</span></span>
+<span id="cb84-5"><a href="#cb84-5"></a><span class="st">  </span>as.data.frame <span class="op">%&gt;%</span></span>
+<span id="cb84-6"><a href="#cb84-6"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>Sepal.Length,<span class="dt">y=</span>Sepal.Width)) <span class="op">+</span></span>
+<span id="cb84-7"><a href="#cb84-7"></a><span class="st">  </span><span class="kw">geom_point</span>()</span>
+<span id="cb84-8"><a href="#cb84-8"></a></span>
+<span id="cb84-9"><a href="#cb84-9"></a>irisSvd2 &lt;-<span class="st"> </span><span class="kw">svd</span>(irisX2)</span>
+<span id="cb84-10"><a href="#cb84-10"></a></span>
+<span id="cb84-11"><a href="#cb84-11"></a>pIris2 &lt;-<span class="st"> </span>pIris2 <span class="op">+</span></span>
+<span id="cb84-12"><a href="#cb84-12"></a><span class="st">  </span><span class="kw">geom_segment</span>(</span>
+<span id="cb84-13"><a href="#cb84-13"></a>    <span class="kw">aes</span>(</span>
+<span id="cb84-14"><a href="#cb84-14"></a>      <span class="dt">x =</span> <span class="dv">0</span>,</span>
+<span id="cb84-15"><a href="#cb84-15"></a>      <span class="dt">y =</span> <span class="dv">0</span>,</span>
+<span id="cb84-16"><a href="#cb84-16"></a>      <span class="dt">xend =</span> irisSvd2<span class="op">$</span>v[<span class="dv">1</span>,<span class="dv">1</span>]<span class="op">*</span>irisSvd2<span class="op">$</span>d[<span class="dv">1</span>]<span class="op">/</span><span class="kw">sqrt</span>(nIris<span class="dv">-1</span>),</span>
+<span id="cb84-17"><a href="#cb84-17"></a>      <span class="dt">yend =</span> irisSvd2<span class="op">$</span>v[<span class="dv">2</span>,<span class="dv">1</span>]<span class="op">*</span>irisSvd2<span class="op">$</span>d[<span class="dv">1</span>]<span class="op">/</span><span class="kw">sqrt</span>(nIris<span class="dv">-1</span>)</span>
+<span id="cb84-18"><a href="#cb84-18"></a>      ),</span>
+<span id="cb84-19"><a href="#cb84-19"></a>      <span class="dt">arrow =</span> <span class="kw">arrow</span>(<span class="dt">length=</span><span class="kw">unit</span>(<span class="fl">0.4</span>,<span class="st">&quot;cm&quot;</span>))</span>
+<span id="cb84-20"><a href="#cb84-20"></a>    ) <span class="op">+</span></span>
+<span id="cb84-21"><a href="#cb84-21"></a><span class="st">  </span><span class="kw">geom_segment</span>(</span>
+<span id="cb84-22"><a href="#cb84-22"></a>    <span class="kw">aes</span>(</span>
+<span id="cb84-23"><a href="#cb84-23"></a>      <span class="dt">x =</span> <span class="dv">0</span>,</span>
+<span id="cb84-24"><a href="#cb84-24"></a>      <span class="dt">y =</span> <span class="dv">0</span>,</span>
+<span id="cb84-25"><a href="#cb84-25"></a>      <span class="dt">xend =</span> irisSvd2<span class="op">$</span>v[<span class="dv">1</span>,<span class="dv">2</span>]<span class="op">*</span>irisSvd2<span class="op">$</span>d[<span class="dv">2</span>]<span class="op">/</span><span class="kw">sqrt</span>(nIris<span class="dv">-1</span>),</span>
+<span id="cb84-26"><a href="#cb84-26"></a>      <span class="dt">yend =</span> irisSvd2<span class="op">$</span>v[<span class="dv">2</span>,<span class="dv">2</span>]<span class="op">*</span>irisSvd2<span class="op">$</span>d[<span class="dv">2</span>]<span class="op">/</span><span class="kw">sqrt</span>(nIris<span class="dv">-1</span>)</span>
+<span id="cb84-27"><a href="#cb84-27"></a>      ),</span>
+<span id="cb84-28"><a href="#cb84-28"></a>    <span class="dt">arrow =</span> <span class="kw">arrow</span>(<span class="dt">length=</span><span class="kw">unit</span>(<span class="fl">0.4</span>,<span class="st">&quot;cm&quot;</span>))</span>
+<span id="cb84-29"><a href="#cb84-29"></a>    ) <span class="op">+</span></span>
+<span id="cb84-30"><a href="#cb84-30"></a><span class="st">  </span><span class="kw">geom_text</span>(</span>
+<span id="cb84-31"><a href="#cb84-31"></a>    <span class="kw">aes</span>(</span>
+<span id="cb84-32"><a href="#cb84-32"></a>      <span class="dt">x =</span> irisSvd2<span class="op">$</span>v[<span class="dv">1</span>,<span class="dv">1</span>]<span class="op">*</span>irisSvd2<span class="op">$</span>d[<span class="dv">1</span>]<span class="op">/</span><span class="kw">sqrt</span>(nIris<span class="dv">-1</span>)<span class="op">*</span><span class="fl">1.2</span>,</span>
+<span id="cb84-33"><a href="#cb84-33"></a>      <span class="dt">y =</span> irisSvd2<span class="op">$</span>v[<span class="dv">2</span>,<span class="dv">1</span>]<span class="op">*</span>irisSvd2<span class="op">$</span>d[<span class="dv">1</span>]<span class="op">/</span><span class="kw">sqrt</span>(nIris<span class="dv">-1</span>)<span class="op">*</span><span class="fl">1.2</span>,</span>
+<span id="cb84-34"><a href="#cb84-34"></a>      <span class="dt">label=</span><span class="st">&quot;e1&quot;</span></span>
+<span id="cb84-35"><a href="#cb84-35"></a>      )</span>
+<span id="cb84-36"><a href="#cb84-36"></a>    ) <span class="op">+</span></span>
+<span id="cb84-37"><a href="#cb84-37"></a><span class="st">  </span><span class="kw">geom_text</span>(</span>
+<span id="cb84-38"><a href="#cb84-38"></a>    <span class="kw">aes</span>(</span>
+<span id="cb84-39"><a href="#cb84-39"></a>      <span class="dt">x =</span> irisSvd2<span class="op">$</span>v[<span class="dv">1</span>,<span class="dv">2</span>]<span class="op">*</span>irisSvd2<span class="op">$</span>d[<span class="dv">2</span>]<span class="op">/</span><span class="kw">sqrt</span>(nIris<span class="dv">-1</span>)<span class="op">*</span><span class="fl">1.2</span>,</span>
+<span id="cb84-40"><a href="#cb84-40"></a>      <span class="dt">y =</span> irisSvd2<span class="op">$</span>v[<span class="dv">2</span>,<span class="dv">2</span>]<span class="op">*</span>irisSvd2<span class="op">$</span>d[<span class="dv">2</span>]<span class="op">/</span><span class="kw">sqrt</span>(nIris<span class="dv">-1</span>)<span class="op">*</span><span class="fl">1.2</span>,</span>
+<span id="cb84-41"><a href="#cb84-41"></a>      <span class="dt">label=</span><span class="st">&quot;e2&quot;</span></span>
+<span id="cb84-42"><a href="#cb84-42"></a>      )</span>
+<span id="cb84-43"><a href="#cb84-43"></a>    ) <span class="op">+</span></span>
+<span id="cb84-44"><a href="#cb84-44"></a><span class="st">  </span><span class="kw">xlim</span>(<span class="op">-</span><span class="dv">10</span>, <span class="dv">10</span>) <span class="op">+</span></span>
+<span id="cb84-45"><a href="#cb84-45"></a><span class="st">  </span><span class="kw">ylim</span>(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>)</span>
+<span id="cb84-46"><a href="#cb84-46"></a></span>
+<span id="cb84-47"><a href="#cb84-47"></a><span class="kw">grid.arrange</span>(pIris, pIris2)</span></code></pre></div>
 <pre><code>## Warning: Removed 1 rows containing missing values (geom_point).
 
 ## Warning: Removed 1 rows containing missing values (geom_point).</code></pre>
@@ -2225,10 +2317,10 @@ grid.arrange(pIris, pIris2)</code></pre>
 <p>These ellipses are known as <strong>constant density ellipses</strong>.</p>
 <div id="iris-example-2" class="section level3">
 <h3><span class="header-section-number">8.7.1</span> iris example</h3>
-<pre class="r"><code>pIris +
-  stat_ellipse() +
-  stat_ellipse(level=.68) +
-  stat_ellipse(level=.1)</code></pre>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1"></a>pIris <span class="op">+</span></span>
+<span id="cb86-2"><a href="#cb86-2"></a><span class="st">  </span><span class="kw">stat_ellipse</span>() <span class="op">+</span></span>
+<span id="cb86-3"><a href="#cb86-3"></a><span class="st">  </span><span class="kw">stat_ellipse</span>(<span class="dt">level=</span>.<span class="dv">68</span>) <span class="op">+</span></span>
+<span id="cb86-4"><a href="#cb86-4"></a><span class="st">  </span><span class="kw">stat_ellipse</span>(<span class="dt">level=</span>.<span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## Warning: Removed 1 rows containing non-finite values (stat_ellipse).
 
 ## Warning: Removed 1 rows containing non-finite values (stat_ellipse).
@@ -2248,10 +2340,10 @@ grid.arrange(pIris, pIris2)</code></pre>
    \sum_{j=1}^p (z_j)^2  / (c^2\delta_j) &amp;=&amp; 1.
 \end{eqnarray*}\]</span> The last equation is the equation of an ellipse with axes parallel to the basis of <span class="math inline">\((z_1,\ldots, z_p)\)</span> and with half axis lengths <span class="math inline">\(c\sqrt{\lambda_j}=c\delta_j\)</span> with <span class="math inline">\(\lambda_j\)</span> the <span class="math inline">\(j\)</span>th eigenvalue of <span class="math inline">\(\boldsymbol{\Sigma}\)</span>.</p>
 <hr />
-<pre class="r"><code>pIris +
-  stat_ellipse() +
-  stat_ellipse(level=.68) +
-  stat_ellipse(level=.1)</code></pre>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1"></a>pIris <span class="op">+</span></span>
+<span id="cb89-2"><a href="#cb89-2"></a><span class="st">  </span><span class="kw">stat_ellipse</span>() <span class="op">+</span></span>
+<span id="cb89-3"><a href="#cb89-3"></a><span class="st">  </span><span class="kw">stat_ellipse</span>(<span class="dt">level=</span>.<span class="dv">68</span>) <span class="op">+</span></span>
+<span id="cb89-4"><a href="#cb89-4"></a><span class="st">  </span><span class="kw">stat_ellipse</span>(<span class="dt">level=</span>.<span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## Warning: Removed 1 rows containing non-finite values (stat_ellipse).
 
 ## Warning: Removed 1 rows containing non-finite values (stat_ellipse).
@@ -2273,96 +2365,96 @@ grid.arrange(pIris, pIris2)</code></pre>
 <p>The ovarian cancer data set consists of proteomics data for 216 patients, 121 of whom have ovarian cancer, and 95 of whom do not. For each subject, the expression of 4000 spectral features is assessed. The first 121 rows consist of data for the cancer patients.</p>
 <div id="importing-the-data" class="section level3">
 <h3><span class="header-section-number">8.9.1</span> Importing the data</h3>
-<pre class="r"><code>ovarian &lt;- read_csv(
-  &quot;https://raw.githubusercontent.com/statOmics/HDA2020/data/ovarian.csv&quot;,
-  col_names = FALSE,
-  col_types = cols()
-)
-grid.arrange(
-  qplot(1:4000,
-    ovarian[1,] %&gt;% unlist,
-    geom=&quot;line&quot;,
-    ylab=&quot;centered intensity&quot;,
-    xlab=&quot;&quot;,main=&quot;cancer&quot;,
-    ylim=range(ovarian[c(1,2,200,201),])),
-  qplot(1:4000,
-    ovarian[2,] %&gt;% unlist,
-    geom=&quot;line&quot;,
-    ylab=&quot;centered intensity&quot;,
-    xlab=&quot;&quot;,main=&quot;cancer&quot;,
-    ylim=range(ovarian[c(1,2,200,201),])),
-  qplot(1:4000,
-    ovarian[200,] %&gt;% unlist,
-    geom=&quot;line&quot;,
-    ylab=&quot;centered intensity&quot;,
-    xlab=&quot;&quot;,main=&quot;Normal&quot;,
-    ylim=range(ovarian[c(1,2,200,201),])),
-  qplot(1:4000,
-    ovarian[200,] %&gt;% unlist,
-    geom=&quot;line&quot;,
-    ylab=&quot;centered intensity&quot;,
-    xlab=&quot;&quot;,main=&quot;Normal&quot;,
-    ylim=range(ovarian[c(1,2,200,201),])),
-  ncol=1
-  )</code></pre>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1"></a>ovarian &lt;-<span class="st"> </span><span class="kw">read_csv</span>(</span>
+<span id="cb92-2"><a href="#cb92-2"></a>  <span class="st">&quot;https://raw.githubusercontent.com/statOmics/HDA2020/data/ovarian.csv&quot;</span>,</span>
+<span id="cb92-3"><a href="#cb92-3"></a>  <span class="dt">col_names =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb92-4"><a href="#cb92-4"></a>  <span class="dt">col_types =</span> <span class="kw">cols</span>()</span>
+<span id="cb92-5"><a href="#cb92-5"></a>)</span>
+<span id="cb92-6"><a href="#cb92-6"></a><span class="kw">grid.arrange</span>(</span>
+<span id="cb92-7"><a href="#cb92-7"></a>  <span class="kw">qplot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4000</span>,</span>
+<span id="cb92-8"><a href="#cb92-8"></a>    ovarian[<span class="dv">1</span>,] <span class="op">%&gt;%</span><span class="st"> </span>unlist,</span>
+<span id="cb92-9"><a href="#cb92-9"></a>    <span class="dt">geom=</span><span class="st">&quot;line&quot;</span>,</span>
+<span id="cb92-10"><a href="#cb92-10"></a>    <span class="dt">ylab=</span><span class="st">&quot;centered intensity&quot;</span>,</span>
+<span id="cb92-11"><a href="#cb92-11"></a>    <span class="dt">xlab=</span><span class="st">&quot;&quot;</span>,<span class="dt">main=</span><span class="st">&quot;cancer&quot;</span>,</span>
+<span id="cb92-12"><a href="#cb92-12"></a>    <span class="dt">ylim=</span><span class="kw">range</span>(ovarian[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">200</span>,<span class="dv">201</span>),])),</span>
+<span id="cb92-13"><a href="#cb92-13"></a>  <span class="kw">qplot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4000</span>,</span>
+<span id="cb92-14"><a href="#cb92-14"></a>    ovarian[<span class="dv">2</span>,] <span class="op">%&gt;%</span><span class="st"> </span>unlist,</span>
+<span id="cb92-15"><a href="#cb92-15"></a>    <span class="dt">geom=</span><span class="st">&quot;line&quot;</span>,</span>
+<span id="cb92-16"><a href="#cb92-16"></a>    <span class="dt">ylab=</span><span class="st">&quot;centered intensity&quot;</span>,</span>
+<span id="cb92-17"><a href="#cb92-17"></a>    <span class="dt">xlab=</span><span class="st">&quot;&quot;</span>,<span class="dt">main=</span><span class="st">&quot;cancer&quot;</span>,</span>
+<span id="cb92-18"><a href="#cb92-18"></a>    <span class="dt">ylim=</span><span class="kw">range</span>(ovarian[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">200</span>,<span class="dv">201</span>),])),</span>
+<span id="cb92-19"><a href="#cb92-19"></a>  <span class="kw">qplot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4000</span>,</span>
+<span id="cb92-20"><a href="#cb92-20"></a>    ovarian[<span class="dv">200</span>,] <span class="op">%&gt;%</span><span class="st"> </span>unlist,</span>
+<span id="cb92-21"><a href="#cb92-21"></a>    <span class="dt">geom=</span><span class="st">&quot;line&quot;</span>,</span>
+<span id="cb92-22"><a href="#cb92-22"></a>    <span class="dt">ylab=</span><span class="st">&quot;centered intensity&quot;</span>,</span>
+<span id="cb92-23"><a href="#cb92-23"></a>    <span class="dt">xlab=</span><span class="st">&quot;&quot;</span>,<span class="dt">main=</span><span class="st">&quot;Normal&quot;</span>,</span>
+<span id="cb92-24"><a href="#cb92-24"></a>    <span class="dt">ylim=</span><span class="kw">range</span>(ovarian[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">200</span>,<span class="dv">201</span>),])),</span>
+<span id="cb92-25"><a href="#cb92-25"></a>  <span class="kw">qplot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4000</span>,</span>
+<span id="cb92-26"><a href="#cb92-26"></a>    ovarian[<span class="dv">200</span>,] <span class="op">%&gt;%</span><span class="st"> </span>unlist,</span>
+<span id="cb92-27"><a href="#cb92-27"></a>    <span class="dt">geom=</span><span class="st">&quot;line&quot;</span>,</span>
+<span id="cb92-28"><a href="#cb92-28"></a>    <span class="dt">ylab=</span><span class="st">&quot;centered intensity&quot;</span>,</span>
+<span id="cb92-29"><a href="#cb92-29"></a>    <span class="dt">xlab=</span><span class="st">&quot;&quot;</span>,<span class="dt">main=</span><span class="st">&quot;Normal&quot;</span>,</span>
+<span id="cb92-30"><a href="#cb92-30"></a>    <span class="dt">ylim=</span><span class="kw">range</span>(ovarian[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">200</span>,<span class="dv">201</span>),])),</span>
+<span id="cb92-31"><a href="#cb92-31"></a>  <span class="dt">ncol=</span><span class="dv">1</span></span>
+<span id="cb92-32"><a href="#cb92-32"></a>  )</span></code></pre></div>
 <p><img src="svd_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
 <p>Centering</p>
-<pre class="r"><code>ovarian &lt;-  scale(ovarian, scale=FALSE)
-grid.arrange(
-  qplot(1:4000,
-    ovarian[1,],
-    geom=&quot;line&quot;,
-    ylab=&quot;centered intensity&quot;,
-    xlab=&quot;&quot;,main=&quot;cancer&quot;,
-    ylim=range(ovarian[c(1,2,200,201),])),
-  qplot(1:4000,
-    ovarian[2,],
-    geom=&quot;line&quot;,
-    ylab=&quot;centered intensity&quot;,
-    xlab=&quot;&quot;,main=&quot;cancer&quot;,
-    ylim=range(ovarian[c(1,2,200,201),])),
-  qplot(1:4000,
-    ovarian[200,],
-    geom=&quot;line&quot;,
-    ylab=&quot;centered intensity&quot;,
-    xlab=&quot;&quot;,main=&quot;Normal&quot;,
-    ylim=range(ovarian[c(1,2,200,201),])),
-  qplot(1:4000,
-    ovarian[201,],
-    geom=&quot;line&quot;,
-    ylab=&quot;centered intensity&quot;,
-    xlab=&quot;&quot;,main=&quot;Normal&quot;,
-    ylim=range(ovarian[c(1,2,200,201),])),
-  ncol=1
-  )</code></pre>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1"></a>ovarian &lt;-<span class="st">  </span><span class="kw">scale</span>(ovarian, <span class="dt">scale=</span><span class="ot">FALSE</span>)</span>
+<span id="cb93-2"><a href="#cb93-2"></a><span class="kw">grid.arrange</span>(</span>
+<span id="cb93-3"><a href="#cb93-3"></a>  <span class="kw">qplot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4000</span>,</span>
+<span id="cb93-4"><a href="#cb93-4"></a>    ovarian[<span class="dv">1</span>,],</span>
+<span id="cb93-5"><a href="#cb93-5"></a>    <span class="dt">geom=</span><span class="st">&quot;line&quot;</span>,</span>
+<span id="cb93-6"><a href="#cb93-6"></a>    <span class="dt">ylab=</span><span class="st">&quot;centered intensity&quot;</span>,</span>
+<span id="cb93-7"><a href="#cb93-7"></a>    <span class="dt">xlab=</span><span class="st">&quot;&quot;</span>,<span class="dt">main=</span><span class="st">&quot;cancer&quot;</span>,</span>
+<span id="cb93-8"><a href="#cb93-8"></a>    <span class="dt">ylim=</span><span class="kw">range</span>(ovarian[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">200</span>,<span class="dv">201</span>),])),</span>
+<span id="cb93-9"><a href="#cb93-9"></a>  <span class="kw">qplot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4000</span>,</span>
+<span id="cb93-10"><a href="#cb93-10"></a>    ovarian[<span class="dv">2</span>,],</span>
+<span id="cb93-11"><a href="#cb93-11"></a>    <span class="dt">geom=</span><span class="st">&quot;line&quot;</span>,</span>
+<span id="cb93-12"><a href="#cb93-12"></a>    <span class="dt">ylab=</span><span class="st">&quot;centered intensity&quot;</span>,</span>
+<span id="cb93-13"><a href="#cb93-13"></a>    <span class="dt">xlab=</span><span class="st">&quot;&quot;</span>,<span class="dt">main=</span><span class="st">&quot;cancer&quot;</span>,</span>
+<span id="cb93-14"><a href="#cb93-14"></a>    <span class="dt">ylim=</span><span class="kw">range</span>(ovarian[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">200</span>,<span class="dv">201</span>),])),</span>
+<span id="cb93-15"><a href="#cb93-15"></a>  <span class="kw">qplot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4000</span>,</span>
+<span id="cb93-16"><a href="#cb93-16"></a>    ovarian[<span class="dv">200</span>,],</span>
+<span id="cb93-17"><a href="#cb93-17"></a>    <span class="dt">geom=</span><span class="st">&quot;line&quot;</span>,</span>
+<span id="cb93-18"><a href="#cb93-18"></a>    <span class="dt">ylab=</span><span class="st">&quot;centered intensity&quot;</span>,</span>
+<span id="cb93-19"><a href="#cb93-19"></a>    <span class="dt">xlab=</span><span class="st">&quot;&quot;</span>,<span class="dt">main=</span><span class="st">&quot;Normal&quot;</span>,</span>
+<span id="cb93-20"><a href="#cb93-20"></a>    <span class="dt">ylim=</span><span class="kw">range</span>(ovarian[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">200</span>,<span class="dv">201</span>),])),</span>
+<span id="cb93-21"><a href="#cb93-21"></a>  <span class="kw">qplot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4000</span>,</span>
+<span id="cb93-22"><a href="#cb93-22"></a>    ovarian[<span class="dv">201</span>,],</span>
+<span id="cb93-23"><a href="#cb93-23"></a>    <span class="dt">geom=</span><span class="st">&quot;line&quot;</span>,</span>
+<span id="cb93-24"><a href="#cb93-24"></a>    <span class="dt">ylab=</span><span class="st">&quot;centered intensity&quot;</span>,</span>
+<span id="cb93-25"><a href="#cb93-25"></a>    <span class="dt">xlab=</span><span class="st">&quot;&quot;</span>,<span class="dt">main=</span><span class="st">&quot;Normal&quot;</span>,</span>
+<span id="cb93-26"><a href="#cb93-26"></a>    <span class="dt">ylim=</span><span class="kw">range</span>(ovarian[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">200</span>,<span class="dv">201</span>),])),</span>
+<span id="cb93-27"><a href="#cb93-27"></a>  <span class="dt">ncol=</span><span class="dv">1</span></span>
+<span id="cb93-28"><a href="#cb93-28"></a>  )</span></code></pre></div>
 <p><img src="svd_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
 </div>
 <div id="svd-analysis" class="section level3">
 <h3><span class="header-section-number">8.9.2</span> SVD Analysis</h3>
-<pre class="r"><code>svdOvarian &lt;- svd(ovarian)
-
-nOvarian &lt;- nrow(ovarian)
-r &lt;- ncol(svdOvarian$v)
-
-totVar &lt;- sum(svdOvarian$d^2)/(nOvarian-1)
-vars &lt;- data.frame(comp=1:r,var=svdOvarian$d^2/(nOvarian-1)) %&gt;%
-  mutate(propVar=var/totVar,cumVar=cumsum(var/totVar))
-
-pVar2 &lt;- vars %&gt;%
-  ggplot(aes(x=comp:r,y=propVar)) +
-  geom_point() +
-  geom_line() +
-  xlab(&quot;Component&quot;) +
-  ylab(&quot;Proportion of Total Variance&quot;)
-
-pVar3 &lt;- vars %&gt;%
-  ggplot(aes(x=comp:r,y=cumVar)) +
-  geom_point() +
-  geom_line() +
-  xlab(&quot;Component&quot;) +
-  ylab(&quot;Cum. prop. of tot. var.&quot;)
-
-grid.arrange(pVar2, pVar3, nrow=1)</code></pre>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1"></a>svdOvarian &lt;-<span class="st"> </span><span class="kw">svd</span>(ovarian)</span>
+<span id="cb94-2"><a href="#cb94-2"></a></span>
+<span id="cb94-3"><a href="#cb94-3"></a>nOvarian &lt;-<span class="st"> </span><span class="kw">nrow</span>(ovarian)</span>
+<span id="cb94-4"><a href="#cb94-4"></a>r &lt;-<span class="st"> </span><span class="kw">ncol</span>(svdOvarian<span class="op">$</span>v)</span>
+<span id="cb94-5"><a href="#cb94-5"></a></span>
+<span id="cb94-6"><a href="#cb94-6"></a>totVar &lt;-<span class="st"> </span><span class="kw">sum</span>(svdOvarian<span class="op">$</span>d<span class="op">^</span><span class="dv">2</span>)<span class="op">/</span>(nOvarian<span class="dv">-1</span>)</span>
+<span id="cb94-7"><a href="#cb94-7"></a>vars &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">comp=</span><span class="dv">1</span><span class="op">:</span>r,<span class="dt">var=</span>svdOvarian<span class="op">$</span>d<span class="op">^</span><span class="dv">2</span><span class="op">/</span>(nOvarian<span class="dv">-1</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb94-8"><a href="#cb94-8"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">propVar=</span>var<span class="op">/</span>totVar,<span class="dt">cumVar=</span><span class="kw">cumsum</span>(var<span class="op">/</span>totVar))</span>
+<span id="cb94-9"><a href="#cb94-9"></a></span>
+<span id="cb94-10"><a href="#cb94-10"></a>pVar2 &lt;-<span class="st"> </span>vars <span class="op">%&gt;%</span></span>
+<span id="cb94-11"><a href="#cb94-11"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>comp<span class="op">:</span>r,<span class="dt">y=</span>propVar)) <span class="op">+</span></span>
+<span id="cb94-12"><a href="#cb94-12"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb94-13"><a href="#cb94-13"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
+<span id="cb94-14"><a href="#cb94-14"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Component&quot;</span>) <span class="op">+</span></span>
+<span id="cb94-15"><a href="#cb94-15"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Proportion of Total Variance&quot;</span>)</span>
+<span id="cb94-16"><a href="#cb94-16"></a></span>
+<span id="cb94-17"><a href="#cb94-17"></a>pVar3 &lt;-<span class="st"> </span>vars <span class="op">%&gt;%</span></span>
+<span id="cb94-18"><a href="#cb94-18"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>comp<span class="op">:</span>r,<span class="dt">y=</span>cumVar)) <span class="op">+</span></span>
+<span id="cb94-19"><a href="#cb94-19"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb94-20"><a href="#cb94-20"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
+<span id="cb94-21"><a href="#cb94-21"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Component&quot;</span>) <span class="op">+</span></span>
+<span id="cb94-22"><a href="#cb94-22"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Cum. prop. of tot. var.&quot;</span>)</span>
+<span id="cb94-23"><a href="#cb94-23"></a></span>
+<span id="cb94-24"><a href="#cb94-24"></a><span class="kw">grid.arrange</span>(pVar2, pVar3, <span class="dt">nrow=</span><span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## Warning in comp:r: numerical expression has 216 elements: only the first used
 
 ## Warning in comp:r: numerical expression has 216 elements: only the first used
@@ -2376,83 +2468,83 @@ grid.arrange(pVar2, pVar3, nrow=1)</code></pre>
 ## Warning in comp:r: numerical expression has 216 elements: only the first used</code></pre>
 <p><img src="svd_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
 <p>We see that we can explain a lot of the variability using a few PC’s!</p>
-<pre class="r"><code>Zk &lt;- svdOvarian$u[,1:6]%*%diag(svdOvarian$d[1:6])
-colnames(Zk) &lt;- paste0(&quot;Z&quot;,1:6)
-Vk &lt;- svdOvarian$v[,1:6]
-colnames(Vk) &lt;- paste0(&quot;V&quot;,1:6)
-reduced &lt;- data.frame(Zk,cancer=c(rep(1,121),rep(2,95)))
-
-pOv1 &lt;- reduced %&gt;%
-  ggplot(aes(x=Z1,y=Z2,col=cancer)) +
-  geom_point()  +
-  theme(legend.position = &quot;none&quot;)
-
-pOv2 &lt;- Vk %&gt;%
-  as.data.frame %&gt;%
-  ggplot(aes(x=1:4000,y=V1)) +
-  geom_line() +
-  xlab(&quot;&quot;)
-
-pOv3 &lt;- Vk %&gt;%
-  as.data.frame %&gt;%
-  ggplot(aes(x=1:4000,y=V2)) +
-  geom_line() +
-  xlab(&quot;&quot;)
-
-grid.arrange(pOv1,pOv2,pOv3,layout_matrix = rbind(c(1,3),c(2,NA)))</code></pre>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1"></a>Zk &lt;-<span class="st"> </span>svdOvarian<span class="op">$</span>u[,<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>]<span class="op">%*%</span><span class="kw">diag</span>(svdOvarian<span class="op">$</span>d[<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>])</span>
+<span id="cb96-2"><a href="#cb96-2"></a><span class="kw">colnames</span>(Zk) &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;Z&quot;</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>)</span>
+<span id="cb96-3"><a href="#cb96-3"></a>Vk &lt;-<span class="st"> </span>svdOvarian<span class="op">$</span>v[,<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>]</span>
+<span id="cb96-4"><a href="#cb96-4"></a><span class="kw">colnames</span>(Vk) &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;V&quot;</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>)</span>
+<span id="cb96-5"><a href="#cb96-5"></a>reduced &lt;-<span class="st"> </span><span class="kw">data.frame</span>(Zk,<span class="dt">cancer=</span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">121</span>),<span class="kw">rep</span>(<span class="dv">2</span>,<span class="dv">95</span>)))</span>
+<span id="cb96-6"><a href="#cb96-6"></a></span>
+<span id="cb96-7"><a href="#cb96-7"></a>pOv1 &lt;-<span class="st"> </span>reduced <span class="op">%&gt;%</span></span>
+<span id="cb96-8"><a href="#cb96-8"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>Z1,<span class="dt">y=</span>Z2,<span class="dt">col=</span>cancer)) <span class="op">+</span></span>
+<span id="cb96-9"><a href="#cb96-9"></a><span class="st">  </span><span class="kw">geom_point</span>()  <span class="op">+</span></span>
+<span id="cb96-10"><a href="#cb96-10"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
+<span id="cb96-11"><a href="#cb96-11"></a></span>
+<span id="cb96-12"><a href="#cb96-12"></a>pOv2 &lt;-<span class="st"> </span>Vk <span class="op">%&gt;%</span></span>
+<span id="cb96-13"><a href="#cb96-13"></a><span class="st">  </span>as.data.frame <span class="op">%&gt;%</span></span>
+<span id="cb96-14"><a href="#cb96-14"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span><span class="dv">1</span><span class="op">:</span><span class="dv">4000</span>,<span class="dt">y=</span>V1)) <span class="op">+</span></span>
+<span id="cb96-15"><a href="#cb96-15"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
+<span id="cb96-16"><a href="#cb96-16"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>)</span>
+<span id="cb96-17"><a href="#cb96-17"></a></span>
+<span id="cb96-18"><a href="#cb96-18"></a>pOv3 &lt;-<span class="st"> </span>Vk <span class="op">%&gt;%</span></span>
+<span id="cb96-19"><a href="#cb96-19"></a><span class="st">  </span>as.data.frame <span class="op">%&gt;%</span></span>
+<span id="cb96-20"><a href="#cb96-20"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span><span class="dv">1</span><span class="op">:</span><span class="dv">4000</span>,<span class="dt">y=</span>V2)) <span class="op">+</span></span>
+<span id="cb96-21"><a href="#cb96-21"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
+<span id="cb96-22"><a href="#cb96-22"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>)</span>
+<span id="cb96-23"><a href="#cb96-23"></a></span>
+<span id="cb96-24"><a href="#cb96-24"></a><span class="kw">grid.arrange</span>(pOv1,pOv2,pOv3,<span class="dt">layout_matrix =</span> <span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>),<span class="kw">c</span>(<span class="dv">2</span>,<span class="ot">NA</span>)))</span></code></pre></div>
 <p><img src="svd_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
 <p>Reconstruction of profiles:</p>
-<pre class="r"><code>i &lt;- 1
-pOv4 &lt;- qplot(1:4000,
-  ovarian[i,],
-  geom=&quot;line&quot;,
-  ylab=&quot;centered intensity&quot;,
-  xlab=&quot;&quot;,main=&quot;Cancer&quot;,
-  ylim=range(ovarian[c(1,2,200,201),]))
-
-pOv5 &lt;- qplot(1:4000,
-  Vk[,1:2] %*%Zk[i,1:2],
-  geom=&quot;line&quot;,
-  ylab=&quot;centered intensity&quot;,
-  xlab=&quot;&quot;,main=&quot;Reconstructed&quot;,
-  ylim=range(ovarian[c(1,2,200,201),]))
-
-
-
-grid.arrange(
-  pOv1 +
-    annotate(&quot;point&quot;, x = reduced[i,1], y = reduced[i,2], colour = &quot;red&quot;,cex=3),
-  pOv2,
-  pOv3,
-  pOv4,
-  pOv5,
-  layout_matrix = rbind(c(1,2,3),c(4,5,NA)))</code></pre>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1"></a>i &lt;-<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb97-2"><a href="#cb97-2"></a>pOv4 &lt;-<span class="st"> </span><span class="kw">qplot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4000</span>,</span>
+<span id="cb97-3"><a href="#cb97-3"></a>  ovarian[i,],</span>
+<span id="cb97-4"><a href="#cb97-4"></a>  <span class="dt">geom=</span><span class="st">&quot;line&quot;</span>,</span>
+<span id="cb97-5"><a href="#cb97-5"></a>  <span class="dt">ylab=</span><span class="st">&quot;centered intensity&quot;</span>,</span>
+<span id="cb97-6"><a href="#cb97-6"></a>  <span class="dt">xlab=</span><span class="st">&quot;&quot;</span>,<span class="dt">main=</span><span class="st">&quot;Cancer&quot;</span>,</span>
+<span id="cb97-7"><a href="#cb97-7"></a>  <span class="dt">ylim=</span><span class="kw">range</span>(ovarian[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">200</span>,<span class="dv">201</span>),]))</span>
+<span id="cb97-8"><a href="#cb97-8"></a></span>
+<span id="cb97-9"><a href="#cb97-9"></a>pOv5 &lt;-<span class="st"> </span><span class="kw">qplot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4000</span>,</span>
+<span id="cb97-10"><a href="#cb97-10"></a>  Vk[,<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>] <span class="op">%*%</span>Zk[i,<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>],</span>
+<span id="cb97-11"><a href="#cb97-11"></a>  <span class="dt">geom=</span><span class="st">&quot;line&quot;</span>,</span>
+<span id="cb97-12"><a href="#cb97-12"></a>  <span class="dt">ylab=</span><span class="st">&quot;centered intensity&quot;</span>,</span>
+<span id="cb97-13"><a href="#cb97-13"></a>  <span class="dt">xlab=</span><span class="st">&quot;&quot;</span>,<span class="dt">main=</span><span class="st">&quot;Reconstructed&quot;</span>,</span>
+<span id="cb97-14"><a href="#cb97-14"></a>  <span class="dt">ylim=</span><span class="kw">range</span>(ovarian[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">200</span>,<span class="dv">201</span>),]))</span>
+<span id="cb97-15"><a href="#cb97-15"></a></span>
+<span id="cb97-16"><a href="#cb97-16"></a></span>
+<span id="cb97-17"><a href="#cb97-17"></a></span>
+<span id="cb97-18"><a href="#cb97-18"></a><span class="kw">grid.arrange</span>(</span>
+<span id="cb97-19"><a href="#cb97-19"></a>  pOv1 <span class="op">+</span></span>
+<span id="cb97-20"><a href="#cb97-20"></a><span class="st">    </span><span class="kw">annotate</span>(<span class="st">&quot;point&quot;</span>, <span class="dt">x =</span> reduced[i,<span class="dv">1</span>], <span class="dt">y =</span> reduced[i,<span class="dv">2</span>], <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>,<span class="dt">cex=</span><span class="dv">3</span>),</span>
+<span id="cb97-21"><a href="#cb97-21"></a>  pOv2,</span>
+<span id="cb97-22"><a href="#cb97-22"></a>  pOv3,</span>
+<span id="cb97-23"><a href="#cb97-23"></a>  pOv4,</span>
+<span id="cb97-24"><a href="#cb97-24"></a>  pOv5,</span>
+<span id="cb97-25"><a href="#cb97-25"></a>  <span class="dt">layout_matrix =</span> <span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>),<span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">5</span>,<span class="ot">NA</span>)))</span></code></pre></div>
 <p><img src="svd_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
-<pre class="r"><code>i &lt;- 3
-pOv4 &lt;- qplot(1:4000,
-  ovarian[i,],
-  geom=&quot;line&quot;,
-  ylab=&quot;centered intensity&quot;,
-  xlab=&quot;&quot;,main=&quot;Cancer&quot;,
-  ylim=range(ovarian[c(1,2,200,201),]))
-
-pOv5 &lt;- qplot(1:4000,
-  Vk[,1:2] %*%Zk[i,1:2],
-  geom=&quot;line&quot;,
-  ylab=&quot;centered intensity&quot;,
-  xlab=&quot;&quot;,main=&quot;Reconstructed&quot;,
-  ylim=range(ovarian[c(1,2,200,201),]))
-
-
-
-grid.arrange(
-  pOv1 +
-    annotate(&quot;point&quot;, x = reduced[i,1], y = reduced[i,2], colour = &quot;red&quot;,cex=3),
-  pOv2,
-  pOv3,
-  pOv4,
-  pOv5,
-  layout_matrix = rbind(c(1,2,3),c(4,5,NA)))</code></pre>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1"></a>i &lt;-<span class="st"> </span><span class="dv">3</span></span>
+<span id="cb98-2"><a href="#cb98-2"></a>pOv4 &lt;-<span class="st"> </span><span class="kw">qplot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4000</span>,</span>
+<span id="cb98-3"><a href="#cb98-3"></a>  ovarian[i,],</span>
+<span id="cb98-4"><a href="#cb98-4"></a>  <span class="dt">geom=</span><span class="st">&quot;line&quot;</span>,</span>
+<span id="cb98-5"><a href="#cb98-5"></a>  <span class="dt">ylab=</span><span class="st">&quot;centered intensity&quot;</span>,</span>
+<span id="cb98-6"><a href="#cb98-6"></a>  <span class="dt">xlab=</span><span class="st">&quot;&quot;</span>,<span class="dt">main=</span><span class="st">&quot;Cancer&quot;</span>,</span>
+<span id="cb98-7"><a href="#cb98-7"></a>  <span class="dt">ylim=</span><span class="kw">range</span>(ovarian[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">200</span>,<span class="dv">201</span>),]))</span>
+<span id="cb98-8"><a href="#cb98-8"></a></span>
+<span id="cb98-9"><a href="#cb98-9"></a>pOv5 &lt;-<span class="st"> </span><span class="kw">qplot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4000</span>,</span>
+<span id="cb98-10"><a href="#cb98-10"></a>  Vk[,<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>] <span class="op">%*%</span>Zk[i,<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>],</span>
+<span id="cb98-11"><a href="#cb98-11"></a>  <span class="dt">geom=</span><span class="st">&quot;line&quot;</span>,</span>
+<span id="cb98-12"><a href="#cb98-12"></a>  <span class="dt">ylab=</span><span class="st">&quot;centered intensity&quot;</span>,</span>
+<span id="cb98-13"><a href="#cb98-13"></a>  <span class="dt">xlab=</span><span class="st">&quot;&quot;</span>,<span class="dt">main=</span><span class="st">&quot;Reconstructed&quot;</span>,</span>
+<span id="cb98-14"><a href="#cb98-14"></a>  <span class="dt">ylim=</span><span class="kw">range</span>(ovarian[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">200</span>,<span class="dv">201</span>),]))</span>
+<span id="cb98-15"><a href="#cb98-15"></a></span>
+<span id="cb98-16"><a href="#cb98-16"></a></span>
+<span id="cb98-17"><a href="#cb98-17"></a></span>
+<span id="cb98-18"><a href="#cb98-18"></a><span class="kw">grid.arrange</span>(</span>
+<span id="cb98-19"><a href="#cb98-19"></a>  pOv1 <span class="op">+</span></span>
+<span id="cb98-20"><a href="#cb98-20"></a><span class="st">    </span><span class="kw">annotate</span>(<span class="st">&quot;point&quot;</span>, <span class="dt">x =</span> reduced[i,<span class="dv">1</span>], <span class="dt">y =</span> reduced[i,<span class="dv">2</span>], <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>,<span class="dt">cex=</span><span class="dv">3</span>),</span>
+<span id="cb98-21"><a href="#cb98-21"></a>  pOv2,</span>
+<span id="cb98-22"><a href="#cb98-22"></a>  pOv3,</span>
+<span id="cb98-23"><a href="#cb98-23"></a>  pOv4,</span>
+<span id="cb98-24"><a href="#cb98-24"></a>  pOv5,</span>
+<span id="cb98-25"><a href="#cb98-25"></a>  <span class="dt">layout_matrix =</span> <span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>),<span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">5</span>,<span class="ot">NA</span>)))</span></code></pre></div>
 <p><img src="svd_files/figure-html/unnamed-chunk-46-1.png" width="672" /></p>
 </div>
 </div>
@@ -2467,7 +2559,7 @@ grid.arrange(
 <h1>Session info</h1>
 <details>
 <p><summary>Session info</summary></p>
-<pre><code>## [1] &quot;2021-10-22 10:37:02 UTC&quot;</code></pre>
+<pre><code>## [1] &quot;2021-10-26 10:58:19 UTC&quot;</code></pre>
 <pre><code>## ─ Session info ───────────────────────────────────────────────────────────────
 ##  setting  value                       
 ##  version  R version 4.1.1 (2021-08-10)
@@ -2478,7 +2570,7 @@ grid.arrange(
 ##  collate  en_US.UTF-8                 
 ##  ctype    en_US.UTF-8                 
 ##  tz       UTC                         
-##  date     2021-10-22                  
+##  date     2021-10-26                  
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────
 ##  ! package     * version    date       lib source                          
@@ -2573,7 +2665,7 @@ grid.arrange(
 ##  P yaml          2.2.1      2020-02-01 [?] CRAN (R 4.1.0)                  
 ## 
 ## [1] /Users/runner/work/HDDA21/HDDA21/renv/library/R-4.1/x86_64-apple-darwin17.0
-## [2] /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpgJLLDS/renv-system-library
+## [2] /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpGq4XiO/renv-system-library
 ## 
 ##  P ── Loaded and on-disk path mismatch.</code></pre>
 </details>

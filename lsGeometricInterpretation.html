@@ -35,8 +35,7 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script src="site_libs/navigation-1.1/codefolding.js"></script>
 <script src="site_libs/navigation-1.1/sourceembed.js"></script>
-<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
 <script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 <script src="site_libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
@@ -58,17 +57,110 @@
   ul.task-list{list-style: none;}
     </style>
 
-<style type="text/css">code{white-space: pre;}</style>
-<script type="text/javascript">
-if (window.hljs) {
-  hljs.configure({languages: []});
-  hljs.initHighlightingOnLoad();
-  if (document.readyState && document.readyState === "complete") {
-    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
-  }
-}
-</script>
 
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
+.sourceCode .row {
+  width: 100%;
+}
+.sourceCode {
+  overflow-x: auto;
+}
+.code-folding-btn {
+  margin-right: -30px;
+}
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 
 
 <style type="text/css">
@@ -439,7 +531,7 @@ div.tocify {
 <div id="data" class="section level2">
 <h2><span class="header-section-number">1.1</span> Data</h2>
 <p>Dataset with 3 observation (X,Y):</p>
-<pre class="r"><code>library(tidyverse)</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
 <pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
 <pre><code>## ✔ ggplot2 3.3.5     ✔ purrr   0.3.4
 ## ✔ tibble  3.1.5     ✔ dplyr   1.0.7
@@ -448,8 +540,8 @@ div.tocify {
 <pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()</code></pre>
-<pre class="r"><code>data &lt;- data.frame(x=1:3,y=c(1,2,2))
-data</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x=</span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,<span class="dt">y=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb5-2"><a href="#cb5-2"></a>data</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["x"],"name":[1],"type":["int"],"align":["right"]},{"label":["y"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"1"},{"1":"2","2":"2"},{"1":"3","2":"2"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -507,17 +599,17 @@ y_i=\beta_0+\beta_1x + \epsilon_i
 \end{array}
 \right]
 \]</span></p>
-<pre class="r"><code>lm1 &lt;- lm(y~x,data)
-data$yhat &lt;- lm1$fitted
-
-data %&gt;%
-  ggplot(aes(x,y)) +
-  geom_point() +
-  ylim(0,4) +
-  xlim(0,4) +
-  stat_smooth(method = &quot;lm&quot;, color = &quot;red&quot;, fullrange = TRUE) +
-  geom_point(aes(x=x, y =yhat), pch = 2, size = 3, color = &quot;red&quot;) +
-  geom_segment(data = data, aes(x = x, xend = x, y = y, yend = yhat), lty = 2 )</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>lm1 &lt;-<span class="st"> </span><span class="kw">lm</span>(y<span class="op">~</span>x,data)</span>
+<span id="cb6-2"><a href="#cb6-2"></a>data<span class="op">$</span>yhat &lt;-<span class="st"> </span>lm1<span class="op">$</span>fitted</span>
+<span id="cb6-3"><a href="#cb6-3"></a></span>
+<span id="cb6-4"><a href="#cb6-4"></a>data <span class="op">%&gt;%</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(x,y)) <span class="op">+</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a><span class="st">  </span><span class="kw">ylim</span>(<span class="dv">0</span>,<span class="dv">4</span>) <span class="op">+</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a><span class="st">  </span><span class="kw">xlim</span>(<span class="dv">0</span>,<span class="dv">4</span>) <span class="op">+</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a><span class="st">  </span><span class="kw">stat_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">fullrange =</span> <span class="ot">TRUE</span>) <span class="op">+</span></span>
+<span id="cb6-10"><a href="#cb6-10"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x=</span>x, <span class="dt">y =</span>yhat), <span class="dt">pch =</span> <span class="dv">2</span>, <span class="dt">size =</span> <span class="dv">3</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></span>
+<span id="cb6-11"><a href="#cb6-11"></a><span class="st">  </span><span class="kw">geom_segment</span>(<span class="dt">data =</span> data, <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">xend =</span> x, <span class="dt">y =</span> y, <span class="dt">yend =</span> yhat), <span class="dt">lty =</span> <span class="dv">2</span> )</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <pre><code>## Warning in max(ids, na.rm = TRUE): no non-missing arguments to max; returning
 ## -Inf</code></pre>
@@ -573,33 +665,33 @@ RSS(\boldsymbol{\beta})&amp;=&amp;(\mathbf{Y}-\mathbf{X\beta})^T(\mathbf{Y}-\mat
 &amp;=&amp; \mathbf{HY}
 \end{array}
 \]</span> with <span class="math inline">\(\mathbf{H}\)</span> the projection matrix also referred to as the hat matrix.</p>
-<pre class="r"><code>X &lt;- model.matrix(~x,data)
-X</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>X &lt;-<span class="st"> </span><span class="kw">model.matrix</span>(<span class="op">~</span>x,data)</span>
+<span id="cb9-2"><a href="#cb9-2"></a>X</span></code></pre></div>
 <pre><code>##   (Intercept) x
 ## 1           1 1
 ## 2           1 2
 ## 3           1 3
 ## attr(,&quot;assign&quot;)
 ## [1] 0 1</code></pre>
-<pre class="r"><code>XtX &lt;- t(X)%*%X
-XtX</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>XtX &lt;-<span class="st"> </span><span class="kw">t</span>(X)<span class="op">%*%</span>X</span>
+<span id="cb11-2"><a href="#cb11-2"></a>XtX</span></code></pre></div>
 <pre><code>##             (Intercept)  x
 ## (Intercept)           3  6
 ## x                     6 14</code></pre>
-<pre class="r"><code>XtXinv &lt;- solve(t(X)%*%X)
-XtXinv</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>XtXinv &lt;-<span class="st"> </span><span class="kw">solve</span>(<span class="kw">t</span>(X)<span class="op">%*%</span>X)</span>
+<span id="cb13-2"><a href="#cb13-2"></a>XtXinv</span></code></pre></div>
 <pre><code>##             (Intercept)    x
 ## (Intercept)    2.333333 -1.0
 ## x             -1.000000  0.5</code></pre>
-<pre class="r"><code>H &lt;- X %*% XtXinv %*% t(X)
-H</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>H &lt;-<span class="st"> </span>X <span class="op">%*%</span><span class="st"> </span>XtXinv <span class="op">%*%</span><span class="st"> </span><span class="kw">t</span>(X)</span>
+<span id="cb15-2"><a href="#cb15-2"></a>H</span></code></pre></div>
 <pre><code>##            1         2          3
 ## 1  0.8333333 0.3333333 -0.1666667
 ## 2  0.3333333 0.3333333  0.3333333
 ## 3 -0.1666667 0.3333333  0.8333333</code></pre>
-<pre class="r"><code>Y &lt;- data$y
-Yhat &lt;- H%*%Y
-Yhat</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>Y &lt;-<span class="st"> </span>data<span class="op">$</span>y</span>
+<span id="cb17-2"><a href="#cb17-2"></a>Yhat &lt;-<span class="st"> </span>H<span class="op">%*%</span>Y</span>
+<span id="cb17-3"><a href="#cb17-3"></a>Yhat</span></code></pre></div>
 <pre><code>##       [,1]
 ## 1 1.166667
 ## 2 1.666667
@@ -607,11 +699,11 @@ Yhat</code></pre>
 <div id="what-do-these-projections-mean-geometrically" class="section level2">
 <h2><span class="header-section-number">3.1</span> What do these projections mean geometrically?</h2>
 <p>The other picture to linear regression is to consider <span class="math inline">\(X_0\)</span>, <span class="math inline">\(X_1\)</span> and <span class="math inline">\(Y\)</span> as vectors in the space of the data <span class="math inline">\(\mathbb{R}^n\)</span>, here <span class="math inline">\(\mathbb{R}^3\)</span> because we have three data points.</p>
-<pre class="r"><code>originRn &lt;- data.frame(X1=0,X2=0,X3=0)
-data$x0 &lt;- 1
-dataRn &lt;- data.frame(t(data))
-
-library(plotly)</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>originRn &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">X1=</span><span class="dv">0</span>,<span class="dt">X2=</span><span class="dv">0</span>,<span class="dt">X3=</span><span class="dv">0</span>)</span>
+<span id="cb19-2"><a href="#cb19-2"></a>data<span class="op">$</span>x0 &lt;-<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb19-3"><a href="#cb19-3"></a>dataRn &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">t</span>(data))</span>
+<span id="cb19-4"><a href="#cb19-4"></a></span>
+<span id="cb19-5"><a href="#cb19-5"></a><span class="kw">library</span>(plotly)</span></code></pre></div>
 <pre><code>## 
 ## Attaching package: &#39;plotly&#39;</code></pre>
 <pre><code>## The following object is masked from &#39;package:ggplot2&#39;:
@@ -623,78 +715,78 @@ library(plotly)</code></pre>
 <pre><code>## The following object is masked from &#39;package:graphics&#39;:
 ## 
 ##     layout</code></pre>
-<pre class="r"><code>p1 &lt;- plot_ly(
-    originRn,
-    x = ~ X1,
-    y = ~ X2,
-    z= ~ X3) %&gt;%
-  add_markers(type=&quot;scatter3d&quot;) %&gt;%
-  layout(
-    scene = list(
-      aspectmode=&quot;cube&quot;,
-      xaxis = list(range=c(-4,4)), yaxis = list(range=c(-4,4)), zaxis = list(range=c(-4,4))
-      )
-    )
-p1 &lt;- p1 %&gt;%
-  add_trace(
-    x = c(0,1),
-    y = c(0,0),
-    z = c(0,0),
-    mode = &quot;lines&quot;,
-    line = list(width = 5, color = &quot;grey&quot;),
-    type=&quot;scatter3d&quot;) %&gt;%
-  add_trace(
-    x = c(0,0),
-    y = c(0,1),
-    z = c(0,0),
-    mode = &quot;lines&quot;,
-    line = list(width = 5, color = &quot;grey&quot;),
-    type=&quot;scatter3d&quot;) %&gt;%
-  add_trace(
-    x = c(0,0),
-    y = c(0,0),
-    z = c(0,1),
-    mode = &quot;lines&quot;,
-    line = list(width = 5, color = &quot;grey&quot;),
-    type=&quot;scatter3d&quot;) %&gt;%
-  add_trace(
-    x = c(0,1),
-    y = c(0,1),
-    z = c(0,1),
-    mode = &quot;lines&quot;,
-    line = list(width = 5, color = &quot;black&quot;),
-    type=&quot;scatter3d&quot;) %&gt;%
-    add_trace(
-    x = c(0,1),
-    y = c(0,2),
-    z = c(0,3),
-    mode = &quot;lines&quot;,
-    line = list(width = 5, color = &quot;black&quot;),
-    type=&quot;scatter3d&quot;)</code></pre>
-<pre class="r"><code>p2 &lt;- p1 %&gt;%
-  add_trace(
-    x = c(0,Y[1]),
-    y = c(0,Y[2]),
-    z = c(0,Y[3]),
-    mode = &quot;lines&quot;,
-    line = list(width = 5, color = &quot;red&quot;),
-    type=&quot;scatter3d&quot;) %&gt;%
-  add_trace(
-    x = c(0,Yhat[1]),
-    y = c(0,Yhat[2]),
-    z = c(0,Yhat[3]),
-    mode = &quot;lines&quot;,
-    line = list(width = 5, color = &quot;red&quot;),
-    type=&quot;scatter3d&quot;) %&gt;% add_trace(
-    x = c(Y[1],Yhat[1]),
-    y = c(Y[2],Yhat[2]),
-    z = c(Y[3],Yhat[3]),
-    mode = &quot;lines&quot;,
-    line = list(width = 5, color = &quot;red&quot;, dash=&quot;dash&quot;),
-    type=&quot;scatter3d&quot;)
-p2</code></pre>
-<div id="htmlwidget-cb950f5422c7e50f2faf" style="width:672px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-cb950f5422c7e50f2faf">{"x":{"visdat":{"39a328d482de":["function () ","plotlyVisDat"]},"cur_data":"39a328d482de","attrs":{"39a328d482de":{"x":{},"y":{},"z":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter3d","mode":"markers","inherit":true},"39a328d482de.1":{"x":[0,1],"y":[0,0],"z":[0,0],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"39a328d482de.2":{"x":[0,0],"y":[0,1],"z":[0,0],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"39a328d482de.3":{"x":[0,0],"y":[0,0],"z":[0,1],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"39a328d482de.4":{"x":[0,1],"y":[0,1],"z":[0,1],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"black"},"type":"scatter3d","inherit":true},"39a328d482de.5":{"x":[0,1],"y":[0,2],"z":[0,3],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"black"},"type":"scatter3d","inherit":true},"39a328d482de.6":{"x":[0,1],"y":[0,2],"z":[0,2],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red"},"type":"scatter3d","inherit":true},"39a328d482de.7":{"x":[0,1.16666666666667],"y":[0,1.66666666666667],"z":[0,2.16666666666667],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red"},"type":"scatter3d","inherit":true},"39a328d482de.8":{"x":[1,1.16666666666667],"y":[2,1.66666666666667],"z":[2,2.16666666666667],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red","dash":"dash"},"type":"scatter3d","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"aspectmode":"cube","xaxis":{"range":[-4,4],"title":"X1"},"yaxis":{"range":[-4,4],"title":"X2"},"zaxis":{"range":[-4,4],"title":"X3"}},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"x":[0],"y":[0],"z":[0],"type":"scatter3d","mode":"markers","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"frame":null},{"x":[0,1],"y":[0,0],"z":[0,0],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"frame":null},{"x":[0,0],"y":[0,1],"z":[0,0],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(44,160,44,1)","line":{"color":"rgba(44,160,44,1)"}},"error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"frame":null},{"x":[0,0],"y":[0,0],"z":[0,1],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(214,39,40,1)","line":{"color":"rgba(214,39,40,1)"}},"error_y":{"color":"rgba(214,39,40,1)"},"error_x":{"color":"rgba(214,39,40,1)"},"frame":null},{"x":[0,1],"y":[0,1],"z":[0,1],"mode":"lines","line":{"color":"black","width":5},"type":"scatter3d","marker":{"color":"rgba(148,103,189,1)","line":{"color":"rgba(148,103,189,1)"}},"error_y":{"color":"rgba(148,103,189,1)"},"error_x":{"color":"rgba(148,103,189,1)"},"frame":null},{"x":[0,1],"y":[0,2],"z":[0,3],"mode":"lines","line":{"color":"black","width":5},"type":"scatter3d","marker":{"color":"rgba(140,86,75,1)","line":{"color":"rgba(140,86,75,1)"}},"error_y":{"color":"rgba(140,86,75,1)"},"error_x":{"color":"rgba(140,86,75,1)"},"frame":null},{"x":[0,1],"y":[0,2],"z":[0,2],"mode":"lines","line":{"color":"red","width":5},"type":"scatter3d","marker":{"color":"rgba(227,119,194,1)","line":{"color":"rgba(227,119,194,1)"}},"error_y":{"color":"rgba(227,119,194,1)"},"error_x":{"color":"rgba(227,119,194,1)"},"frame":null},{"x":[0,1.16666666666667],"y":[0,1.66666666666667],"z":[0,2.16666666666667],"mode":"lines","line":{"color":"red","width":5},"type":"scatter3d","marker":{"color":"rgba(127,127,127,1)","line":{"color":"rgba(127,127,127,1)"}},"error_y":{"color":"rgba(127,127,127,1)"},"error_x":{"color":"rgba(127,127,127,1)"},"frame":null},{"x":[1,1.16666666666667],"y":[2,1.66666666666667],"z":[2,2.16666666666667],"mode":"lines","line":{"color":"red","width":5,"dash":"dash"},"type":"scatter3d","marker":{"color":"rgba(188,189,34,1)","line":{"color":"rgba(188,189,34,1)"}},"error_y":{"color":"rgba(188,189,34,1)"},"error_x":{"color":"rgba(188,189,34,1)"},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>p1 &lt;-<span class="st"> </span><span class="kw">plot_ly</span>(</span>
+<span id="cb24-2"><a href="#cb24-2"></a>    originRn,</span>
+<span id="cb24-3"><a href="#cb24-3"></a>    <span class="dt">x =</span> <span class="op">~</span><span class="st"> </span>X1,</span>
+<span id="cb24-4"><a href="#cb24-4"></a>    <span class="dt">y =</span> <span class="op">~</span><span class="st"> </span>X2,</span>
+<span id="cb24-5"><a href="#cb24-5"></a>    <span class="dt">z=</span> <span class="op">~</span><span class="st"> </span>X3) <span class="op">%&gt;%</span></span>
+<span id="cb24-6"><a href="#cb24-6"></a><span class="st">  </span><span class="kw">add_markers</span>(<span class="dt">type=</span><span class="st">&quot;scatter3d&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb24-7"><a href="#cb24-7"></a><span class="st">  </span><span class="kw">layout</span>(</span>
+<span id="cb24-8"><a href="#cb24-8"></a>    <span class="dt">scene =</span> <span class="kw">list</span>(</span>
+<span id="cb24-9"><a href="#cb24-9"></a>      <span class="dt">aspectmode=</span><span class="st">&quot;cube&quot;</span>,</span>
+<span id="cb24-10"><a href="#cb24-10"></a>      <span class="dt">xaxis =</span> <span class="kw">list</span>(<span class="dt">range=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">4</span>,<span class="dv">4</span>)), <span class="dt">yaxis =</span> <span class="kw">list</span>(<span class="dt">range=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">4</span>,<span class="dv">4</span>)), <span class="dt">zaxis =</span> <span class="kw">list</span>(<span class="dt">range=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">4</span>,<span class="dv">4</span>))</span>
+<span id="cb24-11"><a href="#cb24-11"></a>      )</span>
+<span id="cb24-12"><a href="#cb24-12"></a>    )</span>
+<span id="cb24-13"><a href="#cb24-13"></a>p1 &lt;-<span class="st"> </span>p1 <span class="op">%&gt;%</span></span>
+<span id="cb24-14"><a href="#cb24-14"></a><span class="st">  </span><span class="kw">add_trace</span>(</span>
+<span id="cb24-15"><a href="#cb24-15"></a>    <span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),</span>
+<span id="cb24-16"><a href="#cb24-16"></a>    <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>),</span>
+<span id="cb24-17"><a href="#cb24-17"></a>    <span class="dt">z =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>),</span>
+<span id="cb24-18"><a href="#cb24-18"></a>    <span class="dt">mode =</span> <span class="st">&quot;lines&quot;</span>,</span>
+<span id="cb24-19"><a href="#cb24-19"></a>    <span class="dt">line =</span> <span class="kw">list</span>(<span class="dt">width =</span> <span class="dv">5</span>, <span class="dt">color =</span> <span class="st">&quot;grey&quot;</span>),</span>
+<span id="cb24-20"><a href="#cb24-20"></a>    <span class="dt">type=</span><span class="st">&quot;scatter3d&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb24-21"><a href="#cb24-21"></a><span class="st">  </span><span class="kw">add_trace</span>(</span>
+<span id="cb24-22"><a href="#cb24-22"></a>    <span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>),</span>
+<span id="cb24-23"><a href="#cb24-23"></a>    <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),</span>
+<span id="cb24-24"><a href="#cb24-24"></a>    <span class="dt">z =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>),</span>
+<span id="cb24-25"><a href="#cb24-25"></a>    <span class="dt">mode =</span> <span class="st">&quot;lines&quot;</span>,</span>
+<span id="cb24-26"><a href="#cb24-26"></a>    <span class="dt">line =</span> <span class="kw">list</span>(<span class="dt">width =</span> <span class="dv">5</span>, <span class="dt">color =</span> <span class="st">&quot;grey&quot;</span>),</span>
+<span id="cb24-27"><a href="#cb24-27"></a>    <span class="dt">type=</span><span class="st">&quot;scatter3d&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb24-28"><a href="#cb24-28"></a><span class="st">  </span><span class="kw">add_trace</span>(</span>
+<span id="cb24-29"><a href="#cb24-29"></a>    <span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>),</span>
+<span id="cb24-30"><a href="#cb24-30"></a>    <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>),</span>
+<span id="cb24-31"><a href="#cb24-31"></a>    <span class="dt">z =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),</span>
+<span id="cb24-32"><a href="#cb24-32"></a>    <span class="dt">mode =</span> <span class="st">&quot;lines&quot;</span>,</span>
+<span id="cb24-33"><a href="#cb24-33"></a>    <span class="dt">line =</span> <span class="kw">list</span>(<span class="dt">width =</span> <span class="dv">5</span>, <span class="dt">color =</span> <span class="st">&quot;grey&quot;</span>),</span>
+<span id="cb24-34"><a href="#cb24-34"></a>    <span class="dt">type=</span><span class="st">&quot;scatter3d&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb24-35"><a href="#cb24-35"></a><span class="st">  </span><span class="kw">add_trace</span>(</span>
+<span id="cb24-36"><a href="#cb24-36"></a>    <span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),</span>
+<span id="cb24-37"><a href="#cb24-37"></a>    <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),</span>
+<span id="cb24-38"><a href="#cb24-38"></a>    <span class="dt">z =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),</span>
+<span id="cb24-39"><a href="#cb24-39"></a>    <span class="dt">mode =</span> <span class="st">&quot;lines&quot;</span>,</span>
+<span id="cb24-40"><a href="#cb24-40"></a>    <span class="dt">line =</span> <span class="kw">list</span>(<span class="dt">width =</span> <span class="dv">5</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>),</span>
+<span id="cb24-41"><a href="#cb24-41"></a>    <span class="dt">type=</span><span class="st">&quot;scatter3d&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb24-42"><a href="#cb24-42"></a><span class="st">    </span><span class="kw">add_trace</span>(</span>
+<span id="cb24-43"><a href="#cb24-43"></a>    <span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),</span>
+<span id="cb24-44"><a href="#cb24-44"></a>    <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">2</span>),</span>
+<span id="cb24-45"><a href="#cb24-45"></a>    <span class="dt">z =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">3</span>),</span>
+<span id="cb24-46"><a href="#cb24-46"></a>    <span class="dt">mode =</span> <span class="st">&quot;lines&quot;</span>,</span>
+<span id="cb24-47"><a href="#cb24-47"></a>    <span class="dt">line =</span> <span class="kw">list</span>(<span class="dt">width =</span> <span class="dv">5</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>),</span>
+<span id="cb24-48"><a href="#cb24-48"></a>    <span class="dt">type=</span><span class="st">&quot;scatter3d&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>p2 &lt;-<span class="st"> </span>p1 <span class="op">%&gt;%</span></span>
+<span id="cb25-2"><a href="#cb25-2"></a><span class="st">  </span><span class="kw">add_trace</span>(</span>
+<span id="cb25-3"><a href="#cb25-3"></a>    <span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">0</span>,Y[<span class="dv">1</span>]),</span>
+<span id="cb25-4"><a href="#cb25-4"></a>    <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">0</span>,Y[<span class="dv">2</span>]),</span>
+<span id="cb25-5"><a href="#cb25-5"></a>    <span class="dt">z =</span> <span class="kw">c</span>(<span class="dv">0</span>,Y[<span class="dv">3</span>]),</span>
+<span id="cb25-6"><a href="#cb25-6"></a>    <span class="dt">mode =</span> <span class="st">&quot;lines&quot;</span>,</span>
+<span id="cb25-7"><a href="#cb25-7"></a>    <span class="dt">line =</span> <span class="kw">list</span>(<span class="dt">width =</span> <span class="dv">5</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>),</span>
+<span id="cb25-8"><a href="#cb25-8"></a>    <span class="dt">type=</span><span class="st">&quot;scatter3d&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb25-9"><a href="#cb25-9"></a><span class="st">  </span><span class="kw">add_trace</span>(</span>
+<span id="cb25-10"><a href="#cb25-10"></a>    <span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">0</span>,Yhat[<span class="dv">1</span>]),</span>
+<span id="cb25-11"><a href="#cb25-11"></a>    <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">0</span>,Yhat[<span class="dv">2</span>]),</span>
+<span id="cb25-12"><a href="#cb25-12"></a>    <span class="dt">z =</span> <span class="kw">c</span>(<span class="dv">0</span>,Yhat[<span class="dv">3</span>]),</span>
+<span id="cb25-13"><a href="#cb25-13"></a>    <span class="dt">mode =</span> <span class="st">&quot;lines&quot;</span>,</span>
+<span id="cb25-14"><a href="#cb25-14"></a>    <span class="dt">line =</span> <span class="kw">list</span>(<span class="dt">width =</span> <span class="dv">5</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>),</span>
+<span id="cb25-15"><a href="#cb25-15"></a>    <span class="dt">type=</span><span class="st">&quot;scatter3d&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">add_trace</span>(</span>
+<span id="cb25-16"><a href="#cb25-16"></a>    <span class="dt">x =</span> <span class="kw">c</span>(Y[<span class="dv">1</span>],Yhat[<span class="dv">1</span>]),</span>
+<span id="cb25-17"><a href="#cb25-17"></a>    <span class="dt">y =</span> <span class="kw">c</span>(Y[<span class="dv">2</span>],Yhat[<span class="dv">2</span>]),</span>
+<span id="cb25-18"><a href="#cb25-18"></a>    <span class="dt">z =</span> <span class="kw">c</span>(Y[<span class="dv">3</span>],Yhat[<span class="dv">3</span>]),</span>
+<span id="cb25-19"><a href="#cb25-19"></a>    <span class="dt">mode =</span> <span class="st">&quot;lines&quot;</span>,</span>
+<span id="cb25-20"><a href="#cb25-20"></a>    <span class="dt">line =</span> <span class="kw">list</span>(<span class="dt">width =</span> <span class="dv">5</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">dash=</span><span class="st">&quot;dash&quot;</span>),</span>
+<span id="cb25-21"><a href="#cb25-21"></a>    <span class="dt">type=</span><span class="st">&quot;scatter3d&quot;</span>)</span>
+<span id="cb25-22"><a href="#cb25-22"></a>p2</span></code></pre></div>
+<div id="htmlwidget-3f22ca48782237a73d23" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3f22ca48782237a73d23">{"x":{"visdat":{"1418659529d5":["function () ","plotlyVisDat"]},"cur_data":"1418659529d5","attrs":{"1418659529d5":{"x":{},"y":{},"z":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter3d","mode":"markers","inherit":true},"1418659529d5.1":{"x":[0,1],"y":[0,0],"z":[0,0],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"1418659529d5.2":{"x":[0,0],"y":[0,1],"z":[0,0],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"1418659529d5.3":{"x":[0,0],"y":[0,0],"z":[0,1],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"1418659529d5.4":{"x":[0,1],"y":[0,1],"z":[0,1],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"black"},"type":"scatter3d","inherit":true},"1418659529d5.5":{"x":[0,1],"y":[0,2],"z":[0,3],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"black"},"type":"scatter3d","inherit":true},"1418659529d5.6":{"x":[0,1],"y":[0,2],"z":[0,2],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red"},"type":"scatter3d","inherit":true},"1418659529d5.7":{"x":[0,1.16666666666667],"y":[0,1.66666666666667],"z":[0,2.16666666666667],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red"},"type":"scatter3d","inherit":true},"1418659529d5.8":{"x":[1,1.16666666666667],"y":[2,1.66666666666667],"z":[2,2.16666666666667],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red","dash":"dash"},"type":"scatter3d","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"aspectmode":"cube","xaxis":{"range":[-4,4],"title":"X1"},"yaxis":{"range":[-4,4],"title":"X2"},"zaxis":{"range":[-4,4],"title":"X3"}},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"x":[0],"y":[0],"z":[0],"type":"scatter3d","mode":"markers","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"frame":null},{"x":[0,1],"y":[0,0],"z":[0,0],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"frame":null},{"x":[0,0],"y":[0,1],"z":[0,0],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(44,160,44,1)","line":{"color":"rgba(44,160,44,1)"}},"error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"frame":null},{"x":[0,0],"y":[0,0],"z":[0,1],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(214,39,40,1)","line":{"color":"rgba(214,39,40,1)"}},"error_y":{"color":"rgba(214,39,40,1)"},"error_x":{"color":"rgba(214,39,40,1)"},"frame":null},{"x":[0,1],"y":[0,1],"z":[0,1],"mode":"lines","line":{"color":"black","width":5},"type":"scatter3d","marker":{"color":"rgba(148,103,189,1)","line":{"color":"rgba(148,103,189,1)"}},"error_y":{"color":"rgba(148,103,189,1)"},"error_x":{"color":"rgba(148,103,189,1)"},"frame":null},{"x":[0,1],"y":[0,2],"z":[0,3],"mode":"lines","line":{"color":"black","width":5},"type":"scatter3d","marker":{"color":"rgba(140,86,75,1)","line":{"color":"rgba(140,86,75,1)"}},"error_y":{"color":"rgba(140,86,75,1)"},"error_x":{"color":"rgba(140,86,75,1)"},"frame":null},{"x":[0,1],"y":[0,2],"z":[0,2],"mode":"lines","line":{"color":"red","width":5},"type":"scatter3d","marker":{"color":"rgba(227,119,194,1)","line":{"color":"rgba(227,119,194,1)"}},"error_y":{"color":"rgba(227,119,194,1)"},"error_x":{"color":"rgba(227,119,194,1)"},"frame":null},{"x":[0,1.16666666666667],"y":[0,1.66666666666667],"z":[0,2.16666666666667],"mode":"lines","line":{"color":"red","width":5},"type":"scatter3d","marker":{"color":"rgba(127,127,127,1)","line":{"color":"rgba(127,127,127,1)"}},"error_y":{"color":"rgba(127,127,127,1)"},"error_x":{"color":"rgba(127,127,127,1)"},"frame":null},{"x":[1,1.16666666666667],"y":[2,1.66666666666667],"z":[2,2.16666666666667],"mode":"lines","line":{"color":"red","width":5,"dash":"dash"},"type":"scatter3d","marker":{"color":"rgba(188,189,34,1)","line":{"color":"rgba(188,189,34,1)"}},"error_y":{"color":"rgba(188,189,34,1)"},"error_x":{"color":"rgba(188,189,34,1)"},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 <div id="how-does-this-projection-work" class="section level3">
 <h3><span class="header-section-number">3.1.1</span> How does this projection work?</h3>
 <p><span class="math display">\[
@@ -708,116 +800,116 @@ p2</code></pre>
 <li><p><span class="math inline">\(\mathbf{U}\)</span> is a new orthonormal basis in <span class="math inline">\(\mathbb{R}^2\)</span>, a subspace of <span class="math inline">\(\mathbb{R}^3\)</span></p></li>
 <li><p>The space spanned by U and X is the column space of X, e.g. it contains all possible linear combinantions of X. <span class="math inline">\(\mathbf{U}^t\mathbf{Y}\)</span> is the projection of Y on this new orthonormal basis</p></li>
 </ul>
-<pre class="r"><code>eigenXtX &lt;- eigen(XtX)
-XtXinvSqrt &lt;- eigenXtX$vectors %*%diag(1/eigenXtX$values^.5)%*%t(eigenXtX$vectors)
-U &lt;- X %*% XtXinvSqrt
-
-p3 &lt;- p1 %&gt;%
-  add_trace(
-    x = c(0,U[1,1]),
-    y = c(0,U[2,1]),
-    z = c(0,U[3,1]),
-    mode = &quot;lines&quot;,
-    line = list(width = 5, color = &quot;blue&quot;),
-    type=&quot;scatter3d&quot;) %&gt;%
-  add_trace(
-    x = c(0,U[1,2]),
-    y = c(0,U[2,2]),
-    z = c(0,U[3,2]),
-    mode = &quot;lines&quot;,
-    line = list(width = 5, color = &quot;blue&quot;),
-    type=&quot;scatter3d&quot;)
-
-p3</code></pre>
-<div id="htmlwidget-3ee6d429120fbadfd939" style="width:672px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-3ee6d429120fbadfd939">{"x":{"visdat":{"39a328d482de":["function () ","plotlyVisDat"]},"cur_data":"39a328d482de","attrs":{"39a328d482de":{"x":{},"y":{},"z":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter3d","mode":"markers","inherit":true},"39a328d482de.1":{"x":[0,1],"y":[0,0],"z":[0,0],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"39a328d482de.2":{"x":[0,0],"y":[0,1],"z":[0,0],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"39a328d482de.3":{"x":[0,0],"y":[0,0],"z":[0,1],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"39a328d482de.4":{"x":[0,1],"y":[0,1],"z":[0,1],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"black"},"type":"scatter3d","inherit":true},"39a328d482de.5":{"x":[0,1],"y":[0,2],"z":[0,3],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"black"},"type":"scatter3d","inherit":true},"39a328d482de.6":{"x":[0,0.911606725190993],"y":[0,0.388170606702671],"z":[0,-0.13526551178565],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"blue"},"type":"scatter3d","inherit":true},"39a328d482de.7":{"x":[0,-0.0480261587042634],"y":[0,0.427383801079795],"z":[0,0.902793760863853],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"blue"},"type":"scatter3d","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"aspectmode":"cube","xaxis":{"range":[-4,4],"title":"X1"},"yaxis":{"range":[-4,4],"title":"X2"},"zaxis":{"range":[-4,4],"title":"X3"}},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"x":[0],"y":[0],"z":[0],"type":"scatter3d","mode":"markers","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"frame":null},{"x":[0,1],"y":[0,0],"z":[0,0],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"frame":null},{"x":[0,0],"y":[0,1],"z":[0,0],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(44,160,44,1)","line":{"color":"rgba(44,160,44,1)"}},"error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"frame":null},{"x":[0,0],"y":[0,0],"z":[0,1],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(214,39,40,1)","line":{"color":"rgba(214,39,40,1)"}},"error_y":{"color":"rgba(214,39,40,1)"},"error_x":{"color":"rgba(214,39,40,1)"},"frame":null},{"x":[0,1],"y":[0,1],"z":[0,1],"mode":"lines","line":{"color":"black","width":5},"type":"scatter3d","marker":{"color":"rgba(148,103,189,1)","line":{"color":"rgba(148,103,189,1)"}},"error_y":{"color":"rgba(148,103,189,1)"},"error_x":{"color":"rgba(148,103,189,1)"},"frame":null},{"x":[0,1],"y":[0,2],"z":[0,3],"mode":"lines","line":{"color":"black","width":5},"type":"scatter3d","marker":{"color":"rgba(140,86,75,1)","line":{"color":"rgba(140,86,75,1)"}},"error_y":{"color":"rgba(140,86,75,1)"},"error_x":{"color":"rgba(140,86,75,1)"},"frame":null},{"x":[0,0.911606725190993],"y":[0,0.388170606702671],"z":[0,-0.13526551178565],"mode":"lines","line":{"color":"blue","width":5},"type":"scatter3d","marker":{"color":"rgba(227,119,194,1)","line":{"color":"rgba(227,119,194,1)"}},"error_y":{"color":"rgba(227,119,194,1)"},"error_x":{"color":"rgba(227,119,194,1)"},"frame":null},{"x":[0,-0.0480261587042634],"y":[0,0.427383801079795],"z":[0,0.902793760863853],"mode":"lines","line":{"color":"blue","width":5},"type":"scatter3d","marker":{"color":"rgba(127,127,127,1)","line":{"color":"rgba(127,127,127,1)"}},"error_y":{"color":"rgba(127,127,127,1)"},"error_x":{"color":"rgba(127,127,127,1)"},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>eigenXtX &lt;-<span class="st"> </span><span class="kw">eigen</span>(XtX)</span>
+<span id="cb26-2"><a href="#cb26-2"></a>XtXinvSqrt &lt;-<span class="st"> </span>eigenXtX<span class="op">$</span>vectors <span class="op">%*%</span><span class="kw">diag</span>(<span class="dv">1</span><span class="op">/</span>eigenXtX<span class="op">$</span>values<span class="op">^</span>.<span class="dv">5</span>)<span class="op">%*%</span><span class="kw">t</span>(eigenXtX<span class="op">$</span>vectors)</span>
+<span id="cb26-3"><a href="#cb26-3"></a>U &lt;-<span class="st"> </span>X <span class="op">%*%</span><span class="st"> </span>XtXinvSqrt</span>
+<span id="cb26-4"><a href="#cb26-4"></a></span>
+<span id="cb26-5"><a href="#cb26-5"></a>p3 &lt;-<span class="st"> </span>p1 <span class="op">%&gt;%</span></span>
+<span id="cb26-6"><a href="#cb26-6"></a><span class="st">  </span><span class="kw">add_trace</span>(</span>
+<span id="cb26-7"><a href="#cb26-7"></a>    <span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">0</span>,U[<span class="dv">1</span>,<span class="dv">1</span>]),</span>
+<span id="cb26-8"><a href="#cb26-8"></a>    <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">0</span>,U[<span class="dv">2</span>,<span class="dv">1</span>]),</span>
+<span id="cb26-9"><a href="#cb26-9"></a>    <span class="dt">z =</span> <span class="kw">c</span>(<span class="dv">0</span>,U[<span class="dv">3</span>,<span class="dv">1</span>]),</span>
+<span id="cb26-10"><a href="#cb26-10"></a>    <span class="dt">mode =</span> <span class="st">&quot;lines&quot;</span>,</span>
+<span id="cb26-11"><a href="#cb26-11"></a>    <span class="dt">line =</span> <span class="kw">list</span>(<span class="dt">width =</span> <span class="dv">5</span>, <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>),</span>
+<span id="cb26-12"><a href="#cb26-12"></a>    <span class="dt">type=</span><span class="st">&quot;scatter3d&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb26-13"><a href="#cb26-13"></a><span class="st">  </span><span class="kw">add_trace</span>(</span>
+<span id="cb26-14"><a href="#cb26-14"></a>    <span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">0</span>,U[<span class="dv">1</span>,<span class="dv">2</span>]),</span>
+<span id="cb26-15"><a href="#cb26-15"></a>    <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">0</span>,U[<span class="dv">2</span>,<span class="dv">2</span>]),</span>
+<span id="cb26-16"><a href="#cb26-16"></a>    <span class="dt">z =</span> <span class="kw">c</span>(<span class="dv">0</span>,U[<span class="dv">3</span>,<span class="dv">2</span>]),</span>
+<span id="cb26-17"><a href="#cb26-17"></a>    <span class="dt">mode =</span> <span class="st">&quot;lines&quot;</span>,</span>
+<span id="cb26-18"><a href="#cb26-18"></a>    <span class="dt">line =</span> <span class="kw">list</span>(<span class="dt">width =</span> <span class="dv">5</span>, <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>),</span>
+<span id="cb26-19"><a href="#cb26-19"></a>    <span class="dt">type=</span><span class="st">&quot;scatter3d&quot;</span>)</span>
+<span id="cb26-20"><a href="#cb26-20"></a></span>
+<span id="cb26-21"><a href="#cb26-21"></a>p3</span></code></pre></div>
+<div id="htmlwidget-d6f6b012376a9b0665ef" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d6f6b012376a9b0665ef">{"x":{"visdat":{"1418659529d5":["function () ","plotlyVisDat"]},"cur_data":"1418659529d5","attrs":{"1418659529d5":{"x":{},"y":{},"z":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter3d","mode":"markers","inherit":true},"1418659529d5.1":{"x":[0,1],"y":[0,0],"z":[0,0],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"1418659529d5.2":{"x":[0,0],"y":[0,1],"z":[0,0],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"1418659529d5.3":{"x":[0,0],"y":[0,0],"z":[0,1],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"1418659529d5.4":{"x":[0,1],"y":[0,1],"z":[0,1],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"black"},"type":"scatter3d","inherit":true},"1418659529d5.5":{"x":[0,1],"y":[0,2],"z":[0,3],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"black"},"type":"scatter3d","inherit":true},"1418659529d5.6":{"x":[0,0.911606725190993],"y":[0,0.388170606702671],"z":[0,-0.13526551178565],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"blue"},"type":"scatter3d","inherit":true},"1418659529d5.7":{"x":[0,-0.0480261587042634],"y":[0,0.427383801079795],"z":[0,0.902793760863853],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"blue"},"type":"scatter3d","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"aspectmode":"cube","xaxis":{"range":[-4,4],"title":"X1"},"yaxis":{"range":[-4,4],"title":"X2"},"zaxis":{"range":[-4,4],"title":"X3"}},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"x":[0],"y":[0],"z":[0],"type":"scatter3d","mode":"markers","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"frame":null},{"x":[0,1],"y":[0,0],"z":[0,0],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"frame":null},{"x":[0,0],"y":[0,1],"z":[0,0],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(44,160,44,1)","line":{"color":"rgba(44,160,44,1)"}},"error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"frame":null},{"x":[0,0],"y":[0,0],"z":[0,1],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(214,39,40,1)","line":{"color":"rgba(214,39,40,1)"}},"error_y":{"color":"rgba(214,39,40,1)"},"error_x":{"color":"rgba(214,39,40,1)"},"frame":null},{"x":[0,1],"y":[0,1],"z":[0,1],"mode":"lines","line":{"color":"black","width":5},"type":"scatter3d","marker":{"color":"rgba(148,103,189,1)","line":{"color":"rgba(148,103,189,1)"}},"error_y":{"color":"rgba(148,103,189,1)"},"error_x":{"color":"rgba(148,103,189,1)"},"frame":null},{"x":[0,1],"y":[0,2],"z":[0,3],"mode":"lines","line":{"color":"black","width":5},"type":"scatter3d","marker":{"color":"rgba(140,86,75,1)","line":{"color":"rgba(140,86,75,1)"}},"error_y":{"color":"rgba(140,86,75,1)"},"error_x":{"color":"rgba(140,86,75,1)"},"frame":null},{"x":[0,0.911606725190993],"y":[0,0.388170606702671],"z":[0,-0.13526551178565],"mode":"lines","line":{"color":"blue","width":5},"type":"scatter3d","marker":{"color":"rgba(227,119,194,1)","line":{"color":"rgba(227,119,194,1)"}},"error_y":{"color":"rgba(227,119,194,1)"},"error_x":{"color":"rgba(227,119,194,1)"},"frame":null},{"x":[0,-0.0480261587042634],"y":[0,0.427383801079795],"z":[0,0.902793760863853],"mode":"lines","line":{"color":"blue","width":5},"type":"scatter3d","marker":{"color":"rgba(127,127,127,1)","line":{"color":"rgba(127,127,127,1)"}},"error_y":{"color":"rgba(127,127,127,1)"},"error_x":{"color":"rgba(127,127,127,1)"},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 <ul>
 <li><span class="math inline">\(\mathbf{U}^T\mathbf{Y}\)</span> is the projection of <span class="math inline">\(\mathbf{Y}\)</span> in the space spanned by <span class="math inline">\(\mathbf{U}\)</span>.</li>
 <li>Indeed <span class="math inline">\(\mathbf{U}_1^T\mathbf{Y}\)</span></li>
 </ul>
-<pre class="r"><code>p4 &lt;- p3 %&gt;%
-  add_trace(
-    x = c(0,Y[1]),
-    y = c(0,Y[2]),
-    z = c(0,Y[3]),
-    mode = &quot;lines&quot;,
-    line = list(width = 5, color = &quot;red&quot;),
-    type=&quot;scatter3d&quot;) %&gt;%
-  add_trace(
-    x = c(0,U[1,1]*(U[,1]%*%Y)),
-    y = c(0,U[2,1]*(U[,1]%*%Y)),
-    z = c(0,U[3,1]*(U[,1]%*%Y)),
-    mode = &quot;lines&quot;,
-    line = list(width = 5, color = &quot;red&quot;,dash=&quot;dash&quot;),
-    type=&quot;scatter3d&quot;) %&gt;% add_trace(
-    x = c(Y[1],U[1,1]*(U[,1]%*%Y)),
-    y = c(Y[2],U[2,1]*(U[,1]%*%Y)),
-    z = c(Y[3],U[3,1]*(U[,1]%*%Y)),
-    mode = &quot;lines&quot;,
-    line = list(width = 5, color = &quot;red&quot;, dash=&quot;dash&quot;),
-    type=&quot;scatter3d&quot;)
-p4</code></pre>
-<div id="htmlwidget-9ab7b80c4d13ab4a47fd" style="width:672px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-9ab7b80c4d13ab4a47fd">{"x":{"visdat":{"39a328d482de":["function () ","plotlyVisDat"]},"cur_data":"39a328d482de","attrs":{"39a328d482de":{"x":{},"y":{},"z":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter3d","mode":"markers","inherit":true},"39a328d482de.1":{"x":[0,1],"y":[0,0],"z":[0,0],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"39a328d482de.2":{"x":[0,0],"y":[0,1],"z":[0,0],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"39a328d482de.3":{"x":[0,0],"y":[0,0],"z":[0,1],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"39a328d482de.4":{"x":[0,1],"y":[0,1],"z":[0,1],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"black"},"type":"scatter3d","inherit":true},"39a328d482de.5":{"x":[0,1],"y":[0,2],"z":[0,3],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"black"},"type":"scatter3d","inherit":true},"39a328d482de.6":{"x":[0,0.911606725190993],"y":[0,0.388170606702671],"z":[0,-0.13526551178565],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"blue"},"type":"scatter3d","inherit":true},"39a328d482de.7":{"x":[0,-0.0480261587042634],"y":[0,0.427383801079795],"z":[0,0.902793760863853],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"blue"},"type":"scatter3d","inherit":true},"39a328d482de.8":{"x":[0,1],"y":[0,2],"z":[0,2],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red"},"type":"scatter3d","inherit":true},"39a328d482de.9":{"x":[0,1.29212679213629],"y":[0,0.550199583855897],"z":[0,-0.191727624424499],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red","dash":"dash"},"type":"scatter3d","inherit":true},"39a328d482de.10":{"x":[1,1.29212679213629],"y":[2,0.550199583855897],"z":[2,-0.191727624424499],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red","dash":"dash"},"type":"scatter3d","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"aspectmode":"cube","xaxis":{"range":[-4,4],"title":"X1"},"yaxis":{"range":[-4,4],"title":"X2"},"zaxis":{"range":[-4,4],"title":"X3"}},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"x":[0],"y":[0],"z":[0],"type":"scatter3d","mode":"markers","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"frame":null},{"x":[0,1],"y":[0,0],"z":[0,0],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"frame":null},{"x":[0,0],"y":[0,1],"z":[0,0],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(44,160,44,1)","line":{"color":"rgba(44,160,44,1)"}},"error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"frame":null},{"x":[0,0],"y":[0,0],"z":[0,1],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(214,39,40,1)","line":{"color":"rgba(214,39,40,1)"}},"error_y":{"color":"rgba(214,39,40,1)"},"error_x":{"color":"rgba(214,39,40,1)"},"frame":null},{"x":[0,1],"y":[0,1],"z":[0,1],"mode":"lines","line":{"color":"black","width":5},"type":"scatter3d","marker":{"color":"rgba(148,103,189,1)","line":{"color":"rgba(148,103,189,1)"}},"error_y":{"color":"rgba(148,103,189,1)"},"error_x":{"color":"rgba(148,103,189,1)"},"frame":null},{"x":[0,1],"y":[0,2],"z":[0,3],"mode":"lines","line":{"color":"black","width":5},"type":"scatter3d","marker":{"color":"rgba(140,86,75,1)","line":{"color":"rgba(140,86,75,1)"}},"error_y":{"color":"rgba(140,86,75,1)"},"error_x":{"color":"rgba(140,86,75,1)"},"frame":null},{"x":[0,0.911606725190993],"y":[0,0.388170606702671],"z":[0,-0.13526551178565],"mode":"lines","line":{"color":"blue","width":5},"type":"scatter3d","marker":{"color":"rgba(227,119,194,1)","line":{"color":"rgba(227,119,194,1)"}},"error_y":{"color":"rgba(227,119,194,1)"},"error_x":{"color":"rgba(227,119,194,1)"},"frame":null},{"x":[0,-0.0480261587042634],"y":[0,0.427383801079795],"z":[0,0.902793760863853],"mode":"lines","line":{"color":"blue","width":5},"type":"scatter3d","marker":{"color":"rgba(127,127,127,1)","line":{"color":"rgba(127,127,127,1)"}},"error_y":{"color":"rgba(127,127,127,1)"},"error_x":{"color":"rgba(127,127,127,1)"},"frame":null},{"x":[0,1],"y":[0,2],"z":[0,2],"mode":"lines","line":{"color":"red","width":5},"type":"scatter3d","marker":{"color":"rgba(188,189,34,1)","line":{"color":"rgba(188,189,34,1)"}},"error_y":{"color":"rgba(188,189,34,1)"},"error_x":{"color":"rgba(188,189,34,1)"},"frame":null},{"x":[0,1.29212679213629],"y":[0,0.550199583855897],"z":[0,-0.191727624424499],"mode":"lines","line":{"color":"red","width":5,"dash":"dash"},"type":"scatter3d","marker":{"color":"rgba(23,190,207,1)","line":{"color":"rgba(23,190,207,1)"}},"error_y":{"color":"rgba(23,190,207,1)"},"error_x":{"color":"rgba(23,190,207,1)"},"frame":null},{"x":[1,1.29212679213629],"y":[2,0.550199583855897],"z":[2,-0.191727624424499],"mode":"lines","line":{"color":"red","width":5,"dash":"dash"},"type":"scatter3d","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>p4 &lt;-<span class="st"> </span>p3 <span class="op">%&gt;%</span></span>
+<span id="cb27-2"><a href="#cb27-2"></a><span class="st">  </span><span class="kw">add_trace</span>(</span>
+<span id="cb27-3"><a href="#cb27-3"></a>    <span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">0</span>,Y[<span class="dv">1</span>]),</span>
+<span id="cb27-4"><a href="#cb27-4"></a>    <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">0</span>,Y[<span class="dv">2</span>]),</span>
+<span id="cb27-5"><a href="#cb27-5"></a>    <span class="dt">z =</span> <span class="kw">c</span>(<span class="dv">0</span>,Y[<span class="dv">3</span>]),</span>
+<span id="cb27-6"><a href="#cb27-6"></a>    <span class="dt">mode =</span> <span class="st">&quot;lines&quot;</span>,</span>
+<span id="cb27-7"><a href="#cb27-7"></a>    <span class="dt">line =</span> <span class="kw">list</span>(<span class="dt">width =</span> <span class="dv">5</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>),</span>
+<span id="cb27-8"><a href="#cb27-8"></a>    <span class="dt">type=</span><span class="st">&quot;scatter3d&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb27-9"><a href="#cb27-9"></a><span class="st">  </span><span class="kw">add_trace</span>(</span>
+<span id="cb27-10"><a href="#cb27-10"></a>    <span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">0</span>,U[<span class="dv">1</span>,<span class="dv">1</span>]<span class="op">*</span>(U[,<span class="dv">1</span>]<span class="op">%*%</span>Y)),</span>
+<span id="cb27-11"><a href="#cb27-11"></a>    <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">0</span>,U[<span class="dv">2</span>,<span class="dv">1</span>]<span class="op">*</span>(U[,<span class="dv">1</span>]<span class="op">%*%</span>Y)),</span>
+<span id="cb27-12"><a href="#cb27-12"></a>    <span class="dt">z =</span> <span class="kw">c</span>(<span class="dv">0</span>,U[<span class="dv">3</span>,<span class="dv">1</span>]<span class="op">*</span>(U[,<span class="dv">1</span>]<span class="op">%*%</span>Y)),</span>
+<span id="cb27-13"><a href="#cb27-13"></a>    <span class="dt">mode =</span> <span class="st">&quot;lines&quot;</span>,</span>
+<span id="cb27-14"><a href="#cb27-14"></a>    <span class="dt">line =</span> <span class="kw">list</span>(<span class="dt">width =</span> <span class="dv">5</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>,<span class="dt">dash=</span><span class="st">&quot;dash&quot;</span>),</span>
+<span id="cb27-15"><a href="#cb27-15"></a>    <span class="dt">type=</span><span class="st">&quot;scatter3d&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">add_trace</span>(</span>
+<span id="cb27-16"><a href="#cb27-16"></a>    <span class="dt">x =</span> <span class="kw">c</span>(Y[<span class="dv">1</span>],U[<span class="dv">1</span>,<span class="dv">1</span>]<span class="op">*</span>(U[,<span class="dv">1</span>]<span class="op">%*%</span>Y)),</span>
+<span id="cb27-17"><a href="#cb27-17"></a>    <span class="dt">y =</span> <span class="kw">c</span>(Y[<span class="dv">2</span>],U[<span class="dv">2</span>,<span class="dv">1</span>]<span class="op">*</span>(U[,<span class="dv">1</span>]<span class="op">%*%</span>Y)),</span>
+<span id="cb27-18"><a href="#cb27-18"></a>    <span class="dt">z =</span> <span class="kw">c</span>(Y[<span class="dv">3</span>],U[<span class="dv">3</span>,<span class="dv">1</span>]<span class="op">*</span>(U[,<span class="dv">1</span>]<span class="op">%*%</span>Y)),</span>
+<span id="cb27-19"><a href="#cb27-19"></a>    <span class="dt">mode =</span> <span class="st">&quot;lines&quot;</span>,</span>
+<span id="cb27-20"><a href="#cb27-20"></a>    <span class="dt">line =</span> <span class="kw">list</span>(<span class="dt">width =</span> <span class="dv">5</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">dash=</span><span class="st">&quot;dash&quot;</span>),</span>
+<span id="cb27-21"><a href="#cb27-21"></a>    <span class="dt">type=</span><span class="st">&quot;scatter3d&quot;</span>)</span>
+<span id="cb27-22"><a href="#cb27-22"></a>p4</span></code></pre></div>
+<div id="htmlwidget-f57d57e42c807f76ca22" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f57d57e42c807f76ca22">{"x":{"visdat":{"1418659529d5":["function () ","plotlyVisDat"]},"cur_data":"1418659529d5","attrs":{"1418659529d5":{"x":{},"y":{},"z":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter3d","mode":"markers","inherit":true},"1418659529d5.1":{"x":[0,1],"y":[0,0],"z":[0,0],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"1418659529d5.2":{"x":[0,0],"y":[0,1],"z":[0,0],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"1418659529d5.3":{"x":[0,0],"y":[0,0],"z":[0,1],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"1418659529d5.4":{"x":[0,1],"y":[0,1],"z":[0,1],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"black"},"type":"scatter3d","inherit":true},"1418659529d5.5":{"x":[0,1],"y":[0,2],"z":[0,3],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"black"},"type":"scatter3d","inherit":true},"1418659529d5.6":{"x":[0,0.911606725190993],"y":[0,0.388170606702671],"z":[0,-0.13526551178565],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"blue"},"type":"scatter3d","inherit":true},"1418659529d5.7":{"x":[0,-0.0480261587042634],"y":[0,0.427383801079795],"z":[0,0.902793760863853],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"blue"},"type":"scatter3d","inherit":true},"1418659529d5.8":{"x":[0,1],"y":[0,2],"z":[0,2],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red"},"type":"scatter3d","inherit":true},"1418659529d5.9":{"x":[0,1.29212679213629],"y":[0,0.550199583855897],"z":[0,-0.191727624424499],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red","dash":"dash"},"type":"scatter3d","inherit":true},"1418659529d5.10":{"x":[1,1.29212679213629],"y":[2,0.550199583855897],"z":[2,-0.191727624424499],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red","dash":"dash"},"type":"scatter3d","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"aspectmode":"cube","xaxis":{"range":[-4,4],"title":"X1"},"yaxis":{"range":[-4,4],"title":"X2"},"zaxis":{"range":[-4,4],"title":"X3"}},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"x":[0],"y":[0],"z":[0],"type":"scatter3d","mode":"markers","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"frame":null},{"x":[0,1],"y":[0,0],"z":[0,0],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"frame":null},{"x":[0,0],"y":[0,1],"z":[0,0],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(44,160,44,1)","line":{"color":"rgba(44,160,44,1)"}},"error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"frame":null},{"x":[0,0],"y":[0,0],"z":[0,1],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(214,39,40,1)","line":{"color":"rgba(214,39,40,1)"}},"error_y":{"color":"rgba(214,39,40,1)"},"error_x":{"color":"rgba(214,39,40,1)"},"frame":null},{"x":[0,1],"y":[0,1],"z":[0,1],"mode":"lines","line":{"color":"black","width":5},"type":"scatter3d","marker":{"color":"rgba(148,103,189,1)","line":{"color":"rgba(148,103,189,1)"}},"error_y":{"color":"rgba(148,103,189,1)"},"error_x":{"color":"rgba(148,103,189,1)"},"frame":null},{"x":[0,1],"y":[0,2],"z":[0,3],"mode":"lines","line":{"color":"black","width":5},"type":"scatter3d","marker":{"color":"rgba(140,86,75,1)","line":{"color":"rgba(140,86,75,1)"}},"error_y":{"color":"rgba(140,86,75,1)"},"error_x":{"color":"rgba(140,86,75,1)"},"frame":null},{"x":[0,0.911606725190993],"y":[0,0.388170606702671],"z":[0,-0.13526551178565],"mode":"lines","line":{"color":"blue","width":5},"type":"scatter3d","marker":{"color":"rgba(227,119,194,1)","line":{"color":"rgba(227,119,194,1)"}},"error_y":{"color":"rgba(227,119,194,1)"},"error_x":{"color":"rgba(227,119,194,1)"},"frame":null},{"x":[0,-0.0480261587042634],"y":[0,0.427383801079795],"z":[0,0.902793760863853],"mode":"lines","line":{"color":"blue","width":5},"type":"scatter3d","marker":{"color":"rgba(127,127,127,1)","line":{"color":"rgba(127,127,127,1)"}},"error_y":{"color":"rgba(127,127,127,1)"},"error_x":{"color":"rgba(127,127,127,1)"},"frame":null},{"x":[0,1],"y":[0,2],"z":[0,2],"mode":"lines","line":{"color":"red","width":5},"type":"scatter3d","marker":{"color":"rgba(188,189,34,1)","line":{"color":"rgba(188,189,34,1)"}},"error_y":{"color":"rgba(188,189,34,1)"},"error_x":{"color":"rgba(188,189,34,1)"},"frame":null},{"x":[0,1.29212679213629],"y":[0,0.550199583855897],"z":[0,-0.191727624424499],"mode":"lines","line":{"color":"red","width":5,"dash":"dash"},"type":"scatter3d","marker":{"color":"rgba(23,190,207,1)","line":{"color":"rgba(23,190,207,1)"}},"error_y":{"color":"rgba(23,190,207,1)"},"error_x":{"color":"rgba(23,190,207,1)"},"frame":null},{"x":[1,1.29212679213629],"y":[2,0.550199583855897],"z":[2,-0.191727624424499],"mode":"lines","line":{"color":"red","width":5,"dash":"dash"},"type":"scatter3d","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 <ul>
 <li>and <span class="math inline">\(\mathbf{U}_2^T\mathbf{Y}\)</span></li>
 </ul>
-<pre class="r"><code>p5 &lt;- p4 %&gt;%
-  add_trace(
-    x = c(0,Y[1]),
-    y = c(0,Y[2]),
-    z = c(0,Y[3]),
-    mode = &quot;lines&quot;,
-    line = list(width = 5, color = &quot;red&quot;),
-    type=&quot;scatter3d&quot;) %&gt;%
-  add_trace(
-    x = c(0,U[1,2]*(U[,2]%*%Y)),
-    y = c(0,U[2,2]*(U[,2]%*%Y)),
-    z = c(0,U[3,2]*(U[,2]%*%Y)),
-    mode = &quot;lines&quot;,
-    line = list(width = 5, color = &quot;red&quot;,dash=&quot;dash&quot;),
-    type=&quot;scatter3d&quot;) %&gt;% add_trace(
-    x = c(Y[1],U[1,2]*(U[,2]%*%Y)),
-    y = c(Y[2],U[2,2]*(U[,2]%*%Y)),
-    z = c(Y[3],U[3,2]*(U[,2]%*%Y)),
-    mode = &quot;lines&quot;,
-    line = list(width = 5, color = &quot;red&quot;, dash=&quot;dash&quot;),
-    type=&quot;scatter3d&quot;)
-p5</code></pre>
-<div id="htmlwidget-08ad81ee6983a2ff61c5" style="width:672px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-08ad81ee6983a2ff61c5">{"x":{"visdat":{"39a328d482de":["function () ","plotlyVisDat"]},"cur_data":"39a328d482de","attrs":{"39a328d482de":{"x":{},"y":{},"z":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter3d","mode":"markers","inherit":true},"39a328d482de.1":{"x":[0,1],"y":[0,0],"z":[0,0],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"39a328d482de.2":{"x":[0,0],"y":[0,1],"z":[0,0],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"39a328d482de.3":{"x":[0,0],"y":[0,0],"z":[0,1],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"39a328d482de.4":{"x":[0,1],"y":[0,1],"z":[0,1],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"black"},"type":"scatter3d","inherit":true},"39a328d482de.5":{"x":[0,1],"y":[0,2],"z":[0,3],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"black"},"type":"scatter3d","inherit":true},"39a328d482de.6":{"x":[0,0.911606725190993],"y":[0,0.388170606702671],"z":[0,-0.13526551178565],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"blue"},"type":"scatter3d","inherit":true},"39a328d482de.7":{"x":[0,-0.0480261587042634],"y":[0,0.427383801079795],"z":[0,0.902793760863853],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"blue"},"type":"scatter3d","inherit":true},"39a328d482de.8":{"x":[0,1],"y":[0,2],"z":[0,2],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red"},"type":"scatter3d","inherit":true},"39a328d482de.9":{"x":[0,1.29212679213629],"y":[0,0.550199583855897],"z":[0,-0.191727624424499],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red","dash":"dash"},"type":"scatter3d","inherit":true},"39a328d482de.10":{"x":[1,1.29212679213629],"y":[2,0.550199583855897],"z":[2,-0.191727624424499],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red","dash":"dash"},"type":"scatter3d","inherit":true},"39a328d482de.11":{"x":[0,1],"y":[0,2],"z":[0,2],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red"},"type":"scatter3d","inherit":true},"39a328d482de.12":{"x":[0,-0.125460125469624],"y":[0,1.11646708281077],"z":[0,2.35839429109116],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red","dash":"dash"},"type":"scatter3d","inherit":true},"39a328d482de.13":{"x":[1,-0.125460125469624],"y":[2,1.11646708281077],"z":[2,2.35839429109116],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red","dash":"dash"},"type":"scatter3d","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"aspectmode":"cube","xaxis":{"range":[-4,4],"title":"X1"},"yaxis":{"range":[-4,4],"title":"X2"},"zaxis":{"range":[-4,4],"title":"X3"}},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"x":[0],"y":[0],"z":[0],"type":"scatter3d","mode":"markers","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"frame":null},{"x":[0,1],"y":[0,0],"z":[0,0],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"frame":null},{"x":[0,0],"y":[0,1],"z":[0,0],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(44,160,44,1)","line":{"color":"rgba(44,160,44,1)"}},"error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"frame":null},{"x":[0,0],"y":[0,0],"z":[0,1],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(214,39,40,1)","line":{"color":"rgba(214,39,40,1)"}},"error_y":{"color":"rgba(214,39,40,1)"},"error_x":{"color":"rgba(214,39,40,1)"},"frame":null},{"x":[0,1],"y":[0,1],"z":[0,1],"mode":"lines","line":{"color":"black","width":5},"type":"scatter3d","marker":{"color":"rgba(148,103,189,1)","line":{"color":"rgba(148,103,189,1)"}},"error_y":{"color":"rgba(148,103,189,1)"},"error_x":{"color":"rgba(148,103,189,1)"},"frame":null},{"x":[0,1],"y":[0,2],"z":[0,3],"mode":"lines","line":{"color":"black","width":5},"type":"scatter3d","marker":{"color":"rgba(140,86,75,1)","line":{"color":"rgba(140,86,75,1)"}},"error_y":{"color":"rgba(140,86,75,1)"},"error_x":{"color":"rgba(140,86,75,1)"},"frame":null},{"x":[0,0.911606725190993],"y":[0,0.388170606702671],"z":[0,-0.13526551178565],"mode":"lines","line":{"color":"blue","width":5},"type":"scatter3d","marker":{"color":"rgba(227,119,194,1)","line":{"color":"rgba(227,119,194,1)"}},"error_y":{"color":"rgba(227,119,194,1)"},"error_x":{"color":"rgba(227,119,194,1)"},"frame":null},{"x":[0,-0.0480261587042634],"y":[0,0.427383801079795],"z":[0,0.902793760863853],"mode":"lines","line":{"color":"blue","width":5},"type":"scatter3d","marker":{"color":"rgba(127,127,127,1)","line":{"color":"rgba(127,127,127,1)"}},"error_y":{"color":"rgba(127,127,127,1)"},"error_x":{"color":"rgba(127,127,127,1)"},"frame":null},{"x":[0,1],"y":[0,2],"z":[0,2],"mode":"lines","line":{"color":"red","width":5},"type":"scatter3d","marker":{"color":"rgba(188,189,34,1)","line":{"color":"rgba(188,189,34,1)"}},"error_y":{"color":"rgba(188,189,34,1)"},"error_x":{"color":"rgba(188,189,34,1)"},"frame":null},{"x":[0,1.29212679213629],"y":[0,0.550199583855897],"z":[0,-0.191727624424499],"mode":"lines","line":{"color":"red","width":5,"dash":"dash"},"type":"scatter3d","marker":{"color":"rgba(23,190,207,1)","line":{"color":"rgba(23,190,207,1)"}},"error_y":{"color":"rgba(23,190,207,1)"},"error_x":{"color":"rgba(23,190,207,1)"},"frame":null},{"x":[1,1.29212679213629],"y":[2,0.550199583855897],"z":[2,-0.191727624424499],"mode":"lines","line":{"color":"red","width":5,"dash":"dash"},"type":"scatter3d","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"frame":null},{"x":[0,1],"y":[0,2],"z":[0,2],"mode":"lines","line":{"color":"red","width":5},"type":"scatter3d","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"frame":null},{"x":[0,-0.125460125469624],"y":[0,1.11646708281077],"z":[0,2.35839429109116],"mode":"lines","line":{"color":"red","width":5,"dash":"dash"},"type":"scatter3d","marker":{"color":"rgba(44,160,44,1)","line":{"color":"rgba(44,160,44,1)"}},"error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"frame":null},{"x":[1,-0.125460125469624],"y":[2,1.11646708281077],"z":[2,2.35839429109116],"mode":"lines","line":{"color":"red","width":5,"dash":"dash"},"type":"scatter3d","marker":{"color":"rgba(214,39,40,1)","line":{"color":"rgba(214,39,40,1)"}},"error_y":{"color":"rgba(214,39,40,1)"},"error_x":{"color":"rgba(214,39,40,1)"},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
-<pre class="r"><code>p6 &lt;- p5 %&gt;%
-  add_trace(
-    x = c(0,Yhat[1]),
-    y = c(0,Yhat[2]),
-    z = c(0,Yhat[3]),
-    mode = &quot;lines&quot;,
-    line = list(width = 5, color = &quot;red&quot;),
-    type=&quot;scatter3d&quot;) %&gt;%
-  add_trace(
-    x = c(Y[1],Yhat[1]),
-    y = c(Y[2],Yhat[2]),
-    z = c(Y[3],Yhat[3]),
-    mode = &quot;lines&quot;,
-    line = list(width = 5, color = &quot;red&quot;, dash=&quot;dash&quot;),
-    type=&quot;scatter3d&quot;) %&gt;%
-  add_trace(
-    x = c(U[1,1]*(U[,1]%*%Y),Yhat[1]),
-    y = c(U[2,1]*(U[,1]%*%Y),Yhat[2]),
-    z = c(U[3,1]*(U[,1]%*%Y),Yhat[3]),
-    mode = &quot;lines&quot;,
-    line = list(width = 5, color = &quot;red&quot;, dash=&quot;dash&quot;),
-    type=&quot;scatter3d&quot;)  %&gt;%
-  add_trace(
-    x = c(U[1,2]*(U[,2]%*%Y),Yhat[1]),
-    y = c(U[2,2]*(U[,2]%*%Y),Yhat[2]),
-    z = c(U[3,2]*(U[,2]%*%Y),Yhat[3]),
-    mode = &quot;lines&quot;,
-    line = list(width = 5, color = &quot;red&quot;, dash=&quot;dash&quot;),
-    type=&quot;scatter3d&quot;)
-p6</code></pre>
-<div id="htmlwidget-8352cfe481b2e31968da" style="width:672px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-8352cfe481b2e31968da">{"x":{"visdat":{"39a328d482de":["function () ","plotlyVisDat"]},"cur_data":"39a328d482de","attrs":{"39a328d482de":{"x":{},"y":{},"z":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter3d","mode":"markers","inherit":true},"39a328d482de.1":{"x":[0,1],"y":[0,0],"z":[0,0],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"39a328d482de.2":{"x":[0,0],"y":[0,1],"z":[0,0],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"39a328d482de.3":{"x":[0,0],"y":[0,0],"z":[0,1],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"39a328d482de.4":{"x":[0,1],"y":[0,1],"z":[0,1],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"black"},"type":"scatter3d","inherit":true},"39a328d482de.5":{"x":[0,1],"y":[0,2],"z":[0,3],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"black"},"type":"scatter3d","inherit":true},"39a328d482de.6":{"x":[0,0.911606725190993],"y":[0,0.388170606702671],"z":[0,-0.13526551178565],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"blue"},"type":"scatter3d","inherit":true},"39a328d482de.7":{"x":[0,-0.0480261587042634],"y":[0,0.427383801079795],"z":[0,0.902793760863853],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"blue"},"type":"scatter3d","inherit":true},"39a328d482de.8":{"x":[0,1],"y":[0,2],"z":[0,2],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red"},"type":"scatter3d","inherit":true},"39a328d482de.9":{"x":[0,1.29212679213629],"y":[0,0.550199583855897],"z":[0,-0.191727624424499],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red","dash":"dash"},"type":"scatter3d","inherit":true},"39a328d482de.10":{"x":[1,1.29212679213629],"y":[2,0.550199583855897],"z":[2,-0.191727624424499],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red","dash":"dash"},"type":"scatter3d","inherit":true},"39a328d482de.11":{"x":[0,1],"y":[0,2],"z":[0,2],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red"},"type":"scatter3d","inherit":true},"39a328d482de.12":{"x":[0,-0.125460125469624],"y":[0,1.11646708281077],"z":[0,2.35839429109116],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red","dash":"dash"},"type":"scatter3d","inherit":true},"39a328d482de.13":{"x":[1,-0.125460125469624],"y":[2,1.11646708281077],"z":[2,2.35839429109116],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red","dash":"dash"},"type":"scatter3d","inherit":true},"39a328d482de.14":{"x":[0,1.16666666666667],"y":[0,1.66666666666667],"z":[0,2.16666666666667],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red"},"type":"scatter3d","inherit":true},"39a328d482de.15":{"x":[1,1.16666666666667],"y":[2,1.66666666666667],"z":[2,2.16666666666667],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red","dash":"dash"},"type":"scatter3d","inherit":true},"39a328d482de.16":{"x":[1.29212679213629,1.16666666666667],"y":[0.550199583855897,1.66666666666667],"z":[-0.191727624424499,2.16666666666667],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red","dash":"dash"},"type":"scatter3d","inherit":true},"39a328d482de.17":{"x":[-0.125460125469624,1.16666666666667],"y":[1.11646708281077,1.66666666666667],"z":[2.35839429109116,2.16666666666667],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red","dash":"dash"},"type":"scatter3d","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"aspectmode":"cube","xaxis":{"range":[-4,4],"title":"X1"},"yaxis":{"range":[-4,4],"title":"X2"},"zaxis":{"range":[-4,4],"title":"X3"}},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"x":[0],"y":[0],"z":[0],"type":"scatter3d","mode":"markers","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"frame":null},{"x":[0,1],"y":[0,0],"z":[0,0],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"frame":null},{"x":[0,0],"y":[0,1],"z":[0,0],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(44,160,44,1)","line":{"color":"rgba(44,160,44,1)"}},"error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"frame":null},{"x":[0,0],"y":[0,0],"z":[0,1],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(214,39,40,1)","line":{"color":"rgba(214,39,40,1)"}},"error_y":{"color":"rgba(214,39,40,1)"},"error_x":{"color":"rgba(214,39,40,1)"},"frame":null},{"x":[0,1],"y":[0,1],"z":[0,1],"mode":"lines","line":{"color":"black","width":5},"type":"scatter3d","marker":{"color":"rgba(148,103,189,1)","line":{"color":"rgba(148,103,189,1)"}},"error_y":{"color":"rgba(148,103,189,1)"},"error_x":{"color":"rgba(148,103,189,1)"},"frame":null},{"x":[0,1],"y":[0,2],"z":[0,3],"mode":"lines","line":{"color":"black","width":5},"type":"scatter3d","marker":{"color":"rgba(140,86,75,1)","line":{"color":"rgba(140,86,75,1)"}},"error_y":{"color":"rgba(140,86,75,1)"},"error_x":{"color":"rgba(140,86,75,1)"},"frame":null},{"x":[0,0.911606725190993],"y":[0,0.388170606702671],"z":[0,-0.13526551178565],"mode":"lines","line":{"color":"blue","width":5},"type":"scatter3d","marker":{"color":"rgba(227,119,194,1)","line":{"color":"rgba(227,119,194,1)"}},"error_y":{"color":"rgba(227,119,194,1)"},"error_x":{"color":"rgba(227,119,194,1)"},"frame":null},{"x":[0,-0.0480261587042634],"y":[0,0.427383801079795],"z":[0,0.902793760863853],"mode":"lines","line":{"color":"blue","width":5},"type":"scatter3d","marker":{"color":"rgba(127,127,127,1)","line":{"color":"rgba(127,127,127,1)"}},"error_y":{"color":"rgba(127,127,127,1)"},"error_x":{"color":"rgba(127,127,127,1)"},"frame":null},{"x":[0,1],"y":[0,2],"z":[0,2],"mode":"lines","line":{"color":"red","width":5},"type":"scatter3d","marker":{"color":"rgba(188,189,34,1)","line":{"color":"rgba(188,189,34,1)"}},"error_y":{"color":"rgba(188,189,34,1)"},"error_x":{"color":"rgba(188,189,34,1)"},"frame":null},{"x":[0,1.29212679213629],"y":[0,0.550199583855897],"z":[0,-0.191727624424499],"mode":"lines","line":{"color":"red","width":5,"dash":"dash"},"type":"scatter3d","marker":{"color":"rgba(23,190,207,1)","line":{"color":"rgba(23,190,207,1)"}},"error_y":{"color":"rgba(23,190,207,1)"},"error_x":{"color":"rgba(23,190,207,1)"},"frame":null},{"x":[1,1.29212679213629],"y":[2,0.550199583855897],"z":[2,-0.191727624424499],"mode":"lines","line":{"color":"red","width":5,"dash":"dash"},"type":"scatter3d","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"frame":null},{"x":[0,1],"y":[0,2],"z":[0,2],"mode":"lines","line":{"color":"red","width":5},"type":"scatter3d","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"frame":null},{"x":[0,-0.125460125469624],"y":[0,1.11646708281077],"z":[0,2.35839429109116],"mode":"lines","line":{"color":"red","width":5,"dash":"dash"},"type":"scatter3d","marker":{"color":"rgba(44,160,44,1)","line":{"color":"rgba(44,160,44,1)"}},"error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"frame":null},{"x":[1,-0.125460125469624],"y":[2,1.11646708281077],"z":[2,2.35839429109116],"mode":"lines","line":{"color":"red","width":5,"dash":"dash"},"type":"scatter3d","marker":{"color":"rgba(214,39,40,1)","line":{"color":"rgba(214,39,40,1)"}},"error_y":{"color":"rgba(214,39,40,1)"},"error_x":{"color":"rgba(214,39,40,1)"},"frame":null},{"x":[0,1.16666666666667],"y":[0,1.66666666666667],"z":[0,2.16666666666667],"mode":"lines","line":{"color":"red","width":5},"type":"scatter3d","marker":{"color":"rgba(148,103,189,1)","line":{"color":"rgba(148,103,189,1)"}},"error_y":{"color":"rgba(148,103,189,1)"},"error_x":{"color":"rgba(148,103,189,1)"},"frame":null},{"x":[1,1.16666666666667],"y":[2,1.66666666666667],"z":[2,2.16666666666667],"mode":"lines","line":{"color":"red","width":5,"dash":"dash"},"type":"scatter3d","marker":{"color":"rgba(140,86,75,1)","line":{"color":"rgba(140,86,75,1)"}},"error_y":{"color":"rgba(140,86,75,1)"},"error_x":{"color":"rgba(140,86,75,1)"},"frame":null},{"x":[1.29212679213629,1.16666666666667],"y":[0.550199583855897,1.66666666666667],"z":[-0.191727624424499,2.16666666666667],"mode":"lines","line":{"color":"red","width":5,"dash":"dash"},"type":"scatter3d","marker":{"color":"rgba(227,119,194,1)","line":{"color":"rgba(227,119,194,1)"}},"error_y":{"color":"rgba(227,119,194,1)"},"error_x":{"color":"rgba(227,119,194,1)"},"frame":null},{"x":[-0.125460125469624,1.16666666666667],"y":[1.11646708281077,1.66666666666667],"z":[2.35839429109116,2.16666666666667],"mode":"lines","line":{"color":"red","width":5,"dash":"dash"},"type":"scatter3d","marker":{"color":"rgba(127,127,127,1)","line":{"color":"rgba(127,127,127,1)"}},"error_y":{"color":"rgba(127,127,127,1)"},"error_x":{"color":"rgba(127,127,127,1)"},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>p5 &lt;-<span class="st"> </span>p4 <span class="op">%&gt;%</span></span>
+<span id="cb28-2"><a href="#cb28-2"></a><span class="st">  </span><span class="kw">add_trace</span>(</span>
+<span id="cb28-3"><a href="#cb28-3"></a>    <span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">0</span>,Y[<span class="dv">1</span>]),</span>
+<span id="cb28-4"><a href="#cb28-4"></a>    <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">0</span>,Y[<span class="dv">2</span>]),</span>
+<span id="cb28-5"><a href="#cb28-5"></a>    <span class="dt">z =</span> <span class="kw">c</span>(<span class="dv">0</span>,Y[<span class="dv">3</span>]),</span>
+<span id="cb28-6"><a href="#cb28-6"></a>    <span class="dt">mode =</span> <span class="st">&quot;lines&quot;</span>,</span>
+<span id="cb28-7"><a href="#cb28-7"></a>    <span class="dt">line =</span> <span class="kw">list</span>(<span class="dt">width =</span> <span class="dv">5</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>),</span>
+<span id="cb28-8"><a href="#cb28-8"></a>    <span class="dt">type=</span><span class="st">&quot;scatter3d&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb28-9"><a href="#cb28-9"></a><span class="st">  </span><span class="kw">add_trace</span>(</span>
+<span id="cb28-10"><a href="#cb28-10"></a>    <span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">0</span>,U[<span class="dv">1</span>,<span class="dv">2</span>]<span class="op">*</span>(U[,<span class="dv">2</span>]<span class="op">%*%</span>Y)),</span>
+<span id="cb28-11"><a href="#cb28-11"></a>    <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">0</span>,U[<span class="dv">2</span>,<span class="dv">2</span>]<span class="op">*</span>(U[,<span class="dv">2</span>]<span class="op">%*%</span>Y)),</span>
+<span id="cb28-12"><a href="#cb28-12"></a>    <span class="dt">z =</span> <span class="kw">c</span>(<span class="dv">0</span>,U[<span class="dv">3</span>,<span class="dv">2</span>]<span class="op">*</span>(U[,<span class="dv">2</span>]<span class="op">%*%</span>Y)),</span>
+<span id="cb28-13"><a href="#cb28-13"></a>    <span class="dt">mode =</span> <span class="st">&quot;lines&quot;</span>,</span>
+<span id="cb28-14"><a href="#cb28-14"></a>    <span class="dt">line =</span> <span class="kw">list</span>(<span class="dt">width =</span> <span class="dv">5</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>,<span class="dt">dash=</span><span class="st">&quot;dash&quot;</span>),</span>
+<span id="cb28-15"><a href="#cb28-15"></a>    <span class="dt">type=</span><span class="st">&quot;scatter3d&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">add_trace</span>(</span>
+<span id="cb28-16"><a href="#cb28-16"></a>    <span class="dt">x =</span> <span class="kw">c</span>(Y[<span class="dv">1</span>],U[<span class="dv">1</span>,<span class="dv">2</span>]<span class="op">*</span>(U[,<span class="dv">2</span>]<span class="op">%*%</span>Y)),</span>
+<span id="cb28-17"><a href="#cb28-17"></a>    <span class="dt">y =</span> <span class="kw">c</span>(Y[<span class="dv">2</span>],U[<span class="dv">2</span>,<span class="dv">2</span>]<span class="op">*</span>(U[,<span class="dv">2</span>]<span class="op">%*%</span>Y)),</span>
+<span id="cb28-18"><a href="#cb28-18"></a>    <span class="dt">z =</span> <span class="kw">c</span>(Y[<span class="dv">3</span>],U[<span class="dv">3</span>,<span class="dv">2</span>]<span class="op">*</span>(U[,<span class="dv">2</span>]<span class="op">%*%</span>Y)),</span>
+<span id="cb28-19"><a href="#cb28-19"></a>    <span class="dt">mode =</span> <span class="st">&quot;lines&quot;</span>,</span>
+<span id="cb28-20"><a href="#cb28-20"></a>    <span class="dt">line =</span> <span class="kw">list</span>(<span class="dt">width =</span> <span class="dv">5</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">dash=</span><span class="st">&quot;dash&quot;</span>),</span>
+<span id="cb28-21"><a href="#cb28-21"></a>    <span class="dt">type=</span><span class="st">&quot;scatter3d&quot;</span>)</span>
+<span id="cb28-22"><a href="#cb28-22"></a>p5</span></code></pre></div>
+<div id="htmlwidget-0b7ab5df0bd638872294" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-0b7ab5df0bd638872294">{"x":{"visdat":{"1418659529d5":["function () ","plotlyVisDat"]},"cur_data":"1418659529d5","attrs":{"1418659529d5":{"x":{},"y":{},"z":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter3d","mode":"markers","inherit":true},"1418659529d5.1":{"x":[0,1],"y":[0,0],"z":[0,0],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"1418659529d5.2":{"x":[0,0],"y":[0,1],"z":[0,0],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"1418659529d5.3":{"x":[0,0],"y":[0,0],"z":[0,1],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"1418659529d5.4":{"x":[0,1],"y":[0,1],"z":[0,1],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"black"},"type":"scatter3d","inherit":true},"1418659529d5.5":{"x":[0,1],"y":[0,2],"z":[0,3],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"black"},"type":"scatter3d","inherit":true},"1418659529d5.6":{"x":[0,0.911606725190993],"y":[0,0.388170606702671],"z":[0,-0.13526551178565],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"blue"},"type":"scatter3d","inherit":true},"1418659529d5.7":{"x":[0,-0.0480261587042634],"y":[0,0.427383801079795],"z":[0,0.902793760863853],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"blue"},"type":"scatter3d","inherit":true},"1418659529d5.8":{"x":[0,1],"y":[0,2],"z":[0,2],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red"},"type":"scatter3d","inherit":true},"1418659529d5.9":{"x":[0,1.29212679213629],"y":[0,0.550199583855897],"z":[0,-0.191727624424499],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red","dash":"dash"},"type":"scatter3d","inherit":true},"1418659529d5.10":{"x":[1,1.29212679213629],"y":[2,0.550199583855897],"z":[2,-0.191727624424499],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red","dash":"dash"},"type":"scatter3d","inherit":true},"1418659529d5.11":{"x":[0,1],"y":[0,2],"z":[0,2],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red"},"type":"scatter3d","inherit":true},"1418659529d5.12":{"x":[0,-0.125460125469624],"y":[0,1.11646708281077],"z":[0,2.35839429109116],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red","dash":"dash"},"type":"scatter3d","inherit":true},"1418659529d5.13":{"x":[1,-0.125460125469624],"y":[2,1.11646708281077],"z":[2,2.35839429109116],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red","dash":"dash"},"type":"scatter3d","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"aspectmode":"cube","xaxis":{"range":[-4,4],"title":"X1"},"yaxis":{"range":[-4,4],"title":"X2"},"zaxis":{"range":[-4,4],"title":"X3"}},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"x":[0],"y":[0],"z":[0],"type":"scatter3d","mode":"markers","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"frame":null},{"x":[0,1],"y":[0,0],"z":[0,0],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"frame":null},{"x":[0,0],"y":[0,1],"z":[0,0],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(44,160,44,1)","line":{"color":"rgba(44,160,44,1)"}},"error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"frame":null},{"x":[0,0],"y":[0,0],"z":[0,1],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(214,39,40,1)","line":{"color":"rgba(214,39,40,1)"}},"error_y":{"color":"rgba(214,39,40,1)"},"error_x":{"color":"rgba(214,39,40,1)"},"frame":null},{"x":[0,1],"y":[0,1],"z":[0,1],"mode":"lines","line":{"color":"black","width":5},"type":"scatter3d","marker":{"color":"rgba(148,103,189,1)","line":{"color":"rgba(148,103,189,1)"}},"error_y":{"color":"rgba(148,103,189,1)"},"error_x":{"color":"rgba(148,103,189,1)"},"frame":null},{"x":[0,1],"y":[0,2],"z":[0,3],"mode":"lines","line":{"color":"black","width":5},"type":"scatter3d","marker":{"color":"rgba(140,86,75,1)","line":{"color":"rgba(140,86,75,1)"}},"error_y":{"color":"rgba(140,86,75,1)"},"error_x":{"color":"rgba(140,86,75,1)"},"frame":null},{"x":[0,0.911606725190993],"y":[0,0.388170606702671],"z":[0,-0.13526551178565],"mode":"lines","line":{"color":"blue","width":5},"type":"scatter3d","marker":{"color":"rgba(227,119,194,1)","line":{"color":"rgba(227,119,194,1)"}},"error_y":{"color":"rgba(227,119,194,1)"},"error_x":{"color":"rgba(227,119,194,1)"},"frame":null},{"x":[0,-0.0480261587042634],"y":[0,0.427383801079795],"z":[0,0.902793760863853],"mode":"lines","line":{"color":"blue","width":5},"type":"scatter3d","marker":{"color":"rgba(127,127,127,1)","line":{"color":"rgba(127,127,127,1)"}},"error_y":{"color":"rgba(127,127,127,1)"},"error_x":{"color":"rgba(127,127,127,1)"},"frame":null},{"x":[0,1],"y":[0,2],"z":[0,2],"mode":"lines","line":{"color":"red","width":5},"type":"scatter3d","marker":{"color":"rgba(188,189,34,1)","line":{"color":"rgba(188,189,34,1)"}},"error_y":{"color":"rgba(188,189,34,1)"},"error_x":{"color":"rgba(188,189,34,1)"},"frame":null},{"x":[0,1.29212679213629],"y":[0,0.550199583855897],"z":[0,-0.191727624424499],"mode":"lines","line":{"color":"red","width":5,"dash":"dash"},"type":"scatter3d","marker":{"color":"rgba(23,190,207,1)","line":{"color":"rgba(23,190,207,1)"}},"error_y":{"color":"rgba(23,190,207,1)"},"error_x":{"color":"rgba(23,190,207,1)"},"frame":null},{"x":[1,1.29212679213629],"y":[2,0.550199583855897],"z":[2,-0.191727624424499],"mode":"lines","line":{"color":"red","width":5,"dash":"dash"},"type":"scatter3d","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"frame":null},{"x":[0,1],"y":[0,2],"z":[0,2],"mode":"lines","line":{"color":"red","width":5},"type":"scatter3d","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"frame":null},{"x":[0,-0.125460125469624],"y":[0,1.11646708281077],"z":[0,2.35839429109116],"mode":"lines","line":{"color":"red","width":5,"dash":"dash"},"type":"scatter3d","marker":{"color":"rgba(44,160,44,1)","line":{"color":"rgba(44,160,44,1)"}},"error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"frame":null},{"x":[1,-0.125460125469624],"y":[2,1.11646708281077],"z":[2,2.35839429109116],"mode":"lines","line":{"color":"red","width":5,"dash":"dash"},"type":"scatter3d","marker":{"color":"rgba(214,39,40,1)","line":{"color":"rgba(214,39,40,1)"}},"error_y":{"color":"rgba(214,39,40,1)"},"error_x":{"color":"rgba(214,39,40,1)"},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>p6 &lt;-<span class="st"> </span>p5 <span class="op">%&gt;%</span></span>
+<span id="cb29-2"><a href="#cb29-2"></a><span class="st">  </span><span class="kw">add_trace</span>(</span>
+<span id="cb29-3"><a href="#cb29-3"></a>    <span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">0</span>,Yhat[<span class="dv">1</span>]),</span>
+<span id="cb29-4"><a href="#cb29-4"></a>    <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">0</span>,Yhat[<span class="dv">2</span>]),</span>
+<span id="cb29-5"><a href="#cb29-5"></a>    <span class="dt">z =</span> <span class="kw">c</span>(<span class="dv">0</span>,Yhat[<span class="dv">3</span>]),</span>
+<span id="cb29-6"><a href="#cb29-6"></a>    <span class="dt">mode =</span> <span class="st">&quot;lines&quot;</span>,</span>
+<span id="cb29-7"><a href="#cb29-7"></a>    <span class="dt">line =</span> <span class="kw">list</span>(<span class="dt">width =</span> <span class="dv">5</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>),</span>
+<span id="cb29-8"><a href="#cb29-8"></a>    <span class="dt">type=</span><span class="st">&quot;scatter3d&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb29-9"><a href="#cb29-9"></a><span class="st">  </span><span class="kw">add_trace</span>(</span>
+<span id="cb29-10"><a href="#cb29-10"></a>    <span class="dt">x =</span> <span class="kw">c</span>(Y[<span class="dv">1</span>],Yhat[<span class="dv">1</span>]),</span>
+<span id="cb29-11"><a href="#cb29-11"></a>    <span class="dt">y =</span> <span class="kw">c</span>(Y[<span class="dv">2</span>],Yhat[<span class="dv">2</span>]),</span>
+<span id="cb29-12"><a href="#cb29-12"></a>    <span class="dt">z =</span> <span class="kw">c</span>(Y[<span class="dv">3</span>],Yhat[<span class="dv">3</span>]),</span>
+<span id="cb29-13"><a href="#cb29-13"></a>    <span class="dt">mode =</span> <span class="st">&quot;lines&quot;</span>,</span>
+<span id="cb29-14"><a href="#cb29-14"></a>    <span class="dt">line =</span> <span class="kw">list</span>(<span class="dt">width =</span> <span class="dv">5</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">dash=</span><span class="st">&quot;dash&quot;</span>),</span>
+<span id="cb29-15"><a href="#cb29-15"></a>    <span class="dt">type=</span><span class="st">&quot;scatter3d&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb29-16"><a href="#cb29-16"></a><span class="st">  </span><span class="kw">add_trace</span>(</span>
+<span id="cb29-17"><a href="#cb29-17"></a>    <span class="dt">x =</span> <span class="kw">c</span>(U[<span class="dv">1</span>,<span class="dv">1</span>]<span class="op">*</span>(U[,<span class="dv">1</span>]<span class="op">%*%</span>Y),Yhat[<span class="dv">1</span>]),</span>
+<span id="cb29-18"><a href="#cb29-18"></a>    <span class="dt">y =</span> <span class="kw">c</span>(U[<span class="dv">2</span>,<span class="dv">1</span>]<span class="op">*</span>(U[,<span class="dv">1</span>]<span class="op">%*%</span>Y),Yhat[<span class="dv">2</span>]),</span>
+<span id="cb29-19"><a href="#cb29-19"></a>    <span class="dt">z =</span> <span class="kw">c</span>(U[<span class="dv">3</span>,<span class="dv">1</span>]<span class="op">*</span>(U[,<span class="dv">1</span>]<span class="op">%*%</span>Y),Yhat[<span class="dv">3</span>]),</span>
+<span id="cb29-20"><a href="#cb29-20"></a>    <span class="dt">mode =</span> <span class="st">&quot;lines&quot;</span>,</span>
+<span id="cb29-21"><a href="#cb29-21"></a>    <span class="dt">line =</span> <span class="kw">list</span>(<span class="dt">width =</span> <span class="dv">5</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">dash=</span><span class="st">&quot;dash&quot;</span>),</span>
+<span id="cb29-22"><a href="#cb29-22"></a>    <span class="dt">type=</span><span class="st">&quot;scatter3d&quot;</span>)  <span class="op">%&gt;%</span></span>
+<span id="cb29-23"><a href="#cb29-23"></a><span class="st">  </span><span class="kw">add_trace</span>(</span>
+<span id="cb29-24"><a href="#cb29-24"></a>    <span class="dt">x =</span> <span class="kw">c</span>(U[<span class="dv">1</span>,<span class="dv">2</span>]<span class="op">*</span>(U[,<span class="dv">2</span>]<span class="op">%*%</span>Y),Yhat[<span class="dv">1</span>]),</span>
+<span id="cb29-25"><a href="#cb29-25"></a>    <span class="dt">y =</span> <span class="kw">c</span>(U[<span class="dv">2</span>,<span class="dv">2</span>]<span class="op">*</span>(U[,<span class="dv">2</span>]<span class="op">%*%</span>Y),Yhat[<span class="dv">2</span>]),</span>
+<span id="cb29-26"><a href="#cb29-26"></a>    <span class="dt">z =</span> <span class="kw">c</span>(U[<span class="dv">3</span>,<span class="dv">2</span>]<span class="op">*</span>(U[,<span class="dv">2</span>]<span class="op">%*%</span>Y),Yhat[<span class="dv">3</span>]),</span>
+<span id="cb29-27"><a href="#cb29-27"></a>    <span class="dt">mode =</span> <span class="st">&quot;lines&quot;</span>,</span>
+<span id="cb29-28"><a href="#cb29-28"></a>    <span class="dt">line =</span> <span class="kw">list</span>(<span class="dt">width =</span> <span class="dv">5</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">dash=</span><span class="st">&quot;dash&quot;</span>),</span>
+<span id="cb29-29"><a href="#cb29-29"></a>    <span class="dt">type=</span><span class="st">&quot;scatter3d&quot;</span>)</span>
+<span id="cb29-30"><a href="#cb29-30"></a>p6</span></code></pre></div>
+<div id="htmlwidget-4234db0583ae63f115bd" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4234db0583ae63f115bd">{"x":{"visdat":{"1418659529d5":["function () ","plotlyVisDat"]},"cur_data":"1418659529d5","attrs":{"1418659529d5":{"x":{},"y":{},"z":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter3d","mode":"markers","inherit":true},"1418659529d5.1":{"x":[0,1],"y":[0,0],"z":[0,0],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"1418659529d5.2":{"x":[0,0],"y":[0,1],"z":[0,0],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"1418659529d5.3":{"x":[0,0],"y":[0,0],"z":[0,1],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"1418659529d5.4":{"x":[0,1],"y":[0,1],"z":[0,1],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"black"},"type":"scatter3d","inherit":true},"1418659529d5.5":{"x":[0,1],"y":[0,2],"z":[0,3],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"black"},"type":"scatter3d","inherit":true},"1418659529d5.6":{"x":[0,0.911606725190993],"y":[0,0.388170606702671],"z":[0,-0.13526551178565],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"blue"},"type":"scatter3d","inherit":true},"1418659529d5.7":{"x":[0,-0.0480261587042634],"y":[0,0.427383801079795],"z":[0,0.902793760863853],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"blue"},"type":"scatter3d","inherit":true},"1418659529d5.8":{"x":[0,1],"y":[0,2],"z":[0,2],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red"},"type":"scatter3d","inherit":true},"1418659529d5.9":{"x":[0,1.29212679213629],"y":[0,0.550199583855897],"z":[0,-0.191727624424499],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red","dash":"dash"},"type":"scatter3d","inherit":true},"1418659529d5.10":{"x":[1,1.29212679213629],"y":[2,0.550199583855897],"z":[2,-0.191727624424499],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red","dash":"dash"},"type":"scatter3d","inherit":true},"1418659529d5.11":{"x":[0,1],"y":[0,2],"z":[0,2],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red"},"type":"scatter3d","inherit":true},"1418659529d5.12":{"x":[0,-0.125460125469624],"y":[0,1.11646708281077],"z":[0,2.35839429109116],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red","dash":"dash"},"type":"scatter3d","inherit":true},"1418659529d5.13":{"x":[1,-0.125460125469624],"y":[2,1.11646708281077],"z":[2,2.35839429109116],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red","dash":"dash"},"type":"scatter3d","inherit":true},"1418659529d5.14":{"x":[0,1.16666666666667],"y":[0,1.66666666666667],"z":[0,2.16666666666667],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red"},"type":"scatter3d","inherit":true},"1418659529d5.15":{"x":[1,1.16666666666667],"y":[2,1.66666666666667],"z":[2,2.16666666666667],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red","dash":"dash"},"type":"scatter3d","inherit":true},"1418659529d5.16":{"x":[1.29212679213629,1.16666666666667],"y":[0.550199583855897,1.66666666666667],"z":[-0.191727624424499,2.16666666666667],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red","dash":"dash"},"type":"scatter3d","inherit":true},"1418659529d5.17":{"x":[-0.125460125469624,1.16666666666667],"y":[1.11646708281077,1.66666666666667],"z":[2.35839429109116,2.16666666666667],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"red","dash":"dash"},"type":"scatter3d","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"aspectmode":"cube","xaxis":{"range":[-4,4],"title":"X1"},"yaxis":{"range":[-4,4],"title":"X2"},"zaxis":{"range":[-4,4],"title":"X3"}},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"x":[0],"y":[0],"z":[0],"type":"scatter3d","mode":"markers","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"frame":null},{"x":[0,1],"y":[0,0],"z":[0,0],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"frame":null},{"x":[0,0],"y":[0,1],"z":[0,0],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(44,160,44,1)","line":{"color":"rgba(44,160,44,1)"}},"error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"frame":null},{"x":[0,0],"y":[0,0],"z":[0,1],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(214,39,40,1)","line":{"color":"rgba(214,39,40,1)"}},"error_y":{"color":"rgba(214,39,40,1)"},"error_x":{"color":"rgba(214,39,40,1)"},"frame":null},{"x":[0,1],"y":[0,1],"z":[0,1],"mode":"lines","line":{"color":"black","width":5},"type":"scatter3d","marker":{"color":"rgba(148,103,189,1)","line":{"color":"rgba(148,103,189,1)"}},"error_y":{"color":"rgba(148,103,189,1)"},"error_x":{"color":"rgba(148,103,189,1)"},"frame":null},{"x":[0,1],"y":[0,2],"z":[0,3],"mode":"lines","line":{"color":"black","width":5},"type":"scatter3d","marker":{"color":"rgba(140,86,75,1)","line":{"color":"rgba(140,86,75,1)"}},"error_y":{"color":"rgba(140,86,75,1)"},"error_x":{"color":"rgba(140,86,75,1)"},"frame":null},{"x":[0,0.911606725190993],"y":[0,0.388170606702671],"z":[0,-0.13526551178565],"mode":"lines","line":{"color":"blue","width":5},"type":"scatter3d","marker":{"color":"rgba(227,119,194,1)","line":{"color":"rgba(227,119,194,1)"}},"error_y":{"color":"rgba(227,119,194,1)"},"error_x":{"color":"rgba(227,119,194,1)"},"frame":null},{"x":[0,-0.0480261587042634],"y":[0,0.427383801079795],"z":[0,0.902793760863853],"mode":"lines","line":{"color":"blue","width":5},"type":"scatter3d","marker":{"color":"rgba(127,127,127,1)","line":{"color":"rgba(127,127,127,1)"}},"error_y":{"color":"rgba(127,127,127,1)"},"error_x":{"color":"rgba(127,127,127,1)"},"frame":null},{"x":[0,1],"y":[0,2],"z":[0,2],"mode":"lines","line":{"color":"red","width":5},"type":"scatter3d","marker":{"color":"rgba(188,189,34,1)","line":{"color":"rgba(188,189,34,1)"}},"error_y":{"color":"rgba(188,189,34,1)"},"error_x":{"color":"rgba(188,189,34,1)"},"frame":null},{"x":[0,1.29212679213629],"y":[0,0.550199583855897],"z":[0,-0.191727624424499],"mode":"lines","line":{"color":"red","width":5,"dash":"dash"},"type":"scatter3d","marker":{"color":"rgba(23,190,207,1)","line":{"color":"rgba(23,190,207,1)"}},"error_y":{"color":"rgba(23,190,207,1)"},"error_x":{"color":"rgba(23,190,207,1)"},"frame":null},{"x":[1,1.29212679213629],"y":[2,0.550199583855897],"z":[2,-0.191727624424499],"mode":"lines","line":{"color":"red","width":5,"dash":"dash"},"type":"scatter3d","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"frame":null},{"x":[0,1],"y":[0,2],"z":[0,2],"mode":"lines","line":{"color":"red","width":5},"type":"scatter3d","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"frame":null},{"x":[0,-0.125460125469624],"y":[0,1.11646708281077],"z":[0,2.35839429109116],"mode":"lines","line":{"color":"red","width":5,"dash":"dash"},"type":"scatter3d","marker":{"color":"rgba(44,160,44,1)","line":{"color":"rgba(44,160,44,1)"}},"error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"frame":null},{"x":[1,-0.125460125469624],"y":[2,1.11646708281077],"z":[2,2.35839429109116],"mode":"lines","line":{"color":"red","width":5,"dash":"dash"},"type":"scatter3d","marker":{"color":"rgba(214,39,40,1)","line":{"color":"rgba(214,39,40,1)"}},"error_y":{"color":"rgba(214,39,40,1)"},"error_x":{"color":"rgba(214,39,40,1)"},"frame":null},{"x":[0,1.16666666666667],"y":[0,1.66666666666667],"z":[0,2.16666666666667],"mode":"lines","line":{"color":"red","width":5},"type":"scatter3d","marker":{"color":"rgba(148,103,189,1)","line":{"color":"rgba(148,103,189,1)"}},"error_y":{"color":"rgba(148,103,189,1)"},"error_x":{"color":"rgba(148,103,189,1)"},"frame":null},{"x":[1,1.16666666666667],"y":[2,1.66666666666667],"z":[2,2.16666666666667],"mode":"lines","line":{"color":"red","width":5,"dash":"dash"},"type":"scatter3d","marker":{"color":"rgba(140,86,75,1)","line":{"color":"rgba(140,86,75,1)"}},"error_y":{"color":"rgba(140,86,75,1)"},"error_x":{"color":"rgba(140,86,75,1)"},"frame":null},{"x":[1.29212679213629,1.16666666666667],"y":[0.550199583855897,1.66666666666667],"z":[-0.191727624424499,2.16666666666667],"mode":"lines","line":{"color":"red","width":5,"dash":"dash"},"type":"scatter3d","marker":{"color":"rgba(227,119,194,1)","line":{"color":"rgba(227,119,194,1)"}},"error_y":{"color":"rgba(227,119,194,1)"},"error_x":{"color":"rgba(227,119,194,1)"},"frame":null},{"x":[-0.125460125469624,1.16666666666667],"y":[1.11646708281077,1.66666666666667],"z":[2.35839429109116,2.16666666666667],"mode":"lines","line":{"color":"red","width":5,"dash":"dash"},"type":"scatter3d","marker":{"color":"rgba(127,127,127,1)","line":{"color":"rgba(127,127,127,1)"}},"error_y":{"color":"rgba(127,127,127,1)"},"error_x":{"color":"rgba(127,127,127,1)"},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <div id="the-error-vector" class="section level2">
@@ -868,128 +960,128 @@ p6</code></pre>
 \end{array}
 \right]
 \]</span></p>
-<pre class="r"><code>data$x2 &lt;- c(2,0,1)
-fit &lt;- lm(y~x+x2,data)
-# predict values on regular xy grid
-x1pred &lt;- seq(-1, 4, length.out = 10)
-x2pred &lt;- seq(-1, 4, length.out = 10)
-xy &lt;- expand.grid(x = x1pred,
-x2 = x2pred)
-ypred &lt;- matrix (nrow = 30, ncol = 30,
-data = predict(fit, newdata = data.frame(xy)))
-
-library(plot3D)</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>data<span class="op">$</span>x2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">1</span>)</span>
+<span id="cb30-2"><a href="#cb30-2"></a>fit &lt;-<span class="st"> </span><span class="kw">lm</span>(y<span class="op">~</span>x<span class="op">+</span>x2,data)</span>
+<span id="cb30-3"><a href="#cb30-3"></a><span class="co"># predict values on regular xy grid</span></span>
+<span id="cb30-4"><a href="#cb30-4"></a>x1pred &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">4</span>, <span class="dt">length.out =</span> <span class="dv">10</span>)</span>
+<span id="cb30-5"><a href="#cb30-5"></a>x2pred &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">4</span>, <span class="dt">length.out =</span> <span class="dv">10</span>)</span>
+<span id="cb30-6"><a href="#cb30-6"></a>xy &lt;-<span class="st"> </span><span class="kw">expand.grid</span>(<span class="dt">x =</span> x1pred,</span>
+<span id="cb30-7"><a href="#cb30-7"></a><span class="dt">x2 =</span> x2pred)</span>
+<span id="cb30-8"><a href="#cb30-8"></a>ypred &lt;-<span class="st"> </span><span class="kw">matrix</span> (<span class="dt">nrow =</span> <span class="dv">30</span>, <span class="dt">ncol =</span> <span class="dv">30</span>,</span>
+<span id="cb30-9"><a href="#cb30-9"></a><span class="dt">data =</span> <span class="kw">predict</span>(fit, <span class="dt">newdata =</span> <span class="kw">data.frame</span>(xy)))</span>
+<span id="cb30-10"><a href="#cb30-10"></a></span>
+<span id="cb30-11"><a href="#cb30-11"></a><span class="kw">library</span>(plot3D)</span></code></pre></div>
 <pre><code>## Warning in fun(libname, pkgname): no display name and no $DISPLAY environment
 ## variable</code></pre>
-<pre class="r"><code># fitted points for droplines to surface
-th=20
-ph=5
-scatter3D(data$x,
-  data$x2,
-  Y,
-  pch = 16,
-  col=&quot;darkblue&quot;,
-  cex = 1,
-  theta = th,
-  ticktype = &quot;detailed&quot;,
-  xlab = &quot;x1&quot;,
-  ylab = &quot;x2&quot;,
-  zlab = &quot;y&quot;,
-  colvar=FALSE,
-  bty = &quot;g&quot;,
-  xlim=c(-1,3),
-  ylim=c(-1,3),
-  zlim=c(-2,4))</code></pre>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="co"># fitted points for droplines to surface</span></span>
+<span id="cb32-2"><a href="#cb32-2"></a>th=<span class="dv">20</span></span>
+<span id="cb32-3"><a href="#cb32-3"></a>ph=<span class="dv">5</span></span>
+<span id="cb32-4"><a href="#cb32-4"></a><span class="kw">scatter3D</span>(data<span class="op">$</span>x,</span>
+<span id="cb32-5"><a href="#cb32-5"></a>  data<span class="op">$</span>x2,</span>
+<span id="cb32-6"><a href="#cb32-6"></a>  Y,</span>
+<span id="cb32-7"><a href="#cb32-7"></a>  <span class="dt">pch =</span> <span class="dv">16</span>,</span>
+<span id="cb32-8"><a href="#cb32-8"></a>  <span class="dt">col=</span><span class="st">&quot;darkblue&quot;</span>,</span>
+<span id="cb32-9"><a href="#cb32-9"></a>  <span class="dt">cex =</span> <span class="dv">1</span>,</span>
+<span id="cb32-10"><a href="#cb32-10"></a>  <span class="dt">theta =</span> th,</span>
+<span id="cb32-11"><a href="#cb32-11"></a>  <span class="dt">ticktype =</span> <span class="st">&quot;detailed&quot;</span>,</span>
+<span id="cb32-12"><a href="#cb32-12"></a>  <span class="dt">xlab =</span> <span class="st">&quot;x1&quot;</span>,</span>
+<span id="cb32-13"><a href="#cb32-13"></a>  <span class="dt">ylab =</span> <span class="st">&quot;x2&quot;</span>,</span>
+<span id="cb32-14"><a href="#cb32-14"></a>  <span class="dt">zlab =</span> <span class="st">&quot;y&quot;</span>,</span>
+<span id="cb32-15"><a href="#cb32-15"></a>  <span class="dt">colvar=</span><span class="ot">FALSE</span>,</span>
+<span id="cb32-16"><a href="#cb32-16"></a>  <span class="dt">bty =</span> <span class="st">&quot;g&quot;</span>,</span>
+<span id="cb32-17"><a href="#cb32-17"></a>  <span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">3</span>),</span>
+<span id="cb32-18"><a href="#cb32-18"></a>  <span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">3</span>),</span>
+<span id="cb32-19"><a href="#cb32-19"></a>  <span class="dt">zlim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">2</span>,<span class="dv">4</span>))</span></code></pre></div>
 <p><img src="lsGeometricInterpretation_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
-<pre class="r"><code>z.pred3D &lt;- outer(
-  x1pred,
-  x2pred,
-  function(x1,x2)
-  {
-    fit$coef[1] + fit$coef[2]*x1+fit$coef[2]*x2
-  })
-
-x.pred3D &lt;- outer(
-  x1pred,
-  x2pred,
-  function(x,y) x)
-
-y.pred3D &lt;- outer(
-  x1pred,
-  x2pred,
-  function(x,y) y)
-
-scatter3D(data$x,
-  data$x2,
-  data$y,
-  pch = 16,
-  col=&quot;darkblue&quot;,
-  cex = 1,
-  theta = th,
-  ticktype = &quot;detailed&quot;,
-  xlab = &quot;x1&quot;,
-  ylab = &quot;x2&quot;,
-  zlab = &quot;y&quot;,
-  colvar=FALSE,
-  bty = &quot;g&quot;,
-  xlim=c(-1,4),
-  ylim=c(-1,4),
-  zlim=c(-2,4))
-
-surf3D(
-  x.pred3D,
-  y.pred3D,
-  z.pred3D,
-  col=&quot;blue&quot;,
-  facets=NA,
-  add=TRUE)</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a>z.pred3D &lt;-<span class="st"> </span><span class="kw">outer</span>(</span>
+<span id="cb33-2"><a href="#cb33-2"></a>  x1pred,</span>
+<span id="cb33-3"><a href="#cb33-3"></a>  x2pred,</span>
+<span id="cb33-4"><a href="#cb33-4"></a>  <span class="cf">function</span>(x1,x2)</span>
+<span id="cb33-5"><a href="#cb33-5"></a>  {</span>
+<span id="cb33-6"><a href="#cb33-6"></a>    fit<span class="op">$</span>coef[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>fit<span class="op">$</span>coef[<span class="dv">2</span>]<span class="op">*</span>x1<span class="op">+</span>fit<span class="op">$</span>coef[<span class="dv">2</span>]<span class="op">*</span>x2</span>
+<span id="cb33-7"><a href="#cb33-7"></a>  })</span>
+<span id="cb33-8"><a href="#cb33-8"></a></span>
+<span id="cb33-9"><a href="#cb33-9"></a>x.pred3D &lt;-<span class="st"> </span><span class="kw">outer</span>(</span>
+<span id="cb33-10"><a href="#cb33-10"></a>  x1pred,</span>
+<span id="cb33-11"><a href="#cb33-11"></a>  x2pred,</span>
+<span id="cb33-12"><a href="#cb33-12"></a>  <span class="cf">function</span>(x,y) x)</span>
+<span id="cb33-13"><a href="#cb33-13"></a></span>
+<span id="cb33-14"><a href="#cb33-14"></a>y.pred3D &lt;-<span class="st"> </span><span class="kw">outer</span>(</span>
+<span id="cb33-15"><a href="#cb33-15"></a>  x1pred,</span>
+<span id="cb33-16"><a href="#cb33-16"></a>  x2pred,</span>
+<span id="cb33-17"><a href="#cb33-17"></a>  <span class="cf">function</span>(x,y) y)</span>
+<span id="cb33-18"><a href="#cb33-18"></a></span>
+<span id="cb33-19"><a href="#cb33-19"></a><span class="kw">scatter3D</span>(data<span class="op">$</span>x,</span>
+<span id="cb33-20"><a href="#cb33-20"></a>  data<span class="op">$</span>x2,</span>
+<span id="cb33-21"><a href="#cb33-21"></a>  data<span class="op">$</span>y,</span>
+<span id="cb33-22"><a href="#cb33-22"></a>  <span class="dt">pch =</span> <span class="dv">16</span>,</span>
+<span id="cb33-23"><a href="#cb33-23"></a>  <span class="dt">col=</span><span class="st">&quot;darkblue&quot;</span>,</span>
+<span id="cb33-24"><a href="#cb33-24"></a>  <span class="dt">cex =</span> <span class="dv">1</span>,</span>
+<span id="cb33-25"><a href="#cb33-25"></a>  <span class="dt">theta =</span> th,</span>
+<span id="cb33-26"><a href="#cb33-26"></a>  <span class="dt">ticktype =</span> <span class="st">&quot;detailed&quot;</span>,</span>
+<span id="cb33-27"><a href="#cb33-27"></a>  <span class="dt">xlab =</span> <span class="st">&quot;x1&quot;</span>,</span>
+<span id="cb33-28"><a href="#cb33-28"></a>  <span class="dt">ylab =</span> <span class="st">&quot;x2&quot;</span>,</span>
+<span id="cb33-29"><a href="#cb33-29"></a>  <span class="dt">zlab =</span> <span class="st">&quot;y&quot;</span>,</span>
+<span id="cb33-30"><a href="#cb33-30"></a>  <span class="dt">colvar=</span><span class="ot">FALSE</span>,</span>
+<span id="cb33-31"><a href="#cb33-31"></a>  <span class="dt">bty =</span> <span class="st">&quot;g&quot;</span>,</span>
+<span id="cb33-32"><a href="#cb33-32"></a>  <span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">4</span>),</span>
+<span id="cb33-33"><a href="#cb33-33"></a>  <span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">4</span>),</span>
+<span id="cb33-34"><a href="#cb33-34"></a>  <span class="dt">zlim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">2</span>,<span class="dv">4</span>))</span>
+<span id="cb33-35"><a href="#cb33-35"></a></span>
+<span id="cb33-36"><a href="#cb33-36"></a><span class="kw">surf3D</span>(</span>
+<span id="cb33-37"><a href="#cb33-37"></a>  x.pred3D,</span>
+<span id="cb33-38"><a href="#cb33-38"></a>  y.pred3D,</span>
+<span id="cb33-39"><a href="#cb33-39"></a>  z.pred3D,</span>
+<span id="cb33-40"><a href="#cb33-40"></a>  <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>,</span>
+<span id="cb33-41"><a href="#cb33-41"></a>  <span class="dt">facets=</span><span class="ot">NA</span>,</span>
+<span id="cb33-42"><a href="#cb33-42"></a>  <span class="dt">add=</span><span class="ot">TRUE</span>)</span></code></pre></div>
 <p><img src="lsGeometricInterpretation_files/figure-html/unnamed-chunk-14-2.png" width="672" /></p>
 <p>Note, that the linear regression is now a plane.</p>
 <p>However, we obtain a perfect fit and all the data points are falling in the plane! 😱</p>
 <p>This is obvious if we look at the column space of X!</p>
-<pre class="r"><code>X &lt;- cbind(X,c(2,0,1))
-XtX &lt;- t(X)%*%X
-eigenXtX &lt;- eigen(XtX)
-XtXinvSqrt &lt;- eigenXtX$vectors %*%diag(1/eigenXtX$values^.5)%*%t(eigenXtX$vectors)
-U &lt;- X %*% XtXinvSqrt
-
-p7 &lt;- p1 %&gt;%
-  add_trace(
-    x = c(0,2),
-    y = c(0,0),
-    z = c(0,1),
-    mode = &quot;lines&quot;,
-    line = list(width = 5, color = &quot;darkgreen&quot;),
-    type=&quot;scatter3d&quot;)
-p7</code></pre>
-<div id="htmlwidget-15bf7333050c3a910915" style="width:672px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-15bf7333050c3a910915">{"x":{"visdat":{"39a328d482de":["function () ","plotlyVisDat"]},"cur_data":"39a328d482de","attrs":{"39a328d482de":{"x":{},"y":{},"z":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter3d","mode":"markers","inherit":true},"39a328d482de.1":{"x":[0,1],"y":[0,0],"z":[0,0],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"39a328d482de.2":{"x":[0,0],"y":[0,1],"z":[0,0],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"39a328d482de.3":{"x":[0,0],"y":[0,0],"z":[0,1],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"39a328d482de.4":{"x":[0,1],"y":[0,1],"z":[0,1],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"black"},"type":"scatter3d","inherit":true},"39a328d482de.5":{"x":[0,1],"y":[0,2],"z":[0,3],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"black"},"type":"scatter3d","inherit":true},"39a328d482de.6":{"x":[0,2],"y":[0,0],"z":[0,1],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"darkgreen"},"type":"scatter3d","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"aspectmode":"cube","xaxis":{"range":[-4,4],"title":"X1"},"yaxis":{"range":[-4,4],"title":"X2"},"zaxis":{"range":[-4,4],"title":"X3"}},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"x":[0],"y":[0],"z":[0],"type":"scatter3d","mode":"markers","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"frame":null},{"x":[0,1],"y":[0,0],"z":[0,0],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"frame":null},{"x":[0,0],"y":[0,1],"z":[0,0],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(44,160,44,1)","line":{"color":"rgba(44,160,44,1)"}},"error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"frame":null},{"x":[0,0],"y":[0,0],"z":[0,1],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(214,39,40,1)","line":{"color":"rgba(214,39,40,1)"}},"error_y":{"color":"rgba(214,39,40,1)"},"error_x":{"color":"rgba(214,39,40,1)"},"frame":null},{"x":[0,1],"y":[0,1],"z":[0,1],"mode":"lines","line":{"color":"black","width":5},"type":"scatter3d","marker":{"color":"rgba(148,103,189,1)","line":{"color":"rgba(148,103,189,1)"}},"error_y":{"color":"rgba(148,103,189,1)"},"error_x":{"color":"rgba(148,103,189,1)"},"frame":null},{"x":[0,1],"y":[0,2],"z":[0,3],"mode":"lines","line":{"color":"black","width":5},"type":"scatter3d","marker":{"color":"rgba(140,86,75,1)","line":{"color":"rgba(140,86,75,1)"}},"error_y":{"color":"rgba(140,86,75,1)"},"error_x":{"color":"rgba(140,86,75,1)"},"frame":null},{"x":[0,2],"y":[0,0],"z":[0,1],"mode":"lines","line":{"color":"darkgreen","width":5},"type":"scatter3d","marker":{"color":"rgba(227,119,194,1)","line":{"color":"rgba(227,119,194,1)"}},"error_y":{"color":"rgba(227,119,194,1)"},"error_x":{"color":"rgba(227,119,194,1)"},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
-<pre class="r"><code>p8 &lt;- p7 %&gt;%
-  add_trace(
-    x = c(0,U[1,1]),
-    y = c(0,U[2,1]),
-    z = c(0,U[3,1]),
-    mode = &quot;lines&quot;,
-    line = list(width = 5, color = &quot;blue&quot;),
-    type=&quot;scatter3d&quot;) %&gt;%
-  add_trace(
-    x = c(0,U[1,2]),
-    y = c(0,U[2,2]),
-    z = c(0,U[3,2]),
-    mode = &quot;lines&quot;,
-    line = list(width = 5, color = &quot;blue&quot;),
-    type=&quot;scatter3d&quot;) %&gt;%
-  add_trace(
-    x = c(0,U[1,3]),
-    y = c(0,U[2,3]),
-    z = c(0,U[3,3]),
-    mode = &quot;lines&quot;,
-    line = list(width = 5, color = &quot;blue&quot;),
-    type=&quot;scatter3d&quot;)
-
-p8</code></pre>
-<div id="htmlwidget-01d484f0b1e7926d331a" style="width:672px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-01d484f0b1e7926d331a">{"x":{"visdat":{"39a328d482de":["function () ","plotlyVisDat"]},"cur_data":"39a328d482de","attrs":{"39a328d482de":{"x":{},"y":{},"z":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter3d","mode":"markers","inherit":true},"39a328d482de.1":{"x":[0,1],"y":[0,0],"z":[0,0],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"39a328d482de.2":{"x":[0,0],"y":[0,1],"z":[0,0],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"39a328d482de.3":{"x":[0,0],"y":[0,0],"z":[0,1],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"39a328d482de.4":{"x":[0,1],"y":[0,1],"z":[0,1],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"black"},"type":"scatter3d","inherit":true},"39a328d482de.5":{"x":[0,1],"y":[0,2],"z":[0,3],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"black"},"type":"scatter3d","inherit":true},"39a328d482de.6":{"x":[0,2],"y":[0,0],"z":[0,1],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"darkgreen"},"type":"scatter3d","inherit":true},"39a328d482de.7":{"x":[0,0.494080479782201],"y":[0,0.816094193902485],"z":[0,-0.299791170945455],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"blue"},"type":"scatter3d","inherit":true},"39a328d482de.8":{"x":[0,-0.0776736051498938],"y":[0,0.384874003814111],"z":[0,0.91969495608659],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"blue"},"type":"scatter3d","inherit":true},"39a328d482de.9":{"x":[0,0.865939542093563],"y":[0,-0.431117464117091],"z":[0,0.253547710642474],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"blue"},"type":"scatter3d","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"aspectmode":"cube","xaxis":{"range":[-4,4],"title":"X1"},"yaxis":{"range":[-4,4],"title":"X2"},"zaxis":{"range":[-4,4],"title":"X3"}},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"x":[0],"y":[0],"z":[0],"type":"scatter3d","mode":"markers","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"frame":null},{"x":[0,1],"y":[0,0],"z":[0,0],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"frame":null},{"x":[0,0],"y":[0,1],"z":[0,0],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(44,160,44,1)","line":{"color":"rgba(44,160,44,1)"}},"error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"frame":null},{"x":[0,0],"y":[0,0],"z":[0,1],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(214,39,40,1)","line":{"color":"rgba(214,39,40,1)"}},"error_y":{"color":"rgba(214,39,40,1)"},"error_x":{"color":"rgba(214,39,40,1)"},"frame":null},{"x":[0,1],"y":[0,1],"z":[0,1],"mode":"lines","line":{"color":"black","width":5},"type":"scatter3d","marker":{"color":"rgba(148,103,189,1)","line":{"color":"rgba(148,103,189,1)"}},"error_y":{"color":"rgba(148,103,189,1)"},"error_x":{"color":"rgba(148,103,189,1)"},"frame":null},{"x":[0,1],"y":[0,2],"z":[0,3],"mode":"lines","line":{"color":"black","width":5},"type":"scatter3d","marker":{"color":"rgba(140,86,75,1)","line":{"color":"rgba(140,86,75,1)"}},"error_y":{"color":"rgba(140,86,75,1)"},"error_x":{"color":"rgba(140,86,75,1)"},"frame":null},{"x":[0,2],"y":[0,0],"z":[0,1],"mode":"lines","line":{"color":"darkgreen","width":5},"type":"scatter3d","marker":{"color":"rgba(227,119,194,1)","line":{"color":"rgba(227,119,194,1)"}},"error_y":{"color":"rgba(227,119,194,1)"},"error_x":{"color":"rgba(227,119,194,1)"},"frame":null},{"x":[0,0.494080479782201],"y":[0,0.816094193902485],"z":[0,-0.299791170945455],"mode":"lines","line":{"color":"blue","width":5},"type":"scatter3d","marker":{"color":"rgba(127,127,127,1)","line":{"color":"rgba(127,127,127,1)"}},"error_y":{"color":"rgba(127,127,127,1)"},"error_x":{"color":"rgba(127,127,127,1)"},"frame":null},{"x":[0,-0.0776736051498938],"y":[0,0.384874003814111],"z":[0,0.91969495608659],"mode":"lines","line":{"color":"blue","width":5},"type":"scatter3d","marker":{"color":"rgba(188,189,34,1)","line":{"color":"rgba(188,189,34,1)"}},"error_y":{"color":"rgba(188,189,34,1)"},"error_x":{"color":"rgba(188,189,34,1)"},"frame":null},{"x":[0,0.865939542093563],"y":[0,-0.431117464117091],"z":[0,0.253547710642474],"mode":"lines","line":{"color":"blue","width":5},"type":"scatter3d","marker":{"color":"rgba(23,190,207,1)","line":{"color":"rgba(23,190,207,1)"}},"error_y":{"color":"rgba(23,190,207,1)"},"error_x":{"color":"rgba(23,190,207,1)"},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a>X &lt;-<span class="st"> </span><span class="kw">cbind</span>(X,<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">1</span>))</span>
+<span id="cb34-2"><a href="#cb34-2"></a>XtX &lt;-<span class="st"> </span><span class="kw">t</span>(X)<span class="op">%*%</span>X</span>
+<span id="cb34-3"><a href="#cb34-3"></a>eigenXtX &lt;-<span class="st"> </span><span class="kw">eigen</span>(XtX)</span>
+<span id="cb34-4"><a href="#cb34-4"></a>XtXinvSqrt &lt;-<span class="st"> </span>eigenXtX<span class="op">$</span>vectors <span class="op">%*%</span><span class="kw">diag</span>(<span class="dv">1</span><span class="op">/</span>eigenXtX<span class="op">$</span>values<span class="op">^</span>.<span class="dv">5</span>)<span class="op">%*%</span><span class="kw">t</span>(eigenXtX<span class="op">$</span>vectors)</span>
+<span id="cb34-5"><a href="#cb34-5"></a>U &lt;-<span class="st"> </span>X <span class="op">%*%</span><span class="st"> </span>XtXinvSqrt</span>
+<span id="cb34-6"><a href="#cb34-6"></a></span>
+<span id="cb34-7"><a href="#cb34-7"></a>p7 &lt;-<span class="st"> </span>p1 <span class="op">%&gt;%</span></span>
+<span id="cb34-8"><a href="#cb34-8"></a><span class="st">  </span><span class="kw">add_trace</span>(</span>
+<span id="cb34-9"><a href="#cb34-9"></a>    <span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">2</span>),</span>
+<span id="cb34-10"><a href="#cb34-10"></a>    <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>),</span>
+<span id="cb34-11"><a href="#cb34-11"></a>    <span class="dt">z =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),</span>
+<span id="cb34-12"><a href="#cb34-12"></a>    <span class="dt">mode =</span> <span class="st">&quot;lines&quot;</span>,</span>
+<span id="cb34-13"><a href="#cb34-13"></a>    <span class="dt">line =</span> <span class="kw">list</span>(<span class="dt">width =</span> <span class="dv">5</span>, <span class="dt">color =</span> <span class="st">&quot;darkgreen&quot;</span>),</span>
+<span id="cb34-14"><a href="#cb34-14"></a>    <span class="dt">type=</span><span class="st">&quot;scatter3d&quot;</span>)</span>
+<span id="cb34-15"><a href="#cb34-15"></a>p7</span></code></pre></div>
+<div id="htmlwidget-4718bc102d417045b3fa" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4718bc102d417045b3fa">{"x":{"visdat":{"1418659529d5":["function () ","plotlyVisDat"]},"cur_data":"1418659529d5","attrs":{"1418659529d5":{"x":{},"y":{},"z":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter3d","mode":"markers","inherit":true},"1418659529d5.1":{"x":[0,1],"y":[0,0],"z":[0,0],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"1418659529d5.2":{"x":[0,0],"y":[0,1],"z":[0,0],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"1418659529d5.3":{"x":[0,0],"y":[0,0],"z":[0,1],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"1418659529d5.4":{"x":[0,1],"y":[0,1],"z":[0,1],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"black"},"type":"scatter3d","inherit":true},"1418659529d5.5":{"x":[0,1],"y":[0,2],"z":[0,3],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"black"},"type":"scatter3d","inherit":true},"1418659529d5.6":{"x":[0,2],"y":[0,0],"z":[0,1],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"darkgreen"},"type":"scatter3d","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"aspectmode":"cube","xaxis":{"range":[-4,4],"title":"X1"},"yaxis":{"range":[-4,4],"title":"X2"},"zaxis":{"range":[-4,4],"title":"X3"}},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"x":[0],"y":[0],"z":[0],"type":"scatter3d","mode":"markers","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"frame":null},{"x":[0,1],"y":[0,0],"z":[0,0],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"frame":null},{"x":[0,0],"y":[0,1],"z":[0,0],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(44,160,44,1)","line":{"color":"rgba(44,160,44,1)"}},"error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"frame":null},{"x":[0,0],"y":[0,0],"z":[0,1],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(214,39,40,1)","line":{"color":"rgba(214,39,40,1)"}},"error_y":{"color":"rgba(214,39,40,1)"},"error_x":{"color":"rgba(214,39,40,1)"},"frame":null},{"x":[0,1],"y":[0,1],"z":[0,1],"mode":"lines","line":{"color":"black","width":5},"type":"scatter3d","marker":{"color":"rgba(148,103,189,1)","line":{"color":"rgba(148,103,189,1)"}},"error_y":{"color":"rgba(148,103,189,1)"},"error_x":{"color":"rgba(148,103,189,1)"},"frame":null},{"x":[0,1],"y":[0,2],"z":[0,3],"mode":"lines","line":{"color":"black","width":5},"type":"scatter3d","marker":{"color":"rgba(140,86,75,1)","line":{"color":"rgba(140,86,75,1)"}},"error_y":{"color":"rgba(140,86,75,1)"},"error_x":{"color":"rgba(140,86,75,1)"},"frame":null},{"x":[0,2],"y":[0,0],"z":[0,1],"mode":"lines","line":{"color":"darkgreen","width":5},"type":"scatter3d","marker":{"color":"rgba(227,119,194,1)","line":{"color":"rgba(227,119,194,1)"}},"error_y":{"color":"rgba(227,119,194,1)"},"error_x":{"color":"rgba(227,119,194,1)"},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a>p8 &lt;-<span class="st"> </span>p7 <span class="op">%&gt;%</span></span>
+<span id="cb35-2"><a href="#cb35-2"></a><span class="st">  </span><span class="kw">add_trace</span>(</span>
+<span id="cb35-3"><a href="#cb35-3"></a>    <span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">0</span>,U[<span class="dv">1</span>,<span class="dv">1</span>]),</span>
+<span id="cb35-4"><a href="#cb35-4"></a>    <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">0</span>,U[<span class="dv">2</span>,<span class="dv">1</span>]),</span>
+<span id="cb35-5"><a href="#cb35-5"></a>    <span class="dt">z =</span> <span class="kw">c</span>(<span class="dv">0</span>,U[<span class="dv">3</span>,<span class="dv">1</span>]),</span>
+<span id="cb35-6"><a href="#cb35-6"></a>    <span class="dt">mode =</span> <span class="st">&quot;lines&quot;</span>,</span>
+<span id="cb35-7"><a href="#cb35-7"></a>    <span class="dt">line =</span> <span class="kw">list</span>(<span class="dt">width =</span> <span class="dv">5</span>, <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>),</span>
+<span id="cb35-8"><a href="#cb35-8"></a>    <span class="dt">type=</span><span class="st">&quot;scatter3d&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb35-9"><a href="#cb35-9"></a><span class="st">  </span><span class="kw">add_trace</span>(</span>
+<span id="cb35-10"><a href="#cb35-10"></a>    <span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">0</span>,U[<span class="dv">1</span>,<span class="dv">2</span>]),</span>
+<span id="cb35-11"><a href="#cb35-11"></a>    <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">0</span>,U[<span class="dv">2</span>,<span class="dv">2</span>]),</span>
+<span id="cb35-12"><a href="#cb35-12"></a>    <span class="dt">z =</span> <span class="kw">c</span>(<span class="dv">0</span>,U[<span class="dv">3</span>,<span class="dv">2</span>]),</span>
+<span id="cb35-13"><a href="#cb35-13"></a>    <span class="dt">mode =</span> <span class="st">&quot;lines&quot;</span>,</span>
+<span id="cb35-14"><a href="#cb35-14"></a>    <span class="dt">line =</span> <span class="kw">list</span>(<span class="dt">width =</span> <span class="dv">5</span>, <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>),</span>
+<span id="cb35-15"><a href="#cb35-15"></a>    <span class="dt">type=</span><span class="st">&quot;scatter3d&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb35-16"><a href="#cb35-16"></a><span class="st">  </span><span class="kw">add_trace</span>(</span>
+<span id="cb35-17"><a href="#cb35-17"></a>    <span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">0</span>,U[<span class="dv">1</span>,<span class="dv">3</span>]),</span>
+<span id="cb35-18"><a href="#cb35-18"></a>    <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">0</span>,U[<span class="dv">2</span>,<span class="dv">3</span>]),</span>
+<span id="cb35-19"><a href="#cb35-19"></a>    <span class="dt">z =</span> <span class="kw">c</span>(<span class="dv">0</span>,U[<span class="dv">3</span>,<span class="dv">3</span>]),</span>
+<span id="cb35-20"><a href="#cb35-20"></a>    <span class="dt">mode =</span> <span class="st">&quot;lines&quot;</span>,</span>
+<span id="cb35-21"><a href="#cb35-21"></a>    <span class="dt">line =</span> <span class="kw">list</span>(<span class="dt">width =</span> <span class="dv">5</span>, <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>),</span>
+<span id="cb35-22"><a href="#cb35-22"></a>    <span class="dt">type=</span><span class="st">&quot;scatter3d&quot;</span>)</span>
+<span id="cb35-23"><a href="#cb35-23"></a></span>
+<span id="cb35-24"><a href="#cb35-24"></a>p8</span></code></pre></div>
+<div id="htmlwidget-12dc509fe298f31fb72c" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-12dc509fe298f31fb72c">{"x":{"visdat":{"1418659529d5":["function () ","plotlyVisDat"]},"cur_data":"1418659529d5","attrs":{"1418659529d5":{"x":{},"y":{},"z":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter3d","mode":"markers","inherit":true},"1418659529d5.1":{"x":[0,1],"y":[0,0],"z":[0,0],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"1418659529d5.2":{"x":[0,0],"y":[0,1],"z":[0,0],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"1418659529d5.3":{"x":[0,0],"y":[0,0],"z":[0,1],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"grey"},"type":"scatter3d","inherit":true},"1418659529d5.4":{"x":[0,1],"y":[0,1],"z":[0,1],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"black"},"type":"scatter3d","inherit":true},"1418659529d5.5":{"x":[0,1],"y":[0,2],"z":[0,3],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"black"},"type":"scatter3d","inherit":true},"1418659529d5.6":{"x":[0,2],"y":[0,0],"z":[0,1],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"darkgreen"},"type":"scatter3d","inherit":true},"1418659529d5.7":{"x":[0,0.494080479782201],"y":[0,0.816094193902485],"z":[0,-0.299791170945455],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"blue"},"type":"scatter3d","inherit":true},"1418659529d5.8":{"x":[0,-0.0776736051498938],"y":[0,0.384874003814111],"z":[0,0.91969495608659],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"blue"},"type":"scatter3d","inherit":true},"1418659529d5.9":{"x":[0,0.865939542093563],"y":[0,-0.431117464117091],"z":[0,0.253547710642474],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"mode":"lines","line":{"width":5,"color":"blue"},"type":"scatter3d","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"aspectmode":"cube","xaxis":{"range":[-4,4],"title":"X1"},"yaxis":{"range":[-4,4],"title":"X2"},"zaxis":{"range":[-4,4],"title":"X3"}},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"x":[0],"y":[0],"z":[0],"type":"scatter3d","mode":"markers","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"frame":null},{"x":[0,1],"y":[0,0],"z":[0,0],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"frame":null},{"x":[0,0],"y":[0,1],"z":[0,0],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(44,160,44,1)","line":{"color":"rgba(44,160,44,1)"}},"error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"frame":null},{"x":[0,0],"y":[0,0],"z":[0,1],"mode":"lines","line":{"color":"grey","width":5},"type":"scatter3d","marker":{"color":"rgba(214,39,40,1)","line":{"color":"rgba(214,39,40,1)"}},"error_y":{"color":"rgba(214,39,40,1)"},"error_x":{"color":"rgba(214,39,40,1)"},"frame":null},{"x":[0,1],"y":[0,1],"z":[0,1],"mode":"lines","line":{"color":"black","width":5},"type":"scatter3d","marker":{"color":"rgba(148,103,189,1)","line":{"color":"rgba(148,103,189,1)"}},"error_y":{"color":"rgba(148,103,189,1)"},"error_x":{"color":"rgba(148,103,189,1)"},"frame":null},{"x":[0,1],"y":[0,2],"z":[0,3],"mode":"lines","line":{"color":"black","width":5},"type":"scatter3d","marker":{"color":"rgba(140,86,75,1)","line":{"color":"rgba(140,86,75,1)"}},"error_y":{"color":"rgba(140,86,75,1)"},"error_x":{"color":"rgba(140,86,75,1)"},"frame":null},{"x":[0,2],"y":[0,0],"z":[0,1],"mode":"lines","line":{"color":"darkgreen","width":5},"type":"scatter3d","marker":{"color":"rgba(227,119,194,1)","line":{"color":"rgba(227,119,194,1)"}},"error_y":{"color":"rgba(227,119,194,1)"},"error_x":{"color":"rgba(227,119,194,1)"},"frame":null},{"x":[0,0.494080479782201],"y":[0,0.816094193902485],"z":[0,-0.299791170945455],"mode":"lines","line":{"color":"blue","width":5},"type":"scatter3d","marker":{"color":"rgba(127,127,127,1)","line":{"color":"rgba(127,127,127,1)"}},"error_y":{"color":"rgba(127,127,127,1)"},"error_x":{"color":"rgba(127,127,127,1)"},"frame":null},{"x":[0,-0.0776736051498938],"y":[0,0.384874003814111],"z":[0,0.91969495608659],"mode":"lines","line":{"color":"blue","width":5},"type":"scatter3d","marker":{"color":"rgba(188,189,34,1)","line":{"color":"rgba(188,189,34,1)"}},"error_y":{"color":"rgba(188,189,34,1)"},"error_x":{"color":"rgba(188,189,34,1)"},"frame":null},{"x":[0,0.865939542093563],"y":[0,-0.431117464117091],"z":[0,0.253547710642474],"mode":"lines","line":{"color":"blue","width":5},"type":"scatter3d","marker":{"color":"rgba(23,190,207,1)","line":{"color":"rgba(23,190,207,1)"}},"error_y":{"color":"rgba(23,190,207,1)"},"error_x":{"color":"rgba(23,190,207,1)"},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 <ul>
 <li><p>The column space now spans the entire <span class="math inline">\(\mathbb{R}^3\)</span>!</p></li>
 <li><p>With the intercept and the two predictors we can thus fit every dataset that only has 3 observations for the predictors and the response.</p></li>

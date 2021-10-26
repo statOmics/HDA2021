@@ -11,7 +11,7 @@
 
 <meta name="author" content="Milan Malfait" />
 
-<meta name="date" content="2021-10-22" />
+<meta name="date" content="2021-10-26" />
 
 <title>Introduction to RMarkdown</title>
 
@@ -36,8 +36,7 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script src="site_libs/navigation-1.1/codefolding.js"></script>
 <script src="site_libs/navigation-1.1/sourceembed.js"></script>
-<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
 <script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
@@ -52,17 +51,110 @@
   ul.task-list{list-style: none;}
     </style>
 
-<style type="text/css">code{white-space: pre;}</style>
-<script type="text/javascript">
-if (window.hljs) {
-  hljs.configure({languages: []});
-  hljs.initHighlightingOnLoad();
-  if (document.readyState && document.readyState === "complete") {
-    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
-  }
-}
-</script>
 
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
+.sourceCode .row {
+  width: 100%;
+}
+.sourceCode {
+  overflow-x: auto;
+}
+.code-folding-btn {
+  margin-right: -30px;
+}
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 
 
 <style type="text/css">
@@ -423,7 +515,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Introduction to RMarkdown</h1>
 <h4 class="author">Milan Malfait</h4>
-<h4 class="date">October 22, 2021</h4>
+<h4 class="date">October 26, 2021</h4>
 
 </div>
 
@@ -435,12 +527,12 @@ div.tocify {
 <div id="metadata" class="section level2">
 <h2><span class="header-section-number">1.1</span> Metadata</h2>
 <p>The markdown notebook will start with a <a href="https://en.wikipedia.org/wiki/YAML">YAML</a> header, which includes the title, names of the authors and type of RMarkdown file. We typically work with <code>html_document</code> (the default).</p>
-<pre class="yaml"><code>---
-title: &quot;Title&quot;
-author: &quot;Author names&quot;
-date: &quot;Date&quot;
-output:  html_document
----</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1"></a><span class="pp">---</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Title&quot;</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Author names&quot;</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Date&quot;</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="fu">output</span><span class="kw">:</span><span class="at">  html_document</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="pp">---</span></span></code></pre></div>
 <p>The <code>html_document</code> output specifies that your document will be converted to HTML when you “knit” or compile it.</p>
 </div>
 <div id="compiling-an-r-markdown-file" class="section level2">
@@ -459,12 +551,12 @@ output:  html_document
 <div id="lists" class="section level3">
 <h3><span class="header-section-number">1.3.2</span> Lists</h3>
 <p>Unordered list items start with <code>*</code>, <code>-</code>, or <code>+</code>, and you can nest one list within another list by indenting the sub-list, for example:</p>
-<pre class="markdown"><code>- one item
-- one item
-- one item
-    * one more item
-    * one more item
-    * one more item</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1"></a>- <span class="st">one item</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="st">- one item</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="st">- one item</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="st">    * one more item</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="st">    * one more item</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="st">    * one more item</span></span></code></pre></div>
 <p>The output of the above syntax would be:</p>
 <ul>
 <li>one item</li>
@@ -477,9 +569,9 @@ output:  html_document
 </ul></li>
 </ul>
 <p>A numbered list can be created by starting each item with a number:</p>
-<pre class="markdown"><code>1. the first item
-2. the second item
-3. the third item</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1"></a>1. <span class="st">the first item</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="st">2. the second item</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="st">3. the third item</span></span></code></pre></div>
 <p>Output:</p>
 <ol style="list-style-type: decimal">
 <li>the first item</li>
@@ -491,13 +583,13 @@ output:  html_document
 <div id="section-headers" class="section level3">
 <h3><span class="header-section-number">1.3.3</span> Section headers</h3>
 <p>Section headers can be written using a number of # signs, where the amount of #’s specifies the level:</p>
-<pre class="markdown"><code># Main section title: first level
-
-## Subsection: second level
-
-### Sub-subsection: third level
-
-#### Sub-sub-subsection: fourth level</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu"># Main section title: first level</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="fu">## Subsection: second level</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a></span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="fu">### Sub-subsection: third level</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a></span>
+<span id="cb4-7"><a href="#cb4-7"></a><span class="fu">#### Sub-sub-subsection: fourth level</span></span></code></pre></div>
 <p>The output:</p>
 </div>
 </div>
@@ -534,9 +626,9 @@ output:  html_document
 </ul>
 <p>Code can also be run line by line by selecting a line with your cursor and pressing <code>Ctrl + Enter</code> (Mac: <code>Cmd + Enter</code>).</p>
 <p>Try executing the code below using both ways: line-by-line and the entire chunk.</p>
-<pre class="r"><code>1+1</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="dv">1</span><span class="op">+</span><span class="dv">1</span></span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
-<pre class="r"><code>(5-3)+7*10/2</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>(<span class="dv">5-3</span>)<span class="op">+</span><span class="dv">7</span><span class="op">*</span><span class="dv">10</span><span class="op">/</span><span class="dv">2</span></span></code></pre></div>
 <pre><code>## [1] 37</code></pre>
 <p>The output should be displayed either right below the code chunk or in the R console. You can change this behaviour by selecting the settings gear in the RStudio toolbar and selecting <code>Chunk Output Inline</code> or <code>Chunk Output in Console</code>.</p>
 <p>You can also run all chunks in you Rmd file by pressing the <code>Run</code> button in the toolbar (upper right) and then select <code>Run All</code> (or using the keyboard shortcut <code>Shift + Ctrl + R</code> on Windows or <code>Shift + Cmd + R</code> on Mac). Note that this menu also provides additional ways of running R chunks, the most useful ones being:</p>
@@ -549,22 +641,22 @@ output:  html_document
 <h2><span class="header-section-number">2.2</span> Commenting R code</h2>
 <p>You can add comments to your R code by starting a line with #. This is useful to describe what your code is doing (or should be doing). Annotating your code this way is very useful to communicate both with others and your future self. Try to keep these comments clear but short. Longer descriptions should go in the main text of your RMarkdown file. Commenting also provides a way of “disabling” code without having to remove it. Note that each new line of a comment should be preceded by a #. You can easily “comment out” multiple lines by selecting them and pressing <code>Shift + Ctrl + C</code> (Mac: <code>Shift + Cmd + C</code>).</p>
 <p>Try running the chunk below and verify that it does not produce any output. What happens if you remove one of the # signs?</p>
-<pre class="r"><code># This is a comment
-
-# This is a very long comment split over
-# multiple lines
-
-# Code inside a comment is not executed
-# 1+1</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># This is a comment</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a></span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="co"># This is a very long comment split over</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a><span class="co"># multiple lines</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a></span>
+<span id="cb9-6"><a href="#cb9-6"></a><span class="co"># Code inside a comment is not executed</span></span>
+<span id="cb9-7"><a href="#cb9-7"></a><span class="co"># 1+1</span></span></code></pre></div>
 </div>
 <div id="assigning-objects-to-save-results-and-perform-calculations" class="section level2">
 <h2><span class="header-section-number">2.3</span> Assigning objects to save results and perform calculations</h2>
 <p>You can save results of function calls or calculations by assigning the value to a <em>variable</em> using the assign operator <code>&lt;-</code>.</p>
 <p>Run the code below and verify the value of <code>c</code>. You can also check the value of a variable by entering it in the Console and pressing <code>Enter</code>.</p>
-<pre class="r"><code>a &lt;- 2
-b &lt;- 3
-c &lt;- a + b
-c</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>a &lt;-<span class="st"> </span><span class="dv">2</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a>b &lt;-<span class="st"> </span><span class="dv">3</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a>c &lt;-<span class="st"> </span>a <span class="op">+</span><span class="st"> </span>b</span>
+<span id="cb10-4"><a href="#cb10-4"></a>c</span></code></pre></div>
 <pre><code>## [1] 5</code></pre>
 <p>Note that in principle, you can also use <code>=</code> for assignment, but this is considered to be bad practice because the equal sign is reserved for function arguments (see next section). So you should always use <code>&lt;-</code> for assignment.</p>
 <p><strong>Hint:</strong> a quick and easy way to type <code>&lt;-</code> in RStudio is by using the shortcut <code>Alt + -</code> (Mac: <code>Option + -</code>).</p>
@@ -573,28 +665,28 @@ c</code></pre>
 <h2><span class="header-section-number">2.4</span> Functions</h2>
 <p>Functions are commands in R that perform certain tasks. They take inputs in the form of <em>arguments</em> and return their results as <em>output</em>. They are called using their name, followed by parentheses <code>()</code> in which the arguments are specified. There are many built-in functions in R. In addition, you can write your own functions or load other functins through the use of <em>packages</em> (more on that later).</p>
 <p>As an example, we can use the function <code>rnorm</code> to sample 100 draws from a Normal distribution. We assign the result (a vector of 100 random numbers) to a new variable <code>draws</code> and display the first 6 values by caling the function <code>head</code> on this new variable.</p>
-<pre class="r"><code># sample 100 numbers from a standard normal distribution
-# (mean = 0, standard deviation = 1)
-draws &lt;- rnorm(100)
-head(draws)</code></pre>
-<pre><code>## [1]  0.2140363 -1.2637305  0.6091019  1.3691542  0.8612728 -0.8291419</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co"># sample 100 numbers from a standard normal distribution</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="co"># (mean = 0, standard deviation = 1)</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a>draws &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb12-4"><a href="#cb12-4"></a><span class="kw">head</span>(draws)</span></code></pre></div>
+<pre><code>## [1]  0.63614993 -0.04197017  0.81111864 -0.79762367  1.28428738 -0.41514587</code></pre>
 </div>
 <div id="getting-help-in-r" class="section level2">
 <h2><span class="header-section-number">2.5</span> Getting help in R: <code>?</code></h2>
 <p>What if instead of drawing from the standard normal distribution we want to sample from a normal with a mean of 5 and a standard deviation of 2? Knowing that <code>rnorm</code> is the function to generate normally distributed numbers, we can get more information on it by executing <code>?rnorm</code> (usually you would do this in the Console, but for demonstration, we run it inside a code chunk here). This will open up the <em>help</em> page for the “The Normal Distribution” and all its related functions inside R, one of which is <code>rnorm</code>.</p>
-<pre class="r"><code>?rnorm</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>?rnorm</span></code></pre></div>
 <p>Read through the documentation, can you figure out how to change the mean and standard deviation?</p>
 <p>The solution is to specify the <code>mean</code> and <code>sd</code> arguments.</p>
-<pre class="r"><code>draws2 &lt;- rnorm(100, mean = 5, sd = 2)
-head(draws2)</code></pre>
-<pre><code>## [1] 4.4823783 3.1112640 6.4209075 0.8529582 6.3223040 5.8633876</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>draws2 &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>, <span class="dt">mean =</span> <span class="dv">5</span>, <span class="dt">sd =</span> <span class="dv">2</span>)</span>
+<span id="cb15-2"><a href="#cb15-2"></a><span class="kw">head</span>(draws2)</span></code></pre></div>
+<pre><code>## [1] 7.019831 5.396634 5.951904 8.687093 4.966038 7.576820</code></pre>
 <p>Each built-in R function or functions loaded through a package has a help page. In addition, there is a wealth of information through the wonderful magic of <a href="https://www.google.com/">Google</a>. Another great place to look for answers or ask questions yourself is <a href="https://stackoverflow.com/">StackOverflow</a>.</p>
 </div>
 <div id="tidyverse" class="section level2">
 <h2><span class="header-section-number">2.6</span> Tidyverse</h2>
 <p>The <em>tidyverse</em> is a set of packages designed to make data science in R more user-friendly. It shares a common philosophy and grammar of doing data science, which can change somewhat from how base R works (though it shouldn’t be an excuse to learn how to use base R!!!).</p>
 <p>Instead of installing each <em>tidyverse</em> package individually, you can install all of them simultaneously by simply calling</p>
-<pre class="r"><code>install.packages(&quot;tidyverse&quot;)</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span></code></pre></div>
 <p>Note that this code won’t be executed when compiling this report, because I specified <code>eval=FALSE</code> in the <a href="https://bookdown.org/yihui/rmarkdown/r-code.html">chunk options</a>. Instead it should be called manually, for example in an R console.</p>
 <p>For more information see</p>
 <ul>
@@ -609,11 +701,11 @@ head(draws2)</code></pre>
 <h3><span class="header-section-number">2.7.1</span> Base R</h3>
 <p>A picture often says more than words (or lines of code output) and R has a rich <a href="https://rstudio-pubs-static.s3.amazonaws.com/7953_4e3efd5b9415444ca065b1167862c349.html">visualization toolbox</a> that allows us to make powerful visualizations of our data.</p>
 <p>For example, to visually verify that the random numbers we generated earlier (which are still stored in memory under the variables <code>draws</code> and <code>draws2</code>) are indeed normally distributed, we could make a histogram of them, using the <code>hist</code> function.</p>
-<pre class="r"><code># draws comes from a standard normal (mean = 0, sd = 1)
-hist(draws)</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="co"># draws comes from a standard normal (mean = 0, sd = 1)</span></span>
+<span id="cb18-2"><a href="#cb18-2"></a><span class="kw">hist</span>(draws)</span></code></pre></div>
 <p><img src="Introduction-RMarkdown_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
-<pre class="r"><code># draws 2 comes from a normal with mean = 5, sd = 2
-hist(draws2)</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="co"># draws 2 comes from a normal with mean = 5, sd = 2</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a><span class="kw">hist</span>(draws2)</span></code></pre></div>
 <p><img src="Introduction-RMarkdown_files/figure-html/unnamed-chunk-8-2.png" width="672" /></p>
 <p>Note that you can customize these plots in a lot of ways. Looking at the help page of <code>hist</code> or doing a quick internet search will take you a long way!</p>
 </div>
@@ -621,10 +713,10 @@ hist(draws2)</code></pre>
 <h3><span class="header-section-number">2.7.2</span> ggplot2</h3>
 <p>Although powerful, the base R visualization framework can be somewhat challenging to work with. A good alternative is the <a href="https://ggplot2.tidyverse.org/"><code>ggplot2</code> package</a>, part of the larger <code>tidyverse</code> which includes more useful packages for data manipulation and analysis. <code>ggplot2</code> uses a visualization framework based on the <a href="https://ggplot2-book.org/introduction.html#what-is-the-grammar-of-graphics"><em>grammar of graphics</em> philosophy</a>, which we won’t get further into here but which can be quite an intuitive way to think about data visualizations.</p>
 <p><code>ggplot2</code> works best with a <code>data.frame</code> as input. As an example, we’ll use the <code>mtcars</code> data, which is available by default in every R installation (for more info on this data set, see <code>?mtcars</code>). With just a few lines, we can create already quite elegant visualizations:</p>
-<pre class="r"><code>library(ggplot2)
-
-ggplot(mpg, aes(displ, hwy, colour = class)) +
-  geom_point()</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb20-2"><a href="#cb20-2"></a></span>
+<span id="cb20-3"><a href="#cb20-3"></a><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(displ, hwy, <span class="dt">colour =</span> class)) <span class="op">+</span></span>
+<span id="cb20-4"><a href="#cb20-4"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
 <p><img src="Introduction-RMarkdown_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <p>You could perfectly recreate this plot with base R, but it’s going to take more lines of code and potential headaches. Still, both frameworks have their strengths and weaknesses and they are complementary in many ways, so it pays to learn both of them rather than stubbornly sticking to one.</p>
 <p>There are tons of documentation and tutorials on <code>ggplot2</code> to be found online. A good place to start is <a href="https://ggplot2.tidyverse.org/" class="uri">https://ggplot2.tidyverse.org/</a>.</p>
@@ -634,11 +726,11 @@ ggplot(mpg, aes(displ, hwy, colour = class)) +
 <h2><span class="header-section-number">2.8</span> Importing data</h2>
 <p>See <a href="https://r4ds.had.co.nz/data-import.html" class="uri">https://r4ds.had.co.nz/data-import.html</a>.</p>
 <p>Note that both the base <code>read.csv</code> and the <em>tidyverse</em> equivalent <code>readr::read_csv()</code> can both use URLs to read in data. That way you don’t have to download the data locally on your machine or worry about different versions.</p>
-<pre class="r"><code>## Example from HDA2020 course (https://statomics.github.io/HDA2020/)
-uk_foods &lt;- readr::read_csv(
-  file = &quot;https://raw.githubusercontent.com/statOmics/HDA2020/data/ukFoods.csv&quot;,
-  col_names = TRUE
-)</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="co">## Example from HDA2020 course (https://statomics.github.io/HDA2020/)</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a>uk_foods &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(</span>
+<span id="cb21-3"><a href="#cb21-3"></a>  <span class="dt">file =</span> <span class="st">&quot;https://raw.githubusercontent.com/statOmics/HDA2020/data/ukFoods.csv&quot;</span>,</span>
+<span id="cb21-4"><a href="#cb21-4"></a>  <span class="dt">col_names =</span> <span class="ot">TRUE</span></span>
+<span id="cb21-5"><a href="#cb21-5"></a>)</span></code></pre></div>
 <pre><code>## New names:
 ## * `` -&gt; ...1</code></pre>
 <pre><code>## Rows: 17 Columns: 5</code></pre>
@@ -649,7 +741,7 @@ uk_foods &lt;- readr::read_csv(
 <pre><code>## 
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<pre class="r"><code>uk_foods</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>uk_foods</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["...1"],"name":[1],"type":["chr"],"align":["left"]},{"label":["England"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Wales"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Scotland"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["N.Ireland"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"Cheese","2":"105","3":"103","4":"103","5":"66"},{"1":"Carcass_meat","2":"245","3":"227","4":"242","5":"267"},{"1":"Other_meat","2":"685","3":"803","4":"750","5":"586"},{"1":"Fish","2":"147","3":"160","4":"122","5":"93"},{"1":"Fats_and_oils","2":"193","3":"235","4":"184","5":"209"},{"1":"Sugars","2":"156","3":"175","4":"147","5":"139"},{"1":"Fresh_potatoes","2":"720","3":"874","4":"566","5":"1033"},{"1":"Fresh_Veg","2":"253","3":"265","4":"171","5":"143"},{"1":"Other_Veg","2":"488","3":"570","4":"418","5":"355"},{"1":"Processed_potatoes","2":"198","3":"203","4":"220","5":"187"},{"1":"Processed_Veg","2":"360","3":"365","4":"337","5":"334"},{"1":"Fresh_fruit","2":"1102","3":"1137","4":"957","5":"674"},{"1":"Cereals","2":"1472","3":"1582","4":"1462","5":"1494"},{"1":"Beverages","2":"57","3":"73","4":"53","5":"47"},{"1":"Soft_drinks","2":"1374","3":"1256","4":"1572","5":"1506"},{"1":"Alcoholic_drinks","2":"375","3":"475","4":"458","5":"135"},{"1":"Confectionery","2":"54","3":"64","4":"62","5":"41"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -659,9 +751,9 @@ uk_foods &lt;- readr::read_csv(
 <div id="summary-of-data" class="section level2">
 <h2><span class="header-section-number">2.9</span> Summary of data</h2>
 <p>To get a quick summary of the data, you can use the <code>summary</code> function. This will return some summary statistics for the columns present in the data.</p>
-<pre class="r"><code>## iris is a default data set available in R
-## To get more info, use `?iris`
-summary(iris)</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="co">## iris is a default data set available in R</span></span>
+<span id="cb27-2"><a href="#cb27-2"></a><span class="co">## To get more info, use `?iris`</span></span>
+<span id="cb27-3"><a href="#cb27-3"></a><span class="kw">summary</span>(iris)</span></code></pre></div>
 <pre><code>##   Sepal.Length    Sepal.Width     Petal.Length    Petal.Width   
 ##  Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100  
 ##  1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300  
@@ -676,78 +768,78 @@ summary(iris)</code></pre>
 ##                 
 ##                 
 ## </code></pre>
-<pre class="r"><code>class(iris)</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="kw">class</span>(iris)</span></code></pre></div>
 <pre><code>## [1] &quot;data.frame&quot;</code></pre>
 </div>
 <div id="subsetting-data" class="section level2">
 <h2><span class="header-section-number">2.10</span> Subsetting data</h2>
 <p>You can select subsets of a <code>data.frame</code> by using square brackets <code>[]</code> and specifying the number(s) of the row(s) or column(s) you want to select. Alternatively, you can use the dollar sign <code>$</code> to select a column using its name.</p>
 <p>To reduce the output printed out, we will first make a subset of the <code>iris</code> data containing just the first 10 rows.</p>
-<pre class="r"><code># make subset of data to prevent long outputs
-iris_sub &lt;- iris[1:10, ]
-iris_sub</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="co"># make subset of data to prevent long outputs</span></span>
+<span id="cb31-2"><a href="#cb31-2"></a>iris_sub &lt;-<span class="st"> </span>iris[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, ]</span>
+<span id="cb31-3"><a href="#cb31-3"></a>iris_sub</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Sepal.Length"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Sepal.Width"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Petal.Length"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Petal.Width"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Species"],"name":[5],"type":["fct"],"align":["left"]}],"data":[{"1":"5.1","2":"3.5","3":"1.4","4":"0.2","5":"setosa","_rn_":"1"},{"1":"4.9","2":"3.0","3":"1.4","4":"0.2","5":"setosa","_rn_":"2"},{"1":"4.7","2":"3.2","3":"1.3","4":"0.2","5":"setosa","_rn_":"3"},{"1":"4.6","2":"3.1","3":"1.5","4":"0.2","5":"setosa","_rn_":"4"},{"1":"5.0","2":"3.6","3":"1.4","4":"0.2","5":"setosa","_rn_":"5"},{"1":"5.4","2":"3.9","3":"1.7","4":"0.4","5":"setosa","_rn_":"6"},{"1":"4.6","2":"3.4","3":"1.4","4":"0.3","5":"setosa","_rn_":"7"},{"1":"5.0","2":"3.4","3":"1.5","4":"0.2","5":"setosa","_rn_":"8"},{"1":"4.4","2":"2.9","3":"1.4","4":"0.2","5":"setosa","_rn_":"9"},{"1":"4.9","2":"3.1","3":"1.5","4":"0.1","5":"setosa","_rn_":"10"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-<pre class="r"><code># Select first column, single brackets returns data.frame
-iris_sub[1]</code></pre>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="co"># Select first column, single brackets returns data.frame</span></span>
+<span id="cb32-2"><a href="#cb32-2"></a>iris_sub[<span class="dv">1</span>]</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Sepal.Length"],"name":[1],"type":["dbl"],"align":["right"]}],"data":[{"1":"5.1","_rn_":"1"},{"1":"4.9","_rn_":"2"},{"1":"4.7","_rn_":"3"},{"1":"4.6","_rn_":"4"},{"1":"5.0","_rn_":"5"},{"1":"5.4","_rn_":"6"},{"1":"4.6","_rn_":"7"},{"1":"5.0","_rn_":"8"},{"1":"4.4","_rn_":"9"},{"1":"4.9","_rn_":"10"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-<pre class="r"><code>iris_sub[&quot;Sepal.Length&quot;]</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a>iris_sub[<span class="st">&quot;Sepal.Length&quot;</span>]</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Sepal.Length"],"name":[1],"type":["dbl"],"align":["right"]}],"data":[{"1":"5.1","_rn_":"1"},{"1":"4.9","_rn_":"2"},{"1":"4.7","_rn_":"3"},{"1":"4.6","_rn_":"4"},{"1":"5.0","_rn_":"5"},{"1":"5.4","_rn_":"6"},{"1":"4.6","_rn_":"7"},{"1":"5.0","_rn_":"8"},{"1":"4.4","_rn_":"9"},{"1":"4.9","_rn_":"10"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-<pre class="r"><code># double brackets returns vector
-iris_sub[[1]]</code></pre>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="co"># double brackets returns vector</span></span>
+<span id="cb34-2"><a href="#cb34-2"></a>iris_sub[[<span class="dv">1</span>]]</span></code></pre></div>
 <pre><code>##  [1] 5.1 4.9 4.7 4.6 5.0 5.4 4.6 5.0 4.4 4.9</code></pre>
-<pre class="r"><code>iris_sub[[&quot;Sepal.Length&quot;]]</code></pre>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a>iris_sub[[<span class="st">&quot;Sepal.Length&quot;</span>]]</span></code></pre></div>
 <pre><code>##  [1] 5.1 4.9 4.7 4.6 5.0 5.4 4.6 5.0 4.4 4.9</code></pre>
-<pre class="r"><code># using the dollar sign, also returns vector
-iris_sub$Sepal.Length</code></pre>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="co"># using the dollar sign, also returns vector</span></span>
+<span id="cb38-2"><a href="#cb38-2"></a>iris_sub<span class="op">$</span>Sepal.Length</span></code></pre></div>
 <pre><code>##  [1] 5.1 4.9 4.7 4.6 5.0 5.4 4.6 5.0 4.4 4.9</code></pre>
-<pre class="r"><code># Select all columns except the first one
-iris_sub[-1]</code></pre>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a><span class="co"># Select all columns except the first one</span></span>
+<span id="cb40-2"><a href="#cb40-2"></a>iris_sub[<span class="op">-</span><span class="dv">1</span>]</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Sepal.Width"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Petal.Length"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Petal.Width"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Species"],"name":[4],"type":["fct"],"align":["left"]}],"data":[{"1":"3.5","2":"1.4","3":"0.2","4":"setosa","_rn_":"1"},{"1":"3.0","2":"1.4","3":"0.2","4":"setosa","_rn_":"2"},{"1":"3.2","2":"1.3","3":"0.2","4":"setosa","_rn_":"3"},{"1":"3.1","2":"1.5","3":"0.2","4":"setosa","_rn_":"4"},{"1":"3.6","2":"1.4","3":"0.2","4":"setosa","_rn_":"5"},{"1":"3.9","2":"1.7","3":"0.4","4":"setosa","_rn_":"6"},{"1":"3.4","2":"1.4","3":"0.3","4":"setosa","_rn_":"7"},{"1":"3.4","2":"1.5","3":"0.2","4":"setosa","_rn_":"8"},{"1":"2.9","2":"1.4","3":"0.2","4":"setosa","_rn_":"9"},{"1":"3.1","2":"1.5","3":"0.1","4":"setosa","_rn_":"10"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-<pre class="r"><code># Selecting rows
-iris_sub[1, ] # Select the first row</code></pre>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a><span class="co"># Selecting rows</span></span>
+<span id="cb41-2"><a href="#cb41-2"></a>iris_sub[<span class="dv">1</span>, ] <span class="co"># Select the first row</span></span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Sepal.Length"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Sepal.Width"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Petal.Length"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Petal.Width"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Species"],"name":[5],"type":["fct"],"align":["left"]}],"data":[{"1":"5.1","2":"3.5","3":"1.4","4":"0.2","5":"setosa","_rn_":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-<pre class="r"><code>iris_sub[1:5,] # Select the first five rows</code></pre>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a>iris_sub[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,] <span class="co"># Select the first five rows</span></span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Sepal.Length"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Sepal.Width"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Petal.Length"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Petal.Width"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Species"],"name":[5],"type":["fct"],"align":["left"]}],"data":[{"1":"5.1","2":"3.5","3":"1.4","4":"0.2","5":"setosa","_rn_":"1"},{"1":"4.9","2":"3.0","3":"1.4","4":"0.2","5":"setosa","_rn_":"2"},{"1":"4.7","2":"3.2","3":"1.3","4":"0.2","5":"setosa","_rn_":"3"},{"1":"4.6","2":"3.1","3":"1.5","4":"0.2","5":"setosa","_rn_":"4"},{"1":"5.0","2":"3.6","3":"1.4","4":"0.2","5":"setosa","_rn_":"5"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-<pre class="r"><code>iris_sub[c(2, 4), ] # select the second and fourth rows</code></pre>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a>iris_sub[<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>), ] <span class="co"># select the second and fourth rows</span></span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Sepal.Length"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Sepal.Width"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Petal.Length"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Petal.Width"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Species"],"name":[5],"type":["fct"],"align":["left"]}],"data":[{"1":"4.9","2":"3.0","3":"1.4","4":"0.2","5":"setosa","_rn_":"2"},{"1":"4.6","2":"3.1","3":"1.5","4":"0.2","5":"setosa","_rn_":"4"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-<pre class="r"><code># columns and rows
-iris_sub[1:5, &quot;Sepal.Length&quot;] # first 5 rows of &quot;Sepal.Length&quot; column</code></pre>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a><span class="co"># columns and rows</span></span>
+<span id="cb44-2"><a href="#cb44-2"></a>iris_sub[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="st">&quot;Sepal.Length&quot;</span>] <span class="co"># first 5 rows of &quot;Sepal.Length&quot; column</span></span></code></pre></div>
 <pre><code>## [1] 5.1 4.9 4.7 4.6 5.0</code></pre>
-<pre class="r"><code>iris_sub[3, 2]  # third row, second column</code></pre>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a>iris_sub[<span class="dv">3</span>, <span class="dv">2</span>]  <span class="co"># third row, second column</span></span></code></pre></div>
 <pre><code>## [1] 3.2</code></pre>
 </div>
 <div id="including-r-object-values-or-results-in-the-text" class="section level2">
 <h2><span class="header-section-number">2.11</span> Including R object values or results in the text</h2>
 <p>You can add inline R code results by wrapping them inside <code>`r `</code>. This is useful for discussing the value of a result in your text. Instead of having to copy the value of a result (which is prone to error and not robust to changes), you can just call it inside the text. For example, we could calculate the mean sepal length of the iris flowers as follow:</p>
-<pre class="r"><code>mean(iris$Sepal.Length)</code></pre>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a><span class="kw">mean</span>(iris<span class="op">$</span>Sepal.Length)</span></code></pre></div>
 <pre><code>## [1] 5.843333</code></pre>
 <p>We could copy the value inside our text, but a better way is by just running the code inline as <code>mean(iris$Sepal.Length)</code> surrounded by <code>`r</code> and <code>`</code>. So we could say that the iris flowers in our data have a mean length of 5.8433333.</p>
 <p>Note: to actually see the value of the inline code, place your cursor inside the backticks <code>` `r</code> and press <code>Ctrl + Enter</code> or <code>Cmd + Enter</code>. When you knit your Rmd file and build the HTML output, the inline R code will be replaced by its output value.</p>
@@ -782,9 +874,9 @@ y_i = \beta_0 + \beta_1 x_i + \epsilon_i
 <h1><span class="header-section-number">4</span> Session Info</h1>
 <p>Finally, it’s always good practice to include the <a href="">Session Info</a> for your R session in your document. That way, other persons (including your future self) looking at your document can see what versions of R and loaded packages were used, which can be quite essential for reproducibility.</p>
 <p>You can also include the date with <code>Sys.time()</code> so you have a time stamp of when the report was compiled.</p>
-<pre class="r"><code>Sys.time()</code></pre>
-<pre><code>## [1] &quot;2021-10-22 10:30:15 UTC&quot;</code></pre>
-<pre class="r"><code>sessionInfo()</code></pre>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1"></a><span class="kw">Sys.time</span>()</span></code></pre></div>
+<pre><code>## [1] &quot;2021-10-26 10:50:06 UTC&quot;</code></pre>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1"></a><span class="kw">sessionInfo</span>()</span></code></pre></div>
 <pre><code>## R version 4.1.1 (2021-08-10)
 ## Platform: x86_64-apple-darwin17.0 (64-bit)
 ## Running under: macOS Catalina 10.15.7

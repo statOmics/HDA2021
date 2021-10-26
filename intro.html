@@ -35,8 +35,7 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script src="site_libs/navigation-1.1/codefolding.js"></script>
 <script src="site_libs/navigation-1.1/sourceembed.js"></script>
-<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
 <script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
@@ -51,17 +50,110 @@
   ul.task-list{list-style: none;}
     </style>
 
-<style type="text/css">code{white-space: pre;}</style>
-<script type="text/javascript">
-if (window.hljs) {
-  hljs.configure({languages: []});
-  hljs.initHighlightingOnLoad();
-  if (document.readyState && document.readyState === "complete") {
-    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
-  }
-}
-</script>
 
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
+.sourceCode .row {
+  width: 100%;
+}
+.sourceCode {
+  overflow-x: auto;
+}
+.code-folding-btn {
+  margin-right: -30px;
+}
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 
 
 <style type="text/css">
@@ -466,16 +558,16 @@ div.tocify {
 <h1><span class="header-section-number">2</span> Important tasks in high dimensional data analysis?</h1>
 <div id="example-kang-et-al.-2018s-droplet-based-scrna-seq-data-of-pbmcs-cells-from-8-lupus-patients-measured-before-and-after-6h-treatment-with-inf-beta-16-samples-in-total." class="section level2">
 <h2><span class="header-section-number">2.1</span> Example: Kang et al. (2018)’s droplet-based scRNA-seq data of PBMCs cells from 8 lupus patients measured before and after 6h-treatment with INF-<span class="math inline">\(\beta\)</span> (16 samples in total).</h2>
-<pre class="r"><code>library(tidyverse)
-
-## Packages to load and visualize the single-cell data
-library(ExperimentHub)
-library(scater)</code></pre>
-<pre class="r"><code>## Load Kang single-cell data from ExperimentHub
-eh &lt;- ExperimentHub()
-sce &lt;- eh[[&quot;EH2259&quot;]]
-
-sce</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2"></a></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="co">## Packages to load and visualize the single-cell data</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="kw">library</span>(ExperimentHub)</span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="kw">library</span>(scater)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co">## Load Kang single-cell data from ExperimentHub</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>eh &lt;-<span class="st"> </span><span class="kw">ExperimentHub</span>()</span>
+<span id="cb2-3"><a href="#cb2-3"></a>sce &lt;-<span class="st"> </span>eh[[<span class="st">&quot;EH2259&quot;</span>]]</span>
+<span id="cb2-4"><a href="#cb2-4"></a></span>
+<span id="cb2-5"><a href="#cb2-5"></a>sce</span></code></pre></div>
 <pre><code>class: SingleCellExperiment 
 dim: 35635 29065 
 metadata(0):
@@ -497,7 +589,7 @@ altExpNames(0):</code></pre>
 <ul>
 <li>Visualisation is a first essential step to learn from data</li>
 </ul>
-<pre class="r"><code>counts(sce)[18990:19000,9:20]</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">counts</span>(sce)[<span class="dv">18990</span><span class="op">:</span><span class="dv">19000</span>,<span class="dv">9</span><span class="op">:</span><span class="dv">20</span>]</span></code></pre></div>
 <pre><code>11 x 12 sparse Matrix of class &quot;dgCMatrix&quot;
                                                    
 RP11-467L20.10   . .   . . .   .  .  .  . .   .   .
@@ -515,9 +607,9 @@ AP003733.1       . .   . . .   .  .  .  . .   .   .</code></pre>
 <li>It is impossible to learn about the structure in the data by staring at the data matrix.</li>
 <li>We should be able to explore the data in a low dimensional projection</li>
 </ul>
-<pre class="r"><code>plotReducedDim(sce, dimred=&quot;TSNE&quot;, colour_by=&quot;cell&quot;)</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">plotReducedDim</span>(sce, <span class="dt">dimred=</span><span class="st">&quot;TSNE&quot;</span>, <span class="dt">colour_by=</span><span class="st">&quot;cell&quot;</span>)</span></code></pre></div>
 <p><img src="intro_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
-<pre class="r"><code>plotReducedDim(sce, dimred=&quot;TSNE&quot;, colour_by=&quot;stim&quot;)</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">plotReducedDim</span>(sce, <span class="dt">dimred=</span><span class="st">&quot;TSNE&quot;</span>, <span class="dt">colour_by=</span><span class="st">&quot;stim&quot;</span>)</span></code></pre></div>
 <p><img src="intro_files/figure-html/unnamed-chunk-3-2.png" width="672" /></p>
 <ul>
 <li>Note, that we see huge effect of treatment. If I see this I am always on my guard!</li>
@@ -526,7 +618,7 @@ AP003733.1       . .   . . .   .  .  .  . .   .   .</code></pre>
 </div>
 <div id="prediction" class="section level2">
 <h2><span class="header-section-number">2.3</span> Prediction</h2>
-<pre class="r"><code>plotReducedDim(sce, dimred=&quot;TSNE&quot;, colour_by=&quot;cell&quot;)</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">plotReducedDim</span>(sce, <span class="dt">dimred=</span><span class="st">&quot;TSNE&quot;</span>, <span class="dt">colour_by=</span><span class="st">&quot;cell&quot;</span>)</span></code></pre></div>
 <p><img src="intro_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <ul>
 <li><p>In single cell analysis it is key to identify cell types in scRNA-seq data sets before in-depth investigations of their functional and pathological roles.</p></li>
@@ -542,7 +634,7 @@ AP003733.1       . .   . . .   .  .  .  . .   .   .</code></pre>
 </div>
 <div id="large-scale-hypothesis-testing" class="section level2">
 <h2><span class="header-section-number">2.4</span> Large scale hypothesis testing</h2>
-<pre class="r"><code>plotReducedDim(sce, dimred=&quot;TSNE&quot;, colour_by=&quot;cell&quot;, shape_by=&quot;stim&quot;)</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">plotReducedDim</span>(sce, <span class="dt">dimred=</span><span class="st">&quot;TSNE&quot;</span>, <span class="dt">colour_by=</span><span class="st">&quot;cell&quot;</span>, <span class="dt">shape_by=</span><span class="st">&quot;stim&quot;</span>)</span></code></pre></div>
 <p><img src="intro_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <ul>
 <li>Which genes are differentially expressed between control and stimulated treatment (assess in each cell type)</li>
@@ -672,11 +764,11 @@ E[\hat{\boldsymbol{\beta}}]=\boldsymbol{\beta}
 \end{array}\right]
 \]</span></li>
 </ul>
-<pre class="r"><code>set.seed(4)
-x1 &lt;- c(2, 0, 0)
-x2 &lt;- c(0, 2, 0)
-y &lt;- x1 * 0.5 + x2 * 0.5 + rnorm(3, 2)
-fit &lt;- lm(y ~ -1 + x1 + x2)</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">set.seed</span>(<span class="dv">4</span>)</span>
+<span id="cb10-2"><a href="#cb10-2"></a>x1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb10-3"><a href="#cb10-3"></a>x2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">0</span>)</span>
+<span id="cb10-4"><a href="#cb10-4"></a>y &lt;-<span class="st"> </span>x1 <span class="op">*</span><span class="st"> </span><span class="fl">0.5</span> <span class="op">+</span><span class="st"> </span>x2 <span class="op">*</span><span class="st"> </span><span class="fl">0.5</span> <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">3</span>, <span class="dv">2</span>)</span>
+<span id="cb10-5"><a href="#cb10-5"></a>fit &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span><span class="dv">-1</span> <span class="op">+</span><span class="st"> </span>x1 <span class="op">+</span><span class="st"> </span>x2)</span></code></pre></div>
 <ul>
 <li><span class="math inline">\(\mathbf{Y}\)</span> is now given by</li>
 </ul>
@@ -691,81 +783,81 @@ fit &lt;- lm(y ~ -1 + x1 + x2)</code></pre>
 <ul>
 <li>The actual values of <span class="math inline">\(\mathbf{Y}\)</span> are:</li>
 </ul>
-<pre class="r"><code>## True Y
-y</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="co">## True Y</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a>y</span></code></pre></div>
 <pre><code>[1] 3.216755 2.457507 2.891145</code></pre>
-<pre class="r"><code>## Fitted Y
-fit$fitted.values</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="co">## Fitted Y</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a>fit<span class="op">$</span>fitted.values</span></code></pre></div>
 <pre><code>       1        2        3 
 3.216755 2.457507 0.000000 </code></pre>
 <div id="visualise-fit" class="section level4">
 <h4><span class="header-section-number">3.4.2.1</span> Visualise fit</h4>
-<pre class="r"><code># predict values on regular xy grid
-x1pred &lt;- seq(-1, 3, length.out = 10)
-x2pred &lt;- seq(-1, 3, length.out = 10)
-xy &lt;- expand.grid(x1 = x1pred,
-x2 = x2pred)
-ypred &lt;- matrix (nrow = 30, ncol = 30,
-data = predict(fit, newdata = data.frame(xy),
-interval = &quot;prediction&quot;))
-
-library(plot3D)
-
-
-# fitted points for droplines to surface
-th=20
-ph=5
-scatter3D(x1,
-  x2,
-  y,
-  pch = 16,
-  col=&quot;darkblue&quot;,
-  cex = 1,
-  theta = th,
-  ticktype = &quot;detailed&quot;,
-  xlab = &quot;x1&quot;,
-  ylab = &quot;x2&quot;,
-  zlab = &quot;y&quot;,
-  colvar=FALSE,
-  bty = &quot;g&quot;,
-  xlim=c(-1,3),
-  ylim=c(-1,3),
-  zlim=c(-2,4))
-
-for (i in 1:3)
-  lines3D(
-    x = rep(x1[i],2),
-    y = rep(x2[i],2),
-    z = c(y[i],fit$fitted[i]),
-    col=&quot;darkblue&quot;,
-    add=TRUE,
-    lty=2)
-
-z.pred3D &lt;- outer(
-  x1pred,
-  x2pred,
-  function(x1,x2)
-  {
-    fit$coef[1]*x1+fit$coef[2]*x2
-  })
-
-x.pred3D &lt;- outer(
-  x1pred,
-  x2pred,
-  function(x,y) x)
-
-y.pred3D &lt;- outer(
-  x1pred,
-  x2pred,
-  function(x,y) y)
-
-surf3D(
-  x.pred3D,
-  y.pred3D,
-  z.pred3D,
-  col=&quot;blue&quot;,
-  facets=NA,
-  add=TRUE)</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="co"># predict values on regular xy grid</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a>x1pred &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">3</span>, <span class="dt">length.out =</span> <span class="dv">10</span>)</span>
+<span id="cb15-3"><a href="#cb15-3"></a>x2pred &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">3</span>, <span class="dt">length.out =</span> <span class="dv">10</span>)</span>
+<span id="cb15-4"><a href="#cb15-4"></a>xy &lt;-<span class="st"> </span><span class="kw">expand.grid</span>(<span class="dt">x1 =</span> x1pred,</span>
+<span id="cb15-5"><a href="#cb15-5"></a><span class="dt">x2 =</span> x2pred)</span>
+<span id="cb15-6"><a href="#cb15-6"></a>ypred &lt;-<span class="st"> </span><span class="kw">matrix</span> (<span class="dt">nrow =</span> <span class="dv">30</span>, <span class="dt">ncol =</span> <span class="dv">30</span>,</span>
+<span id="cb15-7"><a href="#cb15-7"></a><span class="dt">data =</span> <span class="kw">predict</span>(fit, <span class="dt">newdata =</span> <span class="kw">data.frame</span>(xy),</span>
+<span id="cb15-8"><a href="#cb15-8"></a><span class="dt">interval =</span> <span class="st">&quot;prediction&quot;</span>))</span>
+<span id="cb15-9"><a href="#cb15-9"></a></span>
+<span id="cb15-10"><a href="#cb15-10"></a><span class="kw">library</span>(plot3D)</span>
+<span id="cb15-11"><a href="#cb15-11"></a></span>
+<span id="cb15-12"><a href="#cb15-12"></a></span>
+<span id="cb15-13"><a href="#cb15-13"></a><span class="co"># fitted points for droplines to surface</span></span>
+<span id="cb15-14"><a href="#cb15-14"></a>th=<span class="dv">20</span></span>
+<span id="cb15-15"><a href="#cb15-15"></a>ph=<span class="dv">5</span></span>
+<span id="cb15-16"><a href="#cb15-16"></a><span class="kw">scatter3D</span>(x1,</span>
+<span id="cb15-17"><a href="#cb15-17"></a>  x2,</span>
+<span id="cb15-18"><a href="#cb15-18"></a>  y,</span>
+<span id="cb15-19"><a href="#cb15-19"></a>  <span class="dt">pch =</span> <span class="dv">16</span>,</span>
+<span id="cb15-20"><a href="#cb15-20"></a>  <span class="dt">col=</span><span class="st">&quot;darkblue&quot;</span>,</span>
+<span id="cb15-21"><a href="#cb15-21"></a>  <span class="dt">cex =</span> <span class="dv">1</span>,</span>
+<span id="cb15-22"><a href="#cb15-22"></a>  <span class="dt">theta =</span> th,</span>
+<span id="cb15-23"><a href="#cb15-23"></a>  <span class="dt">ticktype =</span> <span class="st">&quot;detailed&quot;</span>,</span>
+<span id="cb15-24"><a href="#cb15-24"></a>  <span class="dt">xlab =</span> <span class="st">&quot;x1&quot;</span>,</span>
+<span id="cb15-25"><a href="#cb15-25"></a>  <span class="dt">ylab =</span> <span class="st">&quot;x2&quot;</span>,</span>
+<span id="cb15-26"><a href="#cb15-26"></a>  <span class="dt">zlab =</span> <span class="st">&quot;y&quot;</span>,</span>
+<span id="cb15-27"><a href="#cb15-27"></a>  <span class="dt">colvar=</span><span class="ot">FALSE</span>,</span>
+<span id="cb15-28"><a href="#cb15-28"></a>  <span class="dt">bty =</span> <span class="st">&quot;g&quot;</span>,</span>
+<span id="cb15-29"><a href="#cb15-29"></a>  <span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">3</span>),</span>
+<span id="cb15-30"><a href="#cb15-30"></a>  <span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">3</span>),</span>
+<span id="cb15-31"><a href="#cb15-31"></a>  <span class="dt">zlim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">2</span>,<span class="dv">4</span>))</span>
+<span id="cb15-32"><a href="#cb15-32"></a></span>
+<span id="cb15-33"><a href="#cb15-33"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)</span>
+<span id="cb15-34"><a href="#cb15-34"></a>  <span class="kw">lines3D</span>(</span>
+<span id="cb15-35"><a href="#cb15-35"></a>    <span class="dt">x =</span> <span class="kw">rep</span>(x1[i],<span class="dv">2</span>),</span>
+<span id="cb15-36"><a href="#cb15-36"></a>    <span class="dt">y =</span> <span class="kw">rep</span>(x2[i],<span class="dv">2</span>),</span>
+<span id="cb15-37"><a href="#cb15-37"></a>    <span class="dt">z =</span> <span class="kw">c</span>(y[i],fit<span class="op">$</span>fitted[i]),</span>
+<span id="cb15-38"><a href="#cb15-38"></a>    <span class="dt">col=</span><span class="st">&quot;darkblue&quot;</span>,</span>
+<span id="cb15-39"><a href="#cb15-39"></a>    <span class="dt">add=</span><span class="ot">TRUE</span>,</span>
+<span id="cb15-40"><a href="#cb15-40"></a>    <span class="dt">lty=</span><span class="dv">2</span>)</span>
+<span id="cb15-41"><a href="#cb15-41"></a></span>
+<span id="cb15-42"><a href="#cb15-42"></a>z.pred3D &lt;-<span class="st"> </span><span class="kw">outer</span>(</span>
+<span id="cb15-43"><a href="#cb15-43"></a>  x1pred,</span>
+<span id="cb15-44"><a href="#cb15-44"></a>  x2pred,</span>
+<span id="cb15-45"><a href="#cb15-45"></a>  <span class="cf">function</span>(x1,x2)</span>
+<span id="cb15-46"><a href="#cb15-46"></a>  {</span>
+<span id="cb15-47"><a href="#cb15-47"></a>    fit<span class="op">$</span>coef[<span class="dv">1</span>]<span class="op">*</span>x1<span class="op">+</span>fit<span class="op">$</span>coef[<span class="dv">2</span>]<span class="op">*</span>x2</span>
+<span id="cb15-48"><a href="#cb15-48"></a>  })</span>
+<span id="cb15-49"><a href="#cb15-49"></a></span>
+<span id="cb15-50"><a href="#cb15-50"></a>x.pred3D &lt;-<span class="st"> </span><span class="kw">outer</span>(</span>
+<span id="cb15-51"><a href="#cb15-51"></a>  x1pred,</span>
+<span id="cb15-52"><a href="#cb15-52"></a>  x2pred,</span>
+<span id="cb15-53"><a href="#cb15-53"></a>  <span class="cf">function</span>(x,y) x)</span>
+<span id="cb15-54"><a href="#cb15-54"></a></span>
+<span id="cb15-55"><a href="#cb15-55"></a>y.pred3D &lt;-<span class="st"> </span><span class="kw">outer</span>(</span>
+<span id="cb15-56"><a href="#cb15-56"></a>  x1pred,</span>
+<span id="cb15-57"><a href="#cb15-57"></a>  x2pred,</span>
+<span id="cb15-58"><a href="#cb15-58"></a>  <span class="cf">function</span>(x,y) y)</span>
+<span id="cb15-59"><a href="#cb15-59"></a></span>
+<span id="cb15-60"><a href="#cb15-60"></a><span class="kw">surf3D</span>(</span>
+<span id="cb15-61"><a href="#cb15-61"></a>  x.pred3D,</span>
+<span id="cb15-62"><a href="#cb15-62"></a>  y.pred3D,</span>
+<span id="cb15-63"><a href="#cb15-63"></a>  z.pred3D,</span>
+<span id="cb15-64"><a href="#cb15-64"></a>  <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>,</span>
+<span id="cb15-65"><a href="#cb15-65"></a>  <span class="dt">facets=</span><span class="ot">NA</span>,</span>
+<span id="cb15-66"><a href="#cb15-66"></a>  <span class="dt">add=</span><span class="ot">TRUE</span>)</span></code></pre></div>
 <p><img src="intro_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 </div>
 <div id="projection" class="section level4">
@@ -781,21 +873,21 @@ surf3D(
 <ol style="list-style-type: decimal">
 <li>Plane spanned by column space:</li>
 </ol>
-<pre class="r"><code>arrows3D(
-  0, 0, 0, x1[1], x1[2], x1[3],
-  xlim = c(0, 5), ylim = c(0, 5), zlim = c(0, 5), bty = &quot;g&quot;,
-  theta = th, col = 2, ticktype = &quot;detailed&quot;,
-  xlab = &quot;observation 1&quot;, ylab = &quot;observation 2&quot;, zlab = &quot;observation 3&quot;
-)
-text3D(x1[1],x1[2],x1[3],labels=&quot;X1&quot;,col=2,add=TRUE)
-arrows3D(0,0,0,x2[1],x2[2],x2[3],add=TRUE,col=2)
-text3D(x2[1],x2[2],x2[3],labels=&quot;X2&quot;,col=2,add=TRUE)</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="kw">arrows3D</span>(</span>
+<span id="cb16-2"><a href="#cb16-2"></a>  <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, x1[<span class="dv">1</span>], x1[<span class="dv">2</span>], x1[<span class="dv">3</span>],</span>
+<span id="cb16-3"><a href="#cb16-3"></a>  <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">5</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">5</span>), <span class="dt">zlim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">5</span>), <span class="dt">bty =</span> <span class="st">&quot;g&quot;</span>,</span>
+<span id="cb16-4"><a href="#cb16-4"></a>  <span class="dt">theta =</span> th, <span class="dt">col =</span> <span class="dv">2</span>, <span class="dt">ticktype =</span> <span class="st">&quot;detailed&quot;</span>,</span>
+<span id="cb16-5"><a href="#cb16-5"></a>  <span class="dt">xlab =</span> <span class="st">&quot;observation 1&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;observation 2&quot;</span>, <span class="dt">zlab =</span> <span class="st">&quot;observation 3&quot;</span></span>
+<span id="cb16-6"><a href="#cb16-6"></a>)</span>
+<span id="cb16-7"><a href="#cb16-7"></a><span class="kw">text3D</span>(x1[<span class="dv">1</span>],x1[<span class="dv">2</span>],x1[<span class="dv">3</span>],<span class="dt">labels=</span><span class="st">&quot;X1&quot;</span>,<span class="dt">col=</span><span class="dv">2</span>,<span class="dt">add=</span><span class="ot">TRUE</span>)</span>
+<span id="cb16-8"><a href="#cb16-8"></a><span class="kw">arrows3D</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,x2[<span class="dv">1</span>],x2[<span class="dv">2</span>],x2[<span class="dv">3</span>],<span class="dt">add=</span><span class="ot">TRUE</span>,<span class="dt">col=</span><span class="dv">2</span>)</span>
+<span id="cb16-9"><a href="#cb16-9"></a><span class="kw">text3D</span>(x2[<span class="dv">1</span>],x2[<span class="dv">2</span>],x2[<span class="dv">3</span>],<span class="dt">labels=</span><span class="st">&quot;X2&quot;</span>,<span class="dt">col=</span><span class="dv">2</span>,<span class="dt">add=</span><span class="ot">TRUE</span>)</span></code></pre></div>
 <p><img src="intro_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <ol start="2" style="list-style-type: decimal">
 <li>Vector of Y:</li>
 </ol>
 <p>Actual values of <span class="math inline">\(\mathbf{Y}\)</span>:</p>
-<pre class="r"><code>y</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>y</span></code></pre></div>
 <pre><code>[1] 3.216755 2.457507 2.891145</code></pre>
 <p><span class="math display">\[
 \mathbf{Y}=\left[\begin{array}{c}
@@ -804,23 +896,23 @@ text3D(x2[1],x2[2],x2[3],labels=&quot;X2&quot;,col=2,add=TRUE)</code></pre>
 2.8911446
 \end{array}\right]
 \]</span></p>
-<pre class="r"><code>arrows3D(
-  0, 0, 0, x1[1], x1[2], x1[3],
-  xlim = c(0, 5), ylim = c(0, 5), zlim = c(0, 5), bty = &quot;g&quot;,
-  theta = th, col = 2, ticktype = &quot;detailed&quot;,
-  xlab = &quot;observation 1&quot;, ylab = &quot;observation 2&quot;, zlab = &quot;observation 3&quot;
-)
-text3D(x1[1],x1[2],x1[3],labels=&quot;X1&quot;,col=2,add=TRUE)
-arrows3D(0,0,0,x2[1],x2[2],x2[3],add=TRUE,col=2)
-text3D(x2[1],x2[2],x2[3],labels=&quot;X2&quot;,col=2,add=TRUE)
-arrows3D(0,0,0,y[1],y[2],y[3],add=TRUE,col=&quot;darkblue&quot;)
-text3D(y[1],y[2],y[3],labels=&quot;Y&quot;,col=&quot;darkblue&quot;,add=TRUE)</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="kw">arrows3D</span>(</span>
+<span id="cb19-2"><a href="#cb19-2"></a>  <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, x1[<span class="dv">1</span>], x1[<span class="dv">2</span>], x1[<span class="dv">3</span>],</span>
+<span id="cb19-3"><a href="#cb19-3"></a>  <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">5</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">5</span>), <span class="dt">zlim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">5</span>), <span class="dt">bty =</span> <span class="st">&quot;g&quot;</span>,</span>
+<span id="cb19-4"><a href="#cb19-4"></a>  <span class="dt">theta =</span> th, <span class="dt">col =</span> <span class="dv">2</span>, <span class="dt">ticktype =</span> <span class="st">&quot;detailed&quot;</span>,</span>
+<span id="cb19-5"><a href="#cb19-5"></a>  <span class="dt">xlab =</span> <span class="st">&quot;observation 1&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;observation 2&quot;</span>, <span class="dt">zlab =</span> <span class="st">&quot;observation 3&quot;</span></span>
+<span id="cb19-6"><a href="#cb19-6"></a>)</span>
+<span id="cb19-7"><a href="#cb19-7"></a><span class="kw">text3D</span>(x1[<span class="dv">1</span>],x1[<span class="dv">2</span>],x1[<span class="dv">3</span>],<span class="dt">labels=</span><span class="st">&quot;X1&quot;</span>,<span class="dt">col=</span><span class="dv">2</span>,<span class="dt">add=</span><span class="ot">TRUE</span>)</span>
+<span id="cb19-8"><a href="#cb19-8"></a><span class="kw">arrows3D</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,x2[<span class="dv">1</span>],x2[<span class="dv">2</span>],x2[<span class="dv">3</span>],<span class="dt">add=</span><span class="ot">TRUE</span>,<span class="dt">col=</span><span class="dv">2</span>)</span>
+<span id="cb19-9"><a href="#cb19-9"></a><span class="kw">text3D</span>(x2[<span class="dv">1</span>],x2[<span class="dv">2</span>],x2[<span class="dv">3</span>],<span class="dt">labels=</span><span class="st">&quot;X2&quot;</span>,<span class="dt">col=</span><span class="dv">2</span>,<span class="dt">add=</span><span class="ot">TRUE</span>)</span>
+<span id="cb19-10"><a href="#cb19-10"></a><span class="kw">arrows3D</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,y[<span class="dv">1</span>],y[<span class="dv">2</span>],y[<span class="dv">3</span>],<span class="dt">add=</span><span class="ot">TRUE</span>,<span class="dt">col=</span><span class="st">&quot;darkblue&quot;</span>)</span>
+<span id="cb19-11"><a href="#cb19-11"></a><span class="kw">text3D</span>(y[<span class="dv">1</span>],y[<span class="dv">2</span>],y[<span class="dv">3</span>],<span class="dt">labels=</span><span class="st">&quot;Y&quot;</span>,<span class="dt">col=</span><span class="st">&quot;darkblue&quot;</span>,<span class="dt">add=</span><span class="ot">TRUE</span>)</span></code></pre></div>
 <p><img src="intro_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 <ol start="3" style="list-style-type: decimal">
 <li>Projection of Y onto column space</li>
 </ol>
 <p>Actual values of fitted values <span class="math inline">\(\mathbf{\hat{Y}}\)</span>:</p>
-<pre class="r"><code>fitted.values(fit)</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="kw">fitted.values</span>(fit)</span></code></pre></div>
 <pre><code>       1        2        3 
 3.216755 2.457507 0.000000 </code></pre>
 <p><span class="math display">\[
@@ -830,20 +922,20 @@ text3D(y[1],y[2],y[3],labels=&quot;Y&quot;,col=&quot;darkblue&quot;,add=TRUE)</c
 0
 \end{array}\right]
 \]</span></p>
-<pre class="r"><code>arrows3D(
-  0, 0, 0, x1[1], x1[2], x1[3],
-  xlim = c(0, 5), ylim = c(0, 5), zlim = c(0, 5), bty = &quot;g&quot;,
-  theta = th, col = 2, ticktype = &quot;detailed&quot;,
-  xlab = &quot;observation 1&quot;, ylab = &quot;observation 2&quot;, zlab = &quot;observation 3&quot;
-)
-text3D(x1[1],x1[2],x1[3],labels=&quot;X1&quot;,col=2,add=TRUE)
-arrows3D(0,0,0,x2[1],x2[2],x2[3],add=TRUE,col=2)
-text3D(x2[1],x2[2],x2[3],labels=&quot;X2&quot;,col=2,add=TRUE)
-arrows3D(0,0,0,y[1],y[2],y[3],add=TRUE,col=&quot;darkblue&quot;)
-text3D(y[1],y[2],y[3],labels=&quot;Y&quot;,col=&quot;darkblue&quot;,add=TRUE)
-arrows3D(0,0,0,fit$fitted[1],fit$fitted[2],fit$fitted[3],add=TRUE,col=&quot;darkblue&quot;)
-segments3D(y[1],y[2],y[3],fit$fitted[1],fit$fitted[2],fit$fitted[3],add=TRUE,lty=2,col=&quot;darkblue&quot;)
-text3D(fit$fitted[1],fit$fitted[2],fit$fitted[3],labels=&quot;fit&quot;,col=&quot;darkblue&quot;,add=TRUE)</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="kw">arrows3D</span>(</span>
+<span id="cb22-2"><a href="#cb22-2"></a>  <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, x1[<span class="dv">1</span>], x1[<span class="dv">2</span>], x1[<span class="dv">3</span>],</span>
+<span id="cb22-3"><a href="#cb22-3"></a>  <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">5</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">5</span>), <span class="dt">zlim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">5</span>), <span class="dt">bty =</span> <span class="st">&quot;g&quot;</span>,</span>
+<span id="cb22-4"><a href="#cb22-4"></a>  <span class="dt">theta =</span> th, <span class="dt">col =</span> <span class="dv">2</span>, <span class="dt">ticktype =</span> <span class="st">&quot;detailed&quot;</span>,</span>
+<span id="cb22-5"><a href="#cb22-5"></a>  <span class="dt">xlab =</span> <span class="st">&quot;observation 1&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;observation 2&quot;</span>, <span class="dt">zlab =</span> <span class="st">&quot;observation 3&quot;</span></span>
+<span id="cb22-6"><a href="#cb22-6"></a>)</span>
+<span id="cb22-7"><a href="#cb22-7"></a><span class="kw">text3D</span>(x1[<span class="dv">1</span>],x1[<span class="dv">2</span>],x1[<span class="dv">3</span>],<span class="dt">labels=</span><span class="st">&quot;X1&quot;</span>,<span class="dt">col=</span><span class="dv">2</span>,<span class="dt">add=</span><span class="ot">TRUE</span>)</span>
+<span id="cb22-8"><a href="#cb22-8"></a><span class="kw">arrows3D</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,x2[<span class="dv">1</span>],x2[<span class="dv">2</span>],x2[<span class="dv">3</span>],<span class="dt">add=</span><span class="ot">TRUE</span>,<span class="dt">col=</span><span class="dv">2</span>)</span>
+<span id="cb22-9"><a href="#cb22-9"></a><span class="kw">text3D</span>(x2[<span class="dv">1</span>],x2[<span class="dv">2</span>],x2[<span class="dv">3</span>],<span class="dt">labels=</span><span class="st">&quot;X2&quot;</span>,<span class="dt">col=</span><span class="dv">2</span>,<span class="dt">add=</span><span class="ot">TRUE</span>)</span>
+<span id="cb22-10"><a href="#cb22-10"></a><span class="kw">arrows3D</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,y[<span class="dv">1</span>],y[<span class="dv">2</span>],y[<span class="dv">3</span>],<span class="dt">add=</span><span class="ot">TRUE</span>,<span class="dt">col=</span><span class="st">&quot;darkblue&quot;</span>)</span>
+<span id="cb22-11"><a href="#cb22-11"></a><span class="kw">text3D</span>(y[<span class="dv">1</span>],y[<span class="dv">2</span>],y[<span class="dv">3</span>],<span class="dt">labels=</span><span class="st">&quot;Y&quot;</span>,<span class="dt">col=</span><span class="st">&quot;darkblue&quot;</span>,<span class="dt">add=</span><span class="ot">TRUE</span>)</span>
+<span id="cb22-12"><a href="#cb22-12"></a><span class="kw">arrows3D</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,fit<span class="op">$</span>fitted[<span class="dv">1</span>],fit<span class="op">$</span>fitted[<span class="dv">2</span>],fit<span class="op">$</span>fitted[<span class="dv">3</span>],<span class="dt">add=</span><span class="ot">TRUE</span>,<span class="dt">col=</span><span class="st">&quot;darkblue&quot;</span>)</span>
+<span id="cb22-13"><a href="#cb22-13"></a><span class="kw">segments3D</span>(y[<span class="dv">1</span>],y[<span class="dv">2</span>],y[<span class="dv">3</span>],fit<span class="op">$</span>fitted[<span class="dv">1</span>],fit<span class="op">$</span>fitted[<span class="dv">2</span>],fit<span class="op">$</span>fitted[<span class="dv">3</span>],<span class="dt">add=</span><span class="ot">TRUE</span>,<span class="dt">lty=</span><span class="dv">2</span>,<span class="dt">col=</span><span class="st">&quot;darkblue&quot;</span>)</span>
+<span id="cb22-14"><a href="#cb22-14"></a><span class="kw">text3D</span>(fit<span class="op">$</span>fitted[<span class="dv">1</span>],fit<span class="op">$</span>fitted[<span class="dv">2</span>],fit<span class="op">$</span>fitted[<span class="dv">3</span>],<span class="dt">labels=</span><span class="st">&quot;fit&quot;</span>,<span class="dt">col=</span><span class="st">&quot;darkblue&quot;</span>,<span class="dt">add=</span><span class="ot">TRUE</span>)</span></code></pre></div>
 <p><img src="intro_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <ul>
 <li><p>Note, that it is also clear from the equation in the derivation of the LS that the residual is orthogonal on the column space: <span class="math display">\[
@@ -914,7 +1006,7 @@ text3D(fit$fitted[1],fit$fitted[2],fit$fitted[3],labels=&quot;fit&quot;,col=&quo
 <h1>Session info</h1>
 <details>
 <p><summary>Session info</summary></p>
-<pre><code>[1] &quot;2021-10-22 10:29:38 UTC&quot;</code></pre>
+<pre><code>[1] &quot;2021-10-26 10:49:20 UTC&quot;</code></pre>
 <pre><code>─ Session info ───────────────────────────────────────────────────────────────
  setting  value                       
  version  R version 4.1.1 (2021-08-10)
@@ -925,7 +1017,7 @@ text3D(fit$fitted[1],fit$fitted[2],fit$fitted[3],labels=&quot;fit&quot;,col=&quo
  collate  en_US.UTF-8                 
  ctype    en_US.UTF-8                 
  tz       UTC                         
- date     2021-10-22                  
+ date     2021-10-26                  
 
 ─ Packages ───────────────────────────────────────────────────────────────────
  ! package                * version  date       lib
@@ -1190,7 +1282,7 @@ text3D(fit$fitted[1],fit$fitted[2],fit$fitted[3],labels=&quot;fit&quot;,col=&quo
  Bioconductor                    
 
 [1] /Users/runner/work/HDDA21/HDDA21/renv/library/R-4.1/x86_64-apple-darwin17.0
-[2] /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpzIWIVR/renv-system-library
+[2] /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/Rtmp8uf4Ty/renv-system-library
 
  P ── Loaded and on-disk path mismatch.</code></pre>
 </details>

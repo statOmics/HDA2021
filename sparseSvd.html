@@ -35,8 +35,7 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script src="site_libs/navigation-1.1/codefolding.js"></script>
 <script src="site_libs/navigation-1.1/sourceembed.js"></script>
-<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
 <script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
@@ -51,17 +50,110 @@
   ul.task-list{list-style: none;}
     </style>
 
-<style type="text/css">code{white-space: pre;}</style>
-<script type="text/javascript">
-if (window.hljs) {
-  hljs.configure({languages: []});
-  hljs.initHighlightingOnLoad();
-  if (document.readyState && document.readyState === "complete") {
-    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
-  }
-}
-</script>
 
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
+.sourceCode .row {
+  width: 100%;
+}
+.sourceCode {
+  overflow-x: auto;
+}
+.code-folding-btn {
+  margin-right: -30px;
+}
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 
 
 <style type="text/css">
@@ -464,19 +556,19 @@ div.tocify {
 <li><p>Bioassay data on toxicity screening</p></li>
 <li><p>Gene expressions in a liver cell line are profiled for each compound (4000 genes)</p></li>
 </ul>
-<pre class="r"><code>toxData &lt;- read_csv(
-  &quot;https://raw.githubusercontent.com/statOmics/HDA2020/data/toxDataCentered.csv&quot;,
-  col_types = cols()
-)
-svdX &lt;- svd(toxData[,-1])</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>toxData &lt;-<span class="st"> </span><span class="kw">read_csv</span>(</span>
+<span id="cb6-2"><a href="#cb6-2"></a>  <span class="st">&quot;https://raw.githubusercontent.com/statOmics/HDA2020/data/toxDataCentered.csv&quot;</span>,</span>
+<span id="cb6-3"><a href="#cb6-3"></a>  <span class="dt">col_types =</span> <span class="kw">cols</span>()</span>
+<span id="cb6-4"><a href="#cb6-4"></a>)</span>
+<span id="cb6-5"><a href="#cb6-5"></a>svdX &lt;-<span class="st"> </span><span class="kw">svd</span>(toxData[,<span class="op">-</span><span class="dv">1</span>])</span></code></pre></div>
 <p>Data is already centered:</p>
-<pre class="r"><code>toxData %&gt;%
-  colMeans %&gt;%
-  range</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>toxData <span class="op">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="st">  </span>colMeans <span class="op">%&gt;%</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="st">  </span>range</span></code></pre></div>
 <pre><code>## [1] -1.804112e-17  2.937465e-17</code></pre>
-<pre class="r"><code> toxData %&gt;%
-  names %&gt;%
-  head</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a> toxData <span class="op">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="st">  </span>names <span class="op">%&gt;%</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="st">  </span>head</span></code></pre></div>
 <pre><code>## [1] &quot;BA&quot; &quot;X1&quot; &quot;X2&quot; &quot;X3&quot; &quot;X4&quot; &quot;X5&quot;</code></pre>
 <ul>
 <li>First column contains data on Bioassay.</li>
@@ -486,30 +578,30 @@ svdX &lt;- svd(toxData[,-1])</code></pre>
 </div>
 <div id="data-exploration" class="section level3">
 <h3><span class="header-section-number">1.1.3</span> Data exploration</h3>
-<pre class="r"><code>toxData %&gt;%
-  ggplot(aes(x=&quot;&quot;,y=BA)) +
-  geom_boxplot(outlier.shape=NA) +
-  geom_point(position=&quot;jitter&quot;)</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>toxData <span class="op">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span><span class="st">&quot;&quot;</span>,<span class="dt">y=</span>BA)) <span class="op">+</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">outlier.shape=</span><span class="ot">NA</span>) <span class="op">+</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">position=</span><span class="st">&quot;jitter&quot;</span>)</span></code></pre></div>
 <p><img src="sparseSvd_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
-<pre class="r"><code>svdX &lt;- toxData[,-1] %&gt;%
-  svd
-
-k &lt;- 2
-Vk &lt;- svdX$v[,1:k]
-Uk &lt;- svdX$u[,1:k]
-Dk &lt;- diag(svdX$d[1:k])
-Zk &lt;- Uk%*%Dk
-colnames(Zk) &lt;- paste0(&quot;Z&quot;,1:k)
-colnames(Vk) &lt;- paste0(&quot;V&quot;,1:k)
-
-pca &lt;- Zk %&gt;%
-  as.data.frame %&gt;%
-  mutate(BA = toxData %&gt;% pull(BA)) %&gt;%
-  ggplot(aes(x= Z1, y = Z2, color = BA)) +
-  geom_point(size = 3) +
-  scale_colour_gradient2(low = &quot;blue&quot;,mid=&quot;white&quot;,high=&quot;red&quot;) +
-  geom_point(size = 3, pch = 21, color = &quot;black&quot;)
-pca</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>svdX &lt;-<span class="st"> </span>toxData[,<span class="op">-</span><span class="dv">1</span>] <span class="op">%&gt;%</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="st">  </span>svd</span>
+<span id="cb12-3"><a href="#cb12-3"></a></span>
+<span id="cb12-4"><a href="#cb12-4"></a>k &lt;-<span class="st"> </span><span class="dv">2</span></span>
+<span id="cb12-5"><a href="#cb12-5"></a>Vk &lt;-<span class="st"> </span>svdX<span class="op">$</span>v[,<span class="dv">1</span><span class="op">:</span>k]</span>
+<span id="cb12-6"><a href="#cb12-6"></a>Uk &lt;-<span class="st"> </span>svdX<span class="op">$</span>u[,<span class="dv">1</span><span class="op">:</span>k]</span>
+<span id="cb12-7"><a href="#cb12-7"></a>Dk &lt;-<span class="st"> </span><span class="kw">diag</span>(svdX<span class="op">$</span>d[<span class="dv">1</span><span class="op">:</span>k])</span>
+<span id="cb12-8"><a href="#cb12-8"></a>Zk &lt;-<span class="st"> </span>Uk<span class="op">%*%</span>Dk</span>
+<span id="cb12-9"><a href="#cb12-9"></a><span class="kw">colnames</span>(Zk) &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;Z&quot;</span>,<span class="dv">1</span><span class="op">:</span>k)</span>
+<span id="cb12-10"><a href="#cb12-10"></a><span class="kw">colnames</span>(Vk) &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;V&quot;</span>,<span class="dv">1</span><span class="op">:</span>k)</span>
+<span id="cb12-11"><a href="#cb12-11"></a></span>
+<span id="cb12-12"><a href="#cb12-12"></a>pca &lt;-<span class="st"> </span>Zk <span class="op">%&gt;%</span></span>
+<span id="cb12-13"><a href="#cb12-13"></a><span class="st">  </span>as.data.frame <span class="op">%&gt;%</span></span>
+<span id="cb12-14"><a href="#cb12-14"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">BA =</span> toxData <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(BA)) <span class="op">%&gt;%</span></span>
+<span id="cb12-15"><a href="#cb12-15"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span> Z1, <span class="dt">y =</span> Z2, <span class="dt">color =</span> BA)) <span class="op">+</span></span>
+<span id="cb12-16"><a href="#cb12-16"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span></span>
+<span id="cb12-17"><a href="#cb12-17"></a><span class="st">  </span><span class="kw">scale_colour_gradient2</span>(<span class="dt">low =</span> <span class="st">&quot;blue&quot;</span>,<span class="dt">mid=</span><span class="st">&quot;white&quot;</span>,<span class="dt">high=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span></span>
+<span id="cb12-18"><a href="#cb12-18"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">3</span>, <span class="dt">pch =</span> <span class="dv">21</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>)</span>
+<span id="cb12-19"><a href="#cb12-19"></a>pca</span></code></pre></div>
 <p><img src="sparseSvd_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <ul>
 <li>Scores on the first two principal components (or MDS plot). - Each point corresponds to a compound.</li>
@@ -523,20 +615,20 @@ pca</code></pre>
 <li>We can add a vector for each gene to get a biplot, but this would require plotting 4000 vectors, which would render the plot unreadable.</li>
 </ul>
 <p>Alternative graph to look at the many loadings of the first two PCs.</p>
-<pre class="r"><code>grid.arrange(
-  Vk %&gt;%
-    as.data.frame %&gt;%
-    mutate(geneID = 1:nrow(Vk)) %&gt;%
-    ggplot(aes(x = geneID, y = V1)) +
-    geom_point(pch=21) +
-    geom_hline(yintercept = c(-2,0,2)*sd(Vk[,1]), col = &quot;red&quot;) ,
-  Vk %&gt;%
-    as.data.frame %&gt;%
-    mutate(geneID = 1:nrow(Vk)) %&gt;%
-    ggplot(aes(x = geneID, y = V2)) +
-    geom_point(pch=21) +
-    geom_hline(yintercept = c(-2,0,2)*sd(Vk[,2]), col = &quot;red&quot;),
-  ncol=2)</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">grid.arrange</span>(</span>
+<span id="cb13-2"><a href="#cb13-2"></a>  Vk <span class="op">%&gt;%</span></span>
+<span id="cb13-3"><a href="#cb13-3"></a><span class="st">    </span>as.data.frame <span class="op">%&gt;%</span></span>
+<span id="cb13-4"><a href="#cb13-4"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">geneID =</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(Vk)) <span class="op">%&gt;%</span></span>
+<span id="cb13-5"><a href="#cb13-5"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> geneID, <span class="dt">y =</span> V1)) <span class="op">+</span></span>
+<span id="cb13-6"><a href="#cb13-6"></a><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">pch=</span><span class="dv">21</span>) <span class="op">+</span></span>
+<span id="cb13-7"><a href="#cb13-7"></a><span class="st">    </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">2</span>)<span class="op">*</span><span class="kw">sd</span>(Vk[,<span class="dv">1</span>]), <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>) ,</span>
+<span id="cb13-8"><a href="#cb13-8"></a>  Vk <span class="op">%&gt;%</span></span>
+<span id="cb13-9"><a href="#cb13-9"></a><span class="st">    </span>as.data.frame <span class="op">%&gt;%</span></span>
+<span id="cb13-10"><a href="#cb13-10"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">geneID =</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(Vk)) <span class="op">%&gt;%</span></span>
+<span id="cb13-11"><a href="#cb13-11"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> geneID, <span class="dt">y =</span> V2)) <span class="op">+</span></span>
+<span id="cb13-12"><a href="#cb13-12"></a><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">pch=</span><span class="dv">21</span>) <span class="op">+</span></span>
+<span id="cb13-13"><a href="#cb13-13"></a><span class="st">    </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">2</span>)<span class="op">*</span><span class="kw">sd</span>(Vk[,<span class="dv">2</span>]), <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>),</span>
+<span id="cb13-14"><a href="#cb13-14"></a>  <span class="dt">ncol=</span><span class="dv">2</span>)</span></code></pre></div>
 <p><img src="sparseSvd_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <ul>
 <li><p>It is almost impossible to interpret the PCs because there are 4000 genes contributing to each PC.</p></li>
@@ -654,13 +746,13 @@ pca</code></pre>
 <h1><span class="header-section-number">3</span> Toxicogenomics analysis with a sparse PCA</h1>
 <div id="spca" class="section level2">
 <h2><span class="header-section-number">3.1</span> SPCA</h2>
-<pre class="r"><code>library(PMA)
-
-spcX &lt;- SPC(
-  toxData[,-1] %&gt;%
-    as.matrix,
-  K=30,
-  sumabsv = 5)</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="kw">library</span>(PMA)</span>
+<span id="cb14-2"><a href="#cb14-2"></a></span>
+<span id="cb14-3"><a href="#cb14-3"></a>spcX &lt;-<span class="st"> </span><span class="kw">SPC</span>(</span>
+<span id="cb14-4"><a href="#cb14-4"></a>  toxData[,<span class="op">-</span><span class="dv">1</span>] <span class="op">%&gt;%</span></span>
+<span id="cb14-5"><a href="#cb14-5"></a><span class="st">    </span>as.matrix,</span>
+<span id="cb14-6"><a href="#cb14-6"></a>  <span class="dt">K=</span><span class="dv">30</span>,</span>
+<span id="cb14-7"><a href="#cb14-7"></a>  <span class="dt">sumabsv =</span> <span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## 12345678910111213141516171819
 ## 1234567891011121314151617181920
 ## 1234567891011121314151617181920
@@ -691,10 +783,10 @@ spcX &lt;- SPC(
 ## 1234567891011121314151617181920
 ## 1234567891011121314151617181920
 ## 1234567891011121314151617181920</code></pre>
-<pre class="r"><code>par(mfrow=c(1,2))
-barplot(spcX$d^2,ylab=&quot;eigenvalue&quot;,cex.lab=1.5)
-barplot(spcX$prop.var.explained,
-     ylab=&quot;cummulative variance&quot;,cex.lab=1.5)</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb16-2"><a href="#cb16-2"></a><span class="kw">barplot</span>(spcX<span class="op">$</span>d<span class="op">^</span><span class="dv">2</span>,<span class="dt">ylab=</span><span class="st">&quot;eigenvalue&quot;</span>,<span class="dt">cex.lab=</span><span class="fl">1.5</span>)</span>
+<span id="cb16-3"><a href="#cb16-3"></a><span class="kw">barplot</span>(spcX<span class="op">$</span>prop.var.explained,</span>
+<span id="cb16-4"><a href="#cb16-4"></a>     <span class="dt">ylab=</span><span class="st">&quot;cummulative variance&quot;</span>,<span class="dt">cex.lab=</span><span class="fl">1.5</span>)</span></code></pre></div>
 <p><img src="sparseSvd_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <ul>
 <li><p>The plot on the left shows the eigenvalues (squared singular values) from the PMD.</p>
@@ -712,35 +804,35 @@ barplot(spcX$prop.var.explained,
 <div id="loading" class="section level2">
 <h2><span class="header-section-number">3.2</span> Loading</h2>
 <p>Loadings of the first two PCs, with constraint <span class="math inline">\(\Vert\mathbf{v}\Vert_1 &lt; 5\)</span>.</p>
-<pre class="r"><code>k &lt;- 2
-Vk &lt;- spcX$v[,1:k]
-colnames(Vk) &lt;- paste0(&quot;V&quot;,1:k)
-
-grid.arrange(
-  Vk %&gt;%
-    as.data.frame %&gt;%
-    mutate(geneID = 1:nrow(Vk)) %&gt;%
-    ggplot(aes(x = geneID, y = V1)) +
-    geom_point(pch=21) +
-    geom_hline(yintercept = c(-2,0,2)*sd(Vk[,1]), col = &quot;red&quot;) ,
-  Vk %&gt;%
-    as.data.frame %&gt;%
-    mutate(geneID = 1:nrow(Vk)) %&gt;%
-    ggplot(aes(x = geneID, y = V2)) +
-    geom_point(pch=21) +
-    geom_hline(yintercept = c(-2,0,2)*sd(Vk[,2]), col = &quot;red&quot;),
-  ncol=2)</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>k &lt;-<span class="st"> </span><span class="dv">2</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a>Vk &lt;-<span class="st"> </span>spcX<span class="op">$</span>v[,<span class="dv">1</span><span class="op">:</span>k]</span>
+<span id="cb17-3"><a href="#cb17-3"></a><span class="kw">colnames</span>(Vk) &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;V&quot;</span>,<span class="dv">1</span><span class="op">:</span>k)</span>
+<span id="cb17-4"><a href="#cb17-4"></a></span>
+<span id="cb17-5"><a href="#cb17-5"></a><span class="kw">grid.arrange</span>(</span>
+<span id="cb17-6"><a href="#cb17-6"></a>  Vk <span class="op">%&gt;%</span></span>
+<span id="cb17-7"><a href="#cb17-7"></a><span class="st">    </span>as.data.frame <span class="op">%&gt;%</span></span>
+<span id="cb17-8"><a href="#cb17-8"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">geneID =</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(Vk)) <span class="op">%&gt;%</span></span>
+<span id="cb17-9"><a href="#cb17-9"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> geneID, <span class="dt">y =</span> V1)) <span class="op">+</span></span>
+<span id="cb17-10"><a href="#cb17-10"></a><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">pch=</span><span class="dv">21</span>) <span class="op">+</span></span>
+<span id="cb17-11"><a href="#cb17-11"></a><span class="st">    </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">2</span>)<span class="op">*</span><span class="kw">sd</span>(Vk[,<span class="dv">1</span>]), <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>) ,</span>
+<span id="cb17-12"><a href="#cb17-12"></a>  Vk <span class="op">%&gt;%</span></span>
+<span id="cb17-13"><a href="#cb17-13"></a><span class="st">    </span>as.data.frame <span class="op">%&gt;%</span></span>
+<span id="cb17-14"><a href="#cb17-14"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">geneID =</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(Vk)) <span class="op">%&gt;%</span></span>
+<span id="cb17-15"><a href="#cb17-15"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> geneID, <span class="dt">y =</span> V2)) <span class="op">+</span></span>
+<span id="cb17-16"><a href="#cb17-16"></a><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">pch=</span><span class="dv">21</span>) <span class="op">+</span></span>
+<span id="cb17-17"><a href="#cb17-17"></a><span class="st">    </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">2</span>)<span class="op">*</span><span class="kw">sd</span>(Vk[,<span class="dv">2</span>]), <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>),</span>
+<span id="cb17-18"><a href="#cb17-18"></a>  <span class="dt">ncol=</span><span class="dv">2</span>)</span></code></pre></div>
 <p><img src="sparseSvd_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <p>These plots show the loadings of the first two sparse PCs. Many of the loadings are now exactly equal to zero. Only few genes show large loadings.</p>
 </div>
 <div id="change-constraint" class="section level2">
 <h2><span class="header-section-number">3.3</span> Change constraint</h2>
 <p>We now repeat the analysis, but with the constraint <span class="math inline">\(\Vert \mathbf{v} \Vert_1 &lt; 1\)</span>. This gives a much sparser solution with only two genes with non-zero loadings in each dimension.</p>
-<pre class="r"><code>spcX1 &lt;- SPC(
-  toxData[,-1] %&gt;%
-    as.matrix,
-  K=30,
-  sumabsv = 1)</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>spcX1 &lt;-<span class="st"> </span><span class="kw">SPC</span>(</span>
+<span id="cb18-2"><a href="#cb18-2"></a>  toxData[,<span class="op">-</span><span class="dv">1</span>] <span class="op">%&gt;%</span></span>
+<span id="cb18-3"><a href="#cb18-3"></a><span class="st">    </span>as.matrix,</span>
+<span id="cb18-4"><a href="#cb18-4"></a>  <span class="dt">K=</span><span class="dv">30</span>,</span>
+<span id="cb18-5"><a href="#cb18-5"></a>  <span class="dt">sumabsv =</span> <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## 12
 ## 12
 ## 12
@@ -771,32 +863,32 @@ grid.arrange(
 ## 12
 ## 12
 ## 12</code></pre>
-<pre class="r"><code>k &lt;- 2
-Vk &lt;- spcX1$v[,1:k]
-colnames(Vk) &lt;- paste0(&quot;V&quot;, 1:k)
-
-grid.arrange(
-  Vk %&gt;%
-    as.data.frame %&gt;%
-    mutate(geneID = 1:nrow(Vk)) %&gt;%
-    ggplot(aes(x = geneID, y = V1)) +
-    geom_point(pch=21) +
-    geom_hline(yintercept = c(-2,0,2)*sd(Vk[,1]), col = &quot;red&quot;) ,
-  Vk %&gt;%
-    as.data.frame %&gt;%
-    mutate(geneID = 1:nrow(Vk)) %&gt;%
-    ggplot(aes(x = geneID, y = V2)) +
-    geom_point(pch=21) +
-    geom_hline(yintercept = c(-2,0,2)*sd(Vk[,2]), col = &quot;red&quot;),
-  ncol=2)</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>k &lt;-<span class="st"> </span><span class="dv">2</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a>Vk &lt;-<span class="st"> </span>spcX1<span class="op">$</span>v[,<span class="dv">1</span><span class="op">:</span>k]</span>
+<span id="cb20-3"><a href="#cb20-3"></a><span class="kw">colnames</span>(Vk) &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;V&quot;</span>, <span class="dv">1</span><span class="op">:</span>k)</span>
+<span id="cb20-4"><a href="#cb20-4"></a></span>
+<span id="cb20-5"><a href="#cb20-5"></a><span class="kw">grid.arrange</span>(</span>
+<span id="cb20-6"><a href="#cb20-6"></a>  Vk <span class="op">%&gt;%</span></span>
+<span id="cb20-7"><a href="#cb20-7"></a><span class="st">    </span>as.data.frame <span class="op">%&gt;%</span></span>
+<span id="cb20-8"><a href="#cb20-8"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">geneID =</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(Vk)) <span class="op">%&gt;%</span></span>
+<span id="cb20-9"><a href="#cb20-9"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> geneID, <span class="dt">y =</span> V1)) <span class="op">+</span></span>
+<span id="cb20-10"><a href="#cb20-10"></a><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">pch=</span><span class="dv">21</span>) <span class="op">+</span></span>
+<span id="cb20-11"><a href="#cb20-11"></a><span class="st">    </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">2</span>)<span class="op">*</span><span class="kw">sd</span>(Vk[,<span class="dv">1</span>]), <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>) ,</span>
+<span id="cb20-12"><a href="#cb20-12"></a>  Vk <span class="op">%&gt;%</span></span>
+<span id="cb20-13"><a href="#cb20-13"></a><span class="st">    </span>as.data.frame <span class="op">%&gt;%</span></span>
+<span id="cb20-14"><a href="#cb20-14"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">geneID =</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(Vk)) <span class="op">%&gt;%</span></span>
+<span id="cb20-15"><a href="#cb20-15"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> geneID, <span class="dt">y =</span> V2)) <span class="op">+</span></span>
+<span id="cb20-16"><a href="#cb20-16"></a><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">pch=</span><span class="dv">21</span>) <span class="op">+</span></span>
+<span id="cb20-17"><a href="#cb20-17"></a><span class="st">    </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">2</span>)<span class="op">*</span><span class="kw">sd</span>(Vk[,<span class="dv">2</span>]), <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>),</span>
+<span id="cb20-18"><a href="#cb20-18"></a>  <span class="dt">ncol=</span><span class="dv">2</span>)</span></code></pre></div>
 <p><img src="sparseSvd_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <hr />
 <p>We now repeat the analysis, but with the constraint <span class="math inline">\(\Vert \mathbf{v} \Vert_1 &lt; 10\)</span>. This gives a much less sparse solution with several genes with non-zero loadings.</p>
-<pre class="r"><code>spcX10 &lt;- SPC(
-  toxData[,-1] %&gt;%
-    as.matrix,
-  K=30,
-  sumabsv = 10)</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>spcX10 &lt;-<span class="st"> </span><span class="kw">SPC</span>(</span>
+<span id="cb21-2"><a href="#cb21-2"></a>  toxData[,<span class="op">-</span><span class="dv">1</span>] <span class="op">%&gt;%</span></span>
+<span id="cb21-3"><a href="#cb21-3"></a><span class="st">    </span>as.matrix,</span>
+<span id="cb21-4"><a href="#cb21-4"></a>  <span class="dt">K=</span><span class="dv">30</span>,</span>
+<span id="cb21-5"><a href="#cb21-5"></a>  <span class="dt">sumabsv =</span> <span class="dv">10</span>)</span></code></pre></div>
 <pre><code>## 1234567891011121314151617181920
 ## 1234567891011121314151617181920
 ## 1234567891011121314151617181920
@@ -827,89 +919,89 @@ grid.arrange(
 ## 1234567891011121314151617181920
 ## 1234567891011121314151617181920
 ## 1234567891011121314151617181920</code></pre>
-<pre class="r"><code>k &lt;- 2
-Vk &lt;- spcX10$v[,1:k]
-colnames(Vk) &lt;- paste0(&quot;V&quot;,1:k)
-
-grid.arrange(
-  Vk %&gt;%
-    as.data.frame %&gt;%
-    mutate(geneID = 1:nrow(Vk)) %&gt;%
-    ggplot(aes(x = geneID, y = V1)) +
-    geom_point(pch=21) +
-    geom_hline(yintercept = c(-2,0,2)*sd(Vk[,1]), col = &quot;red&quot;) ,
-  Vk %&gt;%
-    as.data.frame %&gt;%
-    mutate(geneID = 1:nrow(Vk)) %&gt;%
-    ggplot(aes(x = geneID, y = V2)) +
-    geom_point(pch=21) +
-    geom_hline(yintercept = c(-2,0,2)*sd(Vk[,2]), col = &quot;red&quot;),
-  ncol=2)</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>k &lt;-<span class="st"> </span><span class="dv">2</span></span>
+<span id="cb23-2"><a href="#cb23-2"></a>Vk &lt;-<span class="st"> </span>spcX10<span class="op">$</span>v[,<span class="dv">1</span><span class="op">:</span>k]</span>
+<span id="cb23-3"><a href="#cb23-3"></a><span class="kw">colnames</span>(Vk) &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;V&quot;</span>,<span class="dv">1</span><span class="op">:</span>k)</span>
+<span id="cb23-4"><a href="#cb23-4"></a></span>
+<span id="cb23-5"><a href="#cb23-5"></a><span class="kw">grid.arrange</span>(</span>
+<span id="cb23-6"><a href="#cb23-6"></a>  Vk <span class="op">%&gt;%</span></span>
+<span id="cb23-7"><a href="#cb23-7"></a><span class="st">    </span>as.data.frame <span class="op">%&gt;%</span></span>
+<span id="cb23-8"><a href="#cb23-8"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">geneID =</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(Vk)) <span class="op">%&gt;%</span></span>
+<span id="cb23-9"><a href="#cb23-9"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> geneID, <span class="dt">y =</span> V1)) <span class="op">+</span></span>
+<span id="cb23-10"><a href="#cb23-10"></a><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">pch=</span><span class="dv">21</span>) <span class="op">+</span></span>
+<span id="cb23-11"><a href="#cb23-11"></a><span class="st">    </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">2</span>)<span class="op">*</span><span class="kw">sd</span>(Vk[,<span class="dv">1</span>]), <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>) ,</span>
+<span id="cb23-12"><a href="#cb23-12"></a>  Vk <span class="op">%&gt;%</span></span>
+<span id="cb23-13"><a href="#cb23-13"></a><span class="st">    </span>as.data.frame <span class="op">%&gt;%</span></span>
+<span id="cb23-14"><a href="#cb23-14"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">geneID =</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(Vk)) <span class="op">%&gt;%</span></span>
+<span id="cb23-15"><a href="#cb23-15"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> geneID, <span class="dt">y =</span> V2)) <span class="op">+</span></span>
+<span id="cb23-16"><a href="#cb23-16"></a><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">pch=</span><span class="dv">21</span>) <span class="op">+</span></span>
+<span id="cb23-17"><a href="#cb23-17"></a><span class="st">    </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">2</span>)<span class="op">*</span><span class="kw">sd</span>(Vk[,<span class="dv">2</span>]), <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>),</span>
+<span id="cb23-18"><a href="#cb23-18"></a>  <span class="dt">ncol=</span><span class="dv">2</span>)</span></code></pre></div>
 <p><img src="sparseSvd_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 <hr />
 </div>
 <div id="variance-explained" class="section level2">
 <h2><span class="header-section-number">3.4</span> Variance explained</h2>
 <p>Variance explained for <span class="math inline">\(c=1,5,10\)</span> and <span class="math inline">\(+\infty\)</span>.</p>
-<pre class="r"><code>data.frame(
-  PCs = 1:30,
-  &quot;c1&quot; = spcX1$prop.var.explained,
-  &quot;c5&quot; = spcX$prop.var.explained,
-  &quot;c10&quot; = spcX10$prop.var.explained,
-  &quot;conventional&quot; = cumsum(svdX$d^2)/sum(svdX$d^2)
-  ) %&gt;%
-  gather(&quot;method&quot;,&quot;varExpl&quot;,-1) %&gt;%
-  ggplot(aes(x = PCs, y = varExpl, color = method)) +
-  geom_line() +
-  geom_point() +
-  ylab(&quot;Variance explained (%)&quot;)</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="kw">data.frame</span>(</span>
+<span id="cb24-2"><a href="#cb24-2"></a>  <span class="dt">PCs =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">30</span>,</span>
+<span id="cb24-3"><a href="#cb24-3"></a>  <span class="st">&quot;c1&quot;</span> =<span class="st"> </span>spcX1<span class="op">$</span>prop.var.explained,</span>
+<span id="cb24-4"><a href="#cb24-4"></a>  <span class="st">&quot;c5&quot;</span> =<span class="st"> </span>spcX<span class="op">$</span>prop.var.explained,</span>
+<span id="cb24-5"><a href="#cb24-5"></a>  <span class="st">&quot;c10&quot;</span> =<span class="st"> </span>spcX10<span class="op">$</span>prop.var.explained,</span>
+<span id="cb24-6"><a href="#cb24-6"></a>  <span class="st">&quot;conventional&quot;</span> =<span class="st"> </span><span class="kw">cumsum</span>(svdX<span class="op">$</span>d<span class="op">^</span><span class="dv">2</span>)<span class="op">/</span><span class="kw">sum</span>(svdX<span class="op">$</span>d<span class="op">^</span><span class="dv">2</span>)</span>
+<span id="cb24-7"><a href="#cb24-7"></a>  ) <span class="op">%&gt;%</span></span>
+<span id="cb24-8"><a href="#cb24-8"></a><span class="st">  </span><span class="kw">gather</span>(<span class="st">&quot;method&quot;</span>,<span class="st">&quot;varExpl&quot;</span>,<span class="op">-</span><span class="dv">1</span>) <span class="op">%&gt;%</span></span>
+<span id="cb24-9"><a href="#cb24-9"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> PCs, <span class="dt">y =</span> varExpl, <span class="dt">color =</span> method)) <span class="op">+</span></span>
+<span id="cb24-10"><a href="#cb24-10"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
+<span id="cb24-11"><a href="#cb24-11"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb24-12"><a href="#cb24-12"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Variance explained (%)&quot;</span>)</span></code></pre></div>
 <p><img src="sparseSvd_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <p>This graph illustrates that the percentages of variance explained by the PCs are smaller for sparser solutions. Thus in choosing an appropriate penalty parameter <span class="math inline">\(c_2\)</span> one should not only look at the sparseness of the solution, but also at the percentage of variance contained in the first few PCs. If this percentage is very small, then the graphs of the scores (or biplots) are no longer very informative (i.e. they will not tell the full story). Thus a compromise must be looked for.</p>
-<pre class="r"><code>library(latex2exp)
-
-Uk5 &lt;- spcX$u[,1:k]
-Dk5 &lt;- diag(spcX$d[1:k])
-Zk5 &lt;- Uk5%*%Dk5
-colnames(Zk5) &lt;- paste0(&quot;Z&quot;,1:k)
-
-spc5 &lt;- Zk5 %&gt;%
-  as.data.frame %&gt;%
-  mutate(BA = toxData %&gt;% pull(BA)) %&gt;%
-  ggplot(aes(x= Z1, y = Z2, color = BA)) +
-  geom_point(size = 3) +
-  scale_colour_gradient2(low = &quot;blue&quot;,mid=&quot;white&quot;,high=&quot;red&quot;) +
-  geom_point(size = 3, pch = 21, color = &quot;black&quot;) +
-  ggtitle(TeX(&quot;$c_2 = 5$&quot;))
-
-Uk1 &lt;- spcX1$u[,1:k]
-Dk1 &lt;- diag(spcX1$d[1:k])
-Zk1 &lt;- Uk1%*%Dk1
-colnames(Zk1) &lt;- paste0(&quot;Z&quot;,1:k)
-
-spc1 &lt;- Zk1 %&gt;%
-  as.data.frame %&gt;%
-  mutate(BA = toxData %&gt;% pull(BA)) %&gt;%
-  ggplot(aes(x= Z1, y = Z2, color = BA)) +
-  geom_point(size = 3) +
-  scale_colour_gradient2(low = &quot;blue&quot;,mid=&quot;white&quot;,high=&quot;red&quot;) +
-  geom_point(size = 3, pch = 21, color = &quot;black&quot;) +
-  ggtitle(TeX(&quot;$c_2 = 1$&quot;))
-
-Uk10 &lt;- spcX10$u[,1:k]
-Dk10 &lt;- diag(spcX10$d[1:k])
-Zk10 &lt;- Uk10%*%Dk10
-colnames(Zk10) &lt;- paste0(&quot;Z&quot;,1:k)
-
-spc10 &lt;- Zk10 %&gt;%
-  as.data.frame %&gt;%
-  mutate(BA = toxData %&gt;% pull(BA)) %&gt;%
-  ggplot(aes(x= Z1, y = Z2, color = BA)) +
-  geom_point(size = 3) +
-  scale_colour_gradient2(low = &quot;blue&quot;,mid=&quot;white&quot;,high=&quot;red&quot;) +
-  geom_point(size = 3, pch = 21, color = &quot;black&quot;) +
-  ggtitle(TeX(&quot;$c_2 = 10$&quot;))
-
-grid.arrange(spc1, spc5, spc10, pca + ggtitle(TeX(&quot;$c_2 = \\infty&quot;)), ncol = 2)</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="kw">library</span>(latex2exp)</span>
+<span id="cb25-2"><a href="#cb25-2"></a></span>
+<span id="cb25-3"><a href="#cb25-3"></a>Uk5 &lt;-<span class="st"> </span>spcX<span class="op">$</span>u[,<span class="dv">1</span><span class="op">:</span>k]</span>
+<span id="cb25-4"><a href="#cb25-4"></a>Dk5 &lt;-<span class="st"> </span><span class="kw">diag</span>(spcX<span class="op">$</span>d[<span class="dv">1</span><span class="op">:</span>k])</span>
+<span id="cb25-5"><a href="#cb25-5"></a>Zk5 &lt;-<span class="st"> </span>Uk5<span class="op">%*%</span>Dk5</span>
+<span id="cb25-6"><a href="#cb25-6"></a><span class="kw">colnames</span>(Zk5) &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;Z&quot;</span>,<span class="dv">1</span><span class="op">:</span>k)</span>
+<span id="cb25-7"><a href="#cb25-7"></a></span>
+<span id="cb25-8"><a href="#cb25-8"></a>spc5 &lt;-<span class="st"> </span>Zk5 <span class="op">%&gt;%</span></span>
+<span id="cb25-9"><a href="#cb25-9"></a><span class="st">  </span>as.data.frame <span class="op">%&gt;%</span></span>
+<span id="cb25-10"><a href="#cb25-10"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">BA =</span> toxData <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(BA)) <span class="op">%&gt;%</span></span>
+<span id="cb25-11"><a href="#cb25-11"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span> Z1, <span class="dt">y =</span> Z2, <span class="dt">color =</span> BA)) <span class="op">+</span></span>
+<span id="cb25-12"><a href="#cb25-12"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span></span>
+<span id="cb25-13"><a href="#cb25-13"></a><span class="st">  </span><span class="kw">scale_colour_gradient2</span>(<span class="dt">low =</span> <span class="st">&quot;blue&quot;</span>,<span class="dt">mid=</span><span class="st">&quot;white&quot;</span>,<span class="dt">high=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span></span>
+<span id="cb25-14"><a href="#cb25-14"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">3</span>, <span class="dt">pch =</span> <span class="dv">21</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></span>
+<span id="cb25-15"><a href="#cb25-15"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="kw">TeX</span>(<span class="st">&quot;$c_2 = 5$&quot;</span>))</span>
+<span id="cb25-16"><a href="#cb25-16"></a></span>
+<span id="cb25-17"><a href="#cb25-17"></a>Uk1 &lt;-<span class="st"> </span>spcX1<span class="op">$</span>u[,<span class="dv">1</span><span class="op">:</span>k]</span>
+<span id="cb25-18"><a href="#cb25-18"></a>Dk1 &lt;-<span class="st"> </span><span class="kw">diag</span>(spcX1<span class="op">$</span>d[<span class="dv">1</span><span class="op">:</span>k])</span>
+<span id="cb25-19"><a href="#cb25-19"></a>Zk1 &lt;-<span class="st"> </span>Uk1<span class="op">%*%</span>Dk1</span>
+<span id="cb25-20"><a href="#cb25-20"></a><span class="kw">colnames</span>(Zk1) &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;Z&quot;</span>,<span class="dv">1</span><span class="op">:</span>k)</span>
+<span id="cb25-21"><a href="#cb25-21"></a></span>
+<span id="cb25-22"><a href="#cb25-22"></a>spc1 &lt;-<span class="st"> </span>Zk1 <span class="op">%&gt;%</span></span>
+<span id="cb25-23"><a href="#cb25-23"></a><span class="st">  </span>as.data.frame <span class="op">%&gt;%</span></span>
+<span id="cb25-24"><a href="#cb25-24"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">BA =</span> toxData <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(BA)) <span class="op">%&gt;%</span></span>
+<span id="cb25-25"><a href="#cb25-25"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span> Z1, <span class="dt">y =</span> Z2, <span class="dt">color =</span> BA)) <span class="op">+</span></span>
+<span id="cb25-26"><a href="#cb25-26"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span></span>
+<span id="cb25-27"><a href="#cb25-27"></a><span class="st">  </span><span class="kw">scale_colour_gradient2</span>(<span class="dt">low =</span> <span class="st">&quot;blue&quot;</span>,<span class="dt">mid=</span><span class="st">&quot;white&quot;</span>,<span class="dt">high=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span></span>
+<span id="cb25-28"><a href="#cb25-28"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">3</span>, <span class="dt">pch =</span> <span class="dv">21</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></span>
+<span id="cb25-29"><a href="#cb25-29"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="kw">TeX</span>(<span class="st">&quot;$c_2 = 1$&quot;</span>))</span>
+<span id="cb25-30"><a href="#cb25-30"></a></span>
+<span id="cb25-31"><a href="#cb25-31"></a>Uk10 &lt;-<span class="st"> </span>spcX10<span class="op">$</span>u[,<span class="dv">1</span><span class="op">:</span>k]</span>
+<span id="cb25-32"><a href="#cb25-32"></a>Dk10 &lt;-<span class="st"> </span><span class="kw">diag</span>(spcX10<span class="op">$</span>d[<span class="dv">1</span><span class="op">:</span>k])</span>
+<span id="cb25-33"><a href="#cb25-33"></a>Zk10 &lt;-<span class="st"> </span>Uk10<span class="op">%*%</span>Dk10</span>
+<span id="cb25-34"><a href="#cb25-34"></a><span class="kw">colnames</span>(Zk10) &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;Z&quot;</span>,<span class="dv">1</span><span class="op">:</span>k)</span>
+<span id="cb25-35"><a href="#cb25-35"></a></span>
+<span id="cb25-36"><a href="#cb25-36"></a>spc10 &lt;-<span class="st"> </span>Zk10 <span class="op">%&gt;%</span></span>
+<span id="cb25-37"><a href="#cb25-37"></a><span class="st">  </span>as.data.frame <span class="op">%&gt;%</span></span>
+<span id="cb25-38"><a href="#cb25-38"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">BA =</span> toxData <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(BA)) <span class="op">%&gt;%</span></span>
+<span id="cb25-39"><a href="#cb25-39"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span> Z1, <span class="dt">y =</span> Z2, <span class="dt">color =</span> BA)) <span class="op">+</span></span>
+<span id="cb25-40"><a href="#cb25-40"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span></span>
+<span id="cb25-41"><a href="#cb25-41"></a><span class="st">  </span><span class="kw">scale_colour_gradient2</span>(<span class="dt">low =</span> <span class="st">&quot;blue&quot;</span>,<span class="dt">mid=</span><span class="st">&quot;white&quot;</span>,<span class="dt">high=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span></span>
+<span id="cb25-42"><a href="#cb25-42"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">3</span>, <span class="dt">pch =</span> <span class="dv">21</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></span>
+<span id="cb25-43"><a href="#cb25-43"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="kw">TeX</span>(<span class="st">&quot;$c_2 = 10$&quot;</span>))</span>
+<span id="cb25-44"><a href="#cb25-44"></a></span>
+<span id="cb25-45"><a href="#cb25-45"></a><span class="kw">grid.arrange</span>(spc1, spc5, spc10, pca <span class="op">+</span><span class="st"> </span><span class="kw">ggtitle</span>(<span class="kw">TeX</span>(<span class="st">&quot;$c_2 = </span><span class="ch">\\</span><span class="st">infty&quot;</span>)), <span class="dt">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
 <p><img src="sparseSvd_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <p>Finally we show the plots of the scores on the first two sparse PCs for <span class="math inline">\(c_2=1\)</span> (top-left), <span class="math inline">\(c_2=5\)</span> (top-right) and <span class="math inline">\(c_2=10\)</span> (bottom-left) and <span class="math inline">\(c_2=\infty\)</span> (bottom-right, convention SVD).</p>
 <p>Note, that the most sparse solution (top-left) shows a strong positive correlation between the first two PCs (as a consequence of the loss of orthogonality of the singular vectors).</p>
@@ -932,7 +1024,7 @@ grid.arrange(spc1, spc5, spc10, pca + ggtitle(TeX(&quot;$c_2 = \\infty&quot;)), 
 <h1>Session info</h1>
 <details>
 <p><summary>Session info</summary></p>
-<pre><code>## [1] &quot;2021-10-22 10:33:57 UTC&quot;</code></pre>
+<pre><code>## [1] &quot;2021-10-26 10:54:36 UTC&quot;</code></pre>
 <pre><code>## ─ Session info ───────────────────────────────────────────────────────────────
 ##  setting  value                       
 ##  version  R version 4.1.1 (2021-08-10)
@@ -943,7 +1035,7 @@ grid.arrange(spc1, spc5, spc10, pca + ggtitle(TeX(&quot;$c_2 = \\infty&quot;)), 
 ##  collate  en_US.UTF-8                 
 ##  ctype    en_US.UTF-8                 
 ##  tz       UTC                         
-##  date     2021-10-22                  
+##  date     2021-10-26                  
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────
 ##  ! package     * version date       lib source                          
@@ -1022,7 +1114,7 @@ grid.arrange(spc1, spc5, spc10, pca + ggtitle(TeX(&quot;$c_2 = \\infty&quot;)), 
 ##  P yaml          2.2.1   2020-02-01 [?] CRAN (R 4.1.0)                  
 ## 
 ## [1] /Users/runner/work/HDDA21/HDDA21/renv/library/R-4.1/x86_64-apple-darwin17.0
-## [2] /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpFHzSjb/renv-system-library
+## [2] /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpRZvBCH/renv-system-library
 ## 
 ##  P ── Loaded and on-disk path mismatch.</code></pre>
 </details>
