@@ -28,6 +28,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
@@ -211,6 +214,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -218,6 +284,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -319,12 +395,12 @@ $(document).ready(function () {
 
 <hr />
 <p><img src="figures/wpGraph.jpeg" width="986" /></p>
-<div id="course-description" class="section level3">
-<h3>Course Description</h3>
+<div id="course-description" class="section level2">
+<h2>Course Description</h2>
 <p>Modern high throughput technologies easily generate data on thousands of variables; e.g. genomics, chemometrics, environmental monitoring, … Conventional statistical methods are no longer suited for effectively analysing such high-dimensional data. Multivariate statistical methods may be used, but for often the dimensionality of the data set is much larger than the number of (biological) samples. Modern advances in statistical data analyses allow for the appropriate analysis of such data. Methods for the analysis of high dimensional data rely heavily on multivariate statistical methods. Therefore a large part of the course content is devoted to multivariate methods, but with a focus on high dimensional settings and issues. Multivariate statistical analysis covers many methods. In this course, only a few are discussed. A selection of techniques is made based on our experience that they are frequently used in industry and research institutes (e.g. principal component analysis, cluster analysis, classification methods). Central in the course are applications from different fields (analytical chemistry, ecology, biotechnology, genomics, …).</p>
 </div>
-<div id="prerequisites" class="section level3">
-<h3>Prerequisites</h3>
+<div id="prerequisites" class="section level2">
+<h2>Prerequisites</h2>
 <p>The prerequisites for the High Dimensional Data Analysis course are the successful completion of a basic course of statistics that covers topics on data exploration and descriptive statistics, statistical modeling, and inference: linear models, confidence intervals, t-tests, F-tests, anova, chi-squared test.</p>
 <p>The basis concepts may be revisited in my online course <a href="https://gtpb.github.io/PSLS20/" class="uri">https://gtpb.github.io/PSLS20/</a> (English) and in <a href="https://statomics.github.io/statistiekCursusNotas/" class="uri">https://statomics.github.io/statistiekCursusNotas/</a> (Dutch).</p>
 <p>A primer to R and Data visualisation in R can be found in:</p>
@@ -333,17 +409,17 @@ $(document).ready(function () {
 <li><p>R Data Exploration: <a href="https://dodona.ugent.be/nl/courses/345/" class="uri">https://dodona.ugent.be/nl/courses/345/</a></p></li>
 </ul>
 </div>
-<div id="issues" class="section level3">
-<h3>Issues</h3>
+<div id="issues" class="section level2">
+<h2>Issues</h2>
 <p>If you encounter any problems related to the course material (e.g. package installation problems, bugs in the code, typos, …), please consider <a href="https://github.com/statOmics/HDDA21/issues">posting an issue on GitHub</a>.</p>
 <p>Questions related to the course contents can be asked by posting on <a href="https://ufora.ugent.be/d2l/home/444226">UFora</a>, by contacting the teachers by email or during the lectures or practical sessions.</p>
 <hr />
 </div>
-<div id="topics" class="section level3">
-<h3>Topics</h3>
+<div id="topics" class="section level2">
+<h2>Topics</h2>
 <!-- TODO: add Labs material -->
-<div id="introduction" class="section level4">
-<h4>1. Introduction</h4>
+<div id="introduction" class="section level3">
+<h3>1. Introduction</h3>
 <ul>
 <li>Slides: <a href="./intro0.html">Lecture 1: Intro</a></li>
 <li>Software: <a href="./software4stats.html">Install and Launch Statistical Software</a></li>
@@ -353,8 +429,8 @@ $(document).ready(function () {
 <li><a href="./Introduction-Matrices-R.html">Introduction to matrices in R</a></li>
 </ul>
 </div>
-<div id="singular-value-decomposition" class="section level4">
-<h4>2. Singular value decomposition</h4>
+<div id="singular-value-decomposition" class="section level3">
+<h3>2. Singular value decomposition</h3>
 <ul>
 <li><a href="./svd.html">Lecture 2-3: Singular value decomposition</a> [<a href="./svd.pdf">PDF</a>]</li>
 <li><a href="./svdGeometricInterpretation.html">Geometric Interpretation</a></li>
@@ -362,41 +438,45 @@ $(document).ready(function () {
 <li><a href="./Lab1-Intro-SVD.html">Lab 1: Introduction and SVD applications</a> <!-- - [Lab 2: PCA](./Lab2-PCA.html) --></li>
 </ul>
 </div>
-<div id="prediction-with-high-dimensional-predictors" class="section level4">
-<h4>3. Prediction with High Dimensional Predictors</h4>
+<div id="prediction-with-high-dimensional-predictors" class="section level3">
+<h3>3. Prediction with High Dimensional Predictors</h3>
 <ul>
 <li><a href="./prediction.html">Lecture 4-5: Prediction Theory</a> [<a href="./prediction.pdf">PDF</a>] <!-- - [Lab 3: Penalized regression and prediction](./Lab3-Penalized-Regression.html) --></li>
 </ul>
 </div>
-<div id="sparse-singular-value-decomposition" class="section level4">
-<h4>4. Sparse Singular Value Decomposition</h4>
+<div id="sparse-singular-value-decomposition" class="section level3">
+<h3>4. Sparse Singular Value Decomposition</h3>
 <ul>
 <li><a href="./sparseSvd.html">Lecture 5: Sparse SVD</a> [<a href="./sparseSvd.pdf">PDF</a>]</li>
 </ul>
 </div>
-<div id="linear-discriminant-analysis" class="section level4">
-<h4>5. Linear discriminant analysis</h4>
+<div id="linear-discriminant-analysis" class="section level3">
+<h3>5. Linear discriminant analysis</h3>
 <ul>
 <li><a href="./lda.html">Lecture 5: Linear Discriminant Analysis Theory</a> [<a href="./lda.pdf">PDF</a>] <!-- - [Lab 4: Sparse PCA and LDA](./Lab4-Sparse-PCA-LDA.html) --></li>
 </ul>
 </div>
-<div id="large-scale-inference" class="section level4">
-<h4>6. Large Scale inference</h4>
+<div id="large-scale-inference" class="section level3">
+<h3>6. Large Scale inference</h3>
 <ul>
 <li><a href="./lsi.html">Lecture 6: Large Scale Inference</a> [<a href="./lsi.pdf">PDF</a>] <!-- - [Lab 5: Large Scale Inference](./Lab5-Large-Scale-Inference.html) --></li>
 </ul>
 <!-- ### Paper reading Sessions -->
-<!-- ### Homework assignments -->
+<hr />
+</div>
+</div>
+<div id="homework-assignments" class="section level2">
+<h2>Homework assignments</h2>
 <!-- - [Homework: Canonical Correlation Analysis](./HW-CCA.html) [[PDF](./HW-CCA.pdf)] -->
 <!-- - [Group Project](./Project.html) [[PDF](./Project.pdf)] -->
+<hr />
 </div>
-<div id="instructors" class="section level4">
-<h4>Instructors</h4>
+<div id="instructors" class="section level2">
+<h2>Instructors</h2>
 <ul>
 <li><a href="./instructors.html">Lieven Clement</a></li>
 <li><a href="./instructors.html">Milan Malfait</a></li>
 </ul>
-</div>
 </div>
 
 <div class="footer">
@@ -406,6 +486,8 @@ $(document).ready(function () {
 </div>
 
 
+</div>
+</div>
 
 </div>
 
@@ -438,6 +520,35 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
