@@ -64,7 +64,7 @@ email or during the lectures or practical sessions.
   - [Geometric Interpretation](./svdGeometricInterpretation.html)
   - [MDS Link Gram Distance Matrix](./MDS_linkGramDistanceMatrix.html)
   - [Lab 1: Introduction and SVD applications](./Lab1-Intro-SVD.html)
-  <!-- - [Lab 2: PCA](./Lab2-PCA.html) -->
+  - [Lab 2: PCA](./Lab2-PCA.html)
 
 ### 3. Prediction with High Dimensional Predictors
 
