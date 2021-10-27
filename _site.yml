@@ -31,6 +31,8 @@ navbar:
       menu:
       - text: "Lab 1"
         href: Lab1-Intro-SVD.html
+      - text: "Lab 2"
+        href: Lab2-PCA.html
   right:
     - icon: fab fa-github
       href: https://github.com/statOmics/HDDA21
