@@ -633,6 +633,7 @@ the SVD:
 
 -   <https://setosa.io/ev/principal-component-analysis/>
 -   <https://stats.stackexchange.com/a/134283/264768>
+-   <https://twitter.com/allison_horst/status/1288904459490213888?s=20>
 
 ```{r, child="_session-info.Rmd"}
 ```
