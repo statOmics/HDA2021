@@ -483,6 +483,9 @@ div.tocify {
     <li>
       <a href="Lab2-PCA.html">Lab 2</a>
     </li>
+    <li>
+      <a href="Lab3-Penalized-Regression.html">Lab 3</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -773,28 +776,31 @@ div.tocify {
 <span id="cb18-12"><a href="#cb18-12"></a>  <span class="dt">stop =</span> <span class="dv">-50</span>,</span>
 <span id="cb18-13"><a href="#cb18-13"></a>  <span class="dt">maxIte =</span> <span class="dv">25</span>,</span>
 <span id="cb18-14"><a href="#cb18-14"></a>  <span class="dt">trace =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
-<pre><code>## ite:  1  ridge cost:  92.1512  |b|_1:  5.692941 
-## ite:  2  ridge cost:  91.62546  |b|_1:  5.43705 
-## ite:  3  ridge cost:  90.27297  |b|_1:  5.538029 
-## ite:  4  ridge cost:  88.67478  |b|_1:  5.765352 
-## ite:  5  ridge cost:  88.44842  |b|_1:  5.785983 
-## ite:  6  ridge cost:  88.25811  |b|_1:  5.814349 
-## ite:  7  ridge cost:  88.01221  |b|_1:  5.858407 
-## ite:  8  ridge cost:  87.89423  |b|_1:  5.880118 
-## ite:  9  ridge cost:  87.83689  |b|_1:  5.890817 
-## ite:  10  ridge cost:  87.80882  |b|_1:  5.89609 
-## ite:  11  ridge cost:  87.79503  |b|_1:  5.898689 
-## ite:  12  ridge cost:  87.78825  |b|_1:  5.89997 
-## ite:  13  ridge cost:  87.78491  |b|_1:  5.900601 
-## ite:  14  ridge cost:  87.78326  |b|_1:  5.900913 
-## ite:  15  ridge cost:  87.78245  |b|_1:  5.901066 
-## ite:  16  ridge cost:  87.78205  |b|_1:  5.901142 
-## ite:  17  ridge cost:  87.78185  |b|_1:  5.901179 
-## ite:  18  ridge cost:  87.78176  |b|_1:  5.901197 
-## ite:  19  ridge cost:  87.78171  |b|_1:  5.901206 
-## ite:  1  ridge cost:  134.7777  |b|_1:  5.379259 
-## ite:  2  ridge cost:  134.7777  |b|_1:  5.379259 
-## final update, total ridge cost:  222.5595  |b|_1:  11.28047</code></pre>
+<pre><code>## ite:  1  ridge cost:  132.2132  |b|_1:  5.211305 
+## ite:  2  ridge cost:  124.6799  |b|_1:  5.308427 
+## ite:  3  ridge cost:  109.2204  |b|_1:  5.636096 
+## ite:  4  ridge cost:  93.67531  |b|_1:  6.298676 
+## ite:  5  ridge cost:  91.59788  |b|_1:  5.613306 
+## ite:  6  ridge cost:  89.59636  |b|_1:  5.692737 
+## ite:  7  ridge cost:  88.28954  |b|_1:  5.844307 
+## ite:  8  ridge cost:  87.66789  |b|_1:  5.933697 
+## ite:  9  ridge cost:  88.09313  |b|_1:  5.845393 
+## ite:  10  ridge cost:  87.53912  |b|_1:  5.948047 
+## ite:  11  ridge cost:  87.83168  |b|_1:  5.891962 
+## ite:  12  ridge cost:  87.84723  |b|_1:  5.888877 
+## ite:  13  ridge cost:  87.79338  |b|_1:  5.899014 
+## ite:  14  ridge cost:  87.76541  |b|_1:  5.904293 
+## ite:  15  ridge cost:  87.77324  |b|_1:  5.90281 
+## ite:  16  ridge cost:  87.77751  |b|_1:  5.902001 
+## ite:  17  ridge cost:  87.77961  |b|_1:  5.901603 
+## ite:  18  ridge cost:  87.78065  |b|_1:  5.901406 
+## ite:  19  ridge cost:  87.78117  |b|_1:  5.901309 
+## ite:  20  ridge cost:  87.78142  |b|_1:  5.901262 
+## ite:  21  ridge cost:  87.78154  |b|_1:  5.901238 
+## ite:  22  ridge cost:  87.7816  |b|_1:  5.901227 
+## ite:  1  ridge cost:  134.7777  |b|_1:  5.379261 
+## ite:  2  ridge cost:  134.7777  |b|_1:  5.379261 
+## final update, total ridge cost:  222.5593  |b|_1:  11.28049</code></pre>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>Vsda &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">0</span>, <span class="dt">nrow=</span><span class="kw">ncol</span>(X2), <span class="dt">ncol=</span><span class="dv">2</span>)</span>
 <span id="cb20-2"><a href="#cb20-2"></a>Vsda[breast.slda<span class="op">$</span>varIndex,] &lt;-<span class="st"> </span>breast.slda<span class="op">$</span>beta</span>
 <span id="cb20-3"><a href="#cb20-3"></a><span class="kw">colnames</span>(Vsda) &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;V&quot;</span>,<span class="dv">1</span><span class="op">:</span><span class="kw">ncol</span>(Vsda))</span>
@@ -890,9 +896,9 @@ div.tocify {
 <h1>Session info</h1>
 <details>
 <p><summary>Session info</summary></p>
-<pre><code>## [1] &quot;2021-11-03 20:21:28 UTC&quot;</code></pre>
-<pre><code>## ─ Session info  😔  👚  👩🏾‍🔬   ─────────────────────────────────────────────────
-##  hash: pensive face, woman’s clothes, woman scientist: medium-dark skin tone
+<pre><code>## [1] &quot;2021-11-04 10:56:20 UTC&quot;</code></pre>
+<pre><code>## ─ Session info  😇  👱🏼  🦵🏽   ─────────────────────────────────────────────────
+##  hash: smiling face with halo, person: medium-light skin tone, blond hair, leg: medium skin tone
 ## 
 ##  setting  value
 ##  version  R version 4.1.2 (2021-11-01)
@@ -903,7 +909,7 @@ div.tocify {
 ##  collate  en_US.UTF-8
 ##  ctype    en_US.UTF-8
 ##  tz       UTC
-##  date     2021-11-03
+##  date     2021-11-04
 ##  pandoc   2.7.3 @ /usr/local/bin/ (via rmarkdown)
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────
@@ -1040,7 +1046,7 @@ div.tocify {
 ##  P zlibbioc            1.38.0     2021-05-19 [?] Bioconductor
 ## 
 ##  [1] /Users/runner/work/HDDA21/HDDA21/renv/library/R-4.1/x86_64-apple-darwin17.0
-##  [2] /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmppwgYGF/renv-system-library
+##  [2] /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/Rtmp6Abu3r/renv-system-library
 ## 
 ##  P ── Loaded and on-disk path mismatch.
 ## 
