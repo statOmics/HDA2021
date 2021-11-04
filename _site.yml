@@ -33,6 +33,8 @@ navbar:
         href: Lab1-Intro-SVD.html
       - text: "Lab 2"
         href: Lab2-PCA.html
+      - text: "Lab 3"
+        href: Lab3-Penalized-Regression.html
   right:
     - icon: fab fa-github
       href: https://github.com/statOmics/HDDA21
