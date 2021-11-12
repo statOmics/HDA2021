@@ -14,6 +14,8 @@ knitr::opts_chunk$set(
 )
 ```
 
+### [Change log](https://github.com/statOmics/HDDA21/commits/master/Lab2-PCA.Rmd) {-}
+
 ***
 
 ```{r libraries, warning=FALSE, message=FALSE}
