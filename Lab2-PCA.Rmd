@@ -2,7 +2,7 @@
 title: "Lab 2: Principal Component Analysis"
 subtitle: "High Dimensional Data Analysis practicals"
 author: "Adapted by Milan Malfait"
-date: "28 Oct 2021 <br/> (Last updated: 2021-10-28)"
+date: "28 Oct 2021 <br/> (Last updated: 2021-11-12)"
 ---
 
 ```{r setup, include=FALSE, cache=FALSE}
@@ -443,20 +443,13 @@ heavymetals_svd <- svd(heavymetals_scaled)
 Now compare the PC loadings with the right singular vectors $\mathbf{V}$ and the scores with the
 projections $\mathbf{Z_k} = \mathbf{XV_k}$.
 
-Note that it is possible that the signs are opposite, therefore we take the absolute values for the
-comparison.
-
 ```{r}
-# remove dimnames for comparison
-heavymetals_loadings <- abs(unname(heavymetals_pca$rotation))
-heavymetals_V <- abs(heavymetals_svd$v)
-
-## Compare loadings with singular vectors
-all.equal(heavymetals_loadings, heavymetals_V)
+## Remove dimnames for comparison
+all.equal(unname(heavymetals_pca$rotation), heavymetals_svd$v)
 
 ## Calculate projections
-heavymetals_Zk <- abs(heavymetals_scaled %*% heavymetals_svd$v)
-heavymetals_scores <- abs(unname(heavymetals_pca$x))
+heavymetals_Zk <- heavymetals_scaled %*% heavymetals_svd$v
+heavymetals_scores <- unname(heavymetals_pca$x)
 
 all.equal(heavymetals_Zk, heavymetals_scores)
 ```
