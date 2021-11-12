@@ -80,11 +80,11 @@ remotes::install_github("statOmics/HDDAData")
 **Note** that you need to run this piece of code only once. *Don't* include it in your R
 script, just run it once in an R console and you're good to go.
 
-After loading the __*HDDAData*__ package, the data will be available as a
-`data.frame` with the name `Einecke2010Kidney`:
+You can then access the data in your script as follows:
 
 ```{r get-data}
 library(HDDAData)
+data("Einecke2010Kidney")
 
 ## Data dimensions
 dim(Einecke2010Kidney)
