@@ -182,6 +182,18 @@
       "Source": "Bioconductor",
       "Hash": "a2c2100168457acebeca6b365bb87bfc"
     },
+    "HDDAData": {
+      "Package": "HDDAData",
+      "Version": "0.0.1",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteRepo": "HDDAData",
+      "RemoteUsername": "statOmics",
+      "RemoteRef": "HEAD",
+      "RemoteSha": "2cce8efd91205fe98cfcbf9a2b869280c3f3b3e6",
+      "Hash": "25e30930e3b5b80ec38badb1705b96d8"
+    },
     "HyperbolicDist": {
       "Package": "HyperbolicDist",
       "Version": "0.6-2",
