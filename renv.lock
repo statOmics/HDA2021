@@ -184,15 +184,15 @@
     },
     "HDDAData": {
       "Package": "HDDAData",
-      "Version": "0.0.1",
+      "Version": "0.0.2",
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
       "RemoteRepo": "HDDAData",
       "RemoteUsername": "statOmics",
       "RemoteRef": "HEAD",
-      "RemoteSha": "2cce8efd91205fe98cfcbf9a2b869280c3f3b3e6",
-      "Hash": "25e30930e3b5b80ec38badb1705b96d8"
+      "RemoteSha": "d6ab354ef8653dc43066c5fd3dc4b0b1edc6af48",
+      "Hash": "6cb4d7cd845bf67f1ece8f3f3d996324"
     },
     "HyperbolicDist": {
       "Package": "HyperbolicDist",
