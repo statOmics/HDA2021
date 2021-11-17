@@ -78,7 +78,7 @@ email or during the lectures or practical sessions.
 ### 5. Linear discriminant analysis
 
   - [Lecture 5: Linear Discriminant Analysis Theory](./lda.html) [[PDF](./lda.pdf)]
-  <!-- - [Lab 4: Sparse PCA and LDA](./Lab4-Sparse-PCA-LDA.html) -->
+  - [Lab 4: Sparse PCA and LDA](./Lab4-Sparse-PCA-LDA.html)
 
 ### 6. Large Scale inference
 
