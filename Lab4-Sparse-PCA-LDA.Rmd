@@ -235,7 +235,7 @@ From these histograms it should be clear that only a minor fraction of the genes
 
   $$
   \boldsymbol{\beta}_{\text{ridge}}
-    = (\mathbf{X^TX}+\gamma\mathbf{I})^{-1}\mathbf{X}^T\mathbf Y
+    = (\mathbf{X^TX}+\lambda\mathbf{I})^{-1}\mathbf{X}^T\mathbf Y
   $$
 
   __Question:__ Replace $\mathbf{Y}$ with $\mathbf{Z_1}$ and verify in
@@ -246,7 +246,7 @@ From these histograms it should be clear that only a minor fraction of the genes
     \frac{\boldsymbol\beta_{\text{ridge}}}{\|\boldsymbol\beta_{\text{ridge}}\|_2}
   $$
 
-  for any $\gamma > 0$ of your choice.
+  for any $\lambda > 0$ of your choice.
   Remember that
   $\|\boldsymbol\beta_{\text{ridge}}\|_2 = \sqrt{\sum_{j=1}^p \beta_j^2}$
 
@@ -255,11 +255,11 @@ From these histograms it should be clear that only a minor fraction of the genes
 ```{r, cache=TRUE}
 p <- dim(X)[2]
 
-# Let's take a ridiculously large gamma: 200
-tXX_gamma_I <- t(X) %*% X + 200 * diag(p)
+# Let's take a ridiculously large lambda: 200
+tXX_lambda_I <- t(X) %*% X + 200 * diag(p)
 
 ## This might take a while to calculate
-beta_ridge <- solve(tXX_gamma_I) %*% t(X) %*% Z[, 1]
+beta_ridge <- solve(tXX_lambda_I) %*% t(X) %*% Z[, 1]
 
 #||beta_ridge||_2
 mag_beta_ridge <- sqrt(sum(beta_ridge^2))
@@ -292,20 +292,20 @@ max(abs(svd_X$v[, 1] - beta_ridge / mag_beta_ridge))
 #### 6. We have seen elastic net type penalties. If we call the loadings of the first PC as $\boldsymbol{\beta}$ and denote PC1 as $\mathbf{Y}$, we saw that $\boldsymbol{\beta}$ can be derived by minimising the SSE: {-}
 
   $$
-  \text{SSE}=\|\mathbf Y-\mathbf{X}\boldsymbol \beta\|^2_2+\gamma\|\boldsymbol \beta\|^2_2 \text{ for any } \gamma>0).
+  \text{SSE}=\|\mathbf Y-\mathbf{X}\boldsymbol \beta\|^2_2+\lambda\|\boldsymbol \beta\|^2_2 (\text{ for any } \lambda>0).
   $$
 
-  Note that this equality holds for any positive $\gamma$. So we can't penalise the $\boldsymbol\beta$s not being zero by choosing a different $\gamma$.
-  Remember that for ridge regression, the $\beta$'s only become 0 for $\gamma = \infty$.
+  Note that this equality holds for any positive $\lambda$. So we can't penalise the $\boldsymbol\beta$s not being zero by choosing a different $\lambda$.
+  Remember that for ridge regression, the $\beta$'s only become 0 for $\lambda = \infty$.
   Fortunately we have other tools.
 
   In addition to the $L_2$ penalization, we can use the $L_1$ penalization of Lasso. This allows us to force some of the $\boldsymbol\beta$s to become zero. The new SSE will be of the form:
 
   $$
-  \text{SSE}=\|\mathbf Y-\mathbf{X}\boldsymbol \beta\|^2_2+\gamma\|\boldsymbol \beta\|^2_2 +\gamma_1\|\boldsymbol \beta\|_1.
+  \text{SSE}=\|\mathbf Y-\mathbf{X}\boldsymbol \beta\|^2_2+\lambda_2\|\boldsymbol \beta\|^2_2 +\lambda_1\|\boldsymbol \beta\|_1.
   $$
 
-  This is exactly the elastic net SSE, and $\gamma_1$ is the Lasso type penalty that sets loadings to zero.
+  This is exactly the elastic net SSE, and $\lambda_1$ is the Lasso type penalty that sets loadings to zero.
 
   Now use the `glmnet` and `cv.glmnet` functions to select an appropriate number of non-zero loadings for the first and second PCs.
   Use `alpha = 0.5` in your elastic net models and use `Z1` and `Z2` as the response variables (you should fit 2 separate models).
@@ -348,7 +348,7 @@ fit_loadings1
 fit_loadings2
 ```
 
-__Interpretation:__ for PC1, we see that around 90 to 100 genes are most important, based on the range of $\gamma$ (`lambda`) values between `lambda.min` and `lambda.1se`.
+__Interpretation:__ for PC1, we see that around 90 to 100 genes are most important, based on the range of $\lambda$ (`lambda`) values between `lambda.min` and `lambda.1se`.
 Similarly, for PC2 we get around 65 - 80 genes.
 With this information, we can now choose one of the `lambda` values and construct PCs that will have non-zero loadings for only a few genes.
 
@@ -357,8 +357,8 @@ With this information, we can now choose one of the `lambda` values and construc
 
 #### 7. Plot your newly derived first and second PCs and use different colors for the tumor and normal tissues. How well do these new PCs separate the response classes? Compare this to the plot in exercise 3. Formulate a conclusion based on the two graphs. {-}
 
-Use `lambda.1se` as your choice for $\gamma$.
-You can extract the coefficients ($\beta$'s) from the `cv.glmnet` objects using the `coef` function, set the `s` argument to the chosen $\gamma$.
+Use `lambda.1se` as your choice for $\lambda$.
+You can extract the coefficients ($\beta$'s) from the `cv.glmnet` objects using the `coef` function, set the `s` argument to the chosen $\lambda$.
 This will return a *sparse matrix* by default, so you might want to use `as.vector` to convert to a more friendly format.
 
 <details><summary>Solution</summary>
