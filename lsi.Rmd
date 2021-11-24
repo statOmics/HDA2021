@@ -16,6 +16,7 @@ output:
 
 ```{r fig.align="center", out.width = '80%', echo=FALSE}
 knitr::include_graphics("./figures/DTIColor.jpg")
+library("magick")
 ```
 
 - Diffusion Tensor Imaging (DTI) data
@@ -133,7 +134,7 @@ Note, however that
 - Higher average FA (z > 0 and p < 0.05) in dyslexic children is appearing in spatial patterns in some locations.
 - Lower average FA (z < 0 and p > 0.05) in dyslexic children is scattered throughout the brain.
 - Multiple testing problem.
-- If there would be no association between brain activity and dyslexia we can expect on average `r nrow(dti) * 0.05` false positive voxels.
+- If there would be no association between brain activity and dyslexia we can expect on average $`r nrow(dti)`\times\alpha=`r round(nrow(dti) * 0.05,0)`$ false positive voxels at the 5% level of significance.
 - Note, that only `r sum(dti$p.value < 0.05)` were significant at the 5% significance level, so we can expect that the majority of the returned voxels are false positives.
 
 ```{r}
@@ -209,9 +210,24 @@ grid.arrange(p1, p2, ncol=2)
 
 We indeed observe that the p-values are uniform under the null hypothesis. So statistical hypothesis testing provides a uniform testing strategy.
 
+
 ### Notation
 
 In the multiple testing literature the number of features that for which a test is conducted is denoted by $m$ instead of $p$ to avoid confusion with the symbol for a p-value.
+
+
+Consider testing all $m=15443$ voxels simultaneously
+
+- What if we assess each individual test at level $\alpha$?
+$\rightarrow$ Probability to have a false positive (FP) among all m simultatenous
+test $>>>  \alpha= 0.05$
+
+- Indeed for each non differential voxel we have a probability of 5% to return a FP.
+- In a typical experiment the majority of the voxel are non differential. 
+- So an upperbound of the expected FP is $m \times \alpha$ or $15443 \times 0.05=`r round(15443*0.05,0)`$. 
+
+$\rightarrow$ Hence, we are bound to call many false positive voxels each time we run the experiment.
+
 
 ###  Familywise error rate
 
@@ -256,7 +272,7 @@ Many researchers, however, when presented a long list of significant results (or
 
 ---
 
-### Invert FWER to significant level for individual test
+### Method of Sidàk: invert FWER to significant level for individual test
 
 The identity FWER$=1- (1-\alpha)^m$ may be inverted to find the significance level at which each individual test should be tested to attain the nominal familywise error rate at FWER,
 \[
@@ -274,9 +290,21 @@ FWER$=0.05$ and $m=15443$: $\alpha=0.0000033$.
 
 We will argue that this procedure is too stringent for large $m$.
 
+### Bonferroni method 
+
+The Bonferroni method is another method that is widely used to control the FWER: 
+
+- assess each test at 
+\[\alpha_\text{adj}=\frac{\alpha}{m}\]
+
+- The method does not assume independence of the test statistics.
+- Again, the method is very conservative! 
+
 ---
 
 To attain the familywise error rate at level FWER the individual hypotheses should be tested at very stringent significance levels when $m$ is large. The consequence of testing at a small significance level $\alpha$ is that it is hard to find significant results, and thus the lists of significant results (discoveries) is likely to be short. Controlling the FWER means that the chance is small that these lists contain one or more false positives. A negative consequence, however, is that many of the true positive hypothesis (i.e. $H_1$ is true) will not appear in these short lists. Hence, the "power" is small (power is not well defined in this multiple testing setting -- extensions of the concept are possible). Thus, avoiding false positives by controlling the FWER comes at a price: many of the true positive hypothesis may be missed.
+
+---
 
 ### Adjusted p-value
 
@@ -294,19 +322,27 @@ First we give a very general definition of an **adjusted $p$-value**.
 
  The corrected $p$-value should be reported. It accounts for the multiplicity problem and it can be compared directly to the nominal FWER level to make calls at the FWER level.
 
+- adjusted p-values for Bonferroni method: 
+\[p_\text{adj}=\text{min}\left(p \times m,1\right)\]
+
 ---
 
 # False Discovery Rate
 
 ## Introduction
 
+In large scale inference it would be more interesting to tolerate a few false positives as long as they do not dominate the toplist 
+
+
+We first introduce some notation:
+
 The table shows the results of $m$ hypothesis tests in a single experiment.
 
-|                          | accept $H_{0i}$ | reject $H_{0i}$ | Total |
-|--------------------------|-----------------|------------------|-------|
-|  null     | TN              | FP              | $m_0$ |
-|  non-null | FN              | TP              | $m_1$ |
-| Total                    | NR              | R               | m     |
+|                         | accept $H_{0i}$ | reject $H_{0i}$ | Total |
+|:------------------------|:---------------:|:---------------:|:-----:|
+| null | TN | FP | $m_0$ |
+| non-null | FN | TP | $m_1$ |
+| Total | NR | R | m |
 
 
 - $TN$: number of true negative: random and unobserved
@@ -320,279 +356,87 @@ The table shows the results of $m$ hypothesis tests in a single experiment.
 
 ---
 
-Note that the table is not completely observable. It is introduced to better understand the concept of FWER and to introduce the concept of the false discovery rate (FDR).
+- Note that the table is not completely observable. 
+- Indeed, we can only observe the bottom row! 
+- The table is introduced to better understand the concept of FWER and to introduce the concept of the false discovery rate (FDR).
 
 ---
 
-|                          | accept $H_{0i}$ | reject $H_{0i}$ | Total |
-|--------------------------|-----------------|------------------|-------|
-|  null     | TN              | FP              | $m_0$ |
-|  non-null | FN              | TP              | $m_1$ |
-| Total                    | NR              | R               | m     |
+|                         | accept $H_{0i}$ | reject $H_{0i}$ | Total |
+|:------------------------|:---------------:|:---------------:|:-----:|
+| null | TN | FP | $m_0$ |
+| non-null | FN | TP | $m_1$ |
+| Total | NR | R | m |
 
 The FWER can now be reexpressed as
  \[
    \text{FWER}=\text{P}\left[\text{reject at least one }H_{0i} \mid H_0\right] = \text{P}\left[FP>0\right] .
  \]
+ 
 
-The **False Discovery Rate (FDR)** is defined as
+- However, we know that the FWER is very conservative in large scale inference problems. 
+- Therefore it would be more interesting to tolerate a few false positives as long as they do not dominate the toplist 
+
+The **False Discovery Proportion (FDP)** is the fraction of false positives that are returned, i.e. 
+
+\[
+FDP = \frac{FP}{R}
+\]
+
+- However, this quantity cannot be observed because in practice we only know the number of voxels for which we rejected $H_0$, $R$. 
+
+- But, we do not know the number of false positives, $FP$.
+
+Therefore, Benjamini and Hochberg, 1995, defined The **False Discovery Rate (FDR)** as
 \[
    \text{FDR} = \text{E}\left[\frac{FP}{R}\right] =\text{E}\left[\text{FDP}\right]
 \]
- with $FP/R=\text{FDP}$ the **false discovery proportion** and is also referred to as the false positive proportion (FPP).
+the expected FDP, in their seminal paper Benjamini, Y. and Hochberg, Y. (1995). "Controlling the false discovery rate: a practical and powerful approach to multiple testing". Journal of the Royal Statistical Society Series B, 57 (1): 289–300. 
 
- Before providing more details on how to perform multiple hypothesis testing with control of the FDR, we illustrate the difference between FWER and FDR control.
+- An FDR of 1% means that on average we expect 1% false positive voxels in the list of voxels that are called significant.
 
----
+- Controlling the FDR allows for more discoveries (i.e. longer lists with significant results), while the fraction of false discoveries among the significant results in well controlled on average. As a consequence, more of the true positive hypotheses will be detected.
 
-The examples illustrate the problem when controlling the FWER and they demonstrate the meaning of the FDR as a more realistic risk measure.
+## Intuition of BH-FDR procedure
 
-The idea is to look at tables as on the previous slide, but from many \emph{repeated experiments}. In its most restrictive interpretation, repeated experiments refer to replicating the same experiment many times. In the case study (brainscan) this means that each repeated experiment consists of randomly sampling 6 normal and 6 dyslectic children from a population. This is of course more like a thought experiment. The interpretation of the FWER and FDR in terms of repeated experiments, however,  relates to relative frequencies and averages over tables (as on the previous slide) resulting from different independent experiments. For examples, suppose that you work for a biotech company, and each week a microarray experiment is performed (each experiment is based on e.g. 20 biological samples and aims at testing differential expression for 10,000 genes) and for each of such experiments you can think of a table as on the previous slide. The FWER and FDR may then also be interpreted as relative frequencies and averages over tables of these experiments. These experiments are not literally "repeated" experiments, but still the FWER and FDR retain their interpretation.
+Consider $m = 1000$ voxels
 
----
+- Suppose that a researcher rejects all null hypotheses for which $p < 0.01$. 
 
-FWER control at $5\%$. Suppose 100 repeated experiments have been performed. Each experiment consists of $10,000$ hypothesis tests. Suppose that we know (this is however irrealistic) that $1,500$ null hypotheses are not true. Below you see a few hypothetical results.
+- If we use $p < 0.01$, we expect $0.01 \times m_0$ tests to return false positives. 
+- A conservative estimate of the number of false positives that we can expect can be obtained by considering that the null hypotheses are true for all features, $m_0 = m =  1000$. 
+- We then would expect $0.01 \times 1000 = 10$ false positives ($FP=10$).
 
-| A.   | accept $H_{0i}$     | reject $H_{0i}$  |  Tot. |
-| --- | --- | --- | --- |
-| true N | $8499$ | $1$ | $8500$ |
-| true P | $1490$ | $10$ | $1500$ |
-| Total  | $9989$ | $11$ | $10000$ |
+- Suppose that the researcher found 200 voxels with $p<0.01$ ($R=200$).
 
-| B.   | accept $H_{0i}$     | reject $H_{0i}$  |  Tot. |
-| --- | --- | --- | --- |
-| true N | $8497$ | $3$ | $8500$ |
-| true P | $1463$ | $37$ | $1500$ |
-| Total  | $9960$ | $40$ | $10000$ |
-
-| C.   | accept $H_{0i}$     | reject $H_{0i}$  |  Tot. |
-| --- | --- | --- | --- |
-| true N | $8500$ | $0$ | $8500$ |
-| true P | $1498$ | $2$ | $1500$ |
-| Total  | $9998$ | $2$ | $10000$ |
+- The proportion of false positive results (FDP = false positive proportion) among the list of $R=200$ genes can then be estimated as
+ \[
+   \widehat{\text{FDP}}=\frac{FP}{R}=\frac{10}{200}=\frac{0.01 \times 1000}{200} = 0.05.
+ \]
 
 
-- When controlling the FWER at $5\%$, results as in the tables A and B are only allowed in $5\%$ of the
-experiments.
-- The other $95\%$ of the experiments result in tables similar to  C.
-
----
-
-- Table A gives a list of 11 discoveries, and table B gives 40 discoveries. Both lists of discoveries contain at least 1 false positive.
-- Table C gives a shorter list with only 2 discoveries which are both true positives.
-
-- When controlling the FWER at $5\%$, tables with no false discoveries (table C) should make up $95\%$ of all repeated experiments.
-- Hence, when controlling the FWER at $5\%$ most experiments will have to result in short lists.
-- Longer lists imply a larger risk of false positives so that the FWER cannot be controlled at a level as low as $5\%$.
-
----
-
-FDR control at $5\%$. Suppose 100 repeated experiments have been performed. Each experiment consists of $10,000$ hypothesis tests. Suppose that we know (this is however irrealistic) that $1,500$ null hypotheses are not true. Below you see a few hypothetical results.
-
-| A.   | accept $H_{0i}$     | reject $H_{0i}$  |  Tot. |
-| --- | --- | --- | --- |
-| true N | $8491$ | $9$ | $8500$ |
-| true P | $1444$ | $56$ | $1500$ |
-| Total  | $9935$ | $65$ | $10000$ |
-
-| B.   | accept $H_{0i}$     | reject $H_{0i}$  |  Tot. |
-| --- | --- | --- | --- |
-| true N | $8497$ | $3$ | $8500$ |
-| true P | $1412$ | $88$ | $1500$ |
-| Total  | $9909$ | $91$ | $10000$ |
-
-| C.   | accept $H_{0i}$     | reject $H_{0i}$  |  Tot. |
-| --- | --- | --- | --- |
-| true N | $8500$ | $0$ | $8500$ |
-| true P | $1498$ | $2$ | $1500$ |
-| Total  | $9998$ | $2$ | $10000$ |
-
-
-When controlling the FDR at $5\%$,
-
-- results as in the tables A and B are very common, but
-- results as in table C are
-rather rare.
-- On overage $FP/R$ is expected to be $5\%$.
-
-
----
-
-Tables A and B now give lists with 65 and 91 discoveries, respectively. Both lists contain false discoveries: $9/65=13.8\%$ false discovery proportion for table A and $3/91=3.3\%$ false discovery proportion for table B. Table C gives a short list with no false discoveries, i.e. $0\%$ false discoveries proportion. When controlling the FDR at $5\%$ each list may contain false discoveries, averaged over repeated experiments the false discoveries proportion must be equal to $5\%$ (definition of false discovery rate). Hence, many tables as tables A and B are allowed. There is thus no need to have many tables as table C.
-
-In summary: controlling the FDR allows for more discoveries (i.e. longer lists with significant results), while the fraction of false discoveries among the significant results in well controlled on average. As a consequence, more of the true positive hypotheses will be detected.
-
----
-
-FWER control is too stringent:
-
-*Setting 1: BH95 with nominal FDR set at $10\%$ and $m_1=500$*
-
-Consider 10 repeated experiments, with the following outcomes for $TP$ and $R$
-
-| $FP$ | 11 | 14 | 8  | 20 | 12 | 0 | 11 | 10 | 13 | 18 |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| $R$ | 102 | 110 | 101 | 159 | 88 | 91 | 102 | 140 | 110 | 171 |
-
-Based on these 10 repeated experiments
-
-- FDR = $\text{E}\left[FP/R\right] \approx 9.8\%$
-- FWER = $\text{P}\left[FP > 0 \right] \approx 90\%$
-- sensitivity = $\text{E}\left[TP\right]/m_1=\text{E}\left[R-FP\right]/m_1\approx 21\%$
-
----
-
-*Setting 2: Bonferroni with nominal FWER set at $10\%$ and $m_1=500$*
-
-Consider 10 repeated experiments, with the following outcomes for $TP$ and $R$:
-
-| $FP$ | 0 | 0 | 3  | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| $R$ | 10 | 11 | 10 | 15 | 9 | 9 | 13 | 18 | 9 | 9 |
-
-Based on these 10 repeated experiments
-
-
-- FDR = $\text{E}\left[FP/R\right] \approx 3\%$
-- FWER = $\text{P}\left[FP > 0 \right] \approx 10\%$
-- sensitivity = $\text{E}\left[TP\right]/m_1=\text{E}\left[R-FP\right]/m_1 \approx 2\%$
-
----
-
-The first setting shows results from simulations in which the FDR is controlled with the BH95 method (see further) at $10\%$ (which is good). This gives a sensitivity of $21\%$ (not large, but realistic in large scale genomics studies). The FWER, however, is very large: 90\%, but we do not mind, because we do not mind that in a large scale study we find one or more false discoveries (i.e. $V>0$), as long as the relative number of false discoveries is on average under control (FDR control).
-
-The second setting shows results from simulations in which the FWER is controlled at 10\%. The FDR, on the other hand, is now as small as $3\%$ and the sensitivity as small as 2\%. Hence, hardly any truly DE gene can be discovered, and, also, hardly any false discovery will end up in the conclusions of the data analysis. This analysis with FWER control is too stringent in large scale genomics context.
-
----
-
-## The Benjamini and Hochberg (1995) method
-
-Procedure for controlling the FDR at $\alpha$:
+## Benjamini and Hochberg (1995) procedure for controlling the FDR at $\alpha$
 
 1. Let $p_{(1)}\leq \ldots \leq p_{(m)}$ denote the ordered $p$-values.
 
-2. Let $k=\max\{i: p_{(i)}\leq i \alpha/m\}$, i.e. $k$ is the largest integer so that $p_{(k)}\leq k \alpha/m$.
+2. Find the largest integer $k$ so that 
+$$
+\frac{p_{(k)} \times m}{k} \leq \alpha
+$$
+$$\text{or}$$
+$$
+p_{(k)} \leq k \times \alpha/m
+$$
 
 3. If such a $k$ exists, reject the $k$ null hypotheses associated with $p_{(1)}, \ldots, p_{(k)}$.
 Otherwise none of the null hypotheses is rejected.
 
 The adjusted $p$-value (also known as the $q$-value in FDR literature):
- \[
+ $$
    q_{(i)}=\tilde{p}_{(i)} = \min\left[\min_{j=i,\ldots, m}\left(m p_{(j)}/j\right), 1 \right].
- \]
+ $$
+ In the hypothetical example above: $k=200$, $p_{(k)}=0.01$, $m=1000$ and $\alpha=0.05$.
 
----
-
-- Benjamini and Hochberg published their method in 1995; it was one of the first FDR control methods.
-- The same authors published later yet other FDR control methods.
-- For this reason their 1995 method is often referred to as the Benjamini and Hochberg 1995 method, or BH95.
-- As input the method only needs the $p$-values from the $m$ hypotheses tests.
-- When controlling FDR, the adjusted $p$-values are often referred to as $q$-values.
-
----
-
-Example: $m=5$ and FDR controlled at $\alpha=0.05$.
-
-| $p_{(i)}$   | $<$ or $>$ | $i \alpha/m$            | reject? |
-| --- | --- | --- | --- |
-| 0.001       | $<$        | $1\times 0.05/5=0.01$   | yes  |
-| 0.007       | $<$        | $2\times 0.05/5=0.02$   | yes  |
-| 0.014       | $<$        | $3\times 0.05/5=0.03$   | yes  |
-| 0.031       | $<$        | $4\times 0.05/5=0.04$   | yes  |
-| 0.042       | $<$        | $5\times 0.05/5=0.05$   | yes  |
-
-Note that the last column can only be filled in after the largest $k$ is detected!
-
----
-
-Example: $m = 7$ and FDR controlled at $\alpha = 0.05$.
-
-| $p_{(i)}$   | $<$ or $>$ | $i \alpha/m$            | reject? |
-| --- | --- | --- | --- |
-| 0.001       | $<$        | $1\times 0.05/7=0.007$   | yes  |
-| 0.007       | $<$        | $2\times 0.05/7=0.014$   | yes  |
-| 0.014       | $<$        | $3\times 0.05/7=0.021$   | yes  |
-| 0.031       | $<$        | $4\times 0.05/7=0.029$   | yes  |
-| 0.035       | $<$        | $5\times 0.05/7=0.036$   | yes  |
-| 0.048       | $>$        | $6\times 0.05/7=0.043$   | no  |
-| 0.052       | $>$        | $7\times 0.05/7=0.050$   | no  |
-
----
-
-## Intuition of BH95?
-
-Consider $m = 10,000$ tests
-
-- We will expect $0.001 \times m_0$ tests to return false positives. A conservative estimate of the number of false positives that we can expect can be obtained by considering that the null hypotheses are true for all features, $m_0 = m =  10000$. We then would expect $0.001 \times 10,000 = 10$ false positives ($FP=10$).
-
-- Suppose that the researcher found 200 genes with $p<0.001$ ($R=200$).
-
-- The proportion of false positive results (FDP = false positive proportion) among the list of $R=200$ genes can then be estimated as
- \[
-   \widehat{\text{FDP}}=\frac{FP}{R}=\frac{10}{200}=\frac{0.001 \times 10000}{200} = 0.05.
- \]
-
-Recall that the B\&H (1995) procedure involves finding the
-largest integer $k$ so that $p_{(k)} \leq k \alpha /m$, or,
-equivalently, $p_{(k)} m /k \leq \alpha$.
-
-In this example: $k=200$, $p_{(k)}=0.001$, $m=10,000$ and $\alpha=0.05$.
-
----
-
-### Comments
-
-- It is a **linear step-up procedure** : it starts from the least significant result (largest p-value) and steps-up to more significant results (lower p-values).
-- In FDR terminology the adjusted $p$-value is often referred to as a $q$-value.
-- The BH95 method assumes that all tests are mutually independent (or at least a particular form of positive dependence between the p-values).
-- When the assumptions hold, it guarantees
-  \[
-    \text{FDR}=\text{E}\left[TP/R\right]=\text{E}\left[\text{FDP}\right] \leq \frac{m_0}{m} \alpha \leq \alpha .
-  \]
-
- Thus, if we knew $m_0$ (the number of true nulls), we could improve the method by applying it to the level $\alpha m/m_0$ (cfr. Bonferroni).
-
- $\longrightarrow$ many FDR methods consist in estimating $m_0$ or the fraction of null genes $m_0/m$.
-
----
-
-The inequality
-\[
-  \text{FDR} \leq \frac{m_0}{m} \alpha \leq \alpha
-\]
-shows that BH1995 is a conservative method, i.e. it controls the FDR at the safe side, i.e. when one is prepared to control the FDR at the nominal level $\alpha$, the BH95 will guarantee that the true FDR is not larger than the nominal level (when the assumptions hold).
-
-More interestingly is that $\frac{m_0}{m} \alpha$ is in between the true FDR and the nominal FDR. Suppose that $m_0$ were known and that the BH95 method were applied at the nominal FDR level of $\alpha=m/m_0 \alpha^*$, in which $\alpha^*$ is the FDR level we want to control. Then the inequality gives
-\[
-  \text{FDR} \leq \frac{m_0}{m} \alpha = \frac{m_0}{m} \frac{m}{m_0}\alpha^* = \alpha^* ,
-\]
-and hence BH95 would better control the FDR  at $\alpha^*$.
-
-Note that $\alpha=m/m_0 \alpha^*>\alpha^*$ and hence the results is less conservative than the original BH95 method.
-
----
-
-The above reasoning implies a **generalized adaptive linear step-up procedure**:
-
-- estimate $m_0$: $\hat{m}_0$
-- of $\hat{m}_0=0$, reject all null hypotheses;
- otherwise, apply the step-up procedure of BH 95 at the level $\alpha=m \alpha^*/\hat{m}_0$ to control the FDR at $\alpha^*$.
-
-The adjusted $p$-values (=$q$-values) are obtained as
-\[
-  \tilde{p}_{(i)} = \frac{\hat{m}_0}{m} \min\left\{\min_{j=i,\ldots, m}\{m p_{(j)}/j\} ,1 \right\}.
-\]
-
-- Many FDR procedures can be fit into this definition (e.g. Benjamini and Hochberg (2000) and Tibshirani (2003)).
-- We do not give details on the methods for estimating $m_0$, but some of them are implemented in the R software. On the next page we illustrate with simulated data that BH can be improved with estimated $m_0$.
-
----
-
-### Other important considerations
-
-- It can be shown  that the BH-FDR method weakly controls the FWER, i.e. it controls the FWER if all features are false ($m_0=m$).
-
-- The BH-FDR is derived under the assumption of independence of the features and has been shown to be only valid under special forms of dependence between the features.
 
 ---
 
@@ -627,15 +471,57 @@ grid.arrange(pPadj,
   pPadj + ylim(c(0,0.05)),
   ncol=2)
 
-# uncorrected p-values
-table(dti$p.value < 0.05)
-
 # BH corrected p-values
 table(dti$padj < 0.05)
+
+# uncorrected p-values
+table(dti$p.value < 0.05)
 
 ```
 
 At the 5% FDR, `r sum(dti$padj < 0.05)` voxels are returned as significantly differentially active between dyslexic and non-dyslexic children.
+
+### Ordered table of results to explain the method
+
+- Bonferroni: $\alpha_\text{adj}=`r format(0.05/nrow(dti),digits=2)` \rightarrow$  `r sum(dti$p.value<(0.05/nrow(dti)))` voxels are significant at the Bonferroni FWER
+
+- BH-FDR: 
+
+1. ordered $p$-values.
+
+2. Find the largest integer $k$ so that 
+$$
+\frac{p_{(k)} \times m}{k} \leq \alpha
+$$
+$$\text{or}$$
+$$
+p_{(k)} \leq k \times \alpha/m
+$$
+
+3. If such a $k$ exists, reject the $k$ null hypotheses associated with $p_{(1)}, \ldots, p_{(k)}$.
+Otherwise none of the null hypotheses is rejected.
+
+
+```{r echo=FALSE}
+alpha <- 0.05
+res <-  dti %>% 
+  select("z.value","p.value","padj") %>%
+  arrange(p.value)
+res$padjNonMonoForm  <- paste0(nrow(res)," x pval /",1:nrow(res))
+res$padjNonMono <- res$p.value *nrow(res) /(1:nrow(res))
+res$adjAlphaForm <- paste0(1:nrow(res)," x ",alpha,"/",nrow(res))
+res$adjAlpha <- alpha * (1:nrow(res))/nrow(res) 
+res$"pval < adjAlpha" <- res$p.value < res$adjAlpha 
+res$"padj < alpha" <- res$padj < alpha 
+res[1:10,] %>% knitr::kable()
+res[11:20,] %>% knitr::kable()
+res[21:30,] %>% knitr::kable()
+res[31:35,] %>% knitr::kable()
+```
+| ... | ... | ... | ... | ... | ... | ... | ... | ... |
+```{r echo=FALSE}
+res[nrow(res)-(3:0),] %>% knitr::kable()
+```
 
 ```{r}
 pFDR <- dti %>%
@@ -652,9 +538,80 @@ pFDR <- dti %>%
   theme_grey()
 ```
 
+### Visualisation of significant differences in brain activity at the 5% FDR
+
 ```{r echo = FALSE, message = FALSE, eval=knitr::is_html_output()}
 animate(pFDR, nframes = 103, end_pause = 3)
 ```
+
+---
+
+## Comments and Extensions
+
+- Benjamini and Hochberg published their method in 1995; it was one of the first FDR control methods.
+- The same authors published later yet other FDR control methods.
+- For this reason their 1995 method is often referred to as the Benjamini and Hochberg 1995 method, or BH95.
+- As input the method only needs the $p$-values from the $m$ hypotheses tests.
+- When controlling FDR, the adjusted $p$-values are often referred to as $q$-values.
+
+---
+
+- It is a **linear step-up procedure** : it starts from the least significant result (largest p-value) and steps-up to more significant results (lower p-values).
+- In FDR terminology the adjusted $p$-value is often referred to as a $q$-value.
+- The BH95 method assumes that all tests are mutually independent (or at least a particular form of positive dependence between the p-values).
+- When the assumptions hold, it guarantees
+  \[
+    \text{FDR}=\text{E}\left[TP/R\right]=\text{E}\left[\text{FDP}\right] \leq \frac{m_0}{m} \alpha \leq \alpha .
+  \]
+
+--- 
+
+### Extension
+
+Thus, if we knew $m_0$ (the number of true nulls), we could improve the method by applying it to the level $\alpha m/m_0$ (cfr. Bonferroni).
+
+ $\longrightarrow$ many FDR methods consist in estimating $m_0$ or the fraction of null genes $m_0/m$.
+
+
+The inequality
+\[
+  \text{FDR} \leq \frac{m_0}{m} \alpha \leq \alpha
+\]
+shows that BH1995 is a conservative method, i.e. it controls the FDR at the safe side, i.e. when one is prepared to control the FDR at the nominal level $\alpha$, the BH95 will guarantee that the true FDR is not larger than the nominal level (when the assumptions hold).
+
+- More interestingly is that $\frac{m_0}{m} \alpha$ is in between the true FDR and the nominal FDR. 
+
+- Suppose that $m_0$ were known and that the BH95 method were applied at the nominal FDR level of $\alpha=m/m_0 \alpha^*$, in which $\alpha^*$ is the FDR level we want to control. Then the inequality gives
+\[
+  \text{FDR} \leq \frac{m_0}{m} \alpha = \frac{m_0}{m} \frac{m}{m_0}\alpha^* = \alpha^* ,
+\]
+and hence BH95 would better control the FDR  at $\alpha^*$.
+
+- Note that $\alpha=m/m_0 \alpha^*>\alpha^*$ and hence the results is less conservative than the original BH95 method.
+
+---
+
+The above reasoning implies a **generalized adaptive linear step-up procedure**:
+
+- estimate $m_0$: $\hat{m}_0$
+- of $\hat{m}_0=0$, reject all null hypotheses;
+ otherwise, apply the step-up procedure of BH 95 at the level $\alpha=m \alpha^*/\hat{m}_0$ to control the FDR at $\alpha^*$.
+
+The adjusted $p$-values (=$q$-values) are obtained as
+\[
+  \tilde{p}_{(i)} = \frac{\hat{m}_0}{m} \min\left\{\min_{j=i,\ldots, m}\{m p_{(j)}/j\} ,1 \right\}.
+\]
+
+- Many FDR procedures can be fit into this definition (e.g. Benjamini and Hochberg (2000) and Tibshirani (2003)).
+- We do not give details on the methods for estimating $m_0$, but some of them are implemented in the R software. On the next page we illustrate with simulated data that BH can be improved with estimated $m_0$.
+
+---
+
+### Other important considerations
+
+- It can be shown  that the BH-FDR method weakly controls the FWER, i.e. it controls the FWER if all features are false ($m_0=m$).
+
+- The BH-FDR is derived under the assumption of independence of the features and has been shown to be only valid under special forms of dependence between the features.
 
 
 # local fdr
@@ -871,7 +828,7 @@ Suppose that all $H_{0i}$ are rejected for which the observed test statistic is 
 &=& \text{E}_{Z}\left[\text{fdr}(Z) \mid Z\leq z\right] \\\\
 &=& \frac{\int_{-\infty}^z \text{fdr}(u) f(u) du}{\int_{-\infty}^z f(u) du} \\\\
 &=& \frac{\pi_0\int_{-\infty}^z  f_0(u) du}{F(z)} \\\\
-&=& \frac{\pi_0 F_0}{F(z)} .
+&=& \frac{\pi_0 F_0(z)}{F(z)} .
 \end{eqnarray}
 
 This shows that fdr$(z)=\frac{\pi_0 f_0(z)}{f(z)}$ and $\text{FDR}(z)=\frac{\pi_0 F_0(z)}{F(z)}$ have similar expression. The former is expressed in terms of density functions, and the latter in terms of the corresponding cumulative distribution functions.
@@ -1052,3 +1009,17 @@ where $Z$ is the test statistic distributed under the alternative hypothesis ($f
 - The graph shows, for examples, that with $\alpha=0.20$ we only have $\text{P}_{f_1}\left[\text{fdr}(Z)<\alpha\right] =0.24$, i.e. only $24\%$ of the non-nulls are expected to be discovered.
 
 - At the bottom of the graph we read Efdr$=0.486$. Hence, the local fdr for a typical non-null feature is expected to be 48.6% which is rather large. The study is not well powered!
+
+## Comparison with gene expression study
+
+- HIV dataset: 7680 z-values, each relating to a two-sample t-test comparing gene expression of 4 normal to 4 HIV patients.
+
+```{r}
+data(hivdata)
+res <- locfdr(hivdata,plot=2)
+res <- locfdr(hivdata,plot=3)
+```
+
+```{r}
+mean(res$fdr[res$fdr<0.2])
+```
