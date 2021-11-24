@@ -331,6 +331,11 @@ First we give a very general definition of an **adjusted $p$-value**.
 
 ## Introduction
 
+In large scale inference it would be more interesting to tolerate a few false positives as long as they do not dominate the toplist 
+
+
+We first introduce some notation:
+
 The table shows the results of $m$ hypothesis tests in a single experiment.
 
 |                         | accept $H_{0i}$ | reject $H_{0i}$ | Total |
@@ -378,7 +383,7 @@ The **False Discovery Proportion (FDP)** is the fraction of false positives that
 FDP = \frac{FP}{R}
 \]
 
-- However, this quantity cannot be observed because in practice we only know the number of proteins for which we rejected $H_0$, $R$. 
+- However, this quantity cannot be observed because in practice we only know the number of voxels for which we rejected $H_0$, $R$. 
 
 - But, we do not know the number of false positives, $FP$.
 
@@ -823,7 +828,7 @@ Suppose that all $H_{0i}$ are rejected for which the observed test statistic is 
 &=& \text{E}_{Z}\left[\text{fdr}(Z) \mid Z\leq z\right] \\\\
 &=& \frac{\int_{-\infty}^z \text{fdr}(u) f(u) du}{\int_{-\infty}^z f(u) du} \\\\
 &=& \frac{\pi_0\int_{-\infty}^z  f_0(u) du}{F(z)} \\\\
-&=& \frac{\pi_0 F_0}{F(z)} .
+&=& \frac{\pi_0 F_0(z)}{F(z)} .
 \end{eqnarray}
 
 This shows that fdr$(z)=\frac{\pi_0 f_0(z)}{f(z)}$ and $\text{FDR}(z)=\frac{\pi_0 F_0(z)}{F(z)}$ have similar expression. The former is expressed in terms of density functions, and the latter in terms of the corresponding cumulative distribution functions.
@@ -1004,3 +1009,17 @@ where $Z$ is the test statistic distributed under the alternative hypothesis ($f
 - The graph shows, for examples, that with $\alpha=0.20$ we only have $\text{P}_{f_1}\left[\text{fdr}(Z)<\alpha\right] =0.24$, i.e. only $24\%$ of the non-nulls are expected to be discovered.
 
 - At the bottom of the graph we read Efdr$=0.486$. Hence, the local fdr for a typical non-null feature is expected to be 48.6% which is rather large. The study is not well powered!
+
+## Comparison with gene expression study
+
+- HIV dataset: 7680 z-values, each relating to a two-sample t-test comparing gene expression of 4 normal to 4 HIV patients.
+
+```{r}
+data(hivdata)
+res <- locfdr(hivdata,plot=2)
+res <- locfdr(hivdata,plot=3)
+```
+
+```{r}
+mean(res$fdr[res$fdr<0.2])
+```
