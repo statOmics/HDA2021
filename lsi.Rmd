@@ -16,6 +16,7 @@ output:
 
 ```{r fig.align="center", out.width = '80%', echo=FALSE}
 knitr::include_graphics("./figures/DTIColor.jpg")
+library("magick")
 ```
 
 - Diffusion Tensor Imaging (DTI) data
