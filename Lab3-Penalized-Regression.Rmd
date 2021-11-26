@@ -2,7 +2,7 @@
 title: "Lab 3: Penalized regression techniques for high-dimensional data"
 subtitle: "High Dimensional Data Analysis practicals"
 author: "Adapted by Milan Malfait"
-date: "04 Nov 2021 <br/> (Last updated: 2021-11-04)"
+date: "04 Nov 2021 <br/> (Last updated: 2021-11-26)"
 ---
 
 ```{r setup, include=FALSE, cache=FALSE}
@@ -18,6 +18,8 @@ options(
   warnPartialMatchArgs = FALSE
 )
 ```
+
+### [Change log](https://github.com/statOmics/HDDA21/commits/master/Lab3-Penalized-Regression.Rmd) {-}
 
 ***
 
@@ -39,7 +41,7 @@ library(boot)
   - Carry out Principal Component Regression (PCR)
   - Use `glmnet()` to carry out ridge regression, lasso and elastic net
   - Evaluation of these prediction models
-  
+
 
 ## The dataset
 
@@ -70,7 +72,7 @@ centered (and possibly scaled) data. We store this in two matrices
 `X` and `Y`:
 
 ```{r prepare-data}
-X <- scale(genes, center = TRUE, scale = TRUE) 
+X <- scale(genes, center = TRUE, scale = TRUE)
 Y <- scale(trim32, center = TRUE)
 ```
 
@@ -88,7 +90,7 @@ centered so that the intercept is 0.
 We are presented with the usual regression model:
 
 $$
-Y_i=\beta_i X_{i1}+\dots+\beta_pX_{ip}+\epsilon_i \\ 
+Y_i=\beta_i X_{i1}+\dots+\beta_pX_{ip}+\epsilon_i \\
 \text{ Or } \mathbf{Y}={\mathbf{X}}{\boldsymbol{\beta}} +{\boldsymbol{\epsilon}}
 $$
 
@@ -112,22 +114,22 @@ qr(X)$rank
 XtX <- crossprod(X) # calculates t(X) %*% X more efficiently
 qr(XtX)$rank
 
-# Try to invert using solve: 
+# Try to invert using solve:
 solve(XtX)
 ```
 
 We realize we cannot compute
 $({\mathbf{X}}^T{\mathbf{X}})^{-1}$ because the rank of
 $({\mathbf{X}}^T{\mathbf{X}})$ is less than $p$ hence we can’t
-get $\hat{{\boldsymbol{\beta}}}$ by means of least squares! 
+get $\hat{{\boldsymbol{\beta}}}$ by means of least squares!
 This is generally referred to as the __[singularity](https://www.statistics.com/glossary/singularity/) problem__.
 
 
 # Principal component regression
 
 A first way to deal with this singularity, is to bypass it using principal components.
-Since $\min(n,p) = n = 120$, 
-PCA will give `r min(dim(X))` components, each being a linear combination of the 
+Since $\min(n,p) = n = 120$,
+PCA will give `r min(dim(X))` components, each being a linear combination of the
 $p$ = `r ncol(X)` variables.
 These `r min(dim(X))` PCs contain all information present in the original data.
 We could as well use an approximation of ${\mathbf{X}}$, i.e using just a few ($k<120$) PCs.
@@ -151,11 +153,11 @@ pcr_model1 <- lm(Y ~ Zk)
 summary(pcr_model1)
 ```
 
-As $\mathbf{X}$ and $\mathbf{Y}$ are centered, the intercept is 
+As $\mathbf{X}$ and $\mathbf{Y}$ are centered, the intercept is
 approximately 0.
 
-The output shows that PC1 and PC4 have a $\beta$ estimate that 
-differs significantly from 0 (at $p < 0.05$), but the results can't be readily 
+The output shows that PC1 and PC4 have a $\beta$ estimate that
+differs significantly from 0 (at $p < 0.05$), but the results can't be readily
 interpreted, since we have no immediate interpretation of the PCs.
 
 
@@ -169,9 +171,9 @@ When using this function, you have to keep a few things in mind:
   1. the number of components (PCs) to use is passed with the argument `ncomp`
   2. the function allows you to scale (set `scale = TRUE`) and
   center (set `center = TRUE`) the predictors first (in the example here, $\mathbf{X}$ has already been centered and scaled).
-  
+
 You can use the function `pcr()` in much the same way as you would
-use `lm()`. The resulting fit can easily be examined using the 
+use `lm()`. The resulting fit can easily be examined using the
 function `summary()`, but the output looks quite different from
 what you would get from `lm`.
 
@@ -197,28 +199,28 @@ that has the __smallest prediction error__.
 # Ridges, Lassos and Elastic Nets {#elnet-theory}
 
 Ridge regression, lasso regression and elastic nets are all closely
-related techniques, based on the same idea: add a penalty term to 
+related techniques, based on the same idea: add a penalty term to
 the estimating function so $({\mathbf{X}}^T{\mathbf{X}})$
-becomes full rank again and is invertible. Two different penalty 
+becomes full rank again and is invertible. Two different penalty
 terms or regularization methods can be used:
 
 1. L1 regularization: this regularization adds a term ${\lambda_1\|\boldsymbol{\beta}\|_{1}}$ to the estimating equation.
 The term will add a penalty based on the *absolute value* of the
 magnitude of the coefficients. This is used by the __lasso regression__
- 
+
 $$
  \hat{\boldsymbol{\beta}}^{\text{lasso}} = \text{argmin}_{\boldsymbol{\beta}}\displaystyle({(\mathbf{Y}-\mathbf{X}\boldsymbol{\beta})^T(\mathbf{Y}-\mathbf{X}\boldsymbol{\beta})+{\lambda_1\|\boldsymbol{\beta}\|_{1}}}\displaystyle)
 $$
 
 2. L2 regularization: this regularization adds a term ${\lambda_2\|\boldsymbol{\beta}\|_{2}^{2}}$ to the estimating equation.
-The penalty term is based on the square of the magnitude of the 
+The penalty term is based on the square of the magnitude of the
 coefficients. This is used by __ridge regression__.
 
 $$
  \hat{\boldsymbol{\beta}}^{\text{ridge}} = \text{argmin}_{\boldsymbol{\beta}}\displaystyle({(\mathbf{Y}-\mathbf{X}\boldsymbol{\beta})^T(\mathbf{Y}-\mathbf{X}\boldsymbol{\beta})+{\lambda_2\|\boldsymbol{\beta}\|_{2}^{2}}}\displaystyle)
 $$
 
-Elastic nets combine both types of regularizations. It does so by 
+Elastic nets combine both types of regularizations. It does so by
 introducing a $\alpha$ mixing parameter that essentially combines
 the L1 and L2 norms in a weighted average.
 
@@ -231,9 +233,9 @@ $$
 # Exercise: Verification of ridge regression
 
 In least square regression the minimization of the estimation function
-$|{\mathbf{Y} - \mathbf{X} \boldsymbol{\beta}}\|^{2}_{2}$ leads to the solution ${\boldsymbol{\hat{\beta}}=(\mathbf{X^TX})^{-1}\mathbf{X^TY}}$. 
+$|{\mathbf{Y} - \mathbf{X} \boldsymbol{\beta}}\|^{2}_{2}$ leads to the solution ${\boldsymbol{\hat{\beta}}=(\mathbf{X^TX})^{-1}\mathbf{X^TY}}$.
 
-For the penalized least squares criterion used by ridge regression, you minimize 
+For the penalized least squares criterion used by ridge regression, you minimize
 $\|{\mathbf{Y}-\mathbf{X}\boldsymbol{\beta}\|^{2}_{2}}+\lambda{\boldsymbol{\|\beta\|^{2}_{2}}}$
 which leads to following solution:
 
@@ -350,7 +352,7 @@ ridge_mod_grid <- glmnet(X, Y, alpha = 0, lambda = grid)
 # see ?plot.glmnet
 plot(ridge_mod_grid, xvar = "lambda", xlab = "log(lambda)")
 # add a vertical line at lambda = 2
-text(log(lambda), -0.05, labels = expression(lambda == 2), 
+text(log(lambda), -0.05, labels = expression(lambda == 2),
      adj = -0.5, col = "firebrick")
 abline(v = log(lambda), col = "firebrick", lwd = 2)
 ```
@@ -478,7 +480,7 @@ models, e.g. PC regression, ridge regression and lasso regression, on our data.
 However, we still need to find the optimal model within each of these classes,
 by selecting the best hyperparameter (number of PCs for PC regression and $\lambda$
 for lasso and ridge).
-For that we will use 
+For that we will use
 [*$k$-fold Cross Validation*](https://en.wikipedia.org/wiki/Cross-validation_(statistics))
 on our training set.
 
@@ -492,7 +494,7 @@ We can estimate this by using *k-fold cross validation* ($CV_k$) on
 the training data.
 
 The $CV_k$ estimates can be automatically computed for any
-generalized linear model (generated with `glm()` and by extension `glmnet()`) 
+generalized linear model (generated with `glm()` and by extension `glmnet()`)
 using the `cv.glm()` function from the
 *[boot](https://CRAN.R-project.org/package=boot)* package.
 
@@ -592,7 +594,7 @@ predplot(final_pcr_model, newdata = test_data, line = TRUE)
 
 #### 1. Perform a lasso regression with 20-fold Cross Validation on the training data (`trainX`, `trainY`). Plot the results and select the optimal $\lambda$ parameter. Fit a final model with the selected $\lambda$ and validate it on the test data. {-}
 
-*Hint*: use the `cv.glmnet()` function, for 20 folds CV, set `nfolds = 20` and 
+*Hint*: use the `cv.glmnet()` function, for 20 folds CV, set `nfolds = 20` and
 to use the MSE metric set `type.measure = "mse"`.
 Go to `?cv.glmnet` for details.
 
@@ -600,7 +602,7 @@ Go to `?cv.glmnet` for details.
 
 ```{r lasso-cv}
 set.seed(123)
-lasso_cv <- cv.glmnet(trainX, trainY, alpha = 1, 
+lasso_cv <- cv.glmnet(trainX, trainY, alpha = 1,
                       nfolds = K, type.measure = "mse")
 lasso_cv
 plot(lasso_cv)
@@ -613,7 +615,7 @@ and make the coefficient profile plot as before.
 plot(lasso_cv$glmnet.fit, xvar = "lambda")
 ```
 
-We can look for the $\lambda$ values that give the best result. 
+We can look for the $\lambda$ values that give the best result.
 Here you have two possibilities :
 
 1. `lambda.min`: the value of  $\lambda$ that gives the best result for the crossvalidation.
@@ -644,7 +646,7 @@ lasso_preds <- predict(lasso_cv, s = lasso_cv$lambda.min, newx = testX)
 
 ```{r ridge-cv}
 set.seed(123)
-ridge_cv <- cv.glmnet(trainX, trainY, alpha = 0, 
+ridge_cv <- cv.glmnet(trainX, trainY, alpha = 0,
                       nfolds = K, type.measure = "mse")
 ridge_cv
 plot(ridge_cv)
@@ -657,7 +659,7 @@ and make the coefficient profile plot as before.
 plot(ridge_cv$glmnet.fit, xvar = "lambda")
 ```
 
-We can look for the $\lambda$ values that give the best result. 
+We can look for the $\lambda$ values that give the best result.
 Here you have two possibilities :
 
 1. `lambda.min`: the value of  $\lambda$ that gives the best result for the crossvalidation.
@@ -684,7 +686,7 @@ ridge_preds <- predict(ridge_cv, s = ridge_cv$lambda.min, newx = testX)
 
 
 #### 3. Which of the models considered (PCR, lasso, ridge) performs best?. {-}
-    
+
 <details><summary>Solution</summary>
 
 Based on the MSE, the ridge model performs best on the test data.

@@ -2,7 +2,7 @@
 title: "Lab 2: Principal Component Analysis"
 subtitle: "High Dimensional Data Analysis practicals"
 author: "Adapted by Milan Malfait"
-date: "28 Oct 2021 <br/> (Last updated: 2021-11-12)"
+date: "28 Oct 2021 <br/> (Last updated: 2021-11-26)"
 ---
 
 ```{r setup, include=FALSE, cache=FALSE}
@@ -19,14 +19,19 @@ knitr::opts_chunk$set(
 ***
 
 ```{r libraries, warning=FALSE, message=FALSE}
+## Install necessary packages with:
+# install.packages("tidyverse")
+# if (!requireNamespace("remotes", quietly = TRUE)) {
+#     install.packages("remotes")
+# }
+# remotes::install_github("statOmics/HDDAData")
+# remotes::install_github("vqv/ggbiplot")
+
 library(tidyverse)
 theme_set(theme_light())
 
-## ggbiplot package to create ggplot-based biplots
-## install with:
-# install.packages("remotes")
-# remotes::install_github("vqv/ggbiplot")
 library(ggbiplot)
+library(HDDAData)
 ```
 
 # Introduction
@@ -291,18 +296,10 @@ pollution of grasslands in the vicinity of the river Schelde. Concentrations of 
 measured on 19 different locations, each time at a depth of 5 cm and at a depth of 20 cm; the data
 set is called heavymetals. Vicinity to the river was 0 (far) or 1 (close).
 
-Read in the data as follows:
+Load in the data as follows:
 
 ```{r load-heavymetals-data, collapse=FALSE}
-heavymetals_url <- "https://github.com/statOmics/HDA2020/raw/data/heavymetals.csv"
-
-heavymetals <- read_csv(heavymetals_url,
-  col_types = cols(
-    location = col_integer(),
-    river = col_logical(),
-    .default = col_double()
-  )
-)
+data("heavymetals")
 
 ## Recode the "river" variable
 heavymetals$river <- ifelse(heavymetals$river, "close", "far")
@@ -467,14 +464,13 @@ Using the same data as in [Lab
 
 ### Data prep {.unnumbered}
 
-The `industries.txt` file contains data on the distribution of employment between 9 industrial
+The `"industries"` dataset contains data on the distribution of employment between 9 industrial
 sectors, in 26 European countries. The dataset stems from the Cold-War era; the data are expressed
-as percentages. Read in the data and explore its contents.
+as percentages. Load the data and explore its contents.
 
 ```{r read-industries-data}
-industries_url <- "https://github.com/statOmics/HDA2020/raw/data/industries.txt"
-
-industries <- read_delim(industries_url, delim = " ", col_types = cols())
+## Load 'industries' data from the HDDAData package
+data("industries")
 
 # Explore contents
 industries
