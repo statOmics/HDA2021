@@ -2,7 +2,7 @@
 title: "Lab 4: Sparse PCA and LDA"
 subtitle: "High Dimensional Data Analysis practicals"
 author: "Adapted by Milan Malfait"
-date: "18 Nov 2021 <br/> (Last updated: 2021-11-17)"
+date: "18 Nov 2021 <br/> (Last updated: 2021-11-26)"
 references:
 - id: alon1999broad
   type: article-journal
@@ -43,6 +43,8 @@ knitr::opts_chunk$set(
 )
 ```
 
+### [Change log](https://github.com/statOmics/HDDA21/commits/master/Lab4-Sparse-PCA-LDA.Rmd) {-}
+
 ***
 
 ```{r libraries, warning=FALSE, message=FALSE}
@@ -52,7 +54,6 @@ knitr::opts_chunk$set(
 #     install.packages("remotes")
 # }
 # remotes::install_github("statOmics/HDDAData")
-
 
 library(glmnet)
 library(MASS)
