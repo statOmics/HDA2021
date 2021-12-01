@@ -489,6 +489,9 @@ div.tocify {
     <li>
       <a href="Lab4-Sparse-PCA-LDA.html">Lab 4</a>
     </li>
+    <li>
+      <a href="Lab5-Large-Scale-Inference.html">Lab 5</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -779,26 +782,23 @@ div.tocify {
 <span id="cb18-12"><a href="#cb18-12"></a>  <span class="dt">stop =</span> <span class="dv">-50</span>,</span>
 <span id="cb18-13"><a href="#cb18-13"></a>  <span class="dt">maxIte =</span> <span class="dv">25</span>,</span>
 <span id="cb18-14"><a href="#cb18-14"></a>  <span class="dt">trace =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
-<pre><code>## ite:  1  ridge cost:  100.17  |b|_1:  6.455599 
-## ite:  2  ridge cost:  96.34846  |b|_1:  5.58233 
-## ite:  3  ridge cost:  91.78595  |b|_1:  5.610278 
-## ite:  4  ridge cost:  91.46203  |b|_1:  5.41258 
-## ite:  5  ridge cost:  89.73748  |b|_1:  5.607416 
-## ite:  6  ridge cost:  88.63472  |b|_1:  5.763358 
-## ite:  7  ridge cost:  88.40254  |b|_1:  5.791228 
-## ite:  8  ridge cost:  88.15276  |b|_1:  5.833037 
-## ite:  9  ridge cost:  87.9619  |b|_1:  5.867616 
-## ite:  10  ridge cost:  87.86985  |b|_1:  5.884655 
-## ite:  11  ridge cost:  87.82497  |b|_1:  5.893053 
-## ite:  12  ridge cost:  87.80297  |b|_1:  5.897192 
-## ite:  13  ridge cost:  87.79216  |b|_1:  5.899232 
-## ite:  14  ridge cost:  87.78683  |b|_1:  5.900238 
-## ite:  15  ridge cost:  87.78421  |b|_1:  5.900733 
-## ite:  16  ridge cost:  87.78292  |b|_1:  5.900978 
-## ite:  17  ridge cost:  87.78228  |b|_1:  5.901098 
-## ite:  18  ridge cost:  87.78197  |b|_1:  5.901158 
-## ite:  19  ridge cost:  87.78181  |b|_1:  5.901187 
-## ite:  20  ridge cost:  87.78174  |b|_1:  5.901201 
+<pre><code>## ite:  1  ridge cost:  91.45787  |b|_1:  5.414031 
+## ite:  2  ridge cost:  89.74318  |b|_1:  5.606768 
+## ite:  3  ridge cost:  88.63666  |b|_1:  5.763137 
+## ite:  4  ridge cost:  88.40369  |b|_1:  5.791059 
+## ite:  5  ridge cost:  88.15436  |b|_1:  5.832751 
+## ite:  6  ridge cost:  87.96267  |b|_1:  5.867475 
+## ite:  7  ridge cost:  87.87022  |b|_1:  5.884586 
+## ite:  8  ridge cost:  87.82515  |b|_1:  5.893019 
+## ite:  9  ridge cost:  87.80306  |b|_1:  5.897175 
+## ite:  10  ridge cost:  87.7922  |b|_1:  5.899224 
+## ite:  11  ridge cost:  87.78686  |b|_1:  5.900234 
+## ite:  12  ridge cost:  87.78422  |b|_1:  5.900731 
+## ite:  13  ridge cost:  87.78292  |b|_1:  5.900977 
+## ite:  14  ridge cost:  87.78228  |b|_1:  5.901098 
+## ite:  15  ridge cost:  87.78197  |b|_1:  5.901157 
+## ite:  16  ridge cost:  87.78181  |b|_1:  5.901187 
+## ite:  17  ridge cost:  87.78174  |b|_1:  5.901201 
 ## ite:  1  ridge cost:  134.7777  |b|_1:  5.379259 
 ## ite:  2  ridge cost:  134.7777  |b|_1:  5.379259 
 ## final update, total ridge cost:  222.5595  |b|_1:  11.28046</code></pre>
@@ -897,9 +897,9 @@ div.tocify {
 <h1>Session info</h1>
 <details>
 <p><summary>Session info</summary></p>
-<pre><code>## [1] &quot;2021-11-26 16:08:23 UTC&quot;</code></pre>
-<pre><code>## ─ Session info  📐  👊🏼  😁   ─────────────────────────────────────────────────
-##  hash: triangular ruler, oncoming fist: medium-light skin tone, beaming face with smiling eyes
+<pre><code>## [1] &quot;2021-12-01 15:32:42 UTC&quot;</code></pre>
+<pre><code>## ─ Session info  📳  🏦  🚐   ─────────────────────────────────────────────────
+##  hash: vibration mode, bank, minibus
 ## 
 ##  setting  value
 ##  version  R version 4.1.2 (2021-11-01)
@@ -910,7 +910,7 @@ div.tocify {
 ##  collate  en_US.UTF-8
 ##  ctype    en_US.UTF-8
 ##  tz       UTC
-##  date     2021-11-26
+##  date     2021-12-01
 ##  pandoc   2.7.3 @ /usr/local/bin/ (via rmarkdown)
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────
@@ -1047,7 +1047,7 @@ div.tocify {
 ##  P zlibbioc            1.38.0     2021-05-19 [?] Bioconductor
 ## 
 ##  [1] /Users/runner/work/HDDA21/HDDA21/renv/library/R-4.1/x86_64-apple-darwin17.0
-##  [2] /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpfHiztC/renv-system-library
+##  [2] /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpSUYYpt/renv-system-library
 ## 
 ##  P ── Loaded and on-disk path mismatch.
 ## 
