@@ -47,8 +47,6 @@ email or during the lectures or practical sessions.
 
 ## Topics
 
-<!-- TODO: add Labs material -->
-
 ### 1. Introduction
 
   - Slides: [Lecture 1: Intro](./intro0.html)
@@ -83,14 +81,14 @@ email or during the lectures or practical sessions.
 ### 6. Large Scale inference
 
   - [Lecture 6: Large Scale Inference](./lsi.html) [[PDF](./lsi.pdf)]
-  <!-- - [Lab 5: Large Scale Inference](./Lab5-Large-Scale-Inference.html) -->
+  - [Lab 5: Large Scale Inference](./Lab5-Large-Scale-Inference.html)
 
 <!-- ### Paper reading Sessions -->
 
 #### Paper Reading Session: Introduction to Clustering
 
   - Paper reading session, December 7th 2021. [Paper: Fraley and Raftery (1998). How Many Clusters? Which Clustering Method? Answers Via Model-Based Cluster Analysis. The Computer Journal, (41)8:578-588.](https://sites.stat.washington.edu/people/raftery/Research/PDF/fraley1998.pdf)
-  
+
 ---
 
 ## Homework assignments
