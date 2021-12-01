@@ -37,6 +37,8 @@ navbar:
         href: Lab3-Penalized-Regression.html
       - text: "Lab 4"
         href: Lab4-Sparse-PCA-LDA.html
+      - text: "Lab 5"
+        href: Lab5-Large-Scale-Inference.html
   right:
     - icon: fab fa-github
       href: https://github.com/statOmics/HDDA21
