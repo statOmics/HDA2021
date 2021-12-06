@@ -466,6 +466,15 @@ div.tocify {
     <li>
       <a href="lsi.html">6. Large Scale Inference</a>
     </li>
+    <li>
+      <a href="https://sites.stat.washington.edu/people/raftery/Research/PDF/fraley1998.pdf">Paper 1: Model-based Clustering</a>
+    </li>
+    <li>
+      <a href="hclust.html">Paper 1: Intro Hierarchical Clustering</a>
+    </li>
+    <li>
+      <a href="em.html">Paper 1: EM algorithm</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -2117,20 +2126,18 @@ n \times C_p = \Vert \mathbf{Y} - \mathbf{X}\boldsymbol{\beta}\Vert_2^2 + 2\sigm
 <h1>Session info</h1>
 <details>
 <p><summary>Session info</summary></p>
-<pre><code>## [1] &quot;2021-12-01 15:35:28 UTC&quot;</code></pre>
-<pre><code>## ─ Session info  👨🏻‍🦱  🇲🇭  🇨🇴   ─────────────────────────────────────────────────
-##  hash: man: light skin tone, curly hair, flag: Marshall Islands, flag: Colombia
-## 
+<pre><code>## [1] &quot;2021-12-06 20:40:00 UTC&quot;</code></pre>
+<pre><code>## ─ Session info ───────────────────────────────────────────────────────────────
 ##  setting  value
 ##  version  R version 4.1.2 (2021-11-01)
-##  os       macOS Catalina 10.15.7
+##  os       macOS Big Sur 10.16
 ##  system   x86_64, darwin17.0
 ##  ui       X11
 ##  language (EN)
 ##  collate  en_US.UTF-8
 ##  ctype    en_US.UTF-8
 ##  tz       UTC
-##  date     2021-12-01
+##  date     2021-12-06
 ##  pandoc   2.7.3 @ /usr/local/bin/ (via rmarkdown)
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────
@@ -2150,8 +2157,8 @@ n \times C_p = \Vert \mathbf{Y} - \mathbf{X}\boldsymbol{\beta}\Vert_2^2 + 2\sigm
 ##  P blob                1.2.2      2021-07-23 [?] CRAN (R 4.1.0)
 ##  P bootstrap           2019.6     2019-06-17 [?] CRAN (R 4.1.0)
 ##  P breastCancerMAINZ * 1.30.0     2021-05-20 [?] Bioconductor
-##  P broom               0.7.9      2021-07-27 [?] CRAN (R 4.1.2)
-##  P bslib               0.3.0      2021-09-02 [?] CRAN (R 4.1.2)
+##  P broom               0.7.9      2021-07-27 [?] CRAN (R 4.1.0)
+##  P bslib               0.3.0      2021-09-02 [?] CRAN (R 4.1.0)
 ##  P cachem              1.0.6      2021-08-19 [?] CRAN (R 4.1.0)
 ##  P cellranger          1.1.0      2016-07-27 [?] CRAN (R 4.1.0)
 ##  P class               7.3-19     2021-05-03 [?] CRAN (R 4.1.2)
@@ -2176,12 +2183,12 @@ n \times C_p = \Vert \mathbf{Y} - \mathbf{X}\boldsymbol{\beta}\Vert_2^2 + 2\sigm
 ##  P forcats           * 0.5.1      2021-01-27 [?] CRAN (R 4.1.0)
 ##  P foreach             1.5.1      2020-10-15 [?] CRAN (R 4.1.0)
 ##  P fs                  1.5.0      2020-07-31 [?] CRAN (R 4.1.0)
-##  P future              1.22.1     2021-08-25 [?] CRAN (R 4.1.2)
+##  P future              1.22.1     2021-08-25 [?] CRAN (R 4.1.0)
 ##  P future.apply        1.8.1      2021-08-10 [?] CRAN (R 4.1.0)
 ##  P genefu            * 2.24.2     2021-05-23 [?] Bioconductor
 ##  P generics            0.1.0      2020-10-31 [?] CRAN (R 4.1.0)
 ##  P GenomeInfoDb        1.28.4     2021-09-09 [?] Bioconductor
-##  P GenomeInfoDbData    1.2.6      2021-11-12 [?] Bioconductor
+##  P GenomeInfoDbData    1.2.6      2021-12-06 [?] Bioconductor
 ##  P ggforce           * 0.3.3      2021-03-05 [?] CRAN (R 4.1.0)
 ##  P ggplot2           * 3.3.5      2021-06-25 [?] CRAN (R 4.1.0)
 ##  P glmnet            * 4.1-2      2021-06-24 [?] CRAN (R 4.1.0)
@@ -2219,14 +2226,14 @@ n \times C_p = \Vert \mathbf{Y} - \mathbf{X}\boldsymbol{\beta}\Vert_2^2 + 2\sigm
 ##  P Matrix            * 1.3-4      2021-06-01 [?] CRAN (R 4.1.2)
 ##  P mclust              5.4.7      2020-11-20 [?] CRAN (R 4.1.0)
 ##  P memoise             2.0.0      2021-01-26 [?] CRAN (R 4.1.0)
-##  P mgcv              * 1.8-37     2021-09-23 [?] CRAN (R 4.1.2)
+##  P mgcv              * 1.8-37     2021-09-23 [?] CRAN (R 4.1.0)
 ##  P modelr              0.1.8      2020-05-19 [?] CRAN (R 4.1.0)
 ##  P munsell             0.5.0      2018-06-12 [?] CRAN (R 4.1.0)
 ##  P nlme              * 3.1-153    2021-09-07 [?] CRAN (R 4.1.2)
 ##  P pamr              * 1.56.1     2019-04-22 [?] CRAN (R 4.1.0)
 ##  P parallelly          1.28.1     2021-09-09 [?] CRAN (R 4.1.0)
-##  P pillar              1.6.3      2021-09-26 [?] CRAN (R 4.1.2)
-##  P pkgconfig           2.0.3      2021-11-12 [?] Github (r-lib/pkgconfig@b81ae03)
+##  P pillar              1.6.3      2021-09-26 [?] CRAN (R 4.1.0)
+##  P pkgconfig           2.0.3      2021-12-06 [?] Github (r-lib/pkgconfig@b81ae03)
 ##  P plotROC           * 2.2.1      2018-06-23 [?] CRAN (R 4.1.0)
 ##  P plyr                1.8.6      2020-03-03 [?] CRAN (R 4.1.0)
 ##  P png                 0.1-7      2013-12-03 [?] CRAN (R 4.1.0)
@@ -2240,30 +2247,30 @@ n \times C_p = \Vert \mathbf{Y} - \mathbf{X}\boldsymbol{\beta}\Vert_2^2 + 2\sigm
 ##  P rappdirs            0.3.3      2021-01-31 [?] CRAN (R 4.1.0)
 ##  P RColorBrewer        1.1-2      2014-12-07 [?] CRAN (R 4.1.0)
 ##  P Rcpp                1.0.7      2021-07-07 [?] CRAN (R 4.1.0)
-##  P RCurl               1.98-1.4   2021-08-17 [?] CRAN (R 4.1.2)
-##  P readr             * 2.0.1      2021-08-10 [?] CRAN (R 4.1.2)
+##  P RCurl               1.98-1.4   2021-08-17 [?] CRAN (R 4.1.0)
+##  P readr             * 2.0.1      2021-08-10 [?] CRAN (R 4.1.0)
 ##  P readxl              1.3.1      2019-03-13 [?] CRAN (R 4.1.0)
-##  P renv                0.14.0     2021-07-21 [?] CRAN (R 4.1.0)
+##    renv                0.14.0     2021-07-21 [1] CRAN (R 4.1.0)
 ##  P reprex              2.0.1      2021-08-05 [?] CRAN (R 4.1.0)
 ##  P rlang               0.4.11     2021-04-30 [?] CRAN (R 4.1.0)
-##  P rmarkdown           2.10       2021-08-06 [?] CRAN (R 4.1.2)
+##  P rmarkdown           2.10       2021-08-06 [?] CRAN (R 4.1.0)
 ##  P rmeta               3.0        2018-03-20 [?] CRAN (R 4.1.0)
 ##  P RSQLite             2.2.8      2021-08-21 [?] CRAN (R 4.1.0)
 ##  P rstudioapi          0.13       2020-11-12 [?] CRAN (R 4.1.0)
-##  P rvest               1.0.1      2021-07-26 [?] CRAN (R 4.1.2)
+##  P rvest               1.0.1      2021-07-26 [?] CRAN (R 4.1.0)
 ##  P S4Vectors           0.30.0     2021-05-19 [?] Bioconductor
 ##  P sass                0.4.0      2021-05-12 [?] CRAN (R 4.1.0)
 ##  P scales              1.1.1      2020-05-11 [?] CRAN (R 4.1.0)
 ##  P SemiPar           * 1.0-4.2    2018-04-16 [?] CRAN (R 4.1.0)
-##  P sessioninfo         1.2.1      2021-11-02 [?] CRAN (R 4.1.0)
+##  P sessioninfo         1.2.2      2021-12-06 [?] CRAN (R 4.1.2)
 ##  P shape               1.4.6      2021-05-19 [?] CRAN (R 4.1.0)
-##  P stringi             1.7.4      2021-08-25 [?] CRAN (R 4.1.2)
+##  P stringi             1.7.4      2021-08-25 [?] CRAN (R 4.1.0)
 ##  P stringr           * 1.4.0      2019-02-10 [?] CRAN (R 4.1.0)
 ##  P SuppDists           1.1-9.5    2020-01-18 [?] CRAN (R 4.1.0)
 ##  P survcomp          * 1.42.0     2021-05-19 [?] Bioconductor
 ##  P survival          * 3.2-13     2021-08-24 [?] CRAN (R 4.1.2)
 ##  P survivalROC         1.0.3      2013-01-13 [?] CRAN (R 4.1.0)
-##  P tibble            * 3.1.5      2021-09-30 [?] CRAN (R 4.1.2)
+##  P tibble            * 3.1.5      2021-09-30 [?] CRAN (R 4.1.0)
 ##  P tidyr             * 1.1.4      2021-09-27 [?] CRAN (R 4.1.0)
 ##  P tidyselect          1.1.1      2021-04-30 [?] CRAN (R 4.1.0)
 ##  P tidyverse         * 1.3.1      2021-04-15 [?] CRAN (R 4.1.0)
@@ -2271,9 +2278,9 @@ n \times C_p = \Vert \mathbf{Y} - \mathbf{X}\boldsymbol{\beta}\Vert_2^2 + 2\sigm
 ##  P tzdb                0.1.2      2021-07-20 [?] CRAN (R 4.1.0)
 ##  P utf8                1.2.2      2021-07-24 [?] CRAN (R 4.1.0)
 ##  P vctrs               0.3.8      2021-04-29 [?] CRAN (R 4.1.0)
-##  P vroom               1.5.4      2021-08-05 [?] CRAN (R 4.1.2)
+##  P vroom               1.5.4      2021-08-05 [?] CRAN (R 4.1.0)
 ##  P withr               2.4.2      2021-04-18 [?] CRAN (R 4.1.0)
-##  P xfun                0.25       2021-08-06 [?] CRAN (R 4.1.2)
+##  P xfun                0.25       2021-08-06 [?] CRAN (R 4.1.0)
 ##  P XML                 3.99-0.8   2021-09-17 [?] CRAN (R 4.1.0)
 ##  P xml2                1.3.2      2020-04-23 [?] CRAN (R 4.1.0)
 ##  P XVector             0.32.0     2021-05-19 [?] Bioconductor
@@ -2281,7 +2288,7 @@ n \times C_p = \Vert \mathbf{Y} - \mathbf{X}\boldsymbol{\beta}\Vert_2^2 + 2\sigm
 ##  P zlibbioc            1.38.0     2021-05-19 [?] Bioconductor
 ## 
 ##  [1] /Users/runner/work/HDDA21/HDDA21/renv/library/R-4.1/x86_64-apple-darwin17.0
-##  [2] /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpHw9l2w/renv-system-library
+##  [2] /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpsYPB4k/renv-system-library
 ## 
 ##  P ── Loaded and on-disk path mismatch.
 ## 

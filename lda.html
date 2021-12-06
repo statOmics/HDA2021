@@ -466,6 +466,15 @@ div.tocify {
     <li>
       <a href="lsi.html">6. Large Scale Inference</a>
     </li>
+    <li>
+      <a href="https://sites.stat.washington.edu/people/raftery/Research/PDF/fraley1998.pdf">Paper 1: Model-based Clustering</a>
+    </li>
+    <li>
+      <a href="hclust.html">Paper 1: Intro Hierarchical Clustering</a>
+    </li>
+    <li>
+      <a href="em.html">Paper 1: EM algorithm</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -782,23 +791,26 @@ div.tocify {
 <span id="cb18-12"><a href="#cb18-12"></a>  <span class="dt">stop =</span> <span class="dv">-50</span>,</span>
 <span id="cb18-13"><a href="#cb18-13"></a>  <span class="dt">maxIte =</span> <span class="dv">25</span>,</span>
 <span id="cb18-14"><a href="#cb18-14"></a>  <span class="dt">trace =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
-<pre><code>## ite:  1  ridge cost:  91.45787  |b|_1:  5.414031 
-## ite:  2  ridge cost:  89.74318  |b|_1:  5.606768 
-## ite:  3  ridge cost:  88.63666  |b|_1:  5.763137 
-## ite:  4  ridge cost:  88.40369  |b|_1:  5.791059 
-## ite:  5  ridge cost:  88.15436  |b|_1:  5.832751 
-## ite:  6  ridge cost:  87.96267  |b|_1:  5.867475 
-## ite:  7  ridge cost:  87.87022  |b|_1:  5.884586 
-## ite:  8  ridge cost:  87.82515  |b|_1:  5.893019 
-## ite:  9  ridge cost:  87.80306  |b|_1:  5.897175 
-## ite:  10  ridge cost:  87.7922  |b|_1:  5.899224 
-## ite:  11  ridge cost:  87.78686  |b|_1:  5.900234 
-## ite:  12  ridge cost:  87.78422  |b|_1:  5.900731 
-## ite:  13  ridge cost:  87.78292  |b|_1:  5.900977 
-## ite:  14  ridge cost:  87.78228  |b|_1:  5.901098 
-## ite:  15  ridge cost:  87.78197  |b|_1:  5.901157 
-## ite:  16  ridge cost:  87.78181  |b|_1:  5.901187 
-## ite:  17  ridge cost:  87.78174  |b|_1:  5.901201 
+<pre><code>## ite:  1  ridge cost:  98.58835  |b|_1:  6.400752 
+## ite:  2  ridge cost:  94.19342  |b|_1:  5.77278 
+## ite:  3  ridge cost:  91.07827  |b|_1:  5.682179 
+## ite:  4  ridge cost:  91.34908  |b|_1:  5.417467 
+## ite:  5  ridge cost:  89.4883  |b|_1:  5.64541 
+## ite:  6  ridge cost:  88.60189  |b|_1:  5.767135 
+## ite:  7  ridge cost:  88.25228  |b|_1:  5.818428 
+## ite:  8  ridge cost:  88.12984  |b|_1:  5.837139 
+## ite:  9  ridge cost:  87.95092  |b|_1:  5.869637 
+## ite:  10  ridge cost:  87.86451  |b|_1:  5.885652 
+## ite:  11  ridge cost:  87.82236  |b|_1:  5.893544 
+## ite:  12  ridge cost:  87.80169  |b|_1:  5.897434 
+## ite:  13  ridge cost:  87.79152  |b|_1:  5.899351 
+## ite:  14  ridge cost:  87.78652  |b|_1:  5.900296 
+## ite:  15  ridge cost:  87.78406  |b|_1:  5.900762 
+## ite:  16  ridge cost:  87.78284  |b|_1:  5.900992 
+## ite:  17  ridge cost:  87.78224  |b|_1:  5.901105 
+## ite:  18  ridge cost:  87.78195  |b|_1:  5.901161 
+## ite:  19  ridge cost:  87.7818  |b|_1:  5.901188 
+## ite:  20  ridge cost:  87.78173  |b|_1:  5.901202 
 ## ite:  1  ridge cost:  134.7777  |b|_1:  5.379259 
 ## ite:  2  ridge cost:  134.7777  |b|_1:  5.379259 
 ## final update, total ridge cost:  222.5595  |b|_1:  11.28046</code></pre>
@@ -897,20 +909,18 @@ div.tocify {
 <h1>Session info</h1>
 <details>
 <p><summary>Session info</summary></p>
-<pre><code>## [1] &quot;2021-12-01 15:32:42 UTC&quot;</code></pre>
-<pre><code>## ─ Session info  📳  🏦  🚐   ─────────────────────────────────────────────────
-##  hash: vibration mode, bank, minibus
-## 
+<pre><code>## [1] &quot;2021-12-06 20:37:25 UTC&quot;</code></pre>
+<pre><code>## ─ Session info ───────────────────────────────────────────────────────────────
 ##  setting  value
 ##  version  R version 4.1.2 (2021-11-01)
-##  os       macOS Catalina 10.15.7
+##  os       macOS Big Sur 10.16
 ##  system   x86_64, darwin17.0
 ##  ui       X11
 ##  language (EN)
 ##  collate  en_US.UTF-8
 ##  ctype    en_US.UTF-8
 ##  tz       UTC
-##  date     2021-12-01
+##  date     2021-12-06
 ##  pandoc   2.7.3 @ /usr/local/bin/ (via rmarkdown)
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────
@@ -930,8 +940,8 @@ div.tocify {
 ##  P blob                1.2.2      2021-07-23 [?] CRAN (R 4.1.0)
 ##  P bootstrap           2019.6     2019-06-17 [?] CRAN (R 4.1.0)
 ##  P breastCancerMAINZ * 1.30.0     2021-05-20 [?] Bioconductor
-##  P broom               0.7.9      2021-07-27 [?] CRAN (R 4.1.2)
-##  P bslib               0.3.0      2021-09-02 [?] CRAN (R 4.1.2)
+##  P broom               0.7.9      2021-07-27 [?] CRAN (R 4.1.0)
+##  P bslib               0.3.0      2021-09-02 [?] CRAN (R 4.1.0)
 ##  P cachem              1.0.6      2021-08-19 [?] CRAN (R 4.1.0)
 ##  P cellranger          1.1.0      2016-07-27 [?] CRAN (R 4.1.0)
 ##  P class               7.3-19     2021-05-03 [?] CRAN (R 4.1.2)
@@ -955,12 +965,12 @@ div.tocify {
 ##  P filelock            1.0.2      2018-10-05 [?] CRAN (R 4.1.0)
 ##  P forcats           * 0.5.1      2021-01-27 [?] CRAN (R 4.1.0)
 ##  P fs                  1.5.0      2020-07-31 [?] CRAN (R 4.1.0)
-##  P future              1.22.1     2021-08-25 [?] CRAN (R 4.1.2)
+##  P future              1.22.1     2021-08-25 [?] CRAN (R 4.1.0)
 ##  P future.apply        1.8.1      2021-08-10 [?] CRAN (R 4.1.0)
 ##  P genefu            * 2.24.2     2021-05-23 [?] Bioconductor
 ##  P generics            0.1.0      2020-10-31 [?] CRAN (R 4.1.0)
 ##  P GenomeInfoDb        1.28.4     2021-09-09 [?] Bioconductor
-##  P GenomeInfoDbData    1.2.6      2021-11-12 [?] Bioconductor
+##  P GenomeInfoDbData    1.2.6      2021-12-06 [?] Bioconductor
 ##  P ggplot2           * 3.3.5      2021-06-25 [?] CRAN (R 4.1.0)
 ##  P globals             0.14.0     2020-11-22 [?] CRAN (R 4.1.0)
 ##  P glue                1.4.2      2020-08-27 [?] CRAN (R 4.1.0)
@@ -998,8 +1008,8 @@ div.tocify {
 ##  P munsell             0.5.0      2018-06-12 [?] CRAN (R 4.1.0)
 ##  P pamr              * 1.56.1     2019-04-22 [?] CRAN (R 4.1.0)
 ##  P parallelly          1.28.1     2021-09-09 [?] CRAN (R 4.1.0)
-##  P pillar              1.6.3      2021-09-26 [?] CRAN (R 4.1.2)
-##  P pkgconfig           2.0.3      2021-11-12 [?] Github (r-lib/pkgconfig@b81ae03)
+##  P pillar              1.6.3      2021-09-26 [?] CRAN (R 4.1.0)
+##  P pkgconfig           2.0.3      2021-12-06 [?] Github (r-lib/pkgconfig@b81ae03)
 ##  P png                 0.1-7      2013-12-03 [?] CRAN (R 4.1.0)
 ##  P prettyunits         1.1.1      2020-01-24 [?] CRAN (R 4.1.0)
 ##  P prodlim           * 2019.11.13 2019-11-17 [?] CRAN (R 4.1.0)
@@ -1009,29 +1019,29 @@ div.tocify {
 ##  P R6                  2.5.1      2021-08-19 [?] CRAN (R 4.1.0)
 ##  P rappdirs            0.3.3      2021-01-31 [?] CRAN (R 4.1.0)
 ##  P Rcpp                1.0.7      2021-07-07 [?] CRAN (R 4.1.0)
-##  P RCurl               1.98-1.4   2021-08-17 [?] CRAN (R 4.1.2)
-##  P readr             * 2.0.1      2021-08-10 [?] CRAN (R 4.1.2)
+##  P RCurl               1.98-1.4   2021-08-17 [?] CRAN (R 4.1.0)
+##  P readr             * 2.0.1      2021-08-10 [?] CRAN (R 4.1.0)
 ##  P readxl              1.3.1      2019-03-13 [?] CRAN (R 4.1.0)
-##  P renv                0.14.0     2021-07-21 [?] CRAN (R 4.1.0)
+##    renv                0.14.0     2021-07-21 [1] CRAN (R 4.1.0)
 ##  P reprex              2.0.1      2021-08-05 [?] CRAN (R 4.1.0)
 ##  P rlang               0.4.11     2021-04-30 [?] CRAN (R 4.1.0)
-##  P rmarkdown           2.10       2021-08-06 [?] CRAN (R 4.1.2)
+##  P rmarkdown           2.10       2021-08-06 [?] CRAN (R 4.1.0)
 ##  P rmeta               3.0        2018-03-20 [?] CRAN (R 4.1.0)
 ##  P RSQLite             2.2.8      2021-08-21 [?] CRAN (R 4.1.0)
 ##  P rstudioapi          0.13       2020-11-12 [?] CRAN (R 4.1.0)
-##  P rvest               1.0.1      2021-07-26 [?] CRAN (R 4.1.2)
+##  P rvest               1.0.1      2021-07-26 [?] CRAN (R 4.1.0)
 ##  P S4Vectors           0.30.0     2021-05-19 [?] Bioconductor
 ##  P sass                0.4.0      2021-05-12 [?] CRAN (R 4.1.0)
 ##  P scales              1.1.1      2020-05-11 [?] CRAN (R 4.1.0)
-##  P sessioninfo         1.2.1      2021-11-02 [?] CRAN (R 4.1.0)
+##  P sessioninfo         1.2.2      2021-12-06 [?] CRAN (R 4.1.2)
 ##  P sparseLDA         * 0.1-9      2016-09-22 [?] CRAN (R 4.1.0)
-##  P stringi             1.7.4      2021-08-25 [?] CRAN (R 4.1.2)
+##  P stringi             1.7.4      2021-08-25 [?] CRAN (R 4.1.0)
 ##  P stringr           * 1.4.0      2019-02-10 [?] CRAN (R 4.1.0)
 ##  P SuppDists           1.1-9.5    2020-01-18 [?] CRAN (R 4.1.0)
 ##  P survcomp          * 1.42.0     2021-05-19 [?] Bioconductor
 ##  P survival          * 3.2-13     2021-08-24 [?] CRAN (R 4.1.2)
 ##  P survivalROC         1.0.3      2013-01-13 [?] CRAN (R 4.1.0)
-##  P tibble            * 3.1.5      2021-09-30 [?] CRAN (R 4.1.2)
+##  P tibble            * 3.1.5      2021-09-30 [?] CRAN (R 4.1.0)
 ##  P tidyr             * 1.1.4      2021-09-27 [?] CRAN (R 4.1.0)
 ##  P tidyselect          1.1.1      2021-04-30 [?] CRAN (R 4.1.0)
 ##  P tidyverse         * 1.3.1      2021-04-15 [?] CRAN (R 4.1.0)
@@ -1039,7 +1049,7 @@ div.tocify {
 ##  P utf8                1.2.2      2021-07-24 [?] CRAN (R 4.1.0)
 ##  P vctrs               0.3.8      2021-04-29 [?] CRAN (R 4.1.0)
 ##  P withr               2.4.2      2021-04-18 [?] CRAN (R 4.1.0)
-##  P xfun                0.25       2021-08-06 [?] CRAN (R 4.1.2)
+##  P xfun                0.25       2021-08-06 [?] CRAN (R 4.1.0)
 ##  P XML                 3.99-0.8   2021-09-17 [?] CRAN (R 4.1.0)
 ##  P xml2                1.3.2      2020-04-23 [?] CRAN (R 4.1.0)
 ##  P XVector             0.32.0     2021-05-19 [?] Bioconductor
@@ -1047,7 +1057,7 @@ div.tocify {
 ##  P zlibbioc            1.38.0     2021-05-19 [?] Bioconductor
 ## 
 ##  [1] /Users/runner/work/HDDA21/HDDA21/renv/library/R-4.1/x86_64-apple-darwin17.0
-##  [2] /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpSUYYpt/renv-system-library
+##  [2] /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpIvz3GJ/renv-system-library
 ## 
 ##  P ── Loaded and on-disk path mismatch.
 ## 

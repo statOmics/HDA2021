@@ -466,6 +466,15 @@ div.tocify {
     <li>
       <a href="lsi.html">6. Large Scale Inference</a>
     </li>
+    <li>
+      <a href="https://sites.stat.washington.edu/people/raftery/Research/PDF/fraley1998.pdf">Paper 1: Model-based Clustering</a>
+    </li>
+    <li>
+      <a href="hclust.html">Paper 1: Intro Hierarchical Clustering</a>
+    </li>
+    <li>
+      <a href="em.html">Paper 1: EM algorithm</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -1018,20 +1027,18 @@ E[\hat{\boldsymbol{\beta}}]=\boldsymbol{\beta}
 <h1>Session info</h1>
 <details>
 <p><summary>Session info</summary></p>
-<pre><code>[1] &quot;2021-12-01 15:30:42 UTC&quot;</code></pre>
-<pre><code>─ Session info  🚭  🏃  🈯   ─────────────────────────────────────────────────
- hash: no smoking, person running, Japanese “reserved” button
-
+<pre><code>[1] &quot;2021-12-06 20:35:35 UTC&quot;</code></pre>
+<pre><code>─ Session info ───────────────────────────────────────────────────────────────
  setting  value
  version  R version 4.1.2 (2021-11-01)
- os       macOS Catalina 10.15.7
+ os       macOS Big Sur 10.16
  system   x86_64, darwin17.0
  ui       X11
  language (EN)
  collate  en_US.UTF-8
  ctype    en_US.UTF-8
  tz       UTC
- date     2021-12-01
+ date     2021-12-06
  pandoc   2.7.3 @ /usr/local/bin/ (via rmarkdown)
 
 ─ Packages ───────────────────────────────────────────────────────────────────
@@ -1055,8 +1062,8 @@ E[\hat{\boldsymbol{\beta}}]=\boldsymbol{\beta}
  P bit64                    4.0.5    2020-08-30 [?] CRAN (R 4.1.0)
  P bitops                   1.0-7    2021-04-24 [?] CRAN (R 4.1.0)
  P blob                     1.2.2    2021-07-23 [?] CRAN (R 4.1.0)
- P broom                    0.7.9    2021-07-27 [?] CRAN (R 4.1.2)
- P bslib                    0.3.0    2021-09-02 [?] CRAN (R 4.1.2)
+ P broom                    0.7.9    2021-07-27 [?] CRAN (R 4.1.0)
+ P bslib                    0.3.0    2021-09-02 [?] CRAN (R 4.1.0)
  P cachem                   1.0.6    2021-08-19 [?] CRAN (R 4.1.0)
  P cellranger               1.1.0    2016-07-27 [?] CRAN (R 4.1.0)
  P cli                      3.1.0    2021-10-27 [?] CRAN (R 4.1.0)
@@ -1080,7 +1087,7 @@ E[\hat{\boldsymbol{\beta}}]=\boldsymbol{\beta}
  P fs                       1.5.0    2020-07-31 [?] CRAN (R 4.1.0)
  P generics                 0.1.0    2020-10-31 [?] CRAN (R 4.1.0)
  P GenomeInfoDb           * 1.28.4   2021-09-09 [?] Bioconductor
- P GenomeInfoDbData         1.2.6    2021-11-12 [?] Bioconductor
+ P GenomeInfoDbData         1.2.6    2021-12-06 [?] Bioconductor
  P GenomicRanges          * 1.44.0   2021-05-19 [?] Bioconductor
  P ggbeeswarm               0.6.0    2017-08-07 [?] CRAN (R 4.1.0)
  P ggplot2                * 3.3.5    2021-06-25 [?] CRAN (R 4.1.0)
@@ -1108,15 +1115,15 @@ E[\hat{\boldsymbol{\beta}}]=\boldsymbol{\beta}
  P magrittr                 2.0.1    2020-11-17 [?] CRAN (R 4.1.0)
  P Matrix                   1.3-4    2021-06-01 [?] CRAN (R 4.1.2)
  P MatrixGenerics         * 1.4.3    2021-08-26 [?] Bioconductor
- P matrixStats            * 0.60.1   2021-08-23 [?] CRAN (R 4.1.2)
+ P matrixStats            * 0.60.1   2021-08-23 [?] CRAN (R 4.1.0)
  P memoise                  2.0.0    2021-01-26 [?] CRAN (R 4.1.0)
  P mime                     0.12     2021-09-28 [?] CRAN (R 4.1.0)
  P misc3d                   0.9-0    2020-09-06 [?] CRAN (R 4.1.0)
  P modelr                   0.1.8    2020-05-19 [?] CRAN (R 4.1.0)
  P munsell                  0.5.0    2018-06-12 [?] CRAN (R 4.1.0)
    muscData               * 1.6.0    2021-05-20 [1] Bioconductor
- P pillar                   1.6.3    2021-09-26 [?] CRAN (R 4.1.2)
- P pkgconfig                2.0.3    2021-11-12 [?] Github (r-lib/pkgconfig@b81ae03)
+ P pillar                   1.6.3    2021-09-26 [?] CRAN (R 4.1.0)
+ P pkgconfig                2.0.3    2021-12-06 [?] Github (r-lib/pkgconfig@b81ae03)
  P plot3D                 * 1.4      2021-05-22 [?] CRAN (R 4.1.0)
  P png                      0.1-7    2013-12-03 [?] CRAN (R 4.1.0)
  P promises                 1.2.0.1  2021-02-11 [?] CRAN (R 4.1.0)
@@ -1124,31 +1131,31 @@ E[\hat{\boldsymbol{\beta}}]=\boldsymbol{\beta}
  P R6                       2.5.1    2021-08-19 [?] CRAN (R 4.1.0)
  P rappdirs                 0.3.3    2021-01-31 [?] CRAN (R 4.1.0)
  P Rcpp                     1.0.7    2021-07-07 [?] CRAN (R 4.1.0)
- P RCurl                    1.98-1.4 2021-08-17 [?] CRAN (R 4.1.2)
- P readr                  * 2.0.1    2021-08-10 [?] CRAN (R 4.1.2)
+ P RCurl                    1.98-1.4 2021-08-17 [?] CRAN (R 4.1.0)
+ P readr                  * 2.0.1    2021-08-10 [?] CRAN (R 4.1.0)
  P readxl                   1.3.1    2019-03-13 [?] CRAN (R 4.1.0)
- P renv                     0.14.0   2021-07-21 [?] CRAN (R 4.1.0)
+   renv                     0.14.0   2021-07-21 [1] CRAN (R 4.1.0)
  P reprex                   2.0.1    2021-08-05 [?] CRAN (R 4.1.0)
  P rlang                    0.4.11   2021-04-30 [?] CRAN (R 4.1.0)
- P rmarkdown                2.10     2021-08-06 [?] CRAN (R 4.1.2)
+ P rmarkdown                2.10     2021-08-06 [?] CRAN (R 4.1.0)
  P RSQLite                  2.2.8    2021-08-21 [?] CRAN (R 4.1.0)
  P rstudioapi               0.13     2020-11-12 [?] CRAN (R 4.1.0)
  P rsvd                     1.0.5    2021-04-16 [?] CRAN (R 4.1.0)
- P rvest                    1.0.1    2021-07-26 [?] CRAN (R 4.1.2)
+ P rvest                    1.0.1    2021-07-26 [?] CRAN (R 4.1.0)
  P S4Vectors              * 0.30.0   2021-05-19 [?] Bioconductor
  P sass                     0.4.0    2021-05-12 [?] CRAN (R 4.1.0)
  P ScaledMatrix             1.0.0    2021-05-19 [?] Bioconductor
  P scales                   1.1.1    2020-05-11 [?] CRAN (R 4.1.0)
  P scater                 * 1.20.1   2021-06-15 [?] Bioconductor
  P scuttle                * 1.2.1    2021-08-05 [?] Bioconductor
- P sessioninfo              1.2.1    2021-11-02 [?] CRAN (R 4.1.0)
- P shiny                    1.7.0    2021-09-22 [?] CRAN (R 4.1.2)
+ P sessioninfo              1.2.2    2021-12-06 [?] CRAN (R 4.1.2)
+ P shiny                    1.7.0    2021-09-22 [?] CRAN (R 4.1.0)
  P SingleCellExperiment   * 1.14.1   2021-05-21 [?] Bioconductor
  P sparseMatrixStats        1.4.2    2021-08-08 [?] Bioconductor
- P stringi                  1.7.4    2021-08-25 [?] CRAN (R 4.1.2)
+ P stringi                  1.7.4    2021-08-25 [?] CRAN (R 4.1.0)
  P stringr                * 1.4.0    2019-02-10 [?] CRAN (R 4.1.0)
  P SummarizedExperiment   * 1.22.0   2021-05-19 [?] Bioconductor
- P tibble                 * 3.1.5    2021-09-30 [?] CRAN (R 4.1.2)
+ P tibble                 * 3.1.5    2021-09-30 [?] CRAN (R 4.1.0)
  P tidyr                  * 1.1.4    2021-09-27 [?] CRAN (R 4.1.0)
  P tidyselect               1.1.1    2021-04-30 [?] CRAN (R 4.1.0)
  P tidyverse              * 1.3.1    2021-04-15 [?] CRAN (R 4.1.0)
@@ -1159,7 +1166,7 @@ E[\hat{\boldsymbol{\beta}}]=\boldsymbol{\beta}
  P viridis                  0.6.1    2021-05-11 [?] CRAN (R 4.1.0)
  P viridisLite              0.4.0    2021-04-13 [?] CRAN (R 4.1.0)
  P withr                    2.4.2    2021-04-18 [?] CRAN (R 4.1.0)
- P xfun                     0.25     2021-08-06 [?] CRAN (R 4.1.2)
+ P xfun                     0.25     2021-08-06 [?] CRAN (R 4.1.0)
  P xml2                     1.3.2    2020-04-23 [?] CRAN (R 4.1.0)
  P xtable                   1.8-4    2019-04-21 [?] CRAN (R 4.1.0)
  P XVector                  0.32.0   2021-05-19 [?] Bioconductor
@@ -1167,7 +1174,7 @@ E[\hat{\boldsymbol{\beta}}]=\boldsymbol{\beta}
  P zlibbioc                 1.38.0   2021-05-19 [?] Bioconductor
 
  [1] /Users/runner/work/HDDA21/HDDA21/renv/library/R-4.1/x86_64-apple-darwin17.0
- [2] /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/Rtmp8SZgKx/renv-system-library
+ [2] /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpvvAKgl/renv-system-library
 
  P ── Loaded and on-disk path mismatch.
 
