@@ -26,6 +26,12 @@ navbar:
         href: lda.html
       - text: "6. Large Scale Inference"
         href: lsi.html
+      - text: "Paper 1: Model-based Clustering"
+        href: https://sites.stat.washington.edu/people/raftery/Research/PDF/fraley1998.pdf
+      - text: "Paper 1: Intro Hierarchical Clustering"
+        href: hclust.html
+      - text: "Paper 1: EM algorithm"
+        href: em.html
     - text: "Labs"
       icon: fa-laptop
       menu:
@@ -39,6 +45,7 @@ navbar:
         href: Lab4-Sparse-PCA-LDA.html
       - text: "Lab 5"
         href: Lab5-Large-Scale-Inference.html
+
   right:
     - icon: fab fa-github
       href: https://github.com/statOmics/HDDA21
