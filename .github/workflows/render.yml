@@ -40,6 +40,10 @@ jobs:
         if: runner.os == 'linux'
         run: sudo apt-get install libcurl4-openssl-dev
 
+      - name: Install magick on Linux
+        if: runner.os == 'linux'
+        run: sudo apt-get -y install libmagick++-dev
+
       - name: Set up renv
         uses: r-lib/actions/setup-renv@master
         with:
