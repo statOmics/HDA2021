@@ -36,6 +36,10 @@ jobs:
         run: |
           brew install --cask xquartz
 
+      - name: Install curl Headers
+        if: runner.os == 'linux'
+        run: sudo apt-get install libcurl4-openssl-dev
+
       - name: Set up renv
         uses: r-lib/actions/setup-renv@master
         with:
