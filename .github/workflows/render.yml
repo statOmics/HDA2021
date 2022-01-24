@@ -13,7 +13,7 @@ env:
 
 jobs:
   render:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Check out repo
