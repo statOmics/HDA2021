@@ -68,7 +68,7 @@ email or during the lectures or practical sessions.
 
   - [Lecture 4-5: Prediction Theory](./prediction.html) [[PDF](./prediction.pdf)]
   - [Lab 3: Penalized regression and prediction](./Lab3-Penalized-Regression.html)
-  - [AIC vs BIC illustrated](./AICvsBIC.htm)
+  - [AIC vs BIC illustrated](./AICvsBIC.html)
 
 ### 4. Sparse Singular Value Decomposition
 
