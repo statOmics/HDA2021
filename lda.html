@@ -791,31 +791,29 @@ div.tocify {
 <span id="cb18-12"><a href="#cb18-12"></a>  <span class="dt">stop =</span> <span class="dv">-50</span>,</span>
 <span id="cb18-13"><a href="#cb18-13"></a>  <span class="dt">maxIte =</span> <span class="dv">25</span>,</span>
 <span id="cb18-14"><a href="#cb18-14"></a>  <span class="dt">trace =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
-<pre><code>## ite:  1  ridge cost:  125.9299  |b|_1:  5.733713 
-## ite:  2  ridge cost:  113.0969  |b|_1:  6.151612 
-## ite:  3  ridge cost:  98.00072  |b|_1:  6.591426 
-## ite:  4  ridge cost:  92.97077  |b|_1:  6.029486 
-## ite:  5  ridge cost:  91.74047  |b|_1:  5.599176 
-## ite:  6  ridge cost:  91.37888  |b|_1:  5.420057 
-## ite:  7  ridge cost:  89.69016  |b|_1:  5.612814 
-## ite:  8  ridge cost:  88.61866  |b|_1:  5.765199 
-## ite:  9  ridge cost:  88.33704  |b|_1:  5.803025 
-## ite:  10  ridge cost:  88.14133  |b|_1:  5.83508 
-## ite:  11  ridge cost:  87.95643  |b|_1:  5.868623 
-## ite:  12  ridge cost:  87.86719  |b|_1:  5.885152 
-## ite:  13  ridge cost:  87.82367  |b|_1:  5.893298 
-## ite:  14  ridge cost:  87.80233  |b|_1:  5.897312 
-## ite:  15  ridge cost:  87.79184  |b|_1:  5.899291 
-## ite:  16  ridge cost:  87.78668  |b|_1:  5.900267 
-## ite:  17  ridge cost:  87.78413  |b|_1:  5.900748 
-## ite:  18  ridge cost:  87.78288  |b|_1:  5.900985 
-## ite:  19  ridge cost:  87.78226  |b|_1:  5.901102 
-## ite:  20  ridge cost:  87.78196  |b|_1:  5.901159 
-## ite:  21  ridge cost:  87.78181  |b|_1:  5.901188 
-## ite:  22  ridge cost:  87.78174  |b|_1:  5.901202 
-## ite:  1  ridge cost:  134.7777  |b|_1:  5.379259 
-## ite:  2  ridge cost:  134.7777  |b|_1:  5.379259 
-## final update, total ridge cost:  222.5595  |b|_1:  11.28046</code></pre>
+<pre><code>## ite:  1  ridge cost:  105.2556  |b|_1:  5.755309 
+## ite:  2  ridge cost:  93.7757  |b|_1:  5.866647 
+## ite:  3  ridge cost:  90.77972  |b|_1:  5.663206 
+## ite:  4  ridge cost:  89.39703  |b|_1:  5.697113 
+## ite:  5  ridge cost:  88.09066  |b|_1:  5.871619 
+## ite:  6  ridge cost:  87.73053  |b|_1:  5.918868 
+## ite:  7  ridge cost:  88.17644  |b|_1:  5.828998 
+## ite:  8  ridge cost:  87.62481  |b|_1:  5.931532 
+## ite:  9  ridge cost:  87.87548  |b|_1:  5.883637 
+## ite:  10  ridge cost:  87.83162  |b|_1:  5.89181 
+## ite:  11  ridge cost:  87.78528  |b|_1:  5.900542 
+## ite:  12  ridge cost:  87.7671  |b|_1:  5.903973 
+## ite:  13  ridge cost:  87.77448  |b|_1:  5.902575 
+## ite:  14  ridge cost:  87.77812  |b|_1:  5.901885 
+## ite:  15  ridge cost:  87.77992  |b|_1:  5.901546 
+## ite:  16  ridge cost:  87.7808  |b|_1:  5.901378 
+## ite:  17  ridge cost:  87.78124  |b|_1:  5.901296 
+## ite:  18  ridge cost:  87.78145  |b|_1:  5.901255 
+## ite:  19  ridge cost:  87.78156  |b|_1:  5.901235 
+## ite:  20  ridge cost:  87.78161  |b|_1:  5.901225 
+## ite:  1  ridge cost:  134.7777  |b|_1:  5.379261 
+## ite:  2  ridge cost:  134.7777  |b|_1:  5.379261 
+## final update, total ridge cost:  222.5593  |b|_1:  11.28049</code></pre>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>Vsda &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">0</span>, <span class="dt">nrow=</span><span class="kw">ncol</span>(X2), <span class="dt">ncol=</span><span class="dv">2</span>)</span>
 <span id="cb20-2"><a href="#cb20-2"></a>Vsda[breast.slda<span class="op">$</span>varIndex,] &lt;-<span class="st"> </span>breast.slda<span class="op">$</span>beta</span>
 <span id="cb20-3"><a href="#cb20-3"></a><span class="kw">colnames</span>(Vsda) &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;V&quot;</span>,<span class="dv">1</span><span class="op">:</span><span class="kw">ncol</span>(Vsda))</span>
@@ -911,7 +909,7 @@ div.tocify {
 <h1>Session info</h1>
 <details>
 <p><summary>Session info</summary></p>
-<pre><code>## [1] &quot;2022-01-25 10:48:12 UTC&quot;</code></pre>
+<pre><code>## [1] &quot;2022-01-25 11:17:44 UTC&quot;</code></pre>
 <pre><code>## ─ Session info ───────────────────────────────────────────────────────────────
 ##  setting  value
 ##  version  R version 4.1.2 (2021-11-01)
@@ -934,6 +932,7 @@ div.tocify {
 ##  P Biobase           * 2.52.0     2021-05-19 [?] Bioconductor
 ##  P BiocFileCache       2.0.0      2021-05-19 [?] Bioconductor
 ##  P BiocGenerics      * 0.38.0     2021-05-19 [?] Bioconductor
+##  P BiocManager         1.30.16    2021-06-15 [?] CRAN (R 4.1.2)
 ##  P biomaRt           * 2.48.3     2021-08-15 [?] Bioconductor
 ##  P Biostrings          2.60.2     2021-08-05 [?] Bioconductor
 ##  P bit                 4.0.4      2020-08-04 [?] CRAN (R 4.1.2)
@@ -946,10 +945,10 @@ div.tocify {
 ##  P bslib               0.3.0      2021-09-02 [?] CRAN (R 4.1.2)
 ##  P cachem              1.0.6      2021-08-19 [?] CRAN (R 4.1.2)
 ##  P cellranger          1.1.0      2016-07-27 [?] CRAN (R 4.1.2)
-##  P class               7.3-19     2021-05-03 [?] CRAN (R 4.1.2)
+##    class               7.3-19     2021-05-03 [2] CRAN (R 4.1.2)
 ##  P cli                 3.1.1      2022-01-20 [?] CRAN (R 4.1.2)
-##  P cluster           * 2.1.2      2021-04-17 [?] CRAN (R 4.1.2)
-##  P codetools           0.2-18     2020-11-04 [?] CRAN (R 4.1.2)
+##    cluster           * 2.1.2      2021-04-17 [2] CRAN (R 4.1.2)
+##    codetools           0.2-18     2020-11-04 [2] CRAN (R 4.1.2)
 ##  P colorspace          2.0-2      2021-06-24 [?] CRAN (R 4.1.2)
 ##  P crayon              1.4.1      2021-02-08 [?] CRAN (R 4.1.2)
 ##  P curl                4.3.2      2021-06-23 [?] CRAN (R 4.1.2)
@@ -990,19 +989,19 @@ div.tocify {
 ##  P jquerylib           0.1.4      2021-04-26 [?] CRAN (R 4.1.2)
 ##  P jsonlite            1.7.2      2020-12-09 [?] CRAN (R 4.1.2)
 ##  P KEGGREST            1.32.0     2021-05-19 [?] Bioconductor
-##  P KernSmooth          2.23-20    2021-05-03 [?] CRAN (R 4.1.2)
+##    KernSmooth          2.23-20    2021-05-03 [2] CRAN (R 4.1.2)
 ##  P knitr               1.33       2021-04-24 [?] CRAN (R 4.1.2)
 ##  P labeling            0.4.2      2020-10-20 [?] CRAN (R 4.1.2)
 ##  P lars                1.2        2013-04-24 [?] CRAN (R 4.1.2)
-##  P lattice             0.20-45    2021-09-22 [?] CRAN (R 4.1.2)
+##    lattice             0.20-45    2021-09-22 [2] CRAN (R 4.1.2)
 ##  P lava                1.6.10     2021-09-02 [?] CRAN (R 4.1.2)
 ##  P lifecycle           1.0.1      2021-09-24 [?] CRAN (R 4.1.2)
 ##  P limma               3.48.3     2021-08-10 [?] Bioconductor
 ##  P listenv             0.8.0      2019-12-05 [?] CRAN (R 4.1.2)
 ##  P lubridate           1.7.10     2021-02-26 [?] CRAN (R 4.1.2)
 ##  P magrittr            2.0.1      2020-11-17 [?] CRAN (R 4.1.2)
-##  P MASS                7.3-54     2021-05-03 [?] CRAN (R 4.1.2)
-##  P Matrix              1.3-4      2021-06-01 [?] CRAN (R 4.1.2)
+##    MASS                7.3-54     2021-05-03 [2] CRAN (R 4.1.2)
+##    Matrix              1.3-4      2021-06-01 [2] CRAN (R 4.1.2)
 ##  P mclust              5.4.7      2020-11-20 [?] CRAN (R 4.1.2)
 ##  P mda                 0.5-2      2020-06-29 [?] CRAN (R 4.1.2)
 ##  P memoise             2.0.0      2021-01-26 [?] CRAN (R 4.1.2)
@@ -1024,7 +1023,7 @@ div.tocify {
 ##  P RCurl               1.98-1.4   2021-08-17 [?] CRAN (R 4.1.2)
 ##  P readr             * 2.0.1      2021-08-10 [?] CRAN (R 4.1.2)
 ##  P readxl              1.3.1      2019-03-13 [?] CRAN (R 4.1.2)
-##  P renv                0.14.0     2021-07-21 [?] CRAN (R 4.1.2)
+##  P renv                0.15.2     2022-01-24 [?] CRAN (R 4.1.2)
 ##  P reprex              2.0.1      2021-08-05 [?] CRAN (R 4.1.2)
 ##  P rlang               0.4.11     2021-04-30 [?] CRAN (R 4.1.2)
 ##  P rmarkdown           2.10       2021-08-06 [?] CRAN (R 4.1.2)
@@ -1041,7 +1040,7 @@ div.tocify {
 ##  P stringr           * 1.4.0      2019-02-10 [?] CRAN (R 4.1.2)
 ##  P SuppDists           1.1-9.5    2020-01-18 [?] CRAN (R 4.1.2)
 ##  P survcomp          * 1.42.0     2021-05-19 [?] Bioconductor
-##  P survival          * 3.2-13     2021-08-24 [?] CRAN (R 4.1.2)
+##    survival          * 3.2-13     2021-08-24 [2] CRAN (R 4.1.2)
 ##  P survivalROC         1.0.3      2013-01-13 [?] CRAN (R 4.1.2)
 ##  P tibble            * 3.1.5      2021-09-30 [?] CRAN (R 4.1.2)
 ##  P tidyr             * 1.1.4      2021-09-27 [?] CRAN (R 4.1.2)
@@ -1059,7 +1058,7 @@ div.tocify {
 ##  P zlibbioc            1.38.0     2021-05-19 [?] Bioconductor
 ## 
 ##  [1] /home/runner/work/HDDA21/HDDA21/renv/library/R-4.1/x86_64-pc-linux-gnu
-##  [2] /tmp/RtmpySuzOi/renv-system-library
+##  [2] /opt/R/4.1.2/lib/R/library
 ## 
 ##  P ── Loaded and on-disk path mismatch.
 ## 
